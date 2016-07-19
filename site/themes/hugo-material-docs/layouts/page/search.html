@@ -1,0 +1,26 @@
+{{ partial "head" . }}
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	{{ partial "header" . }}
+</header>
+
+<main class="main" style="min-height:1260px">
+
+	<div class="drawer">
+		{{ partial "drawer" . }}
+	</div>
+	<div class="searchresults">
+		<gcse:searchresults-only></gcse:searchresults-only>
+	</div>
+
+</main>
+
+{{ partial "footer_js" . }}

@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  traefik:
+    image: traefik
+    ports:
+      - "5913:80"
+      - "8080:8080"
+    volumes:
+      - ./.traefik.toml:/etc/traefik/traefik.toml
+      - ./logs:/logs
+    networks:
+      internal:
+        ipv4_address: 172.16.141.1
+
+  vendor-api-docs:
+    build:
+      context: .
+      dockerfile: ./Dockerfiles/Dockerfile.hugo
+    environment:
+      - HUGO_WATCH=true
+      - HUGO_BASEURL=http://localhost:5913/docs/
+    volumes:
+      - ./site:/src
+      - ./docs:/src/content
+      - ./hugo-config/docs.toml:/src/config.toml
+    networks:
+      internal:
+        ipv4_address: 172.16.141.110
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.141.0/24
+        gateway: 172.16.141.254
+  default:
+    external:
+      name: bridge

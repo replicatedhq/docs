@@ -1,0 +1,91 @@
+.swagger h2 {
+    font-size: 20px;
+}
+
+/* Path */
+
+.swagger h3[id|=post] {
+    background-color: #9B708B;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 50px 0px 0px;
+    width: 57px;
+}
+.swagger h3[id|=get] {
+    background-color: #6BBD5B;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 50px 0px 0px;
+    width: 46px;
+}
+.swagger h3[id|=delete] {
+    background-color: #E27A7A;
+    color: white;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 50px 0px 0px;
+    width: 72px;
+}
+.swagger h3 em {
+    font-size: 18px;
+    color: black;
+    float: left;
+    margin-top: -23px;
+}
+
+/* Path (em) alignment  */
+
+.swagger h3[id|=post] em {
+    padding-left: 60px;
+}
+.swagger h3[id|=get] em {
+    padding-left: 50px;
+}
+.swagger h3[id|=delete] em {
+    padding-left: 75px;
+}
+
+/* New Path Divider */
+
+.swagger h4[id|=summary] {
+    border-top: 1px solid #ccc;
+}
+.swagger h4[id|=summary], .swagger h4[id|=description], .swagger h4[id|=request], .swagger h4[id|=parameters], .swagger h4[id|=responses] {
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 20px;
+    padding-top: 15px
+}
+
+/* Summar Tags */
+
+.swagger h4[id|=summary]+ p+ p a {
+    background-color: #FE0000;
+    padding: 5px 10px;
+    border-radius: 25px;
+    margin-right: 5px;
+    color: white;
+    border: none;
+}
+
+/* Request & Response Pre */
+
+.swagger h4[id|=request]+ p, .swagger h4[id|=responses]+ p {
+    padding: 16px;
+    line-height: 1.5em;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 3px;
+    box-shadow: 0 2.5px 3px rgba(0, 0, 0, .2), 0 0 0 1px rgba(0, 0, 0, .08);
+}
+
+/* Request  */
+
+.swagger h4[id|=request]+ p+ p {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #AAA;
+}
