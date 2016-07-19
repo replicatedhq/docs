@@ -31,7 +31,7 @@ test:
 
 deployment:
   release:
-    owner: replicatedcom
+    owner: replicatedhq
     branch: master
     commands:
       - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS quay.io
