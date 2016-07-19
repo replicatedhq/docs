@@ -1,7 +1,7 @@
 +++
 date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
-title = "Installing Known Versions of Replciated"
+title = "Installing Known Versions of Replicated"
 weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
