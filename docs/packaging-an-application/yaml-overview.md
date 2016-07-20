@@ -165,4 +165,4 @@ admin_commands:
     version: latest
 ```
 
-For the full configuration see [Examples](/docs/examples).
+For the full configuration see [Examples](/examples).
