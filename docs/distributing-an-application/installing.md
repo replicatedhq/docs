@@ -120,10 +120,14 @@ Navigate to the :8800/cluster page of the On-Prem console to add a node to the c
 will present a custom Docker run command containing a secret token (or optionally an easy-install script) that can be run on the same server or an additional server to install an Operator.
 
 ## Installing Behind A Proxy
-Replicated introduced an [enhanced installer](http://blog.replicated.com/2015/12/03/enhanced-installation-script/)
-that should simplify the proxy installation experience.
+The Replicated installation script supports environments where an HTTP proxy server is required to access the Internet. The installation script will prompt for the proxy address and will set up Replicated and Docker to use the supplied value. 
 
-## Post-Installation Maintenance
+An example of running the Replicated installation script with a proxy server is:
+```shell
+curl -x http://<proxy_address>:<proxy_port> https://get.replicated.com/docker | sudo bash
+```
+
+# Post-Installation Maintenance
 ## Restarting Replicated
 If you installed Replicated using the easy installation script, the script will have created an init service you can
 use to control Replicated. In this case, restarting replicated varies depending on your host OS, please see below for
