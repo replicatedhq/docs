@@ -10,8 +10,7 @@ Replicated can now integrate with your third party private registry (ie Docker T
 you'll need to connect your vendor account to these accounts on the [app settings page](https://vendor.replicated.com/#/settings).
 
 {{< note title="Please Note" >}}
-Please note that as of December 7, 2015, [Replicated will no longer support Docker Hub hosted Registry](http://blog.replicated.com/2015/12/02/docker-hub-deprecates-registry-v1/), 
-due to their depreciation of registry v1 protocol support.
+Please note that as of July 22, 2016, [Replicated has deprecated Registry v1 protocol ](https://www.replicated.com/docs/kb/supporting-your-customers/registries/)
 {{< /note >}}
 
 You'll need to provide us with a reference name, endpoint, username, password and email address (we recommend creating a specific account for 
