@@ -46,48 +46,48 @@ config:
 
 kubernetes:
   config: |
-        apiVersion: extensions/v1beta1
-        kind: Deployment
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      name: frontend
+      # these labels can be applied automatically
+      # from the labels in the pod template if not set
+      # labels:
+      #   app: guestbook
+      #   tier: frontend
+    spec:
+      # this replicas value is default
+      # modify it according to your case
+      replicas: 3
+      # selector can be applied automatically
+      # from the labels in the pod template if not set
+      # selector:
+      #   matchLabels:
+      #     app: guestbook
+      #     tier: frontend
+      template:
         metadata:
-        name: frontend
-        # these labels can be applied automatically
-        # from the labels in the pod template if not set
-        # labels:
-        #   app: guestbook
-        #   tier: frontend
+          labels:
+            app: guestbook
+            tier: frontend
         spec:
-        # this replicas value is default
-        # modify it according to your case
-        replicas: 3
-        # selector can be applied automatically
-        # from the labels in the pod template if not set
-        # selector:
-        #   matchLabels:
-        #     app: guestbook
-        #     tier: frontend
-        template:
-        metadata:
-        labels:
-                app: guestbook
-                tier: frontend
-        spec:
-        containers:
-        - name: php-redis
-                image: gcr.io/google-samples/gb-frontend:v4
-                resources:
-                requests:
+          containers:
+          - name: php-redis
+            image: gcr.io/google-samples/gb-frontend:v4
+            resources:
+              requests:
                 cpu: 100m
                 memory: 100Mi
-                env:
-                - name: GET_HOSTS_FROM
-                value: dns
-                # If your cluster config does not include a dns service, then to
-                # instead access environment variables to find service host
-                # info, comment out the 'value: dns' line above, and uncomment the
-                # line below.
-                # value: env
-                ports:
-                - containerPort: 80
+            env:
+            - name: GET_HOSTS_FROM
+              value: dns
+              # If your cluster config does not include a dns service, then to
+              # instead access environment variables to find service host
+              # info, comment out the 'value: dns' line above, and uncomment the
+              # line below.
+              # value: env
+            ports:
+            - containerPort: 80
 ```
 
 (Note: The Kubernetes definition is supplied as a string. It's not currently validated by the Replicated system).
