@@ -12,7 +12,7 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/snapshots"
 +++
 
-For detailed information on restoring a snapshot take a look at this [restore guide](kb/supporting-your-customers/restoring-from-a-snapshot/).
+For detailed information on restoring a snapshot take a look at this [restore guide](https://www.replicated.com/docs/kb/supporting-your-customers/restoring-from-a-snapshot/).
 
 Replicated gives customers the ability to take a snapshot of a running app. The customer will have the option to restore this snapshot as an option on the "Upload license" screen when starting the Replicated management container. Snapshots can be taken at an automatic interval and can also be manually triggered via the dashboard of the console.
 
