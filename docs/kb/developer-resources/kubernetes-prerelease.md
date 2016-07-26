@@ -20,6 +20,7 @@ You should have a standard Kubernetes YAML available to deploy. This configurati
 - Admin commands are not supported
 - Snapshots are not supported
 - Support Bundle is not supported
+- Saving settings works but shows an error
 
 ## Create a Replicated YAML with Kubernetes 
 ```yaml
@@ -92,18 +93,17 @@ kubernetes:
 (Note: The Kubernetes definition is supplied as a string. It's not currently validated by the Replicated system).
 
 ## Configure Replicated
-Using a new installation of Replicated from the beta channel (`curl -sSL https://get.replicated.com/beta/docker | sudo bash), change the environment variables of the Replicated container with the following additions:
+Before installing Replicated, create the file /etc/replicated.conf, for example:
+```json
+{
+        "BypassPreflightChecks": true,
+        "SchedulerEngine": "kubernetes",
+        "K8sHost": "https://10.10.10.10",
+        "K8sUsename": "admin",
+        "K8sPassword": "password",
+        "K8sClusterCACertData": "<base64 encoded cert>"
+}
+```
 
-### Ubuntu 14.04
-```shell
-cat /etc/default/replicated
-
-PRIVATE_ADDRESS=10.0.135.228  # This should be your servers private ip address
-SKIP_OPERATOR_INSTALL=0
-K8S_HOST=10.10.10.10   # A host running Kubernetes
-K8S_USERNAME=root
-K8S_PASSWORD=password
-K8S_CLUSTER_CA_CERT_DATA=<the cert>
-K8S_CLIENT_CERT_DATA=<the cert>
-K8S_CLIENT_KEY_DATA=<the key>
-REPLICATED_OPTS="-e LOG_LEVEL=debug -e K8S_USERNAME=$(K8S_USERNAME) -e K8S_PASSWORD=$(K8S_PASSWORD) -e K8S_CLUSTER_CA_CERT_DATA=$(K8S_CLUSTER_CA_CERT_DATA) K8S_CLIENT_CERT_DATA=$(K8S_CLIENT_CERT_DATA) K8S_CLIENT_KEY_DATA=$(K8S_CLIENT_KEY_DATA)"
+## Install replicated
+`curl -sSL https://get.replicated.com/docker | sudo bash`
