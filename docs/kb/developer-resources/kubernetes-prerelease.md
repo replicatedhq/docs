@@ -88,6 +88,24 @@ kubernetes:
               # value: env
             ports:
             - containerPort: 80
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: frontend
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      # if your cluster supports it, uncomment the following to automatically create
+      # an external load-balanced IP for the frontend service.
+      # type: LoadBalancer
+      ports:
+        # the port that this service should serve on
+      - port: 80
+      selector:
+        app: guestbook
+        tier: frontend
 ```
 
 (Note: The Kubernetes definition is supplied as a string. It's not currently validated by the Replicated system).
