@@ -16,6 +16,13 @@ After [installing replicated](http://docs.replicated.com/docs/installing-replica
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 
+### Source replicated.alias
+If command not found is displayed when attempting to execute the replicated CLI we will need to source the replicated.alias file.
+
+```shell
+source /etc/replicated.alias
+```
+
 ### Login
 If a console password has been configured this command prompts for the password so that you may still utilize the CLI in an authenticated manner.
 
