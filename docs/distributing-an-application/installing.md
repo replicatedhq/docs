@@ -32,7 +32,7 @@ installation guides see the docker installation docs.
 ## Current Replicated Versions
 | Image	| Stable Version |
 |-------|----------------|
-| replicated | 2.0.1646 <br /> 26 July, 2016 |
+| replicated | 2.0.1648 <br /> 27 July, 2016 |
 | replicated-ui | 2.0.38 <br /> 21 June, 2016 |
 | replicated-operator | 2.0.35 <br /> 21 June, 2016 |
 
