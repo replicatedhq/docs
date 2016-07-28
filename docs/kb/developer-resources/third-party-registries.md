@@ -24,5 +24,5 @@ components:
   containers:
   - source: mythirdpartyprivateregistry
     image_name: namespace/imagename
-    version: 1.0.0
+    version: 2.0.0
 ```
