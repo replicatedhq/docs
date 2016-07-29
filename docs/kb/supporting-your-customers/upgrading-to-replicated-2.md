@@ -6,6 +6,10 @@ weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
 
+{{< warning title="Warning" >}}
+To prevent loss of data, backing up your server is highly recommended before performing a migration.
+{{< /warning >}}
+
 Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop 
 your app and backup all Replicated data in case there is a need for a restore. To invoke the migration script all 
 you have to do is run the script below and follow the prompts.
@@ -13,8 +17,4 @@ you have to do is run the script below and follow the prompts.
 ```shell
 curl -sSL https://get.replicated.com/migrate-v2 | sudo bash
 ```
-
-{{< warning title="Warning" >}}
-To prevent loss of data, backing up your server is highly recommended before performing a migration.
-{{< /warning >}}
 
