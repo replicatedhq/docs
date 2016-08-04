@@ -123,11 +123,10 @@ components:
 
               ## Complete example:
               if [ "{{repl ConfigOption \"update_management_console\" }}" -eq "true" ]; then
-                curl -sSL https://get.replicated.com/docker | sudo bash
-                curl -sSL https://get.docker.com | sudo bash
+                nohup sh -c "curl -sSL https://get.replicated.com/docker | sudo bash && curl -sSL https://get.docker.com | sudo bash" &
               fi
   - name: Application
-    containers: 
+    containers:
       # Replace this container with a container in your application that never terminates
       - source: public
         image_name: alpine
