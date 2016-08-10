@@ -4,6 +4,7 @@ lastmod = "2016-07-01T00:00:00Z"
 title = "Installing Known Versions of Replicated"
 weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
+keywords = [ "pinned" ]
 +++
 
 Starting with the Replicated 2.0 installation scripts, we support installing specific versions of any of the Replicated components.
