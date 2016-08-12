@@ -24,11 +24,6 @@ test:
     # Cleanup
     - rm -f $HOME/docs/reference/vendor-api.md
 
-    # Generate staging site
-    - make SOURCE="https://api.staging.replicated.com/vendor/v1/spec/swagger.json" vendordocs
-    - docker run -v $HOME/docs/site:/src -v $HOME/docs/docs:/src/content -v $HOME/docs/hugo-config/docs.toml:/src/config.toml -v $HOME/docs/output:/output -e HUGO_BASEURL=https://www.staging.replicated.com/docs docs:${CIRCLE_SHA1:0:7}
-    - cd $HOME/docs && docker build -t quay.io/replicatedcom/docs:staging-${CIRCLE_SHA1:0:7} -f $HOME/docs/Dockerfiles/Dockerfile .
-
 deployment:
   release:
     owner: replicatedhq
@@ -36,7 +31,6 @@ deployment:
     commands:
       - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS quay.io
       - sudo docker push quay.io/replicatedcom/docs:production-${CIRCLE_SHA1:0:7}
-      - sudo docker push quay.io/replicatedcom/docs:staging-${CIRCLE_SHA1:0:7}
       - sudo apt-get update
       - sudo apt-get install -y python-boto
       - python ./deploy/deploy.py

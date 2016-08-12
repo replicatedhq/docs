@@ -22,5 +22,4 @@ def addMessageToQueue(env, project, sha):
     m.set_body(json.dumps(data))
     q.write(m)
 
-addMessageToQueue("staging", os.environ["CIRCLE_PROJECT_REPONAME"], os.environ["CIRCLE_SHA1"][:7])
 addMessageToQueue("production", os.environ["CIRCLE_PROJECT_REPONAME"], os.environ["CIRCLE_SHA1"][:7])
