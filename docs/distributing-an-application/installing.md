@@ -181,7 +181,7 @@ service replicated-operator stop
 docker rm -f replicated replicated-ui replicated-operator
 docker images | grep "quay\.io/replicated" | awk '{print $3}' | xargs sudo docker rmi -f
 yum remove -y replicated replicated-ui replicated-operator
-rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated*
+rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated* /etc/sysconfig/replicated* /etc/systemd/system/multi-user.target.wants/replicated* /run/replicated*
 ```
 
 ## Migrating from Replicated v1
