@@ -6,8 +6,7 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-On-Prem Support Bundle allows you to leverage inline shell scripts in order to add valuable information into a support bundle. 
-*Note: Every individual command will have 30 seconds to execute and then subsequently timeout.*
+On-Prem Support Bundle allows you to leverage inline shell scripts in order to add valuable information into a support bundle. This method is useful for avoiding such issues as complex chaining of shell commands that could be cumbersome to implement into YAML, working with a public image that can not be modified, and lastly working with an image that you do not wish to modify.
 
 {{< warning title="Warning" >}}
 Remember that Replicated supports many different operating systems that will be running a variety of kernels, package managers and more. Any script you choose to run on the host OS should be portable and run across any supported system.
@@ -38,6 +37,6 @@ Remember that Replicated supports many different operating systems that will be 
                 printf "database $i: %-10s%s $hsize\n";
              done
     support_commands:
-    - filename: redis.log
+    - filename: redis-size.txt
       command: ["/redis_dbsize.sh"]
 ```
