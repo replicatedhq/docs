@@ -12,7 +12,7 @@ url        = "/docs/reference/replicated-cli"
 parent     = "/reference"
 +++
 
-After [installing replicated](http://docs.replicated.com/docs/installing-replicated#section-easy-installation) onto a remote host a CLI is enabbled
+After [installing replicated](http://docs.replicated.com/docs/installing-replicated#section-easy-installation) onto a remote host a CLI is enabled
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 
