@@ -303,3 +303,72 @@ The startup section of a container allows you to specify the CMD value that will
 good to end your Dockerfile with an ENTRYPOINT command. If you specify a value for the CMD, it will be passed as parameters to the your ENTRYPOINT.
 
 As with all inputs to containers, you have full access to the Replicated template library when creating a CMD value.
+
+## Docker Options
+You may also limit the resources used by your containers with the memory, cpushares and network modes and further secure your containers with security options
+
+### Memory and Swap Limit
+The amount of memory or swap for your container.  The format is number|unit where unit may be one of b, k, m or g.  By default there is no memory or swap limit and your container can use as much as needed.  You can learn more at [User Memory Constraints documentation](https://docs.docker.com/engine/reference/run/#/user-memory-constraints).
+```yml
+  memory_limit: 500m
+  memory_swap_limit: 1g
+```
+
+### CPU Shares
+Using CPU shares you can change the access to the servers CPU at busy times.  When non CPU-intensive processes are other containers may use extra CPU time.  The default is 1024 and by increasing or decreasing the value on a container you change how the weighted CPU access is granted across all running containers.  You can learn more at [CPU Share Constraints documentation](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint).
+```yml
+  cpu_shares: 2048
+```
+
+### Network Mode
+Network mode supports bridge, host, container or none.  Learn more about Docker's network modes at [Network Settings](https://docs.docker.com/engine/reference/run/#/network-settings).
+```yml
+  network_mode: host
+```
+
+### Security Options
+With security options you can use Docker security with existing well know systems such as apparmor.
+```yml
+  security_options:
+  - apparmor=unconfined
+```
+
+When specifying your security options you can use template functions and any blank security option is allowed and will be filtered out by Replicated.
+```yml
+  security_options:
+    - '{{repl if ConfigOptionEquals "enable_unconfined_apparmor_profile" "1"}}apparmor=unconfined{{repl end}}'
+```
+
+Learn more about Docker's [security configuration](https://docs.docker.com/engine/reference/run/#/security-configuration).
+
+### Privileged Mode and Security Capability
+Security capabilities and access to devices are limited for containers by default, however you can add security capabilities with the privileged and security_cap_add option.
+```yml
+    privileged: true
+    security_cap_add:
+    - SYS_MODULE
+```
+
+Learn more about [Security Capabilities](https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities).
+
+### Allocate TTY
+For interactive processes you can allocate a TTYL with allocate_tty.  Learn more by reading about container process [Foreground](https://docs.docker.com/engine/reference/run/#/foreground).
+```yml
+  allocate_tty: true
+```
+
+### Hostname
+Sets the hostname inside of the container.  See the network host section under [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings).
+```yml
+  hostname: anxiety-closet
+```
+
+### Extra Hosts
+Add extra hostname mappings.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts).
+```yml
+  extra_hosts:
+  - "mysql:10.0.1.16"
+  - "redis:10.0.1.32"
+```
+
+
