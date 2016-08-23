@@ -32,9 +32,9 @@ installation guides see the docker installation docs.
 ## Current Replicated Versions
 | Image	| Stable Version |
 |-------|----------------|
-| replicated | 2.0.1657 <br /> 11 August, 2016 |
-| replicated-ui | 2.0.38 <br /> 21 June, 2016 |
-| replicated-operator | 2.0.36 <br /> 1 August, 2016 |
+| replicated | 2.0.1663 <br /> 22 August, 2016 |
+| replicated-ui | 2.0.39 <br /> 19 August, 2016 |
+| replicated-operator | 2.0.37 <br /> 19 August, 2016 |
 
 ## Easy Installation
 We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask
@@ -181,7 +181,7 @@ service replicated-operator stop
 docker rm -f replicated replicated-ui replicated-operator
 docker images | grep "quay\.io/replicated" | awk '{print $3}' | xargs sudo docker rmi -f
 yum remove -y replicated replicated-ui replicated-operator
-rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated*
+rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated* /etc/sysconfig/replicated* /etc/systemd/system/multi-user.target.wants/replicated* /run/replicated*
 ```
 
 ## Migrating from Replicated v1
