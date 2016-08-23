@@ -109,7 +109,7 @@ When specifying targets using wildcards, character ranges, or value lists, monit
 multiple graphs. The number of graphs cannot be known ahead of time, and at this point specifying
 unique colors for all of them is not supported.
 
-## Gaphite
+## Graphite
 
 By default, the graphite container will use a dynamic port that can be discovered by examining the
 graphite container. A static port can be defined using the graphite section of app YAML. This port
