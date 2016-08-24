@@ -31,7 +31,7 @@ The settings tab on the toolbar takes you to the manage license screen. This scr
 ### Reporting
 ![Invalid License](/static/license-screen/reporting.png)
 
-The reporting tab on the toolbar takes you to the license reporting screen. This screen will show you instance reporting information for Active and Inactive licenses. For each instance you can hover and click detail for more information on a specific instance.
+The reporting tab on the toolbar takes you to the license reporting screen. This screen will show you instance reporting information for Active and Inactive licenses. For each instance you can hover and click details for more information on a specific instance.
 
 ### Billing
 ![Invalid License](/static/license-screen/billing.png)
