@@ -14,7 +14,7 @@ url        = "/docs/getting-started/manage-releases"
 
 The [Replicated vendor site](https://vendor.replicated.com) provides you with a location to create and release versions
 of your application to various release channels. By default, there are 3 release channels: Stable, Beta and Unstable.
-When you first log in to Replicated, you'll see these default releaes channels created:
+When you first log in to Replicated, you'll see these default release channels created:
 
 ![Default Release Channels](/static/empty-release-channels.png)
 
