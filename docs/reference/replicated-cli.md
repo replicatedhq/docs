@@ -16,21 +16,21 @@ After [installing replicated](http://docs.replicated.com/docs/installing-replica
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 
-### Source replicated.alias
+## Source replicated.alias
 If command not found is displayed when attempting to execute the replicated CLI we will need to source the replicated.alias file.
 
 ```shell
 source /etc/replicated.alias
 ```
 
-### Login
+## Login
 If a console password has been configured this command prompts for the password so that you may still utilize the CLI in an authenticated manner.
 
 ```shell
 replicated login
 ```
 
-### Version
+## Version
 List version of currently running replicated components.
 
 ```shell
@@ -39,21 +39,21 @@ replicated-ui -version
 replicated-operator -version
 ```
 
-### Status
+## Status
 This provides the current status of replicated.
 
 ```shell
 replicated status
 ```
 
-### Apps
+## Apps
 List ID, Sequence, and Status of running app and prior versions installed on this host.
 
 ```shell
 replicated apps
 ```
 
-### Check For Updates
+## Check For Updates
 (supported as of 2.0.1608)
 
 This allows you to programmatically trigger a "check for updates" from the CLI.
@@ -65,7 +65,7 @@ The -f will ignore any cache on the server already and do a full update check.
 replicated app <app-id> update-check -f
 ```
 
-### Install An Upgrade
+## Install An Upgrade
 (supported as of 2.0.1608)
 
 This allows you to install an upgrade that is already known to the local installation from the CLI.
@@ -75,7 +75,7 @@ Note: app-id is retrieved utilizing the apps command.
 sudo replicated app <app-id> update <sequence>
 ```
 
-### Generate Support Bundle
+## Generate Support Bundle
 (supported as of 1.2.63)
 
 This allows you to generate a support bundle directly from the CLI.
@@ -85,7 +85,7 @@ Note: app-id is retrieved utilizing the apps command.
 replicated support-bundle <app-id>
 ```
 
-### Reset your On-Prem UI password
+## Reset your On-Prem UI password
 Your console password can be reset by issuing the following command from the host machine where Replicated
 has been installed. (then visit https://<server>/create-password and set a new password)
 
@@ -93,7 +93,7 @@ has been installed. (then visit https://<server>/create-password and set a new p
 replicated auth reset
 ```
 
-### Hosts
+## Hosts
 This lists all known hosts that are currently in use by replicated. It includes the following information for
 each host : `PRIVATE ADDRESS`, `PUBLIC ADDRESS`, `CONNECTED`, `PROVISIONED`, `AGENT VERSION`, `API VERSION`
 
@@ -101,7 +101,7 @@ each host : `PRIVATE ADDRESS`, `PUBLIC ADDRESS`, `CONNECTED`, `PROVISIONED`, `AG
 replicated nodes
 ```
 
-### App
+## App
 The app command allows you to run the following subcommands on your app from the CLI.
 Note: `app-id` is retrieved utilizing the apps command.
 
@@ -113,21 +113,21 @@ Note: `app-id` is retrieved utilizing the apps command.
 replicated app <app-id> stop -f
 ```
 
-### Certificate Configuration via CLI
+## Certificate Configuration via CLI
 You can set the hostname, key, and cert using the following command.
 
 ```shell
 replicated console cert set <hostname> /path/to/key /path/to/cert
 ```
 
-### Tasks
+## Tasks
 Show the running processes inside replicated.
 
 ```shell
 replicated tasks
 ```
 
-### Show Logs of a Task
+## Show Logs of a Task
 Using this command you can see the logs associated with a given task.
 Note: task-id is retrieved utilizing the apps command.
 
@@ -135,6 +135,6 @@ Note: task-id is retrieved utilizing the apps command.
 replicated task <task-id> logs
 ```
 
-### Admin
+## Admin
 Additionally you can define ad-hoc commands that can be executed inside a running container,
 see the dedicated Admin Commands section for more details.
