@@ -40,6 +40,7 @@ The billing tab on the toolbar takes you to the license billing screen. If your 
 
 ### Archive
 ![Invalid License](/static/license-screen/archive.png)
+
 The archive tab on the toolbar will archive an individual license. This can be undone. To find an archived license go to the main license screen, select the filter “Archived Licenses” and search for a specific license you’d like to unarchive.
 
 ### Unarchive
