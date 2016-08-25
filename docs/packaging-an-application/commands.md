@@ -116,10 +116,11 @@ This function reaches out to an external service to acquire the ip and the resul
 ```
 
 ## random
-Generates a random string with the default charset _A-Z-a-z-0-9.
+Generates a random string with the default charset [_A-Za-z0-9].
 
 ### Arguments
 - Length - The length of the string (default 16 characters).
+- Charset
 
 ### Return value
 - 0: Random string
@@ -129,6 +130,7 @@ Generates a random string with the default charset _A-Z-a-z-0-9.
   cmd: random
   args:
   - "64"
+  - "[A-Za-z0-9]"
 ```
 
 ## echo
