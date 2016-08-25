@@ -26,7 +26,7 @@ $ sudo docker tag myapp/worker registry.replicated.com/mycounterapp/worker:1.0.1
 
 ## Logging In
 
-Next you will need to log into the Replicated private registry with your Vendor account credentials. When prompted, you will use your email address for both your username.
+Next you will need to log into the Replicated private registry with your Vendor account credentials. When prompted, you will use your email address for your username.
 
 ```shell
 $ sudo docker login registry.replicated.com
