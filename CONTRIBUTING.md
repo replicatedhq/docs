@@ -12,6 +12,10 @@ The audience is a software vendor and that should not need to be made explicit i
 **Yes:**  The next section includes some basic information about our app release including the app name.  
 **No:**  In the next section we include some basic information about our app release including the app name.
 
+- ### Avoid Second Person Pronouns
+**Yes:** A license value can be used to show and hide fields on the settings page.
+**No:** You can use your license to allow customer access to hidden settings.
+
 - ### Do not reference relative time from when the document was written.
 **Yes:** Replicated 2.0.1640 includes a new feature to...  
 **No:** A new feature of Replicated is...  
