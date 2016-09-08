@@ -14,6 +14,7 @@ vendordocs:
 	@rm vendor-api.adoc
 
 vendordocs2:
+	find . -name "*vendor-api*" -ls
 	VENDOR_API="${SOURCE}" ./vendor.sh
 
 setup:
