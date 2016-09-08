@@ -27,7 +27,7 @@ test:
     - rm -f $HOME/docs/reference/vendor-api/*adoc
 
     # Generate staging site
-    - make SOURCE="https://api.staging.replicated.com" vendordocs2
+    - make SOURCE="https://api.staging.replicated.com/vendor" vendordocs2
     - docker run -v $HOME/docs/site:/src -v $HOME/docs/docs:/src/content -v $HOME/docs/hugo-config/docs.toml:/src/config.toml -v $HOME/docs/output:/output -e HUGO_BASEURL=https://www.staging.replicated.com/docs docs:${CIRCLE_SHA1:0:7}
     - cd $HOME/docs && docker build -t quay.io/replicatedcom/docs:staging-${CIRCLE_SHA1:0:7} -f $HOME/docs/Dockerfiles/Dockerfile .
 
