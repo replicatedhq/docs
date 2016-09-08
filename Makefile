@@ -12,9 +12,9 @@ vendordocs:
 	java -cp java/swagger2markup-1.0.0.jar -jar java/swagger2markup-cli-1.0.0.jar convert -i swagger.json -f vendor-api
 	@sed -e 's/^== /= /' -e 's/^=== /== /' vendor-api.adoc >> docs/reference/vendor-api.adoc
 	@rm -f vendor-api.adoc
-	@rm -f docs/reference/vendor-api.adoc
 
 vendordocs2:
+	@rm -f docs/reference/vendor-api.adoc
 	find . -name "*vendor-api*" -ls
 	VENDOR_API="${SOURCE}" ./vendor.sh
 
