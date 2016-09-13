@@ -129,7 +129,9 @@ When set, required fields will prevent the application from starting until there
 
 ### `when`
 The when value is used to denote conditional inputs that will only be visible (or required) when
-the condition evaluates to true.
+the condition evaluates to true.  The test should be for a single condition.  For more complex tests 
+use a hidden item and template.
+
 ```yaml
   items:
   - name: key
