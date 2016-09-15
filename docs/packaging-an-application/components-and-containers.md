@@ -193,6 +193,31 @@ Optional properties:
       is_excluded_from_backup: true
 ```
 
+Replicated supports volumes_from to attach several mounts from a colocated container.
+
+```yml
+  - source: public
+    ...
+    name: datastore
+    publish_events:
+    - name: Datastore started
+      trigger: port-listen
+      data: '6379'
+      subscriptions:
+      - component: DBs
+        container: alpine
+        action: start
+  - source: public
+    image_name: alpine
+    version: 3
+    ephemeral: true
+    cmd: '["migrate_data.sh"]'
+    volumes_from: ["datastore"]
+```
+
+The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of
+strings where each string identifies a named container running on the same server.
+
 ## Logs
 We can configure logs for containers by specifying the max number of logs files and the max size of the log files. The max size string should include
 the size, k for kilobytes, m for megabytes or g for gigabytes. Log settings at the component level are inherited by the container and will be
@@ -370,5 +395,4 @@ Add extra hostname mappings.  See [extra_hosts](https://docs.docker.com/compose/
   - "mysql:10.0.1.16"
   - "redis:10.0.1.32"
 ```
-
 
