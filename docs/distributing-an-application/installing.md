@@ -32,9 +32,9 @@ installation guides see the docker installation docs.
 ## Current Replicated Versions
 | Image	| Stable Version |
 |-------|----------------|
-| replicated | 2.0.1665 <br /> 29 August, 2016 |
-| replicated-ui | 2.0.39 <br /> 19 August, 2016 |
-| replicated-operator | 2.0.38 <br /> 29 August, 2016 |
+| replicated | 2.1.0 <br /> 21 September, 2016 |
+| replicated-ui | 2.1.0 <br /> 21 September, 2016 |
+| replicated-operator | 2.1.0 <br /> 21 September, 2016 |
 
 ## Easy Installation
 We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask
