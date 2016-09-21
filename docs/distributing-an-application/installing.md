@@ -79,7 +79,7 @@ curl -sSL https://get.replicated.com/operator | sudo bash -s no-auto
 ```
 
 ## Accessing the On-prem UI
-The Replicated On-Prem UI is web-based, Replicated is by default available at port 8800 over 
+The Replicated On-Prem UI is web-based, Replicated is available at port 8800 (by default) over 
 HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible 
 from your local computer). 
 
