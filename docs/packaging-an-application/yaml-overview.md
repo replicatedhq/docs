@@ -60,11 +60,14 @@ enable snapshots and create a script to run the snapshot.
 ```yaml
 backup:
   enabled: '{{repl ConfigOptionEquals "backup_enabled" "1" }}'
+  hidden: '{{repl ConfigOptionEquals "backup_enabled" "0" }}'
   pause_all: false
   script: |
     #!/bin/sh
     myappcli backup
 ```
+
+If backups are not enabled the Replicated dashboard snapshots tile can be hidden by adding `hidden: true`.
 
 ## CMD
 The Replicated platform has some built in commands that make writing your configuration much more powerful. In
