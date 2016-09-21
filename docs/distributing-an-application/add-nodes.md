@@ -1,7 +1,7 @@
 +++
 date = "2016-07-03T04:02:20Z"
 title = "Add Nodes"
-description = "If an application is configured by the vendor with tags and a clustering strategy, Replicated provides several simple options for end customers to scale the application to multiple nodes."
+description = "When an application is configured by the vendor with a clustering strategy, Replicated makes it possible for the end customer to install additional nodes on remote instances to run a distributed application."
 weight = "308"
 categories = [ "Distributing" ]
 
@@ -12,24 +12,16 @@ parent     = "/distributing-an-application"
 url        = "/docs/distributing-an-application/add-nodes"
 +++
 
-All installations of Replicated should install the first node automatically.  But it's
-possible to install additional nodes and run a distributed app.
+When an application is configured by the vendor with a clustering strategy, Replicated makes it possible for the end customer to install additional nodes on remote instances to run a distributed application. Installations of Replicated using the [easy installation script](/docs/distributing-an-application/installing/#easy-installation) will install an operator on the local node automatically.
 
-![Add Node](/static/add-host.png)
+On the Cluster page on the On-Prem Console an "Add Node" button will be visible. This will prompt the end customer with two simple options for adding a node.
 
-## Scripted Install
-This is a new feature that allows your customers to run a curl script on additional hosts to have them
-automatically connect into the primary Replicated management machine. V1 of manual installation requires
-that they install the agent from the internet, but future versions will allow them to install the agent
-from the Replicated daemon.
+## Scripted Installation
+The scripted install is the recommended means for adding an additional node to Replicated. The end customer will be prompted for the private and optionally the public address of the server.
 
-![Add Node Modal](/static/add-host-modal.png)
+![Add Node Script](/static/add-node-script.png)
 
-## Docker Install
+## Docker Installation
+If a scripted install is not possible, additionally a docker script is provided for installing additional nodes.
 
-## Local Install
-In most instances this will be grayed out because Replicated automatically installs an agent on the local
-machine if the interface was identified during initial installation. However, if no interface was initially
-available, your customer will be able to use this path to install it.
-
-![Add Node Locally](/static/add-host-local.png)
+![Add Node Docker](/static/add-node-docker.png)
