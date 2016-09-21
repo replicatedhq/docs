@@ -229,26 +229,34 @@ config:
 complete and valid, for a detailed implementation reference see our LDAP integration section.
 Note you have to pass all the arg_fields for the test to validate correctly.
 
-This command expects 12 arguments. These arguments come from values entered by your customer
-into the config items within this group. The arguments, in expected order:
+These arguments come from values entered by your customer
+into the config items within this group.  For more details see [LDAP Integration](/packaging-an-application/ldap-integration)
 
-1. Type of LDAP integration:
+Required arguments:
+
+1. `ldap_type` - Type of LDAP integration:
   - `ldap_type_openldap` (A LDAP server other then Active Directory)
   - `ldap_type_ad` (Active directory)
-1. The LDAP host, ie. `ldap.customer.com`
-1. Port LDAP services are listening on ie `389` or `636`
-1. Type of encryption your LDAP is using:
+1. `ldap_hostname` - The LDAP host, ie. `ldap.customer.com`
+1. `ldap_port` Port LDAP services are listening on ie `389` or `636`
+1. `ldap_encryption` - Type of encryption your LDAP is using:
   - `ldap_encryption_plain` (Plain)
   - `ldap_encryption_starttls` (upgrade to SSL/TLS encrypted communication after initial communication)
   - `ldap_encryption_ldaps` (fully encrypted from start)
-1. The LDAP search user that performs user lookup.
-1. The password for the LDAP search user.
-1. The Distinguished Name (DN) of an LDAP subtree you want to search for users and groups.
-1. DN to search for users.
-1. Restricted DN group that only users from this group will be allowed to log in with. (optional)
-1. The username that will appear on the user's app name field.
-1. The LDAP username that identifies the LDAP user who attempts authentication.
-1. The LDAP password for the user attempting authentication.
+1. `ldap_search_user` - The LDAP search user that performs user lookup.
+1. `ldap_search_password` - The password for the LDAP search user.
+1. `ldap_base_dn` - The Distinguished Name (DN) of an LDAP subtree you want to search for users and groups.
+1. `ldap_usersearch_dn` - DN to search for users.
+1. `ldap_restricted_user_group` - Restricted DN group that only users from this group will be allowed to log in with. This can be an empty string.
+1. `ldap_username_field` - The username that will appear on the user's app name field.
+1. `ldap_login_username` - The LDAP username that identifies the LDAP user who attempts authentication.
+1. `ldap_login_password` - The LDAP password for the user attempting authentication.
+
+Optional arguments:
+
+1. `ldap_advanced_search` - True value indicates that advanced search queries is to be used.
+1. `ldap_user_query` - The LDAP query to use to find the user.
+1. `ldap_restricted_group_query` - The LDAP query to use to validate user group membership.
 
 ```yaml
 config:
@@ -271,4 +279,8 @@ config:
         - ldap_username_field
         - ldap_login_username
         - ldap_login_password
+        - ldap_advanced_search
+        - ldap_user_query
+        - ldap_restricted_group_query
+
 ```
