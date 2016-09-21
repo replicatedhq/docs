@@ -396,3 +396,8 @@ Add extra hostname mappings.  See [extra_hosts](https://docs.docker.com/compose/
   - "redis:10.0.1.32"
 ```
 
+### Named Containers
+Use name to set the name of the container.  References to the container in template functions should continue to the use imagename.  Do not use named containers when clustering and starting multiple copies of the same container on one server.
+```yml
+  name: redis
+```
