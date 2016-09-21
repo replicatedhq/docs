@@ -52,6 +52,13 @@ curl -sSL https://get.replicated.com/docker | sudo bash
 curl -sSL https://get.replicated.com/docker | sudo bash -s no-auto
 ```
 
+You can set the port for serving the Replicated web interface using the ui-bind-port option.
+
+### Install the Replicated UI at a Custom Port
+```shell
+curl -sSL https://get.replicated.com/docker | sudo bash -s ui-bind-port 8000
+```
+
 When you're ready to start shipping to customers, you can either proxy this install script or provide TLS
 certs for us to CNAME it for you. An example of customer facing installation guide can be found at our
 unpublished demo app: [GetElk](http://preview.getelk.com/)
@@ -72,8 +79,9 @@ curl -sSL https://get.replicated.com/operator | sudo bash -s no-auto
 ```
 
 ## Accessing the On-prem UI
-The Replicated On-Prem UI is web-based, and can be accessed via port 8800 over HTTPS of the server you've
-installed Replicated on (make sure that port 8800 is accessible from your local computer).
+The Replicated On-Prem UI is web-based, Replicated is by default available at port 8800 over 
+HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible 
+from your local computer). 
 
 You'll need to [create & download a license file](/distributing-an-application/create-licenses/)
 for yourself on the vendor portal & then just follow the instructions from there.
