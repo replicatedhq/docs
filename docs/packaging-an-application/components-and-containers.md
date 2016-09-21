@@ -401,3 +401,13 @@ Use name to set the name of the container.  References to the container in templ
 ```yml
   name: redis
 ```
+
+### Entrypoint
+When working with third party containers you may want to override the default entry point using the 
+entrypoint option.
+Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the 
+[cmd and entrypoint options](https://docs.docker.com/engine/reference/builder/#/understand-how-cmd-and-entrypoint-interact) work together.  Entrypoint takes an array of strings.
+
+```yml
+    entrypoint: ["redis", "-p", "6380"]
+```
