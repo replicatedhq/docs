@@ -76,9 +76,9 @@ replicated app <app-id> update <sequence>
 ```
 
 ## Export Settings
-(supported as of 2.0.XXXX)
 
 This allows you to export your app settings. This is useful for [automating an installation](/docs/kb/developer-resources/automate-install/).
+Supported as of 2.1.0.
 
 ```shell
 replicated app <app-id> settings > settings.json
