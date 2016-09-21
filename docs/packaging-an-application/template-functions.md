@@ -141,6 +141,19 @@ config_files:
       max_users: '{{repl LicenseFieldValue "maximum_users" }}'
 ```
 
+## LicenseProperty
+```go
+func LicenseProperty(propertyName string) string
+```
+Returns a property from the License as a string.  Valid propertyNames are "assignee", "channel.name", "expiration.date", and "expiration.policy".
+```yml
+config_files:
+  - filename: /opt/app/config.yml
+    contents: |
+      expiration.date: {{repl LicenseProperty "expiration.date"}}
+```
+
+
 ## AppSetting
 ```go
 func AppSetting(key string) string
