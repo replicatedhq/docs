@@ -24,8 +24,10 @@ likely channel is Stable, but for your internal testing you'll also likely need 
  beta licenses). (More about release channel management).
 
 ## Expiration (Required)
-Today we treat license expiration fairly mildly, as a result an expired license simply won't
-be able to receive updates or be restarted.
+When you create a license you can specify how the license will behave when it expires.  The policy
+can ignore expiration, allow a running application to continue but prevent updates, or stop
+the running application and prevent updates.  License expiration is supported in Replicated 2.1.0
+or newer.
 
 ## Custom License Fields (Optional)
 Custom license fields can be set for all licenses. This is useful if specific customer
