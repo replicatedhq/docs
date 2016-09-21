@@ -207,6 +207,7 @@ config:
 ```
 
 ## ThisHostInterfaceAddress
+Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
@@ -218,29 +219,40 @@ env_vars:
   static_val: '{{repl ThisHostInterfaceAddress "docker0" }}'
 ```
 
-## ThisHostPublicIpAddress
+## ThisNodePublicIPAddress
 ```go
-func ThisHostPublicIpAddress() string
+func ThisNodePublicIPAddress() string
 ```
 Returns the public IP address of the host on which the current container instance is deployed as a string.
 For a clustered application this value will be different for each host.
 ```yml
 env_vars:
 - name: CASSANDRA_ADDRESS_PUBLIC
-  static_val: "{{repl ThisHostPublicIpAddress }}"
+  static_val: "{{repl ThisNodePublicIPAddress }}"
 ```
+Replaces ThisHostPublicIpAddress which is deprecated.
 
-## ThisHostPrivateIpAddress
+## ThisNodePrivateIPAddress
+Deprecated, please use ThisNodePrivateIPAddress.
 ```go
-func ThisHostPrivateIpAddress() string
+func ThisNodePrivateIPAddress() string
 ```
 Returns the private IP address of the host on which the current container instance is deployed as a string. This address is either what was entered manually when host was provisioned or detected from eth0 interface by default.
 For a clustered application this value will be different for each host.
 ```yml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
-  static_val: "{{repl ThisHostPrivateIpAddress }}"
+  static_val: "{{repl ThisNodePrivateIPAddress }}"
 ```
+Replaces ThisHostPrivateIpAddress which is depreciated.
+
+## ThisNodeDockerAddress
+```go
+func ThisNodeDockerAddress() string
+```
+Returns the docker0 address on the host on which the current container instance is deployed.
+For a clustered application this value will be different for each host.
+
 
 ## Now
 ```go
