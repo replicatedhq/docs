@@ -26,7 +26,6 @@ By default, Replicated automatically adds preflight checks for:
 | Docker Version | {{< docker_version_minimum >}} - {{< docker_version_default >}} |
 | Disk Space | /tmp 1 GB <br /> /var/lib/replicated 250 MB <br /> /var/lib/docker/aufs 1 GB (aufs storage driver root directory) |
 | TCP Ports (Replicated services) | 9870-9880 on docker0 |
-| TCP Ports (app services) | Defined in app YAML |
 | Outbound internet access (if required) | Replicated APIs, external registries |
 
 Additionally, it's recommended to specify additional system requirements in the `host_requirements` section of the
