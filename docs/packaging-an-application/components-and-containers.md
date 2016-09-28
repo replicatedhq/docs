@@ -389,11 +389,13 @@ Sets the hostname inside of the container.  See the network host section under [
 ```
 
 ### Extra Hosts
-Add extra hostname mappings.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts).
+Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts). 
 ```yml
   extra_hosts:
-  - "mysql:10.0.1.16"
-  - "redis:10.0.1.32"
+  - hostname: mysql
+    address: 10.0.1.16
+  - hostname: redis
+    address: 10.0.1.32
 ```
 
 ### Named Containers
