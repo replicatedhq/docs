@@ -1,6 +1,6 @@
 +++
 date = "2016-07-26T00:00:00Z"
-lastmod = "2016-07-26T00:00:00Z"
+lastmod = "2016-09-29T00:00:00Z"
 title = "Kubernetes Pre-release"
 weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
@@ -13,109 +13,114 @@ The features and the implementation described in this document is subject to cha
 {{< /note >}}
 
 ## Requirements
-You should have a standard Kubernetes YAML available to deploy. This configuration can contain any number of pods, services and replication controllers. Replicated expects that the YAML will contain exactly one delpoyment spec. Monitoring this deployment is how Replicated will start and stop and update the application in Kubernetes. 
+You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain exactly one delpoyment spec (replication controllers are currently unsupported).
 
 ## Known Limitations
-- Template functions are not supported
 - Admin commands are not supported
 - Snapshots are not supported
-- Support Bundle is not supported
-- Saving settings works but shows an error
 
 ## Create a Replicated YAML with Kubernetes 
 ```yaml
 ---
-replicated_api_version: "2.3.5"
-name: "My Application"
+# kind: replicated
+# apiVersion: 2.3.5
+name: Kubernetes Minecraft Demo
+version: "alpha-1"
+release_notes: The initial release of my Kubernetes Minecraft Demo application.
 properties:
-  app_url: http://{{repl NodePublicIpAddress "Python Web" "marc/reference"}}
-  logo_url: http://www.replicated.com/images/logo.png
-  console_title: My Application
-
+  app_url:
+    kubernetes:
+      value_from:
+        services_url:
+          name: minecraft
+          port: '{{repl ConfigOption "minecraft_port" }}'
+          tls: true
 config:
-  - name: Basic Information
-    title: Basic Information
-    description: Some basic information about this server
-    items:
-      - name: hostname
-        title: Hostname or IP Address of this server
-        type: text
-        value_cmd:
-          name: host_ip
-          value_at: 0
+- name: service
+  title: Service
+  description: Service settings
+  items:
+  - name: minecraft_port
+    title: Port
+    type: text
+    default: "25565"
+    required: true
 
-kubernetes:
-  config: |
-    apiVersion: extensions/v1beta1
-    kind: Deployment
+---
+# kind: kubernetes
+volume_claims:
+- name: mc-pv-claim
+  storage: 10Gi
+  access_modes: ["ReadWriteOnce"]
+
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft
+  labels:
+    run: minecraft
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{repl ConfigOption "minecraft_port" }}
+      targetPort: 25565
+  selector:
+    run: minecraft
+    tier: server
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mc-pv-claim
+  labels:
+    run: minecraft
+    tier: server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# kind: scheduler-kubernetes
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: minecraft
+spec:
+  replicas: 1
+  template:
     metadata:
-      name: frontend
-      # these labels can be applied automatically
-      # from the labels in the pod template if not set
-      # labels:
-      #   app: guestbook
-      #   tier: frontend
-    spec:
-      # this replicas value is default
-      # modify it according to your case
-      replicas: 3
-      # selector can be applied automatically
-      # from the labels in the pod template if not set
-      # selector:
-      #   matchLabels:
-      #     app: guestbook
-      #     tier: frontend
-      template:
-        metadata:
-          labels:
-            app: guestbook
-            tier: frontend
-        spec:
-          containers:
-          - name: php-redis
-            image: gcr.io/google-samples/gb-frontend:v4
-            resources:
-              requests:
-                cpu: 100m
-                memory: 100Mi
-            env:
-            - name: GET_HOSTS_FROM
-              value: dns
-              # If your cluster config does not include a dns service, then to
-              # instead access environment variables to find service host
-              # info, comment out the 'value: dns' line above, and uncomment the
-              # line below.
-              # value: env
-            ports:
-            - containerPort: 80
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: frontend
       labels:
-        app: guestbook
-        tier: frontend
+        run: minecraft
+        tier: server
     spec:
-      # if your cluster supports it, uncomment the following to automatically create
-      # an external load-balanced IP for the frontend service.
-      # type: LoadBalancer
-      ports:
-        # the port that this service should serve on
-      - port: 80
-      selector:
-        app: guestbook
-        tier: frontend
+      volumes:
+      - name: mc-data
+        persistentVolumeClaim:
+          claimName: mc-pv-claim
+      containers:
+      - name: mc
+        image: itzg/minecraft-server:latest
+        ports:
+        - containerPort: 25565
+        volumeMounts:
+        - name: mc-data
+          mountPath: /data
+        env:
+        - name: EULA
+          value: "TRUE"
 ```
 
-(Note: The Kubernetes definition is supplied as a string. It's not currently validated by the Replicated system).
-
 ## Configure Replicated
-Before installing Replicated, create the file /etc/replicated.conf, for example:
+Replicated can be deployed into your kubernetes cluster (TODO: documents this) or it can be deployed independently with the following /etc/replicated.conf:
 ```json
 {
-        "BypassPreflightChecks": true,
         "SchedulerEngine": "kubernetes",
+        "K8sOverrideClusterConfig": true,
         "K8sHost": "https://10.10.10.10",
         "K8sUsename": "admin",
         "K8sPassword": "password",
