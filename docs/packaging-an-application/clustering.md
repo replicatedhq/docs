@@ -18,7 +18,7 @@ optionally leverage multiple hosts as well as multiple instances per host.
 *See a example of setting up a Cassandra Cluster with Replicated [here](/kb/developer-resources/multi-node-cassandra/)*
 
 ## Host Count
-At the component level we can scale our app horizontally by specifying host counts using the `cluster_host_count property`. The `cluster`
+At the component level we can scale our app horizontally by specifying host counts using the `cluster_host_count` property. The `cluster`
 property is required to enable this feature. When clustering is enabled, all containers that are members of the respective component will
 be allocated across the cluster to a minimum of `min` nodes and a maximum of `max` or `-1` for unlimited.
 ```yml
