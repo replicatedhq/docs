@@ -90,7 +90,7 @@ env_vars:
 ```go
 func HostPrivateIpAddressAll(componentName string, containerName string) []string
 ```
-Returns host private IP address's of all instances of a given Component as an array of strings.
+Returns host private IP addresses for all instances of a given Component as an array of strings.
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
 ## HostPublicIpAddress
@@ -108,7 +108,7 @@ env_vars:
 ```go
 func HostPublicIpAddressAll(componentName string, containerName string) []string
 ```
-Returns host public IP address's of all instances of a given Component as an array of strings.
+Returns host public IP addresses for all instances of a given Component as an array of strings.
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
 ## ContainerExposedPort
@@ -269,7 +269,7 @@ env_vars:
 ```go
 func Split(s string, sep string) []string
 ```
-Split slices s into all substrings separated by sep and returns a array of the substrings between those separators.
+Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
 ```yml
 env_vars:
   - name: BROKEN_APART_A_B_C
