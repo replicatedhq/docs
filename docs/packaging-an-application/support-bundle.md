@@ -14,9 +14,9 @@ url        = "/docs/packaging-an-application/support-bundle"
 
 A support bundle archive will be available for your customer to download via the Support tab of the On-Prem Console.
 
-You can customize the content on the page by including markdown in top-level​ your YAML.
+You can customize the content on the page by including markdown in the top-level of your YAML.
 
-Support bundle collection of any specific item, command or file will timeout after 30 seconds. The entire package will download all successful files, commands etc collected in less then the 30 second mark.
+Support bundle collection of any specific item, command or file will timeout after 30 seconds. The entire package will download all successful files, commands etc collected before the 30 second mark.
 
 ```yaml
 replicated_api_version: "{{< replicated_api_version_current >}}"
@@ -57,14 +57,14 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 | /nodes/*&lt;node_alias&gt;*/commands/lsof | Result of `lsof -b -M -n -l` command. Lists information about the files that are opened by various processes. |
 | /nodes/*&lt;node_alias&gt;*/commands/blkid | Result of `blkid` command. Displays information about available block devices. |
 | /nodes/*&lt;node_alias&gt;*/commands/btrfs | Result of `btrfs fi show` command. Shows the btrfs filesystem with some additional info. |
-| /nodes/*&lt;node_alias&gt;*/commands/df_ali | Result of `df -ali` command. Report file system disk space usage. |
-| /nodes/*&lt;node_alias&gt;*/commands/df_ai | Result of `df -al` command. Report file system disk space usage. |
+| /nodes/*&lt;node_alias&gt;*/commands/df_ali | Result of `df -ali` command. Reports file system disk space usage. |
+| /nodes/*&lt;node_alias&gt;*/commands/df_ai | Result of `df -al` command. Reports file system disk space usage. |
 | /nodes/*&lt;node_alias&gt;*/commands/ip_addr_show | Result of `ip -o addr show` command. Shows protocol (IP or IPv6) addresses. |
 | /nodes/*&lt;node_alias&gt;*/commands/ip_link_show | Result of `ip -o link show` command. Shows network devices. |
 | /nodes/*&lt;node_alias&gt;*/commands/ip_route_show | Result of `ip -o route show` command. Shows routing table entries. |
 | /nodes/*&lt;node_alias&gt;*/commands/netstat_-neopa | Result of `netstat -neopa` command. Displays network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. |
 | /nodes/*&lt;node_alias&gt;*/commands/free | Result of `free -m` command. Displays amount of free and used memory in the system. |
-| /nodes/*&lt;node_alias&gt;*/commands/docker_ps | Result of `docker ps -a` command. Lists all Docker container. |
+| /nodes/*&lt;node_alias&gt;*/commands/docker_ps | Result of `docker ps -a` command. Lists all Docker containers. |
 | /nodes/*&lt;node_alias&gt;*/commands/dmesg | Result of `dmesg` command. |
 | /nodes/*&lt;node_alias&gt;*/commands/uname | Result of `uname` command. |
 | /nodes/*&lt;node_alias&gt;*/commands/uptime | Result of `uptime` command. |
@@ -81,8 +81,8 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 | /daemon/commands/replicated-ui | Version of ReplicatedUI. |
 | /daemon/commands/replicated-updater | Version of ReplicatedUpdater. |
 | /daemon/commands/uptime | Result of `uptime` command. |
-| /daemon/proc/cpuinfo | result of `/proc/cpuinfo` |
+| /daemon/proc/cpuinfo | Result of `/proc/cpuinfo` |
 | /daemon/var/log/upstart/* | Replicated upstart logs (UI, Updater, Replicated) |
-| /daemon/commands/uname | result of `uname -a (-r)` |
-| /daemon/auditlogs-* | audit log events |
-| /hosts/<host_alias>*/var/log/docker.log | docker log from the host |
+| /daemon/commands/uname | Result of `uname -a (-r)` |
+| /daemon/auditlogs-* | Contains audit log events |
+| /hosts/<host_alias>*/var/log/docker.log | Contains docker logs from the host |
