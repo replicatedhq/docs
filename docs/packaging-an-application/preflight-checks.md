@@ -59,7 +59,7 @@ components:
 Note that component host requirements are not additive, thus when multiple components are allocated to a single host, each requirement
 will be evaluated individually.
 
-It is also possible to require minimum disk space requirements for volumes on the host machine via the host_volumes property of the
+It is also possible to define minimum disk space requirements for volumes on the host machine via the host_volumes property of the
 component configuration.
 
 ```yaml
@@ -74,7 +74,7 @@ components:
 ```
 
 Replicated enforces these requirements and will not allow the customer to start the application without either meeting these requirements or
-dismissing the warnings. Upon dismissing preflight warnings, and entry will be recorded in the on-premise audit log.
+dismissing the warnings. Upon dismissing preflight warnings, an entry will be recorded in the on-premise audit log.
 
 ![Preflight Checks Screenshot](/static/preflight-checks.png)
 
