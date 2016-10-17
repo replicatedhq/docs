@@ -12,7 +12,7 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/ldap-integration"
 +++
 
-Replicated can be integrated with LDAP servers to provide real time user authentication & sync. A quick overview of this feature is available Announcement: [DS Auth & Sync Support](https://blog.replicated.com/2015/12/03/ldap-active-directory-sync-support/)
+Replicated can be integrated with LDAP servers to provide real time user authentication & sync. A quick overview of this feature is available. Announcement: [DS Auth & Sync Support](https://blog.replicated.com/2015/12/03/ldap-active-directory-sync-support/)
 
 ## Configuration
 At the root level, configure the identity object
@@ -160,7 +160,7 @@ Setting labels can be customized if needed. However, setting names must remain e
     required: false
     when: ldap_advanced_search=0
   - name: ldap_user_query
-    # LDAP query that should be used to lookup users.  The query should contain {{username}} placeholder that
+    # LDAP query that should be used to lookup users.  The query should contain a {{username}} placeholder that
     # will be replaced with the actual user name that is being looked up.
     # Example: (sAMAccountName={{username}})
     title: User Query
