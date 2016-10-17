@@ -52,7 +52,7 @@ curl -sSL https://get.replicated.com/docker | sudo bash
 curl -sSL https://get.replicated.com/docker | sudo bash -s no-auto
 ```
 
-You can set the port for serving the Replicated web interface using the ui-bind-port option.
+You can set the port for serving the Replicated web interface by using the ui-bind-port option.
 
 ### Install the Replicated UI at a Custom Port
 ```shell
@@ -156,13 +156,12 @@ service replicated-operator restart
 sudo systemctl restart replicated replicated-ui replicated-operator
 ```
 
-*If you need to reset your console password please refer to the
-[reseting your password](/kb/supporting-your-customers/resetting-console-password/)Reseting the On-Prem Admin Password</a>)
+*If you need to reset your console password please refer to the [reseting your password](/kb/supporting-your-customers/resetting-console-password/) (Reseting the On-Prem Admin Password)
 in the On-Prem CLI section.*
 
 ## List Installed Replicated Version
 You can also use the [CLI](/reference/replicated-cli/) to determine the version
-of the container
+of the container.
 
 
 ## Removing Replicated
