@@ -26,7 +26,7 @@ likely channel is Stable, but for your internal testing you'll also likely need 
 ## Expiration (Required)
 When you create a license you can specify how the license will behave when it expires.  The policy
 can ignore expiration, allow a running application to continue but prevent updates, or stop
-the running application and prevent updates.  License expiration is supported in Replicated 2.1.0
+the running application and prevent updates.  License expiration to stop running the application is supported in Replicated 2.1.0
 or newer.
 
 ## Custom License Fields (Optional)
