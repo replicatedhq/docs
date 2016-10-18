@@ -20,7 +20,7 @@ Docker, see the table below.*
 | OS | Highest Docker Version Supported in Replicated |
 |---|---|
 | [CentOS 7 / RHEL 7](http://yum.dockerproject.org/repo/main/centos/7/Packages/) | {{< docker_version_default >}} |
-| [Ubuntu 12.04 (precise) / 14.04 (trusty ) / 15.10 (wily)](https://apt.dockerproject.org/repo/pool/main/d/docker-engine/) | {{< docker_version_default >}} |
+| [Ubuntu 12.04 (precise) / 14.04 (trusty ) / 15.10 (wily) / 16.04](https://apt.dockerproject.org/repo/pool/main/d/docker-engine/) | {{< docker_version_default >}} |
 | [Fedora 22](http://yum.dockerproject.org/repo/main/fedora/22/Packages/) | {{< docker_version_default >}} |
 | [Debian 7 (Wheezy) / 8 (Jessie)](https://apt.dockerproject.org/repo/pool/main/d/docker-engine/) | {{< docker_version_default >}} |
 | [Ubuntu 15.04 (vivid)](https://apt.dockerproject.org/repo/pool/main/d/docker-engine/) | 1.9.1 |
