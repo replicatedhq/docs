@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Installing Replicated"
 description = "Instructions for installing Replicated via the easy install script, manually or behind a proxy. Also includes instructions for uninstalling Replicated."
-keywords= "installing, removing, migrating"
+previe= "installing, removing, migrating"
 weight = "305"
 categories = [ "Distributing" ]
 
@@ -60,8 +60,7 @@ curl -sSL https://get.replicated.com/docker | sudo bash -s ui-bind-port 8000
 ```
 
 When you're ready to start shipping to customers, you can either proxy this install script or provide TLS
-certs for us to CNAME it for you. An example of customer facing installation guide can be found at our
-unpublished demo app: [GetElk](http://preview.getelk.com/)
+certs for us to CNAME it for you.
 
 ## Installing Additional Nodes
 By default Replicated will add its local host as the first node when running the installation script from

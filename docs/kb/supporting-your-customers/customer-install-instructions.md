@@ -12,8 +12,7 @@ Replicated, we always recommend starting with our [official installation instruc
 see what the installation instructions of other customers look like today:
 
 [GetElk is an example app](http://docs.replicated.com/docs/getelk) that we created 
-with open sourced YAML and components. We also created a quick marketing that shows 
-customers how to install: http://preview.getelk.com/
+with open sourced YAML and components.
 
 SysDig provides detailed instructions on installation for both a single host version & 
 a multi-host distributed version of their application. 
