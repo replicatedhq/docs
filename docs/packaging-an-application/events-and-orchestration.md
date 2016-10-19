@@ -73,7 +73,7 @@ containers:
 ```
 
 ## Container Exec Event
-The `exec` event type is provided to execite arbitrary scripts in a container. This command is attempted immediately after the
+The `exec` event type is provided to execute arbitrary scripts in a container. This command is attempted immediately after the
 container starts, and again at an interval of 2 seconds until it returns 0 or 10 minutes has elapsed. If the command succeeds
 with a result code of 0, the event triggers. If not, the command will retry for up to 10 minutes and result in a failure if
 the exit code is never 0. The command to be executed is given in the `data` field as the arguments are represented as an array
