@@ -40,7 +40,7 @@ or newer.
 Replicated has two available update policies: `Manual` and `Automatic`. Manual updates will require that your customer visit the admin console to read the release notes and apply the update (this is the default setting). Automatic updates will be automatically applied whenever Replicated detects a new version is available (this could cause downtime as Replicated will stop the containers before starting the new ones).
 
 ### Clustered Installations Enabled
-If your application supports clustered installations, you can toggle the ability for a clustered installation from the license level by enabling/disabling this feature. If enabled, your customer will see the "add node" button on the "cluster" screen of the admin console. If disabled, this button will not be visible (this is the default setting).
+If an application supports clustered installations, the ability for a specific end customer to deploy a clustered instance can be controlled from the license by enabling/disabling this feature. If enabled, your customer will see the "add node" button on the "cluster" screen of the admin console. If disabled, this button will not be visible (this is the default setting).
 
 ### Enable Console LDAP Authentication
 During the installation process, immediately after your customer uploads their `.rli` license file, they're promoted to "Secure the admin console". By default there are 3 options "unsecured", "password" or "LDAP". By toggling this license setting to off you can remove the option to leverage LDAP for the admin console.
@@ -53,7 +53,7 @@ where the email you specify will be sent an activation code required to proceed 
 in the process.
 
 ## Billing Info (Optional)
-You can identify a license as `Development`, `Trial` or `Paid`. Development licenses are intended for internal usage for ongoing development. Trial licenses should have an expiration assigned (generally 4-8 weeks). Paid licenses will prompt for billing information to be entered on the subsequent screen. This billing information allows you to communicate license revenue to Replicated for billing (note: an invoice will not be sent to your customer).
+A license can be identified as `Development`, `Trial` or `Paid`. Development licenses are intended for internal usage for ongoing development. Trial licenses should have an expiration assigned (generally 4-8 weeks). Paid licenses will prompt for billing information to be entered on the subsequent screen. This billing information is used to communicate license revenue to Replicated for billing (note: an invoice will not be sent to your customer).
 
 ## Custom License Fields (Optional)
 Custom license fields can be set for all licenses. This is useful if specific customer
