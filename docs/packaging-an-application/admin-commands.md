@@ -66,7 +66,7 @@ This is the command that the user will specify on the command line.
 
 ### command
 This is the actual command that will be executed inside the container when the alias is
-invoke through replicated CLI.
+invoked through the replicated CLI.
 
 ### run_type
 Specify `exec` to execute the command in the currently running container. This is currently
