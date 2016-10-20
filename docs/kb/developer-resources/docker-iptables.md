@@ -9,7 +9,7 @@ categories = [ "Knowledgebase", "Developer Resources" ]
 When Docker starts it registers a DOCKER chain into iptables to allow communication between ports exposed on the
 containers it manages.
 
-The iptables chain can verified by running `iptables -L` (Replicated 2.0 install shown here)
+The iptables chain can be verified by running `iptables -L` (Replicated 2.0 install shown here)
 
 ```
 # iptables -L
