@@ -350,3 +350,63 @@ env_vars:
 - name: NAME_PLAIN_TEXT
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
+
+## Add
+```go
+func Add(x interface{}, y interface{}) interface{}
+```
+Adds x and y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: MAX_USERS_PLUS_ONE
+  static_val: '{{repl Add (LicenseFieldValue "maximum_users") 1}}'
+```
+
+## Sub
+```go
+func Sub(x interface{}, y interface{}) interface{}
+```
+Subtracts y from x.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: MAX_USERS_MINUS_ONE
+  static_val: '{{repl Sub (LicenseFieldValue "maximum_users") 1}}'
+```
+
+## Mult
+```go
+func Mult(x interface{}, y interface{}) interface{}
+```
+Multiplies x and y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: DOUBLE_NUM_ADDRESSES
+  static_val: '{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
+```
+
+## Div
+```go
+func Div(x interface{}, y interface{}) interface{}
+```
+Divides x by y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer and will be rounded down.
+```yml
+env_vars:
+- name: HALF_MAX_USERS
+  static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
+```
