@@ -109,16 +109,20 @@ When specifying targets using wildcards, character ranges, or value lists, monit
 multiple graphs. The number of graphs cannot be known ahead of time, and at this point specifying
 unique colors for all of them is not supported.
 
-## Graphite
+## Ports
 
-By default, the graphite container will use a dynamic port that can be discovered by examining the
-graphite container. A static port can be defined using the graphite section of app YAML. This port
-can be accessed via web browser for a full Graphite dashboard.
+By default, Replicated will use dynamic ports for Graphite and StatsD.  These can be discovered by examining the
+graphite container. Static ports can be defined using the graphite and the statsd sections of app YAML.
+The graphite port can be accessed via web browser for a full Graphite dashboard.
+
+Because Graphite uses TCP and StatsD uses UDP, the same port number can be used for both.
 
 ### Example
 
 ```yml
 graphite:
+  port: 8899
+statsd:
   port: 8899
 ```
 
