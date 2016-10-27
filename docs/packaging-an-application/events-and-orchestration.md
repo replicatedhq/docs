@@ -87,11 +87,11 @@ containers:
     publish_events:
     - name: Minecraft Server Started
       trigger: exec
-       args: ["grep", "Done", "/data/logs/latest.log"]
-       subscriptions:
-       - component: Redis
-         container: redis
-         action: start
+      args: ["grep", "Done", "/data/logs/latest.log"]
+      subscriptions:
+      - component: Redis
+        container: redis
+        action: start
 ```
 
 ## Subscribed Events
