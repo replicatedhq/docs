@@ -18,7 +18,7 @@ for more details.
 ### Ubuntu/Debian
 ```shell
 apt-get update
-pt-get install replicated replicated-ui replicated-agent
+apt-get install replicated replicated-ui replicated-agent
 ```
 
 ### CentOS/RHEL/Fedora
