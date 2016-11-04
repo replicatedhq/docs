@@ -48,13 +48,14 @@ Types `select_one` and `select_many` are special cases. These types must have ne
 that act as options. These types will be displayed as radio buttons (`select_one`) or
 checkboxes (`select_many`) in the admin console.
 
+At this time these two control types do not support the `title` field.
+
 ```yaml
 - name: inputs
   title: Inputs
   description: ""
   items:
   - name: logstash_input_enabled
-    title: Choose which Logstash inputs to enable.
     default: ""
     type: select_many
     items:
@@ -69,7 +70,6 @@ checkboxes (`select_many`) in the admin console.
   description: ""
   items:
   - name: authentication_type
-    title: Secure your application with authentication.
     default: authentication_type_anonymous
     type: select_one
     items:
