@@ -115,7 +115,8 @@ Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddress
 ```go
 func ContainerExposedPort(componentName string, containerName string, internalPort string) string
 ```
-Returns the host's public port mapped to the supplied exposed container port as a string. The containerName string will be the image_name for the container.
+Returns the host's public port mapped to the supplied exposed container port as a string. The containerName string will be the image_name for the container and an [orachstrain requirement](https://www.replicated.com/docs/packaging-an-application/events-and-orchestration/#container-port-listen-event) is also necessary when one container depends on exposed ports of another container.
+
 ```yml
 env_vars:
 - name: REDIS_PORT
