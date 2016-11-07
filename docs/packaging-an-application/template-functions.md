@@ -115,7 +115,7 @@ Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddress
 ```go
 func ContainerExposedPort(componentName string, containerName string, internalPort string) string
 ```
-Returns the host's public port mapped to the supplied exposed container port as a string.
+Returns the host's public port mapped to the supplied exposed container port as a string. The containerName string will be the image_name for the container.
 ```yml
 env_vars:
 - name: REDIS_PORT
