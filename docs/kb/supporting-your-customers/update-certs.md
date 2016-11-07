@@ -13,7 +13,7 @@ self-signed TLS/SSL cert or provide their own certs during setup.
 
 If after initial setup this needs to be changed, it can be done so from the command 
 line by using the 
-[SSL cert set CLI command](http://docs.replicated.com/docs/on-prem-cli#section-certificate-configuration-via-cli) 
+[SSL cert set CLI command](/reference/replicated-cli/#certificate-configuration-via-cli) 
 or via the UI at https://:8800/console/settings
 
 ![Console Settings)(/static/console-settings-v1.png)

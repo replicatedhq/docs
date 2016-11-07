@@ -12,7 +12,7 @@ url        = "/docs/reference/replicated-cli"
 parent     = "/reference"
 +++
 
-After [installing replicated](/docs/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
+After [installing replicated](/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 
@@ -77,7 +77,7 @@ replicated app <app-id> update <sequence>
 
 ## Export Settings
 
-This allows you to export your app settings. This is useful for [automating an installation](/docs/kb/developer-resources/automate-install/).
+This allows you to export your app settings. This is useful for [automating an installation](/kb/developer-resources/automate-install/).
 Supported as of 2.1.0.
 
 ```shell

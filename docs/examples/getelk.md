@@ -15,8 +15,6 @@ url        = "/docs/examples/getelk"
 ## GetELK
 We've wrapped the ELK (Elastic Search, LogStash & Kibana) in Replicated to be easy to configure, install and update. This is a complex example that uses much of the functionality of the Replicated config YAML.
 
-http://preview.getelk.com
-
 ```yml
 replicated_api_version: "1.0.0"
 name: ELK
@@ -25,7 +23,6 @@ console_support_markdown: |
 properties:
   app_url: http{{repl if ConfigOptionEquals "https_enabled" "1" }}s{{repl end }}://{{repl
     ConfigOption "hostname" }}
-  logo_url: http://preview.getelk.com/images/getelk-logo-sm.png
   console_title: getELK Admin Installer
   bypass_local_registry: true
 state:
