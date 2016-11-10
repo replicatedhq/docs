@@ -60,8 +60,7 @@ curl -sSL https://get.replicated.com/docker | sudo bash -s ui-bind-port 8000
 ```
 
 When you're ready to start shipping to customers, you can either proxy this install script or provide TLS
-certs for us to CNAME it for you. An example of customer facing installation guide can be found at our
-unpublished demo app: [GetElk](http://preview.getelk.com/)
+certs for us to CNAME it for you. 
 
 ## Installing Additional Nodes
 By default Replicated will add its local host as the first node when running the installation script from
@@ -92,9 +91,9 @@ If you'd rather install the components manually, you can! Just use the 4 followi
 
 ### 1. Install Docker
 Currently the Replicated installation script installs Docker version {{< docker_version_default >}}
-Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/installation/debian/),
-[Ubuntu](https://docs.docker.com/installation/ubuntulinux/), [CentOS](https://docs.docker.com/installation/centos/),
-[Fedora](https://docs.docker.com/installation/fedora/), or [RHEL](https://docs.docker.com/installation/rhel/).
+Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/),
+[Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/),
+[Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
 
 ### 2. Run Replicated & UI Containers
 ```shell

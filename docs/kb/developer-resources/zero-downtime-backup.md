@@ -9,8 +9,8 @@ categories = [ "Knowledgebase", "Developer Resources" ]
 **This Works with Replicated Daemon 1.2.81 and above.**  
 
 Replicated provides a way to achieve zero downtime backups by combining two of our more powerful
-replicated features: [Admin Commands](http://docs.replicated.com/docs/admin-commands) and
-[Snapshots](http://docs.replicated.com/docs/snapshots).
+replicated features: [Admin Commands](/packaging-an-application/admin-commands/) and
+[Snapshots](/packaging-an-application/snapshots/).
 
 In this example we will demonstrate how to backup redis without having to stop the redis process itself:
 

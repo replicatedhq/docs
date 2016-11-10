@@ -13,8 +13,8 @@ to proceed with the SSL certs provided during the initial setup of the managemen
 provide their own, or use self-signed certs that are generated with the cmd in the `cmds` 
 section. The YAML also writes the active file to the nginx container as a customer file. 
 for these fields (and ‘test’ buttons for testing 
-[hostname resolution](http://docs.replicated.com/docs/configuration-test-commands#resolve-host) 
-& [cert verification](http://docs.replicated.com/docs/configuration-test-commands#certificate-verification) 
+[hostname resolution](/packaging-an-application/test-procs/#resolve-host) 
+& [cert verification](/packaging-an-application/test-procs/#certificate-verification) 
 is also provided below.
 
 ![Config Screen TLS](/static/config-tls.png)
