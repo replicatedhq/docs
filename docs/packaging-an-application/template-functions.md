@@ -211,12 +211,24 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
+## ConsoleSettingEquals
+```go
+func ConsoleSettingEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
+
+## ConsoleSettingNotEquals
+```go
+func ConsoleSettingNotEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
+
 ## ThisHostInterfaceAddress
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
-Returns the first valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
+Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
 For a clustered application this value will be different for each host.
 ```yml
 env_vars:
@@ -238,7 +250,6 @@ env_vars:
 Replaces ThisHostPublicIpAddress which is deprecated.
 
 ## ThisNodePrivateIPAddress
-Deprecated, please use ThisNodePrivateIPAddress.
 ```go
 func ThisNodePrivateIPAddress() string
 ```
@@ -420,4 +431,4 @@ env_vars:
 
 The containerName argument references the image_name property from the container yaml. 
 
-When referencing another container in a template objejct, you must make sure the referenced container is started firs.      Please see the [Events and Orchestration](/packaging-an-application/events-and-orchestration/) section for more information on rchestrating container startup.
+When referencing another container in a template object, you must make sure the referenced container is started first.  Please see the [Events and Orchestration](/packaging-an-application/events-and-orchestration/) section for more information on orchestrating container startup.
