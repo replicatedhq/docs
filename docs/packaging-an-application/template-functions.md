@@ -211,6 +211,18 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
+## ConsoleSettingEquals
+```go
+func ConsoleSettingEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
+
+## ConsoleSettingNotEquals
+```go
+func ConsoleSettingNotEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
+
 ## ThisHostInterfaceAddress
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
@@ -238,7 +250,6 @@ env_vars:
 Replaces ThisHostPublicIpAddress which is deprecated.
 
 ## ThisNodePrivateIPAddress
-Deprecated, please use ThisNodePrivateIPAddress.
 ```go
 func ThisNodePrivateIPAddress() string
 ```

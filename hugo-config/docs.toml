@@ -78,6 +78,18 @@ category = "categories"
   identifier = "/kb"
   weight     = 600
 
+[[menu.main]]
+  name       = "Developer Resources"
+  url        = "/docs/categories/developer-resources/"
+  identifier = "/docs/categories/developer-resources/"
+  weight     = 700
+
+[[menu.main]]
+  name       = "Supporting Your Customers"
+  url        = "/docs/categories/supporting-your-customers/"
+  identifier = "/docs/categories/supporting-your-customers/"
+  weight     = 800
+
 [blackfriday]
   smartypants	= true
   fractions = true
