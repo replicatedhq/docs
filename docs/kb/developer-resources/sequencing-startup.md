@@ -46,7 +46,7 @@ publish_events:
 ```
 
 **Bonus: I also want to make sure that my app is actually started before my on-premise dashboard 
-indicates that it is ready. We are going to use [Health Check](http://docs.replicated.com/docs/yaml-configuration#section-health-check) 
+indicates that it is ready. We are going to use [Health Check](/packaging-an-application/yaml-overview/#section-health-check) 
 functionality to accomplish this.**  
 
 By adding the following snippet I am able to tell Replicated that my app is ready when my load balancer 

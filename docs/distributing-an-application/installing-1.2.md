@@ -69,9 +69,9 @@ CentOS, go for the "yum" tab.
 
 ## Install Docker
 Currently the Replicated installation script installs Docker version {{< docker_version_default >}}
-Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/installation/debian/),
-[Ubuntu](https://docs.docker.com/installation/ubuntulinux/), [CentOS](https://docs.docker.com/installation/centos/),
-[Fedora](https://docs.docker.com/installation/fedora/), or [RHEL](https://docs.docker.com/installation/rhel/).
+Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/),
+[Ubuntu](https://docs.docker.com/installation/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/),
+[Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
 
 ## Add the Replicated repository to package manager
 

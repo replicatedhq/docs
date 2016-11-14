@@ -75,25 +75,27 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-## HostPrivateIpAddress
+## HostPrivateIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPrivateIpAddress(componentName string, containerName string) string
 ```
 Returns Private IP Address of Component as a string.
+
 ```yml
 env_vars:
 - name: REDIS_HOST_PRIVATE
   static_val: '{{repl HostPrivateIpAddress "DB" "redis" }}'
 ```
 
-## HostPrivateIpAddressAll
+## HostPrivateIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPrivateIpAddressAll(componentName string, containerName string) []string
 ```
 Returns host private IP addresses for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## HostPublicIpAddress
+## HostPublicIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPublicIpAddress(componentName string, containerName string) string
 ```
@@ -104,29 +106,32 @@ env_vars:
   static_val: '{{repl HostPublicIpAddress "DB" "redis" }}'
 ```
 
-## HostPublicIpAddressAll
+## HostPublicIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPublicIpAddressAll(componentName string, containerName string) []string
 ```
 Returns host public IP addresses for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## ContainerExposedPort
+## ContainerExposedPort [*](/packaging-an-application/template-functions/#notes)
 ```go
 func ContainerExposedPort(componentName string, containerName string, internalPort string) string
 ```
 Returns the host's public port mapped to the supplied exposed container port as a string.
+
 ```yml
 env_vars:
 - name: REDIS_PORT
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
 ```
 
-## ContainerExposedPortAll
+## ContainerExposedPortAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func ContainerExposedPortAll(componentName string, containerName string, internalPort string) string
 ```
 Returns the host public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
 ## LicenseFieldValue
@@ -206,12 +211,24 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
+## ConsoleSettingEquals
+```go
+func ConsoleSettingEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
+
+## ConsoleSettingNotEquals
+```go
+func ConsoleSettingNotEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
+
 ## ThisHostInterfaceAddress
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
-Returns the first valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
+Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
 For a clustered application this value will be different for each host.
 ```yml
 env_vars:
@@ -233,7 +250,6 @@ env_vars:
 Replaces ThisHostPublicIpAddress which is deprecated.
 
 ## ThisNodePrivateIPAddress
-Deprecated, please use ThisNodePrivateIPAddress.
 ```go
 func ThisNodePrivateIPAddress() string
 ```
@@ -410,3 +426,9 @@ env_vars:
 - name: HALF_MAX_USERS
   static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
 ```
+
+## Notes
+
+The containerName argument references the image_name property from the container yaml. 
+
+When referencing another container in a template objejct, you must make sure the referenced container is started firs.      Please see the [Events and Orchestration](/packaging-an-application/events-and-orchestration/) section for more information on orchestrating container startup.

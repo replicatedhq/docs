@@ -27,7 +27,7 @@ category = "categories"
   # Syntax highlighting theme
   highlight_css  = ""
 
-  docker_version_default = "1.11.1"
+  docker_version_default = "1.11.2"
   docker_version_minimum = "1.7.1"
   replicated_api_version_current = "2.3.5"
 
@@ -77,6 +77,18 @@ category = "categories"
   url        = "kb"
   identifier = "/kb"
   weight     = 600
+
+[[menu.main]]
+  name       = "Developer Resources"
+  url        = "/docs/categories/developer-resources/"
+  identifier = "/docs/categories/developer-resources/"
+  weight     = 700
+
+[[menu.main]]
+  name       = "Supporting Your Customers"
+  url        = "/docs/categories/supporting-your-customers/"
+  identifier = "/docs/categories/supporting-your-customers/"
+  weight     = 800
 
 [blackfriday]
   smartypants	= true
