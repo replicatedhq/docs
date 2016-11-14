@@ -29,9 +29,9 @@ recommended version). This also requires a 64-bit distribution with a kernel min
 ## Current Replicated Versions
 | Daemon	| Stable Version |
 |-------|----------------|
-| replicated | 1.2.125 <br /> 11 August, 2016 |
-| replicated-ui | 1.2.76 <br /> 1 August, 2016 |
-| replicated-agent | 1.2.49 <br /> 8 August, 2016 |
+| replicated | 1.2.134 <br /> 1 November, 2016 |
+| replicated-ui | 1.2.80 <br /> 1 November, 2016 |
+| replicated-agent | 1.2.51 <br /> 1 November, 2016 |
 
 ## Easy Installation
 We provide an easy-to-use one-line installation process (via shell script) which will
