@@ -6,7 +6,7 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-To interact with the [vendor API](http://docs.replicated.com/v1.0/docs/about-the-vendor-api) 
+To interact with the [vendor API](/reference/vendor-api/) 
 (anything that is available in the vendor web portal is available in the API) you’ll need
  to create API tokens. This can be done from the http://vendor.replicated.com/#/team page.
 

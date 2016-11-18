@@ -6,7 +6,7 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-[Commands](http://docs.replicated.com/docs/commands) are an important part of the 
+[Commands](/packaging-an-application/commands/) are an important part of the 
 Replicated ecosystem for bootstrapping a configuration screen to help streamline the 
 installation of your application on-premise.
 
