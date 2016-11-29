@@ -8,12 +8,7 @@ categories = [ "Knowledgebase", "Supporting Your Customers" ]
 
 **The snapshots functionality in Replicated is for disaster recovery purposes.**
 
-If you have enabled snapshots for your app they will by default run every 24 hours, 
-optionally your users can run a snapshot from the on-prem console at any time. The default 
-location for saving a snapshot on a replicated enabled host is: `/var/lib/replicated/snapshots`, 
-the last 3 snapshots will be located in that directory.
-*Note: We highly recommend you copy this folder to a additional location on a different physical 
-host/SAN to ensure redundancy.*
+Automatic snapshots by default are disabled, but if your customer has enabled snapshots they will by default run every 24 hours, see the [Snapshots documentation](/packaging-an-application/snapshots/) for information on enabling snapshots. Optionally your users can run a snapshot from the on-prem console at any time. 
 
 To restore you need to create a fresh install of replicated which you can find instructions 
 for [here](http://docs.replicated.com/docs/installing-replicated#section-easy-installation). Before 
