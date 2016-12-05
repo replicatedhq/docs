@@ -150,7 +150,7 @@ Setting labels can be customized if needed. However, setting names must remain e
     title: Show Advanced Search Options
     description: Enable this option if you need to write a custom LDAP search query.
     type: bool
-    value: '{{repl LdapCopyAuthFrom "AdvancedSearch"}}'
+    value: 0
   - name: ldap_restricted_user_group
     # Group name that the user must belong to.  This string must only contain the group name
     # without an LDAP search query.
