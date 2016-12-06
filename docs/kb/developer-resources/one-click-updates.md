@@ -6,6 +6,7 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
+## Overview
 Replicated makes the process of providing your on-prem customers with your regular 
 application updates as simple as possible. Whenever a release is promoted to a channel 
 where existing customers are licensed, your customers will be able to update their 
@@ -50,3 +51,11 @@ If there is no update currently detected, the dashboard provides a button to "Ch
 Updates" as well as a link to this release history page.
 
 ![Dashboard](/static/dashboard-no-updates.png)
+
+## Scheduling Update Checks
+
+Your customers have the ability to change the frequency that Replicated will check for
+application updates with either prechosen time increments or a crontab format enabled
+custom field setting.
+
+![Update Scheduler](/static/update-scheduler.png)
