@@ -76,6 +76,14 @@ blockquote {
     color:white;
 }
 
+.version {
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 4px;
+    border: 1px solid #6bbd5b;
+    color: #00f;
+}
+
 /* Google Search Results */
 
 .gs-per-result-labels span, .gs-per-result-labels a {
