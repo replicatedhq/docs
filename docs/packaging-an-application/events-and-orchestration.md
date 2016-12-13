@@ -98,3 +98,22 @@ containers:
 Any container can subscribe to events from any other container in your application. A subscribed event must also define an action to
 take upon triggering of the event. The only action which is currently available is the start action, which causes the subscribing
 container to start.
+
+## Timeouts
+The `timeout` parameter must be an integer and indicates the number of seconds an event has to execute before a timeout is initiated.  
+If the event does not execute when the timeout is reached, then an error will show in the UI and the event sequence will terminate.  
+By default the `timeout` option will be set to 10 minutes.  Setting the `timeout` parameter to -1 will disable the timeout feature.
+
+```yaml
+containers:
+  -source: public
+    image_name: example
+    publish_events:
+    - name: Some Event Started
+      trigger: container-stop
+      timeout: 30
+      subscriptions:
+      - component: DB
+        container: mysql
+        action: start
+```
