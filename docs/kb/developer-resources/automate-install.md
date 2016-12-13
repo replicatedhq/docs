@@ -72,6 +72,9 @@ config:
   - name: a_file
     title: Pick a file.
     type: file
+  - name: a_boolean
+    title: Yea or Nay
+    type: bool
 ```
 
 You could then create the `settings.conf` in this format:
@@ -87,6 +90,8 @@ You could then create the `settings.conf` in this format:
  "a_file": {
    "value": "/some/fake/filepath",
    "data": "<base64 encoded contents of the actual file>"
- }
+ },
+ "a_boolean": {
+   "value": "true"
 }
 ```
