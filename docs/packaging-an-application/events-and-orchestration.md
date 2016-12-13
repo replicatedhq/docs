@@ -101,7 +101,7 @@ container to start.
 
 ## Timeouts
 The `timeout` parameter must be an integer and indicates the number of seconds an event has to execute before a timeout is initiated.  
-If the event does not execute when the timeout is reached, then an error will show in the UI and the event sequence will terminate.  
+If the event does not execute before the timeout is reached, then an error will show in the UI and the event sequence will terminate.  
 By default the `timeout` option will be set to 10 minutes.  Setting the `timeout` parameter to -1 will disable the timeout feature.
 
 ```yaml
