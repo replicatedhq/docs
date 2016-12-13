@@ -74,7 +74,7 @@ config:
     type: file
   - name: a_boolean
     title: Yea or Nay
-    type: boolean
+    type: bool
 ```
 
 You could then create the `settings.conf` in this format:
