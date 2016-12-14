@@ -96,6 +96,7 @@ You could then create the `settings.conf` in this format:
  },
  "a_boolean": {
    "value": "true"
+ },
  "many_a_files": {
    "multi_value": [
      "/some/fake/file1",
