@@ -75,6 +75,9 @@ config:
   - name: a_boolean
     title: Yea or Nay
     type: bool
+  - name: many_a_files
+    title: Pick many files.
+    multiple: true
 ```
 
 You could then create the `settings.conf` in this format:
@@ -93,5 +96,15 @@ You could then create the `settings.conf` in this format:
  },
  "a_boolean": {
    "value": "true"
+ "many_a_files": {
+   "multi_value": [
+     "/some/fake/file1",
+     "/some/fake/file2"
+   ],
+   "multi_data": [
+     "<base64 encoded contents of file1>",
+     "<base64 encoded contents of file2>"
+   ]
+ }
 }
 ```
