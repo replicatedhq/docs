@@ -21,7 +21,7 @@ curl -sSL https://get.replicated.com/docker | sudo bash
 If you want to install a specific version of each of the components, you can simply use:
 
 ```shell
-curl -sSL "https://get.replicated.com/docker?replicated_tag=2.3.1&replicated_ui_tag=2.3.1&replicated_operator_tag=2.3.1" | sudo bash
+curl -sSL "https://get.replicated.com/docker?replicated_tag=2.3.2&replicated_ui_tag=2.3.2&replicated_operator_tag=2.3.2" | sudo bash
 ```
 
 There are some best practices around using this new functionality:
