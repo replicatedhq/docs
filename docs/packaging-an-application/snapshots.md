@@ -58,3 +58,11 @@ We recommend that you exclude anything that's not necessary to restore the runni
 ## Customer Snapshot Configuration Options  
 If snapshots are enabled for an application, end customers can configure the destination, retention, timeout and schedule automated snapshots on the Console Settings screen.
 ![snapshots](/static/snapshot-config.png)
+
+{{< note title="Snapshot Redundancy" >}}
+The default location for saving a snapshot on a Replicated enabled host is
+`/var/lib/replicated/snapshots`.   This location may not be suitable for keeping
+large amounts of data.  Additionally, by default, it is likely to be on the same physical volume as all other critical data.  We highly recommend this location is configured to be
+on a separate volume (possibly a SAN) with large capacity to ensure data can be
+recovered in case of a disaster.
+{{< /note >}}
