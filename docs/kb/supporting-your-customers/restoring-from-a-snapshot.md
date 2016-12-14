@@ -9,7 +9,7 @@ categories = [ "Knowledgebase", "Supporting Your Customers" ]
 **The snapshots functionality in Replicated is for disaster recovery purposes.**
 
 If snapshots are enabled in the application YAML, the user will have the ability
-to perform manual and scheduled snapshots.  More information on configuring snapshot scan be
+to perform manual and scheduled snapshots.  More information on configuring snapshots can be
 found in the [Snapshots](packaging-an-application/snapshots/) section.
 
 To restore you need to create a fresh install of replicated which you can find instructions
