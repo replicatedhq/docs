@@ -150,7 +150,7 @@ Echos the first argument.
 ```
 
 ## system
-Runs command directly on the machine on which the Replicated container is running. Be careful as Replicated supports many
+{{< version version="1.2.x" >}} Runs command directly on the machine on which Replicated is running. Be careful as Replicated supports many
 linux distributions.
 
 ### Arguments
