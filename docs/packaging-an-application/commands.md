@@ -168,7 +168,7 @@ linux distributions.
 ```
 
 ## raw
-Runs command from a bash shell inside an "ubuntu:trusty" docker container.
+Runs command from a bash shell inside an "ubuntu:trusty" docker container. The docker image is hosted on dockerhub at https://hub.docker.com/r/freighter/cmd/
 
 ### Arguments
 - Variable
