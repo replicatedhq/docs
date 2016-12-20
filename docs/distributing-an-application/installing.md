@@ -60,7 +60,7 @@ curl -sSL https://get.replicated.com/docker | sudo bash -s ui-bind-port 8000
 ```
 
 When you're ready to start shipping to customers, you can either proxy this install script or provide TLS
-certs for us to CNAME it for you. 
+certs for us to CNAME it for you.
 
 ## Installing Additional Nodes
 By default Replicated will add its local host as the first node when running the installation script from
@@ -78,9 +78,9 @@ curl -sSL https://get.replicated.com/operator | sudo bash -s no-auto
 ```
 
 ## Accessing the On-prem UI
-The Replicated On-Prem UI is web-based, Replicated is available at port 8800 (by default) over 
-HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible 
-from your local computer). 
+The Replicated On-Prem UI is web-based, Replicated is available at port 8800 (by default) over
+HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible
+from your local computer).
 
 You'll need to [create & download a license file](/distributing-an-application/create-licenses/)
 for yourself on the vendor portal & then just follow the instructions from there.
@@ -98,36 +98,57 @@ Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engi
 ### 2. Run Replicated & UI Containers
 ```shell
 export DOCKER_HOST_IP=172.17.0.1  # Set this appropriately to docker0 address
-export LOCAL_ADDRESS=10.240.0.2  # Set this to the internal address of the server (eth0 maybe?)
+export LOCAL_ADDRESS=10.240.0.2  # Set this to the internal address of the server (usually eth0, but not 127.0.0.1)
+
+echo 'alias replicated="sudo docker exec -it replicated replicated"' > /etc/replicated.alias
 
 docker run -d --name=replicated \
-        -p 9874-9880:9874-9880/tcp \
-        -v /:/replicated/host:ro \
+        -p 9874-9879:9874-9879/tcp \
         -v /etc/replicated.alias:/etc/replicated.alias \
-        -v /etc/docker/certs.d:/etc/docker/certs.d \
-        -v /var/run/docker.sock:/var/run/docker.sock \
         -v /var/lib/replicated:/var/lib/replicated \
-        -v /etc/replicated.conf:/etc/replicated.conf \
+        -v /var/run/replicated:/var/run/replicated \
+        -v /etc/docker/certs.d:/host/etc/docker/certs.d \
+        -v /var/run/docker.sock:/host/var/run/docker.sock \
+        -v /proc:/host/proc:ro \
+        -v /etc:/host/etc:ro \
         -e DOCKER_HOST_IP=$DOCKER_HOST_IP \
         -e LOCAL_ADDRESS=$LOCAL_ADDRESS \
         quay.io/replicated/replicated:latest
 
 docker run -d --name=replicated-ui \
         -p 8800:8800/tcp \
-        --volumes-from replicated \
+        -v /var/run/replicated:/var/run/replicated \
         quay.io/replicated/replicated-ui:latest
 ```
 
-### 3. Access Replicated UI
-After the installation the On-Prem console is available at the address https://&lt;your server address&gt;:8800. There
-you will be prompted for some initial setup as well as to upload a license.
+### 3. Upload the License
+1. Navigate to https://&lt;your server address&gt;:8800.
+1. Follow the prompts to configure certificates, upload license, and run the preflight checks.
 
 ### 4. Run Operator Container
-Navigate to the :8800/cluster page of the On-Prem console to add a node to the cluster. Clicking the Add Node button
-will present a custom Docker run command containing a secret token (or optionally an easy-install script) that can be run on the same server or an additional server to install an Operator.
+1. Click on the Cluster link
+1. Click the Add Node button
+1. Select Docker Run option
+1. Copy the command from the text area below
+1. Paste and run the command in the terminal window
+
+### 4. Start the Application
+1. Click on the Dashboard link
+1. Click the Start Now button.
+
+{{< note title="There is no Start Now button" >}}
+If Replicated is still pulling application images, there will be no Start Now button.
+If this is the case, then just wait for the pull to finish.
+{{< /note >}}
+
+{{< note title="Pre-flight checks again" >}}
+Since a new node running Replicated Operator has joined the cluster, Replicated will
+want to run preflight checks on it before starting the application.
+If that's the case, the Start Now button will be replaced with the Run Checks button.
+{{< /note >}}
 
 ## Installing Behind A Proxy
-The Replicated installation script supports environments where an HTTP proxy server is required to access the Internet. The installation script will prompt for the proxy address and will set up Replicated and Docker to use the supplied value. 
+The Replicated installation script supports environments where an HTTP proxy server is required to access the Internet. The installation script will prompt for the proxy address and will set up Replicated and Docker to use the supplied value.
 
 An example of running the Replicated installation script with a proxy server is:
 ```shell
