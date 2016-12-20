@@ -49,8 +49,9 @@ Replicated stores configuration in several locations. Removing all of this will 
 time it starts.
 
 ```shell
-sudo rm /etc/replicated-operator.conf
+sudo rm -rf /etc/replicated*.conf
 sudo rm -rf /etc/default/replicated*
+sudo rm -rf /etc/sysconfig/replicated*
 sudo rm -rf /var/log/upstart/replicated*
 sudo rm -rf /var/lib/replicated
 ```
