@@ -11,10 +11,6 @@ A future release of Replicated will support deploying Replicated and your applic
 ## Requirements
 You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
 
-## Known Limitations
-- Replicated admin commands are not yet supported
-- Replicated snapshots are not yet supported
-
 ## Create a Kubernetes Cluster with a persistent volume (at least 10 gigs)
 ```yaml
 apiVersion: v1
@@ -453,3 +449,7 @@ Replicated can be deployed into your kubernetes cluster (TODO: document this) or
         "K8sClusterCACertData": "<base64 encoded cert>"
 }
 ```
+
+## Known Limitations
+- Replicated custom admin commands are not supported
+- Replicated custom snapshots are not supported
