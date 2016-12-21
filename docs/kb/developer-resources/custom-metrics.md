@@ -3,7 +3,7 @@ date = "2016-07-02T00:00:00Z"
 lastmod = "2016-07-02T00:00:00Z"
 title = "Custom Metrics"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "Knowledgebase", "Developer Resources", "Packaging" ]
 +++
 
 All Replicated 2.0 installations come with a StatsD/Graphite/Carbon container that can be used by
