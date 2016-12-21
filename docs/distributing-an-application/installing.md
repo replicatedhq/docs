@@ -126,20 +126,21 @@ docker run -d --name=replicated-ui \
 1. Follow the prompts to configure certificates, upload license, and run the preflight checks.
 
 ### 4. Run Operator Container
-1. Click on the Cluster link
+1. Click on the Cluster tab (:8800/cluster)  
 ![Cluster](/static/manual-install-2.x/click-cluster.png)
-1. Click the Add Node button
+1. Click the Add Node button  
 ![Add Node](/static/manual-install-2.x/add-node.png)
-1. Select Docker Run option
-1. Copy the command from the text area below
-![Run Command](/static/manual-install-2.x/copy-command.png)
-1. Paste and run the command in the terminal window
+1. Select Docker Run option  
+![Run Command](/static/manual-install-2.x/docker-run.png)
+1. Copy the command from the text area below  
+![Run Command](/static/manual-install-2.x/docker-run-cmd.png)
+1. Paste and run the command in the terminal window  
 
 At this point, the new node should show up on the Cluster page.
 
 ### 4. Start the Application
-1. Click on the Dashboard link
-1. Click the Start Now button
+1. Click on the Dashboard tab (:8800/dashboard)  
+1. Click the Start Now button  
 ![Start Now](/static/manual-install-2.x/start-now.png)
 
 {{< note title="There is no Start Now button" >}}
