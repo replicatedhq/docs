@@ -29,7 +29,7 @@ When you create a license you can specify how the license will behave when it ex
 By default, licenses will be set to manual updates. This means that the end customer will need to read the release notes and [click a button to apply the update](https://blog.replicated.com/2015/12/31/1-click-update-experience/). It is possible to turn on automatic updates, which will apply any update when it is detected.
 
 ## Clustered Installations Enabled
-By default, licenses will be set to disable clustered installations. This will prevent the "[add node](http://localhost:5913/docs/distributing-an-application/add-nodes/)" button from appearing on the Cluster tab of the on-prem admin console.
+By default, licenses will be set to disable clustered installations. This will prevent the "[add node](/distributing-an-application/add-nodes/)" button from appearing on the Cluster tab of the on-prem admin console.
 
 ## Enable Console LDAP Authentication
 By default, licenses will be set to enable the admin to setup LDAP/AD as the method of authenticating into the on-prem admin console. By turning this feature off, the end customer will only see the options to keep authentication anonymous or to create a shared password for the admin console.
@@ -41,7 +41,7 @@ The license file becomes the key to download & install your application. For thi
 By default, licenses will be set to disable [airgap installations](https://blog.replicated.com/2016/05/24/airgapped-installation-support/). By enabling this feature, the actual `.rli` file will have license meta data embedded in it and must be redownloaded.
 
 ## License Type (Required)
-It is important to identify the type of license that is being created, `development`, `trial` or `paid`. Development licenses are designed to be used internally by the development team for testing and integration. Trial licenses should be provided to customers who are on 2-4 week trials of your software. Paid licenses identify the end customer as a payig
+It is important to identify the type of license that is being created, `development`, `trial` or `paid`. Development licenses are designed to be used internally by the development team for testing and integration. Trial licenses should be provided to customers who are on 2-4 week trials of your software. Paid licenses identify the end customer as a paying customer (for which additional information can be provided.)
 
 ## Custom License Fields
 [Custom license fields](/kb/developer-resources/custom-license-fields) can be set for all licenses. This is useful if specific customer information might change from customer to customer. These fields can be read from both the [template functions](/packaging-an-application/template-functions) as well as from the [Integetration API](/reference/integration-api). Examples of custom license fields are "seats" to limit the number of active users or "hostname" in order to specify the domain that the application can be run on.
