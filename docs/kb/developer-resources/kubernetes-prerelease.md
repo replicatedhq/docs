@@ -189,7 +189,7 @@ config:
 
 components:[]
 
- ---
+---
 # kind: scheduler-kubernetes
 apiVersion: v1
 kind: Service
