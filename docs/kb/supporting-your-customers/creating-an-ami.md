@@ -19,7 +19,7 @@ To get started, launch a base image of Ubuntu 14.04 with an EBS root device.
 
 ### Step 1: Install Replicated
 
-Install Replicated using our [installation script](http://docs.replicated.com/docs/installing-replicated).
+Install Replicated using our [installation script](/distributing-an-application/installing/).
 
 ```shell
 curl -sSL https://get.replicated.com/docker | sudo bash
@@ -49,8 +49,9 @@ Replicated stores configuration in several locations. Removing all of this will 
 time it starts.
 
 ```shell
-sudo rm /etc/replicated-operator.conf
+sudo rm -rf /etc/replicated*.conf
 sudo rm -rf /etc/default/replicated*
+sudo rm -rf /etc/sysconfig/replicated*
 sudo rm -rf /var/log/upstart/replicated*
 sudo rm -rf /var/lib/replicated
 ```
@@ -69,6 +70,11 @@ To help with this, we've created a shell script and hosted it on get.replicated.
 will cause the script to run when your customer boots the instance. We've also added a command at the end to delete the script to ensure 
 it only runs once.
 
+The files used in the next script are:
+
+* [bootstrap script to start replicated and install](https://get.replicated.com/utils/aws/ubuntu1404/replicated-init)
+* [init file to launch bootstrap on startup](https://get.replicated.com/utils/aws/ubuntu1404/replicated-init.conf)
+
 ```shell
 sudo mkdir /etc/replicated-bootstrap
 sudo mv /etc/init/replicated* /etc/replicated-bootstrap
@@ -76,6 +82,10 @@ sudo curl -o /etc/replicated-bootstrap/init-defaults.sh https://get.replicated.c
 sudo chmod a+rx /etc/replicated-bootstrap/init-defaults.sh
 sudo curl -o /etc/init/replicated-init.conf https://get.replicated.com/utils/aws/ubuntu1404/replicated-init.conf
 ```
+
+To learn more about using the `/etc/replicated.conf` file to provide the license for an automated install, and
+how you can set your settings during an automated install process, please read 
+[Automate Install for Testing](/docs/kb/developer-resources/automate-install/).
 
 ### Step 5
 

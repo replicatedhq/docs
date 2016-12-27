@@ -12,13 +12,13 @@ for the current version, it is available at
 {{< /warning >}}
 
 You may need to add the Replicated repository and GPG key to the package manager before
-running commands, see [Manual Installation](http://docs.replicated.com/v1.2/docs/installing-replicated#section-manual-installation)
+running commands, see [Manual Installation](/distributing-an-application/installing/#manual-installation)
 for more details.
 
 ### Ubuntu/Debian
 ```shell
 apt-get update
-pt-get install replicated replicated-ui replicated-agent
+apt-get install replicated replicated-ui replicated-agent
 ```
 
 ### CentOS/RHEL/Fedora

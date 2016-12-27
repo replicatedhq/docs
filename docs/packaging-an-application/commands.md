@@ -21,8 +21,8 @@ the command in an Ubuntu Trusty container.
 
 The command is run at YAML import time only (during app installation & during app updates).
 
-Below is an example of a command that will generate a private key, a x509 certificate, and an random admin password that
-is used as in configuring our app.
+Below is an example of a command that will generate a private key, a x509 certificate, and a random admin password that
+are used as configuration for our app.
 
 ```yml
 cmds:
@@ -150,7 +150,7 @@ Echos the first argument.
 ```
 
 ## system
-Runs command directly on the machine on which the Replicated container is running. Be careful as Replicated supports many
+{{< version version="1.2.x only" >}} Runs command directly on the machine on which Replicated is running. Be careful as Replicated supports many
 linux distributions.
 
 ### Arguments
@@ -168,7 +168,7 @@ linux distributions.
 ```
 
 ## raw
-Runs command from a bash shell inside an "ubuntu:trusty" docker container.
+Runs command from a bash shell inside an "ubuntu:trusty" docker container. The docker image is hosted on dockerhub at https://hub.docker.com/r/freighter/cmd/
 
 ### Arguments
 - Variable

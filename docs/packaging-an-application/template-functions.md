@@ -75,25 +75,27 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-## HostPrivateIpAddress
+## HostPrivateIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPrivateIpAddress(componentName string, containerName string) string
 ```
 Returns Private IP Address of Component as a string.
+
 ```yml
 env_vars:
 - name: REDIS_HOST_PRIVATE
   static_val: '{{repl HostPrivateIpAddress "DB" "redis" }}'
 ```
 
-## HostPrivateIpAddressAll
+## HostPrivateIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPrivateIpAddressAll(componentName string, containerName string) []string
 ```
-Returns host private IP address's of all instances of a given Component as an array of strings.
+Returns host private IP addresses for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## HostPublicIpAddress
+## HostPublicIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPublicIpAddress(componentName string, containerName string) string
 ```
@@ -104,29 +106,32 @@ env_vars:
   static_val: '{{repl HostPublicIpAddress "DB" "redis" }}'
 ```
 
-## HostPublicIpAddressAll
+## HostPublicIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func HostPublicIpAddressAll(componentName string, containerName string) []string
 ```
-Returns host public IP address's of all instances of a given Component as an array of strings.
+Returns host public IP addresses for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## ContainerExposedPort
+## ContainerExposedPort [*](/packaging-an-application/template-functions/#notes)
 ```go
 func ContainerExposedPort(componentName string, containerName string, internalPort string) string
 ```
 Returns the host's public port mapped to the supplied exposed container port as a string.
+
 ```yml
 env_vars:
 - name: REDIS_PORT
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
 ```
 
-## ContainerExposedPortAll
+## ContainerExposedPortAll [*](/packaging-an-application/template-functions/#notes)
 ```go
 func ContainerExposedPortAll(componentName string, containerName string, internalPort string) string
 ```
 Returns the host public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
+
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
 ## LicenseFieldValue
@@ -206,12 +211,24 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
+## ConsoleSettingEquals
+```go
+func ConsoleSettingEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
+
+## ConsoleSettingNotEquals
+```go
+func ConsoleSettingNotEquals(name string, value string) bool
+```
+Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
+
 ## ThisHostInterfaceAddress
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
-Returns the first valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
+Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
 For a clustered application this value will be different for each host.
 ```yml
 env_vars:
@@ -233,7 +250,6 @@ env_vars:
 Replaces ThisHostPublicIpAddress which is deprecated.
 
 ## ThisNodePrivateIPAddress
-Deprecated, please use ThisNodePrivateIPAddress.
 ```go
 func ThisNodePrivateIPAddress() string
 ```
@@ -269,7 +285,7 @@ env_vars:
 ```go
 func Split(s string, sep string) []string
 ```
-Split slices s into all substrings separated by sep and returns a array of the substrings between those separators.
+Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
 ```yml
 env_vars:
   - name: BROKEN_APART_A_B_C
@@ -350,3 +366,69 @@ env_vars:
 - name: NAME_PLAIN_TEXT
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
+
+## Add
+```go
+func Add(x interface{}, y interface{}) interface{}
+```
+Adds x and y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: MAX_USERS_PLUS_ONE
+  static_val: '{{repl Add (LicenseFieldValue "maximum_users") 1}}'
+```
+
+## Sub
+```go
+func Sub(x interface{}, y interface{}) interface{}
+```
+Subtracts y from x.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: MAX_USERS_MINUS_ONE
+  static_val: '{{repl Sub (LicenseFieldValue "maximum_users") 1}}'
+```
+
+## Mult
+```go
+func Mult(x interface{}, y interface{}) interface{}
+```
+Multiplies x and y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer.
+```yml
+env_vars:
+- name: DOUBLE_NUM_ADDRESSES
+  static_val: '{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
+```
+
+## Div
+```go
+func Div(x interface{}, y interface{}) interface{}
+```
+Divides x by y.
+
+If at least one of the operands is a floating point number, the result will be a floating point number.
+
+If both operands are integers, the result will be an integer and will be rounded down.
+```yml
+env_vars:
+- name: HALF_MAX_USERS
+  static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
+```
+
+## Notes
+
+The containerName argument references the image_name property from the container yaml. 
+
+When referencing another container in a template object, you must make sure the referenced container is started first.  Please see the [Events and Orchestration](/packaging-an-application/events-and-orchestration/) section for more information on orchestrating container startup.

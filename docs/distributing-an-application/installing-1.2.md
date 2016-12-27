@@ -21,6 +21,7 @@ We support the server versions of the following OS's
 - Fedora 21 / 22
 - Red Hat Enterprise Linux 7.1
 - CentOS 7+
+- Amazon AMI 2014.03 / 2014.09 / 2015.03 / 2015.09
 
 *Please note your machine must support **docker-engine {{< docker_version_minimum >}} - {{< docker_version_default >}} (with{{< docker_version_default >}} being the
 recommended version). This also requires a 64-bit distribution with a kernel minimum of
@@ -29,9 +30,9 @@ recommended version). This also requires a 64-bit distribution with a kernel min
 ## Current Replicated Versions
 | Daemon	| Stable Version |
 |-------|----------------|
-| replicated | 1.2.125 <br /> 11 August, 2016 |
-| replicated-ui | 1.2.76 <br /> 1 August, 2016 |
-| replicated-agent | 1.2.49 <br /> 8 August, 2016 |
+| replicated | 1.2.134 <br /> 1 November, 2016 |
+| replicated-ui | 1.2.80 <br /> 1 November, 2016 |
+| replicated-agent | 1.2.51 <br /> 1 November, 2016 |
 
 ## Easy Installation
 We provide an easy-to-use one-line installation process (via shell script) which will
@@ -69,9 +70,9 @@ CentOS, go for the "yum" tab.
 
 ## Install Docker
 Currently the Replicated installation script installs Docker version {{< docker_version_default >}}
-Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/installation/debian/),
-[Ubuntu](https://docs.docker.com/installation/ubuntulinux/), [CentOS](https://docs.docker.com/installation/centos/),
-[Fedora](https://docs.docker.com/installation/fedora/), or [RHEL](https://docs.docker.com/installation/rhel/).
+Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/),
+[Ubuntu](https://docs.docker.com/installation/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/),
+[Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
 
 ## Add the Replicated repository to package manager
 

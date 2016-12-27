@@ -17,6 +17,6 @@ to the machine.
 To do this they need to:
 
 1. Use the following command: `replicated auth reset` to remove the password
-1. Visit https://`<server>`/create-password to create a new password or connect LDAP.
+1. Visit https://`<server>`:8800/create-password to create a new password or connect LDAP.
 
 

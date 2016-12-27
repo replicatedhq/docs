@@ -40,7 +40,10 @@ host_requirements:
   cpu_mhz: 2400
   memory: 8GB
   disk_space: 8GB
+  replicated_version: ">=2.3.0 <2.4.1"
 ```
+
+{{< version version="2.3.0" >}} The application level `host_requirements` key can be used to automatically upgrade Replicated.  This feature can be enabled by specifying a version range in the the `replicated_version` key.  Version range syntax is similar to that used by [npm](https://docs.npmjs.com/misc/semver).  Versions that don't support this feature will simply ignore the value.  This key is also ignored by the pre-flight checks.
 
 It is possible to override all properties (except docker version) of the root `host_requirements` on a per-component basis. On distributed
 installs, the component host requirements will only apply to nodes tagged for that component.
@@ -59,7 +62,7 @@ components:
 Note that component host requirements are not additive, thus when multiple components are allocated to a single host, each requirement
 will be evaluated individually.
 
-It is also possible to require minimum disk space requirements for volumes on the host machine via the host_volumes property of the
+It is also possible to define minimum disk space requirements for volumes on the host machine via the host_volumes property of the
 component configuration.
 
 ```yaml
@@ -74,7 +77,7 @@ components:
 ```
 
 Replicated enforces these requirements and will not allow the customer to start the application without either meeting these requirements or
-dismissing the warnings. Upon dismissing preflight warnings, and entry will be recorded in the on-premise audit log.
+dismissing the warnings. Upon dismissing preflight warnings, an entry will be recorded in the on-premise audit log.
 
 ![Preflight Checks Screenshot](/static/preflight-checks.png)
 

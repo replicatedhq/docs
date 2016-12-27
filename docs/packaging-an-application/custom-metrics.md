@@ -3,7 +3,13 @@ date = "2016-07-02T00:00:00Z"
 lastmod = "2016-07-02T00:00:00Z"
 title = "Custom Metrics"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "Packaging" ]
+
+[menu.main]
+Name       = "Custom Metrics"
+identifier = "custom-metrics"
+parent     = "/packaging-an-application"
+url        = "/docs/packaging-an-application/custom-metrics"
 +++
 
 All Replicated 2.0 installations come with a StatsD/Graphite/Carbon container that can be used by
@@ -50,7 +56,10 @@ Each custom monitor will be added as a tile to the Replicated dashboard. The fol
 supported
 
 - `name` - String that will appear as the top label for the graph
-- `target` - String that will be used as the `target` in Graphite query. Wildcards, lists, and functions are all allowed. See Graphite documentation for more details.
+- `target` - Deprecated.  Use `targets`.
+- `targets` - An array of strings that will be used as the `target` in Graphite query. Wildcards, lists, and functions are all allowed. See Graphite documentation for more details.
+- `from` -  Start time for displayed data.  Relative and absolute times are supported.  See Graphite documentation for more details.
+- `until` -  End time for displayed data.  Relative and absolute times are supported.  See Graphite documentation for more details.
 - `display.label_unit` - String that will be placed on the Y axis labels.
 - `display.label_scale` - Scale to be used on the Y axis. Possible values are:
   - `metric` - Y axes will scaled using metric units in 1K increments. The string specified in `label_unit` will be added as the postfix.
@@ -59,8 +68,8 @@ supported
 - `display.label_min` - The minimum value to show on the Y axis.
 - `display.label_max` - The maximum value to show on the Y axis.
 - `display.label_count` - Number of labels to show on the Y axis (not counting the one at the origin).
-- `display.fill_color` - The color to use to fill the area under the graph line.
-- `display.stroke_color` - The color to use for the graph line.
+- `display.fill_color` - The color to use to fill the area under the graph line.  If this value is omitted, a color will be selected automatically.
+- `display.stroke_color` - The color to use for the graph line.  If this value is omitted, a color will be selected automatically.
 - `display.css_class_name` - The name of the CSS class to use for background colors.
 
 Colors can be specified using one of the standard web color formats:
@@ -68,6 +77,8 @@ Colors can be specified using one of the standard web color formats:
 - HEX color, for example `#10FF60`
 - RGB color, for example `rgb(100, 0, 50)`
 - RGBA color, for example `rgba(100, 0, 50, 0.5)`
+
+`from` and `until` fields are optional.  If omitted, the tile will display the last 15 minutes of data.  If a larger time window is used, retention policies must be configured accordingly.
 
 ### Example
 
@@ -78,9 +89,13 @@ monitors:
   memory:
   - DB,redis
   custom:
-  - name: Disk Free (bytes)
-    target: stats.gauges.myapp100.disk.*.free
+  - name: Disk Usage (bytes)
+    targets:
+      - stats.gauges.myapp100.disk.*.free
+      - stats.gauges.myapp100.disk.*.total
     dashboard: "true" # templates are allowed
+    from: "-3days"
+    until: "-30minutes"
     display:
       label_unit: B
       label_scale: metric
@@ -92,7 +107,8 @@ monitors:
       stroke_color: "#ff1060"
       css_class_name: app1-custom-metrics
   - name: Disk Free (%)
-    target: scale(divideSeries(stats.gauges.myapp100.disk.*.free,stats.gauges.myapp100.disk.*.total),100) # Show values between 0 and 100
+    targets:
+      - scale(divideSeries(stats.gauges.myapp100.disk.*.free,stats.gauges.myapp100.disk.*.total),100) # Show values between 0 and 100
     dashboard: "true"
     display:
       label_unit: "%"
@@ -103,22 +119,20 @@ monitors:
       css_class_name: app1-custom-metrics
 ```
 
-### Limitations
+## Ports
 
-When specifying targets using wildcards, character ranges, or value lists, monitor display may display
-multiple graphs. The number of graphs cannot be known ahead of time, and at this point specifying
-unique colors for all of them is not supported.
+By default, Replicated will use dynamic ports for Graphite and StatsD.  These can be discovered by examining the
+graphite container. Static ports can be defined using the graphite and the statsd sections of app YAML.
+The graphite port can be accessed via web browser for a full Graphite dashboard.
 
-## Graphite
-
-By default, the graphite container will use a dynamic port that can be discovered by examining the
-graphite container. A static port can be defined using the graphite section of app YAML. This port
-can be accessed via web browser for a full Graphite dashboard.
+Because Graphite uses TCP and StatsD uses UDP, the same port number can be used for both.
 
 ### Example
 
 ```yml
 graphite:
+  port: 8899
+statsd:
   port: 8899
 ```
 

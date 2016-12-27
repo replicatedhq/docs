@@ -12,7 +12,7 @@ url        = "/docs/reference/replicated-cli"
 parent     = "/reference"
 +++
 
-After [installing replicated](/docs/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
+After [installing replicated](/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 
@@ -21,13 +21,6 @@ If command not found is displayed when attempting to execute the replicated CLI 
 
 ```shell
 source /etc/replicated.alias
-```
-
-## Login
-If a console password has been configured this command prompts for the password so that you may still utilize the CLI in an authenticated manner.
-
-```shell
-replicated login
 ```
 
 ## Version
@@ -53,42 +46,85 @@ List ID, Sequence, and Status of running app and prior versions installed on thi
 replicated apps
 ```
 
-## Check For Updates
-(supported as of 2.0.1608)
+## App
+App sub-commands allow manipulating app state and version.
 
-This allows you to programmatically trigger a "check for updates" from the CLI.
-Note: app-id is retrieved utilizing the apps command.
-
-The -f will ignore any cache on the server already and do a full update check.
-
+Show app info in JSON format
 ```shell
-replicated app <app-id> update-check -f
+replicated app <appid>
 ```
 
-## Install An Upgrade
-(supported as of 2.0.1608)
+### App state
 
-This allows you to install an upgrade that is already known to the local installation from the CLI.
-Note: app-id is retrieved utilizing the apps command.
-
+Show and modify app state
 ```shell
-replicated app <app-id> update <sequence>
+replicated app <appid> status|components|rm|start|restart|stop|pause|unpause|settings
 ```
 
-## Export Settings
+| Command | Description |
+|---------|-------------------|
+| {{< version version="2.0" >}} status | Show app status (`Started`, `Paused`, etc) |
+| components | List app components |
+| rm | Delete app |
+| start &#124; restart &#124; stop &#124; pause &#124; unpause | Transition app into the specified state |
+| {{< version version="2.1" >}} settings | Export app settings in JSON format |
 
-This allows you to export your app settings. This is useful for [automating an installation](/docs/kb/developer-resources/automate-install/).
-Supported as of 2.1.0.
+The settings command is useful for [automating an installation](/kb/developer-resources/automate-install/).
 
+Sometimes app state might be locked for extended periods of time depending on the app
+launch procedure and various timeout settings.  In cases like this, app can be forced
+to transition into the Stopped state by using the `-f` switch.
 ```shell
-replicated app <app-id> settings > settings.json
+replicated app <app_id> stop -f
+```
+
+### App updates
+
+Trigger a check for updates.  The `-f` switch can be used to ignore local cache and perform full YAML sync for pending updates.
+```shell
+replicated app <app_id> update-check -f
+```
+
+{{< version version="2.2" >}} List pending updates.  Note that this will not trigger an update check.
+```shell
+replicated app <app_id> updates list
+```
+
+{{< version version="2.0" >}} Install the specified app version.  Note that all
+preceding required versions will be installed as well.
+
+{{< note title="Obsolete" >}}
+This command has been superseded by the next command.
+{{< /note >}}
+```shell
+replicated app <appid> update install <sequence number>
+```
+
+{{< version version="2.2" >}} Install the specified app version.  Note that all
+preceding required versions will be installed as well.
+```shell
+replicated app <appid> updates install <sequence number>
+```
+
+### App preflight checks
+
+{{< version version="2.2" >}} Run preflight checks
+```shell
+replicated app <appid> run-checks
+```
+
+{{< version version="2.2" >}} Show preflight checks status
+```shell
+replicated app <appid> run-checks status
+```
+
+{{< version version="2.2" >}} Dismiss preflight checks errors and warnings
+```shell
+replicated app <appid> run-checks dismiss
 ```
 
 ## Generate Support Bundle
-(supported as of 1.2.63)
-
-This allows you to generate a support bundle directly from the CLI.
-Note: app-id is retrieved utilizing the apps command.
+{{< version version="1.2.63" >}} Generate support bundle.
 
 ```shell
 replicated support-bundle <app-id>
@@ -96,30 +132,26 @@ replicated support-bundle <app-id>
 
 ## Reset your On-Prem UI password
 Your console password can be reset by issuing the following command from the host machine where Replicated
-has been installed. (then visit https://<server>/create-password and set a new password)
+has been installed. (then visit https://`<server>`:8800/create-password and set a new password)
 
 ```shell
 replicated auth reset
 ```
 
 ## Hosts
-This lists all known hosts that are currently in use by replicated. It includes the following information for
-each host : `PRIVATE ADDRESS`, `PUBLIC ADDRESS`, `CONNECTED`, `PROVISIONED`, `AGENT VERSION`, `API VERSION`
+
+{{< version version="1.2" >}} This lists all known hosts that are currently in use
+by Replicated. It includes the following information for each host : `ID`, `NAME`, `PRIVATE ADDRESS`, `PUBLIC ADDRESS`, `CONNECTED`, `PROVISIONED`, `AGENT VERSION`, `API VERSION`, `TAGS`
+
+```shell
+replicated hosts
+```
+
+{{< version version="2.0" >}} This lists all known nodes that are currently in use
+by Replicated. It includes the following information for each host: `ID`, `PRIVATE ADDRESS`, `PUBLIC ADDRESS`, `CONNECTED`, `INITIALIZED`, `VERSION`, `TAGS`
 
 ```shell
 replicated nodes
-```
-
-## App
-The app command allows you to run the following subcommands on your app from the CLI.
-Note: `app-id` is retrieved utilizing the apps command.
-
-- start
-- stop (as of version 1.2.63 you can force the app to stop using the optional -f flag)
-- update-check (added in version 1.2.88)
-
-```shell
-replicated app <app-id> stop -f
 ```
 
 ## Certificate Configuration via CLI
@@ -146,4 +178,5 @@ replicated task <task-id> logs
 
 ## Admin
 Additionally you can define ad-hoc commands that can be executed inside a running container,
-see the dedicated Admin Commands section for more details.
+see the dedicated [Admin Commands](/packaging-an-application/admin-commands) section
+for more details.

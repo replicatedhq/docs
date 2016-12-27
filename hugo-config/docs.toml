@@ -27,7 +27,7 @@ category = "categories"
   # Syntax highlighting theme
   highlight_css  = ""
 
-  docker_version_default = "1.11.1"
+  docker_version_default = "1.12.3"
   docker_version_minimum = "1.7.1"
   replicated_api_version_current = "2.3.5"
 
