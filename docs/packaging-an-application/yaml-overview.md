@@ -117,7 +117,7 @@ custom_metrics:
 ```  
 
 ## Ready State
-You can optionally add a health check that we will poll after the customer starts your application. The purpose of this is to report when your application is fully started and ready to start using. Once your application is running, we stop polling this health check and rely on other methods to monitor the status. Timeout allows to specify (in seconds) how long to keep retrying the command if it fails. Use -1 for "never timeout". A timeout of 0 is reserved for backwards compatibility, which is the same as omitting the timeout value, which causes the default of 10 minutes to be used.
+You can add a health check that Replicated will poll after your containers have all been started. The purpose of this is to report when your application is fully running and ready to start using. Once your application is running, we stop polling this health check and rely on other methods to monitor the status. The timeout parameter allows you to specify (in seconds) how long to keep retrying the command, if it fails. You can use a timeout value of -1 to indicate infinite polling. A timeout of 0 is not supported and causes the default of 10 minutes to be used.
 
 ### Available Commands:
 - `http_status_code`
