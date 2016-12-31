@@ -151,290 +151,230 @@ spec:
 ## Create a sample app by using this Kubernetes YAML with Replicated
 ```yaml
 ---
-  # kind: replicated
-  # apiVersion: 2.3.5
-  replicated_api_version: "2.3.5"
-  version: "alpha"
-  name: "Guestbook"
-  properties:
-    app_url:
-      kubernetes:
-        value_from:
-          services_url:
-            name: frontend
-            port: 80
-    logo_url: http://www.replicated.com/images/logo.png
-    console_title: Guestbook Console
-  backup:
-    enabled: false
-  monitors:
-    cpuacct: []
-    memory: []
+# kind: replicated
+# apiVersion: 2.3.5
+replicated_api_version: "2.3.5"
+version: "alpha"
+name: "Guestbook"
+properties:
+  app_url:
+    kubernetes:
+      value_from:
+        services_url:
+          name: frontend
+          port: 80
+  logo_url: http://www.replicated.com/images/logo.png
+  console_title: Guestbook Console
+backup:
+  enabled: false
+monitors:
+  cpuacct: []
+  memory: []
 
-  config:
-  - name: db
-    title: DB
-    items:
-    - name: redis_slave_replicas
-      title: Redis Slave Replicas
-      type: text
-      default: 2
-  - name: frontend
-    title: Frontend
-    items:
-    - name: frontend_replicas
-      title: App Replicas
-      type: text
-      default: 2
+config:
+- name: db
+  title: DB
+  items:
+  - name: redis_slave_replicas
+    title: Redis Slave Replicas
+    type: text
+    default: 2
+- name: frontend
+  title: Frontend
+  items:
+  - name: frontend_replicas
+    title: App Replicas
+    type: text
+    default: 2
 
-  components:
-  - name: db-master
-    cluster: true
-    tags: ["db-master"]
-    containers:
-    - source: public
-      image_name: redis
-      version: "3"
-      cmd: '[redis-server", "--appendonly", "yes"]'
-      ports:
-      - private_port: "6379"
-        public_port: "6379"
-      volumes:
-      - host_path: /data/redis
-        container_path: /data
-      publish_events:
-      - name: redis master started
-        trigger: container-start
-        subscriptions:
-        - component: db-slave
-          container: redis
-          action: start
-  - name: db-slave
-    cluster: true
-    tags: ["db-slave"]
-    conflicts: ["db-master"]
-    containers:
-    - source: public
-      image_name: redis
-      version: "3"
-      cmd: '["redis-server", "--slaveof", "${REDIS_MASTER_SERVICE_HOST}", "6379"]'
-      ports:
-      - private_port: "6379"
-        public_port: "6379"
-      env_vars:
-      - name: REDIS_MASTER_SERVICE_HOST
-        static_val: '{{repl HostPrivateIpAddress "redis-master" "redis" }}'
-      publish_events:
-      - name: redis slave started
-        trigger: container-start
-        subscriptions:
-        - component: frontend
-          container: gb-frontend
-          action: start
-  - name: frontend
-    cluster: true
-    tags: ["fe"]
-    containers:
-    - source: replicated
-      image_name: gb-frontend
-      version: v4
-      ports:
-      - private_port: "3000"
-        public_port: "80"
-      env_vars:
-      - name: GET_HOSTS_FROM
-        static_val: env
-      - name: REDIS_SLAVE_SERVICE_HOST # need lb to cluster
-        static_val: '{{repl HostPrivateIpAddress "redis-slave" "redis" }}'
-      - name: REDIS_MASTER_SERVICE_HOST
-        static_val: '{{repl HostPrivateIpAddress "redis-master" "redis" }}'
+components:[]
 
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: redis-master
-    labels:
-      app: redis
-      tier: backend
-      role: master
-  spec:
-    ports:
-      # the port that this service should serve on
-    - port: 6379
-      targetPort: 6379
-    selector:
-      app: redis
-      tier: backend
-      role: master
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: extensions/v1beta1
-  kind: Deployment
-  metadata:
-    name: redis-master
-    # these labels can be applied automatically
-    # from the labels in the pod template if not set
-    # labels:
-    #   app: redis
-    #   role: master
-    #   tier: backend
-  spec:
-    # this replicas value is default
-    # modify it according to your case
-    replicas: 1
-    # selector can be applied automatically
-    # from the labels in the pod template if not set
-    # selector:
-    #   matchLabels:
-    #     app: guestbook
-    #     role: master
-    #     tier: backend
-    template:
-      metadata:
-        labels:
-          app: redis
-          role: master
-          tier: backend
-      spec:
-        containers:
-        - name: master
-          image: gcr.io/google_containers/redis:e2e  # or just image: redis
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-          ports:
-          - containerPort: 6379
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: redis-slave
-    labels:
-      app: redis
-      tier: backend
-      role: slave
-  spec:
-    ports:
-      # the port that this service should serve on
-    - port: 6379
-    selector:
-      app: redis
-      tier: backend
-      role: slave
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: extensions/v1beta1
-  kind: Deployment
-  metadata:
-    name: redis-slave
-    # these labels can be applied automatically
-    # from the labels in the pod template if not set
-    # labels:
-    #   app: redis
-    #   role: slave
-    #   tier: backend
-  spec:
-    # this replicas value is default
-    # modify it according to your case
-    replicas: {{repl ConfigOption "redis_slave_replicas" }}
-    # selector can be applied automatically
-    # from the labels in the pod template if not set
-    # selector:
-    #   matchLabels:
-    #     app: guestbook
-    #     role: slave
-    #     tier: backend
-    template:
-      metadata:
-        labels:
-          app: redis
-          role: slave
-          tier: backend
-      spec:
-        containers:
-        - name: slave
-          image: gcr.io/google_samples/gb-redisslave:v1
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-          env:
-          - name: GET_HOSTS_FROM
-            value: dns
-            # If your cluster config does not include a dns service, then to
-            # instead access an environment variable to find the master
-            # service's host, comment out the 'value: dns' line above, and
-            # uncomment the line below.
-            # value: env
-          ports:
-          - containerPort: 6379
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: frontend
-    labels:
-      app: guestbook
-      tier: frontend
-  spec:
-    # if your cluster supports it, uncomment the following to automatically create
-    # an external load-balanced IP for the frontend service.
-    type: LoadBalancer
-    ports:
-      # the port that this service should serve on
-    - port: 80
-    selector:
-      app: guestbook
-      tier: frontend
-  ---
-  # kind: scheduler-kubernetes
-  apiVersion: extensions/v1beta1
-  kind: Deployment
-  metadata:
-    name: frontend
-    # these labels can be applied automatically
-    # from the labels in the pod template if not set
-    # labels:
-    #   app: guestbook
-    #   tier: frontend
-  spec:
-    # this replicas value is default
-    # modify it according to your case
-    replicas: {{repl ConfigOption "frontend_replicas" }}
-    # selector can be applied automatically
-    # from the labels in the pod template if not set
-    # selector:
-    #   matchLabels:
-    #     app: guestbook
-    #     tier: frontend
-    template:
-      metadata:
-        labels:
-          app: guestbook
-          tier: frontend
-      spec:
-        containers:
-        - name: php-redis
-          image: gcr.io/google-samples/gb-frontend:v4
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-          env:
-          - name: GET_HOSTS_FROM
-            value: dns
-            # If your cluster config does not include a dns service, then to
-            # instead access environment variables to find service host
-            # info, comment out the 'value: dns' line above, and uncomment the
-            # line below.
-            # value: env
-          ports:
-          - containerPort: 80
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-master
+  labels:
+    app: redis
+    tier: backend
+    role: master
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis
+    tier: backend
+    role: master
+---
+# kind: scheduler-kubernetes
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-master
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  # labels:
+  #   app: redis
+  #   role: master
+  #   tier: backend
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 1
+  # selector can be applied automatically
+  # from the labels in the pod template if not set
+  # selector:
+  #   matchLabels:
+  #     app: guestbook
+  #     role: master
+  #     tier: backend
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: master
+        tier: backend
+    spec:
+      containers:
+      - name: master
+        image: gcr.io/google_containers/redis:e2e  # or just image: redis
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 6379
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-slave
+  labels:
+    app: redis
+    tier: backend
+    role: slave
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 6379
+  selector:
+    app: redis
+    tier: backend
+    role: slave
+---
+# kind: scheduler-kubernetes
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-slave
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  # labels:
+  #   app: redis
+  #   role: slave
+  #   tier: backend
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: {{repl ConfigOption "redis_slave_replicas" }}
+  # selector can be applied automatically
+  # from the labels in the pod template if not set
+  # selector:
+  #   matchLabels:
+  #     app: guestbook
+  #     role: slave
+  #     tier: backend
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: slave
+        tier: backend
+    spec:
+      containers:
+      - name: slave
+        image: gcr.io/google_samples/gb-redisslave:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+          # If your cluster config does not include a dns service, then to
+          # instead access an environment variable to find the master
+          # service's host, comment out the 'value: dns' line above, and
+          # uncomment the line below.
+          # value: env
+        ports:
+        - containerPort: 6379
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
+---
+# kind: scheduler-kubernetes
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+  # these labels can be applied automatically
+  # from the labels in the pod template if not set
+  # labels:
+  #   app: guestbook
+  #   tier: frontend
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: {{repl ConfigOption "frontend_replicas" }}
+  # selector can be applied automatically
+  # from the labels in the pod template if not set
+  # selector:
+  #   matchLabels:
+  #     app: guestbook
+  #     tier: frontend
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+      - name: php-redis
+        image: gcr.io/google-samples/gb-frontend:v4
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: GET_HOSTS_FROM
+          value: dns
+          # If your cluster config does not include a dns service, then to
+          # instead access environment variables to find service host
+          # info, comment out the 'value: dns' line above, and uncomment the
+          # line below.
+          # value: env
+        ports:
+        - containerPort: 80
 ```
 
 ## Advanced Replicated Configuration
