@@ -4,7 +4,11 @@ layout = "index"
 +++
 
 # How to use the Replicated Docs
-## 1. Browse the hierarchy  
+
+## 1. Read sequentially
+For those just getting started, it is helpful to skim the first few sections in the order they're presented. The footer of each page includes a link to the "Next" sequential article.
+
+## 2. Browse the hierarchy  
 The Replicated Docs are categorized into six hierarchical categories:  
 
 **Getting Started** - an overview of the core concepts and workflows used when integrating an application with Replicated.   
@@ -19,11 +23,11 @@ The Replicated Docs are categorized into six hierarchical categories:
 
 **Knowledge Base**  - a series of articles that address common questions.
 
-## 2. Search
+## 3. Search
 The Replicated Docs leverage Google Custom Site Search for easy searching.
 
-## 3. Ask questions
+## 4. Ask questions
 The easiest way to ask questions about integration issues is through our [support page](https://support.replicated.com/hc/en-us/requests/new?ticket_form_id=218547).
 
-## 4. Suggest Edits
+## 5. Suggest Edits
 The docs are all open source. Each page includes a link directly to edit, fork and pull-request the doc on GitHub.

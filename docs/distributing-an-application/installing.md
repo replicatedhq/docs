@@ -14,9 +14,7 @@ url        = "/docs/distributing-an-application/installing"
 +++
 
 {{< note title="Replicated 2.0" >}}
-The content in this document is specific to Replicated 2.0. If you are looking for the
-Replicated 1.2 version of this document, it is available at
-<a href="distributing-an-application/installing-1.2/">{{< baseurl >}}distributing-an-application/installing-1.2/</a>
+The content in this document is specific to Replicated 2.0. If you are looking for the Replicated 1.2 version of this document, it is available at <a href="distributing-an-application/installing-1.2/">{{< baseurl >}}distributing-an-application/installing-1.2/</a>
 {{< /note >}}
 
 ## Host Setup
@@ -25,9 +23,7 @@ Before installing your app, you need to install Replicated on a compatible machi
 ## Supported Operating Systems
 Replicated supports any Linux-based server operating system that can run current versions of Docker.
 
-Your machine must support docker-engine {{< docker_version_minimum >}} - {{< docker_version_default >}} (with {{< docker_version_default >}} being the recommended version). This
-also requires a 64-bit distribution with a kernel minimum of 3.10. For detailed requirements and
-installation guides see the docker installation docs.
+Your machine must support docker-engine {{< docker_version_minimum >}} - {{< docker_version_default >}} (with {{< docker_version_default >}} being the recommended version). This also requires a 64-bit distribution with a kernel minimum of 3.10. For detailed requirements and installation guides see the docker installation docs.
 
 ## Current Replicated Versions
 | Image	| Stable Version |
@@ -37,10 +33,7 @@ installation guides see the docker installation docs.
 | replicated-operator | 2.3.2 <br /> 14 December, 2016 |
 
 ## Easy Installation
-We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask
-a few questions and install the Replicated components for you including docker-engine. If you want to
-install a specific version of Replicated, we have a guide for that in our KB. More details on the
-installation script:
+We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated components for you including docker-engine. It is also possible to have this script [always install a specific version of Replicated](/kb/supporting-your-customers/install-known-versions/). More details on the installation script:
 
 ### With Timeout Prompts
 ```shell
@@ -59,13 +52,10 @@ You can set the port for serving the Replicated web interface by using the ui-bi
 curl -sSL https://get.replicated.com/docker | sudo bash -s ui-bind-port 8000
 ```
 
-When you're ready to start shipping to customers, you can either proxy this install script or provide TLS
-certs for us to CNAME it for you.
+When you're ready to start shipping to customers, you can either proxy this install script or provide TLS certs for us to CNAME it for you.
 
 ## Installing Additional Nodes
-By default Replicated will add its local host as the first node when running the installation script from
-above. It is possible to add additional hosts as nodes to your cluster by running the following script on
-remote hosts. These nodes will appear in the cluster page of the On-prem UI.
+By default Replicated will add its local host as the first node when running the installation script from above. It is possible to add additional hosts as nodes to your cluster by running the following script on remote hosts (or [following the instructions in the on-prem UI](distributing-an-application/add-nodes/)). These nodes will appear in the cluster page of the On-prem UI.
 
 ### With Timeout Prompts
 ```shell
@@ -78,22 +68,16 @@ curl -sSL https://get.replicated.com/operator | sudo bash -s no-auto
 ```
 
 ## Accessing the On-prem UI
-The Replicated On-Prem UI is web-based, Replicated is available at port 8800 (by default) over
-HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible
-from your local computer).
+The Replicated On-Prem UI is web-based, Replicated is available at port 8800 (by default) over HTTPS of the server you've installed Replicated on (make sure that port 8800 is accessible from your local computer).
 
-You'll need to [create & download a license file](/distributing-an-application/create-licenses/)
-for yourself on the vendor portal & then just follow the instructions from there.
+You'll need to [create & download a license file](/distributing-an-application/create-licenses/) for yourself on the vendor portal & then just follow the instructions from there.
 
 # Advanced Installation Options
 ## Manual Installation
 If you'd rather install the components manually, you can! Just use the 4 following steps.
 
 ### 1. Install Docker
-Currently the Replicated installation script installs Docker version {{< docker_version_default >}}
-Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/),
-[Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/),
-[Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
+Currently the Replicated installation script installs Docker version {{< docker_version_default >}} Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/), [Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/), [Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
 
 ### 2. Run Replicated & UI Containers
 ```shell
@@ -122,7 +106,7 @@ docker run -d --name=replicated-ui \
 ```
 
 ### 3. Upload the License
-1. Navigate to https://&lt;your server address&gt;:8800.
+1. Navigate to http://&lt;your server address&gt;:8800.
 1. Follow the prompts to configure certificates, upload license, and run the preflight checks.
 
 ### 4. Run Operator Container
@@ -144,14 +128,11 @@ At this point, the new node should show up on the Cluster page.
 ![Start Now](/static/manual-install-2.x/start-now.png)
 
 {{< note title="There is no Start Now button" >}}
-If Replicated is still pulling application images, there will be no Start Now button.
-If this is the case, then just wait for the pull to finish.
+If Replicated is still pulling application images, there will be no Start Now button. If this is the case, then just wait for the pull to finish.
 {{< /note >}}
 
 {{< note title="Pre-flight checks again" >}}
-Since a new node running Replicated Operator has joined the cluster, Replicated will
-want to run preflight checks on it before starting the application.
-If that's the case, the Start Now button will be replaced with the Run Checks button.
+Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks on it before starting the application. If that's the case, the Start Now button will be replaced with the Run Checks button.
 
 ![Start Now](/static/manual-install-2.x/preflight-again.png)
 {{< /note >}}
@@ -166,9 +147,7 @@ curl -x http://<proxy_address>:<proxy_port> https://get.replicated.com/docker | 
 
 # Post-Installation Maintenance
 ## Restarting Replicated
-If you installed Replicated using the easy installation script, the script will have created an init service you can
-use to control Replicated. In this case, restarting replicated varies depending on your host OS, please see below for
-the correct instructions to restarting replicated.
+If you installed Replicated using the easy installation script, the script will have created an init service you can use to control Replicated. In this case, restarting replicated varies depending on your host OS, please see below for the correct instructions to restarting replicated.
 
 ## Upgrade to latest Replicated build.
 If you would like to upgrade Replicated to the latest release simply [rerun the installation script](https://www.replicated.com/docs/distributing-an-application/installing/#easy-installation) and that will upgrade the Replicated components to the latest build.
@@ -185,12 +164,10 @@ service replicated-operator restart
 sudo systemctl restart replicated replicated-ui replicated-operator
 ```
 
-*If you need to reset your console password please refer to the [reseting your password](/kb/supporting-your-customers/resetting-console-password/) (Reseting the On-Prem Admin Password)
-in the On-Prem CLI section.*
+*If you need to reset your console password please refer to the [reseting your password](/kb/supporting-your-customers/resetting-console-password/) (Reseting the On-Prem Admin Password) in the On-Prem CLI section.*
 
 ## List Installed Replicated Version
-You can also use the [CLI](/reference/replicated-cli/) to determine the version
-of the container.
+You can also use the [CLI](/reference/replicated-cli/) to determine the version of the container.
 
 
 ## Removing Replicated
@@ -221,9 +198,7 @@ rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/
 ```
 
 ## Migrating from Replicated v1
-Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop
-your app and backup all Replicated data in case there is a need for a restore. To invoke the migration script all
-you have to do is run the script below and follow the prompts.
+Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop your app and backup all Replicated data in case there is a need for a restore. To invoke the migration script all you have to do is run the script below and follow the prompts.
 
 ```shell
 curl -sSL https://get.replicated.com/migrate-v2 | sudo bash

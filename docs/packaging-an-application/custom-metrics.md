@@ -151,7 +151,7 @@ CSS class name must match the name specified in the css_class_name tag.
 }
 ```
 
-The CSS can be added in Vendor Web dashboard under the App Settings tab.
+The CSS can be added in Vendor Web dashboard in [App Settings](https://vendor.replicated.com/#/settings).
 
 ## Integration API
 
