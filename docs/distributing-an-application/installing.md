@@ -113,11 +113,8 @@ docker run -d --name=replicated-ui \
 1. Click on the Cluster tab (:8800/cluster)  
 ![Cluster](/static/manual-install-2.x/click-cluster.png)
 1. Click the Add Node button  
-![Add Node](/static/manual-install-2.x/add-node.png)
 1. Select Docker Run option  
-![Run Command](/static/manual-install-2.x/docker-run.png)
 1. Copy the command from the text area below  
-![Run Command](/static/manual-install-2.x/docker-run-cmd.png)
 1. Paste and run the command in the terminal window  
 
 At this point, the new node should show up on the Cluster page.
@@ -133,8 +130,6 @@ If Replicated is still pulling application images, there will be no Start Now bu
 
 {{< note title="Pre-flight checks again" >}}
 Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks on it before starting the application. If that's the case, the Start Now button will be replaced with the Run Checks button.
-
-![Start Now](/static/manual-install-2.x/preflight-again.png)
 {{< /note >}}
 
 ## Installing Behind A Proxy
