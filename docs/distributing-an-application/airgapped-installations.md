@@ -1,16 +1,8 @@
 +++
 date = "2016-07-03T04:02:20Z"
 title = "Airgapped Installations"
-weight = "306"
 description = "The steps required of the end customer to install a Replicated application into an air gapped environment."
 categories = [ "Distributing" ]
-
-
-[menu.main]
-Name       = "Airgapped Installations"
-identifier = "airgapped-installations"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/airgapped-installations"
 +++
 
 An "airgapped" environment is a network that has no path to inbound or outbound internet traffic at all.
