@@ -28,8 +28,6 @@ List version of currently running replicated components.
 
 ```shell
 replicated -version
-replicated-ui -version
-replicated-operator -version
 ```
 
 ## Status
