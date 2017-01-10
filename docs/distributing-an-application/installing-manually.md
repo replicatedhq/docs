@@ -8,7 +8,7 @@ keywords= "installing, removing"
 To manually install start by checking you are running on a support operating system and follow the 4 steps.
 
 ### 1. Install Docker
-Currently the Replicated installation script installs Docker version {{< docker_version_default >}} Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/), [Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/), [Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
+We recommend Docker version {{< docker_version_default >}}.  Refer to the Docker Installation Guide for [Debian](https://docs.docker.com/engine/installation/linux/debian/), [Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/), [CentOS](https://docs.docker.com/engine/installation/linux/centos/), [Fedora](https://docs.docker.com/engine/installation/linux/fedora/), or [RHEL](https://docs.docker.com/engine/installation/linux/rhel/).
 
 ### 2. Run Replicated & UI Containers
 ```shell
@@ -55,11 +55,10 @@ At this point, the new node should show up on the Cluster page.
 1. Click the Start Now button  
 ![Start Now](/static/manual-install-2.x/start-now.png)
 
-{{< note title="There is no Start Now button" >}}
-If Replicated is still pulling application images, there will be no Start Now button. If this is the case, then just wait for the pull to finish.
-{{< /note >}}
+When first launching there may be no "Start Now" button.  This is because Replicated is still pulling application images. 
+If this is the case, then just wait for the pull to finish.
 
-{{< note title="Pre-flight checks again" >}}
-Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks on it before starting the application. If that's the case, the Start Now button will be replaced with the Run Checks button.
-{{< /note >}}
+Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks 
+on it before starting the application. If that's the case, the Start Now button will be replaced with the Run 
+Checks button.
 
