@@ -22,28 +22,28 @@ Before installing Replicated review the list of
 [supported operating systems](/distributing-an-application/supported-operating-systems/).
 
 ## Replicated Version
-The current release of Replicated is version {{< replicated_latest_version >}} released on {{< replicated_latest_release_date >}}.  Prior versions are available and can also be installed and
-instructions how depend on your install method. To read about the latest features of Replicated see the [Replicated changelog](https://vendor.replicated.com/#/changelog).
+The current release of Replicated is version {{< replicated_latest_version >}} released on {{< replicated_latest_release_date >}}.  Prior versions are available and can also be installed and instructions how depend on your install method. To read about the latest features of Replicated see the [Replicated changelog](https://vendor.replicated.com/#/changelog).
+
+### TL;DR
+
+```shell
+curl -sSL -o install.sh https://get.replicated.com/docker
+sudo bash ./install.sh
+```
 
 ## Pick your Install Method
 
+### Easy Installation
+We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the docker-engine. 
+
+[Continue with the easy install script](/distributing-an-application/installing-via-script)
 ### Manual Install
-We provide a short set of steps to install Replicated manually, for situations where a customer
-is unable to run the easy install script or you need to install Replicated on an operating system 
-not yet covered by the easy install.  The manual install giving you full control over the install 
-process.
+We provide a short set of steps to install Replicated manually, for situations where a customer is unable to run the easy install script or you need to install Replicated on an operating system not yet covered by the easy install.  The manual install giving you full control over the install process.
 
 [Continue with a manual install](/distributing-an-application/installing-manually)
 
-### Easy Installation
-We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions 
-and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the docker-engine. 
-
-[Continue with the easy install script](/distributing-an-application/installing-via-script)
-
 ### Airgap Install
-Security sensitive customers may be running disconnected from the Internet.  Replicated provides you the option
-to do airgapped installs to support those customers.
+Some installations may not have outbound Internet access.  Replicated provides you the option to do airgapped installs to support those customers.  To install your customer will download Replicated, your license and the airgap installation file containing your application.
 
 [Continue with an airgapped install](/distributing-an-application/airgapped-installations)
 

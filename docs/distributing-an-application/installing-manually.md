@@ -5,6 +5,8 @@ description = "Instructions for manually installing Replicated 2"
 keywords= "installing, removing"
 +++
 
+If you choose not to run the [installation script](/distributing-an-application/installing-via-script) use this guide; note that the install script also installs Docker, detects network configuration and allows proxy settings and provides support to auto-upgrade Replicated during your application release cycle.
+
 To manually install start by checking you are running on a support operating system and follow the 4 steps.
 
 ### 1. Install Docker
@@ -55,10 +57,7 @@ At this point, the new node should show up on the Cluster page.
 1. Click the Start Now button  
 ![Start Now](/static/manual-install-2.x/start-now.png)
 
-When first launching there may be no "Start Now" button.  This is because Replicated is still pulling application images. 
-If this is the case, then just wait for the pull to finish.
+When first launching there may be no "Start Now" button.  This is because Replicated is still pulling application images. If this is the case, then just wait for the pull to finish.
 
-Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks 
-on it before starting the application. If that's the case, the Start Now button will be replaced with the Run 
-Checks button.
+Since a new node running Replicated Operator has joined the cluster, Replicated will want to run preflight checks on it before starting the application. If that's the case, the Start Now button will be replaced with the Run Checks button.
 
