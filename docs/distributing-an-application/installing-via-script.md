@@ -5,14 +5,20 @@ description = "Instructions for installing Replicated via the easy install scrip
 keywords= "installing"
 +++
 
-We provide an easy-to-use one-line installation process (via shell script) which will 
-detect your OS, ask a few questions and install both docker-engine and the required
-Replicated components.
+We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install both docker-engine and the required Replicated components.
 
-If you want to always release your application with a specific version of Replicated
-you can read how to [always install a specific version of Replicated](/kb/supporting-your-customers/install-known-versions/). 
+If you want to always release your application with a specific version of Replicated you can read how to [always install a specific version of Replicated](/kb/supporting-your-customers/install-known-versions/). 
 
 ### Basic Install
+
+Save the install script to file and run.  We recommend reading and understanding the install script prior to running.
+
+```shell
+curl -sSL -o install.sh https://get.replicated.com/docker
+sudo bash ./install.sh
+```
+
+Quick install with bash pipe.
 
 ```shell
 curl -sSL https://get.replicated.com/docker | sudo bash
@@ -38,9 +44,7 @@ For CI/CD automation additional flags are also supported, see the "command line 
 section of the script.
 
 {{< note title="Best practices with the easy-install script" >}}
-When you're ready to start shipping to customers we recommend that you proxy this install 
-script with a TLS cert matching your domain name.  The script should always be served with
-TLS.
+When you're ready to start shipping to customers we recommend that you proxy this install script with a TLS cert matching your domain name.  The script should always be served with TLS.
 {{< /note >}}
 
 ## Installing Behind A Proxy
