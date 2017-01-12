@@ -11,7 +11,8 @@ A future release of Replicated will support deploying Replicated and your applic
 ## Requirements
 You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
 
-## Create a Kubernetes Cluster with a persistent volume (at least 10 gigs)
+## Create a Kubernetes Cluster with a persistent volume (minimum capacity 10 GB)
+example:
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -23,12 +24,12 @@ spec:
  accessModes:
    - ReadWriteOnce
  gcePersistentDisk:
-   pdName: replicated-pv-1
+   pdName: replicated-pv
    fsType: ext4
 ```
 
 ## Install Replicated on the cluster
-Provide this Kubernetes YAML to your customer as well as a `.rli` license file.
+Kubernetes specs to install Replicated:
 ```yaml
 apiVersion: v1
 kind: Service
@@ -92,7 +93,7 @@ spec:
     spec:
       containers:
       - name: replicated
-        image: quay.io/replicated/replicated:stable-2.3.2
+        image: quay.io/replicated/replicated:stable-2.4.1
         imagePullPolicy: Always
         env:
         - name: SCHEDULER_ENGINE
@@ -122,7 +123,7 @@ spec:
           mountPath: /host/proc
           readOnly: true
       - name: replicated-ui
-        image: quay.io/replicated/replicated-ui:stable-2.3.2
+        image: quay.io/replicated/replicated-ui:stable-2.4.1
         imagePullPolicy: Always
         env:
         - name: LOG_LEVEL
@@ -209,6 +210,7 @@ spec:
     tier: backend
     role: master
 ---
+
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -248,6 +250,7 @@ spec:
         ports:
         - containerPort: 6379
 ---
+
 # kind: scheduler-kubernetes
 apiVersion: v1
 kind: Service
@@ -266,6 +269,7 @@ spec:
     tier: backend
     role: slave
 ---
+
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -313,6 +317,7 @@ spec:
         ports:
         - containerPort: 6379
 ---
+
 # kind: scheduler-kubernetes
 apiVersion: v1
 kind: Service
@@ -332,6 +337,7 @@ spec:
     app: guestbook
     tier: frontend
 ---
+
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -390,6 +396,8 @@ Replicated can be deployed into your kubernetes cluster (TODO: document this) or
 }
 ```
 
-## Known Limitations
-- Replicated custom admin commands are not supported
-- Replicated custom snapshots are not supported
+### Known Limitations
+- Replicated admin commands are not supported
+- Replicated snapshots are not supported
+- Replicated auto update does not work
+- Preflight checks have limited checks
