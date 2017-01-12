@@ -6,7 +6,7 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-A future release of Replicated will support deploying Replicated and your application to a Kubernetes cluster.
+The current release of Replicated supports deploying Replicated and your application to a Kubernetes cluster. This is not yet intended for production installations. Contact the Replicated team to ensure that your account has this feature enabled.
 
 ## Requirements
 You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
