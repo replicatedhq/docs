@@ -30,8 +30,8 @@ category = "categories"
   docker_version_default = "1.12.3"
   docker_version_minimum = "1.7.1"
   replicated_api_version_current = "2.3.5"
-  replicated_latest_version = "2.4.0"
-  replicated_latest_release_date = "January 9, 2017"
+  replicated_latest_version = "2.4.1"
+  replicated_latest_release_date = "January 11, 2017"
 
   [params.palette]
   primary = "red"
