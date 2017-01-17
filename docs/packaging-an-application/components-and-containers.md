@@ -156,6 +156,10 @@ Next we have the option of specifying environment variables. There is also a fla
       is_excluded_from_support: true
 ```
 
+{{< note title="Sensitive data" >}}
+Having environment variables in Support Bundles can be invaluable for troubleshooting.   However, environment variables can contain sensitive data.  Setting `is_excluded_from_support` to `true` will exclude them from Support Bundles.
+{{< /note >}}
+
 ## Ports
 We can use the ports property to publish a container's exposed port (private_port) to the host (public_port). The when property allows us to
 conditionally expose that port mapping when some prior condition is satisfied. Use the interface property to force the public port to be
@@ -389,7 +393,7 @@ Sets the hostname inside of the container.  See the network host section under [
 ```
 
 ### Extra Hosts
-Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts). 
+Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts).
 ```yml
   extra_hosts:
   - hostname: mysql
@@ -405,9 +409,9 @@ Use name to set the name of the container.  References to the container in templ
 ```
 
 ### Entrypoint
-When working with third party containers you may want to override the default entry point using the 
+When working with third party containers you may want to override the default entry point using the
 entrypoint option.
-Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the 
+Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the
 [cmd and entrypoint options](https://docs.docker.com/engine/reference/builder/#/understand-how-cmd-and-entrypoint-interact) work together.  Entrypoint takes an array of strings.
 
 ```yml
