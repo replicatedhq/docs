@@ -37,7 +37,7 @@ The install script can take flags to help your customers with specialized enterp
 Example call with flags:
 
 ```shell
-curl -sSL https://get.replicated.com/docker | sudo bash -s no-auto -s ui-bind-port=8000
+curl -sSL https://get.replicated.com/docker | sudo bash -s no-auto ui-bind-port=8000
 ```
 
 For CI/CD automation additional flags are also supported, see the "command line flags"
