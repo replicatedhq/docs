@@ -9,7 +9,7 @@ categories = [ "Distributing" ]
 Name       = "Maintenance"
 identifier = "maintenance"
 parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/maintenance"
+url        = "/docs/distributing-an-application/maintanance"
 +++
 
 ## Command Line Interface
