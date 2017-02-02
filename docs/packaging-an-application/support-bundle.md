@@ -32,57 +32,104 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 
 | File | Description |
 |------|-------------|
-| /daemon/nodes.txt | A list of all nodes and their status. |
-| /daemon/config-commands.txt | A list of all configuration test commands that were run and the results. |
-| /daemon/tasks.txt | A list of all current tasks: queued, executing, or sleeping |
-| /daemon/ledis-app.dump | A dump of the Replicated Ledis database. |
-| /daemon/ledis-registry.dump | A dump of the Replicated registry Ledis database. |
-| /daemon/replicated.log | Logs from the Replicated container. |
-| /daemon/replicated-ui.log | Logs from the Replicated UI container |
-| /daemon/replicated-inspect.json | Docker inspect from the Replicated container. |
-| /daemon/replicated-ui-inspect.json | Docker inspect from the Replicated-ui container. |
-| /nodes/*&lt;node_alias&gt;*/scheduler/replicated-operator.log | Logs from the Replicated Operator container. |
-| /nodes/*&lt;node_alias&gt;*/scheduler/replicated-operator-inspect.json | Docker inspect from the Replicated Operator container. |
-| /nodes/*&lt;node_alias&gt;*/scheduler/replicated/host/etc/replicated-operator.conf | Contents of the Replicated Operator container conf. |
-| /nodes/*&lt;node_alias&gt;*/etc/os-release | A copy of the `/etc/os-release` file. Contains operating system identification data. |
-| /nodes/*&lt;node_alias&gt;*/proc/meminfo | A copy of the `/proc/meminfo` file. Reports valuable information about the systems RAM usage. |
-| /nodes/*&lt;node_alias&gt;*/proc/cpuinfo | A copy of the `/proc/cpuinfo` file. Reports valuable information about the systems CPU usage. |
-| /nodes/*&lt;node_alias&gt;*/proc/mounts | A copy of the `/proc/mounts` file. Provides a list of all mounts in use by the system. |
-| /nodes/*&lt;node_alias&gt;*/proc/vmstat | A copy of the `/proc/vmstat` file. Shows detailed virtual memory statistics from the kernel. |
-| /nodes/*&lt;node_alias&gt;*/commands/hostname | Result of `hostname` command. Shows the host name of the server. |
-| /nodes/*&lt;node_alias&gt;*/commands/date | Result of `date` command. Displays the date on the server. |
-| /nodes/*&lt;node_alias&gt;*/commands/ps | Result of `ps fauxwww` command. Displays processes running on the system. |
-| /nodes/*&lt;node_alias&gt;*/commands/lsmod | Result of `lsmod` command. Displays which loadable kernel modules are currently loaded. |
-| /nodes/*&lt;node_alias&gt;*/commands/lspci | Result of `lspci` command. Displays information about PCI buses in the system and devices connected to them. |
-| /nodes/*&lt;node_alias&gt;*/commands/lsof | Result of `lsof -b -M -n -l` command. Lists information about the files that are opened by various processes. |
-| /nodes/*&lt;node_alias&gt;*/commands/blkid | Result of `blkid` command. Displays information about available block devices. |
-| /nodes/*&lt;node_alias&gt;*/commands/btrfs | Result of `btrfs fi show` command. Shows the btrfs filesystem with some additional info. |
-| /nodes/*&lt;node_alias&gt;*/commands/df_ali | Result of `df -ali` command. Reports file system disk space usage. |
-| /nodes/*&lt;node_alias&gt;*/commands/df_ai | Result of `df -al` command. Reports file system disk space usage. |
-| /nodes/*&lt;node_alias&gt;*/commands/ip_addr_show | Result of `ip -o addr show` command. Shows protocol (IP or IPv6) addresses. |
-| /nodes/*&lt;node_alias&gt;*/commands/ip_link_show | Result of `ip -o link show` command. Shows network devices. |
-| /nodes/*&lt;node_alias&gt;*/commands/ip_route_show | Result of `ip -o route show` command. Shows routing table entries. |
-| /nodes/*&lt;node_alias&gt;*/commands/netstat_-neopa | Result of `netstat -neopa` command. Displays network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. |
-| /nodes/*&lt;node_alias&gt;*/commands/free | Result of `free -m` command. Displays amount of free and used memory in the system. |
-| /nodes/*&lt;node_alias&gt;*/commands/docker_ps | Result of `docker ps -a` command. Lists all Docker containers. |
-| /nodes/*&lt;node_alias&gt;*/commands/dmesg | Result of `dmesg` command. |
-| /nodes/*&lt;node_alias&gt;*/commands/uname | Result of `uname` command. |
-| /nodes/*&lt;node_alias&gt;*/commands/uptime | Result of `uptime` command. |
-| /nodes/*&lt;node_alias&gt;*/docker/docker_info.json |
-| /nodes/*&lt;node_alias&gt;*/docker/docker_ps_a.json |
-| /nodes/*&lt;node_alias&gt;*/replicated/host/var/log/upstart/docker.log |
-| /container/*&lt;container_alias&gt;*/inspect | Result of `docker inspect <container_id>` command. Displays low-level information on a Docker container. |
-| /container/*&lt;container_alias&gt;*/stdout.log | Result of `docker logs <container_id>` command. Fetches the stdout logs of a Docker container. |
-| /container/*&lt;container_alias&gt;*/stderr.log | Result of `docker logs <container_id>` command. Fetches the stderr logs of a Docker container. |
-| /container/*&lt;container_alias&gt;*/files | Contains any custom container files as specified by the vendor. |
-| /container/*&lt;container_alias&gt;*/commands | Contains any custom container commands as specified by the vendor. |
-| /daemon/commands/dmesg | Result of `dmesg` command. |
-| /daemon/commands/docker | Version of Docker. |
-| /daemon/commands/replicated-ui | Version of ReplicatedUI. |
-| /daemon/commands/replicated-updater | Version of ReplicatedUpdater. |
-| /daemon/commands/uptime | Result of `uptime` command. |
-| /daemon/proc/cpuinfo | Result of `/proc/cpuinfo` |
-| /daemon/var/log/upstart/* | Replicated upstart logs (UI, Updater, Replicated) |
-| /daemon/commands/uname | Result of `uname -a (-r)` |
-| /daemon/auditlogs-* | Contains audit log events |
-| /hosts/<host_alias>*/var/log/docker.log | Contains docker logs from the host |
+| /daemon/auditlogs/* | Audit log events. |
+| /daemon/commands/date | Result of the command `date`. Print the system date and time. |
+| /daemon/commands/df | Result of the command `df -al`. Report file system disk space usage for the local file systems. |
+| /daemon/commands/df_inodes | Result of the command `df -ali`. Report file system inode usage for the local file systems. |
+| /daemon/commands/dmesg | Result of the command `dmesg`. Print the kernel ring buffer. |
+| /daemon/commands/free | Result of the command `free -m`. Display amount of free and used memory in the system. |
+| /daemon/commands/hostname | Result of the command `hostname`. Show the system's host name. |
+| /daemon/commands/ip_addr_show | Result of the command `ip -o addr show`. Show protocol (IP or IPv6) addresses on a device. |
+| /daemon/commands/ip_link_show | Result of the command `ip -o link show`. Show network devices. |
+| /daemon/commands/ip_route_show | Result of the command `ip -o route show`. Show routing table entries. |
+| /daemon/commands/ps | Result of the command `ps fauxwww`. Report a snapshot of the current processes. |
+| /daemon/commands/uptime | Result of the command `uptime`. Tell how long the system has been running. |
+| /daemon/docker/docker_info.json | Display system-wide information. |
+| /daemon/docker/docker_ps_a.json | Result of the command `docker ps -a`. List all containers. |
+| /daemon/etc/centos-release | A copy of the `/etc/centos-release` file. Contain operating system identification data for centos distribution. |
+| /daemon/etc/default/docker | A copy of the `/etc/default/docker` file. Upstart docker configuration. |
+| /daemon/etc/default/replicated | A copy of the `/etc/default/replicated` file. Upstart replicated configuration. |
+| /daemon/etc/default/replicated-operator | A copy of the `/etc/default/replicated-operator` file. Upstart replicated-operator configuration. |
+| /daemon/etc/hostname | A copy of the `/etc/hostname` file. The system's host name. |
+| /daemon/etc/hosts | A copy of the `/etc/hosts` file. Static table lookup for hostnames. |
+| /daemon/etc/os-release | A copy of the `/etc/os-release` file. Contain operating system identification data. |
+| /daemon/etc/replicated.conf | A copy of the `/etc/replicated.conf` file. Replicated legacy 1.x configuration. |
+| /daemon/etc/sysconfig/docker | A copy of the `/etc/sysconfig/docker` file. Legacy systemd docker configuration. |
+| /daemon/etc/sysconfig/replicated | A copy of the `/etc/sysconfig/replicated` file. Systemd replicated configuration. |
+| /daemon/etc/sysconfig/replicated-operator | A copy of the `/etc/sysconfig/replicated-operator` file. Systemd replicated-operator configuration. |
+| /daemon/etc/system-release | A copy of the `/etc/system-release` file. Contain operating system identification data. |
+| /daemon/etc/systemd/system/docker.service.d/http-proxy.conf | A copy of the `/etc/systemd/system/docker.service.d/http-proxy.conf` file. Systemd docker proxy configuration. |
+| /daemon/etc/timezone | A copy of the `/etc/timezone` file. The system's timezone. |
+| /daemon/journald/replicated.log | Result of the command `journalctl -u replicated` file. Journald replicated logs. |
+| /daemon/journald/replicated-operator.log | Result of the command `journalctl -u replicated-operator` file. Journald replicated-operator logs. |
+| /daemon/journald/replicated-ui.log | Result of the command `journalctl -u replicated-ui` file. Journald replicated-ui logs. |
+| /daemon/proc/cpuinfo | A copy of the `/proc/cpuinfo` file. Information about the processor, such as its type, make, model, and performance. |
+| /daemon/proc/meminfo | A copy of the `/proc/meminfo` file. Information about memory usage, both physical and swap. |
+| /daemon/proc/mounts | A copy of the `/proc/mounts` file. Mounted filesystems. |
+| /daemon/proc/uptime | A copy of the `/proc/uptime` file. The time the system has been up. |
+| /daemon/proc/version | A copy of the `/proc/version` file. The kernel version. |
+| /daemon/proc/vmstat | A copy of the `/proc/vmstat` file. Detailed virtual memory statistics from the kernel. |
+| /daemon/replicated/config-commands.txt | A list of all configuration test commands that were run and the results. |
+| /daemon/replicated/ledis-app.dump | A dump of the Replicated database. |
+| /daemon/replicated/ledis-registry.dump | A dump of the Replicated registry database. |
+| /daemon/replicated/replicated-inspect.json | Result of the command `docker inspect replicated`. Return low-level information on the replicated container. |
+| /daemon/replicated/replicated-operator-inspect.json | Result of the command `docker inspect replicated-operator`. Return low-level information on the replicated-operator container. |
+| /daemon/replicated/replicated-operator.log | Result of the command `docker logs replicated-operator --tail 10000`. Docker replicated-operator container logs. |
+| /daemon/replicated/replicated-ui-inspect.json | Result of the command `docker inspect replicated-ui`. Return low-level information on the replicated-ui container. |
+| /daemon/replicated/replicated-ui.log | Result of the command `docker logs replicated-ui --tail 10000`. Docker replicated-ui container logs. |
+| /daemon/replicated/replicated-versions.txt | A list of all running replicated components and their versions. |
+| /daemon/replicated/replicated.log | Result of the command `docker logs replicated --tail 10000`. Docker replicated container logs. |
+| /daemon/replicated/runtime/goroutines.txt | Stack traces of all current goroutines. |
+| /daemon/replicated/tasks.txt | A list of all current tasks: queued, executing, or sleeping. |
+| /daemon/var/log/upstart/docker.log | A copy of the `/var/log/upstart/docker.log` file. Upstart docker logs. |
+| /daemon/var/log/upstart/replicated-operator.log | A copy of the `/var/log/upstart/replicated-operator.log` file. Upstart replicated-operator logs. |
+| /daemon/var/log/upstart/replicated-ui.log | A copy of the `/var/log/upstart/replicated-ui.log` file. Upstart replicated-ui logs. |
+| /daemon/var/log/upstart/replicated.log | A copy of the `/var/log/upstart/replicated.log` file. Upstart replicated logs. |
+| /scheduler/container/*&lt;container_id&gt;*/inspect | Result of the command `docker inspect <container_id>`. Displays low-level information on a Docker container. |
+| /scheduler/container/*&lt;container_id&gt;*/stdout.log | Result of the command `docker logs <container_id>`. Docker container logs stdout. |
+| /scheduler/container/*&lt;container_id&gt;*/stderr.log | Result of the command `docker logs <container_id>`. Docker container logs stderr. |
+| /scheduler/container/*&lt;container_id&gt;*/files/* | Contains any custom container files as specified by the vendor application. |
+| /scheduler/container/*&lt;container_id&gt;*/commands/* | Contains any custom container commands as specified by the vendor application. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/date | Result of the command `date`. Print the system date and time. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/df | Result of the command `df -al`. Report file system disk space usage for the local file systems. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/df_inodes | Result of the command `df -ali`. Report file system inode usage for the local file systems. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/dmesg | Result of the command `dmesg`. Print the kernel ring buffer. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/free | Result of the command `free -m`. Display amount of free and used memory in the system. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/hostname | Result of the command `hostname`. Show the system's host name. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/ip_addr_show | Result of the command `ip -o addr show`. Show protocol (IP or IPv6) addresses on a device. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/ip_link_show | Result of the command `ip -o link show`. Show network devices. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/ip_route_show | Result of the command `ip -o route show`. Show routing table entries. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/ps | Result of the command `ps fauxwww`. Report a snapshot of the current processes. |
+| /scheduler/node/*&lt;node_id&gt;*/commands/uptime | Result of the command `uptime`. Tell how long the system has been running. |
+| /scheduler/node/*&lt;node_id&gt;*/docker/docker_info.json | Display system-wide information. |
+| /scheduler/node/*&lt;node_id&gt;*/docker/docker_ps_a.json | Result of the command `docker ps -a`. List all containers. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/centos-release | A copy of the `/etc/centos-release` file. Contain operating system identification data for centos distribution. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/default/docker | A copy of the `/etc/default/docker` file. Upstart docker configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/default/replicated | A copy of the `/etc/default/replicated` file. Upstart replicated configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/default/replicated-operator | A copy of the `/etc/default/replicated-operator` file. Upstart replicated-operator configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/hostname | A copy of the `/etc/hostname` file. The system's host name. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/hosts | A copy of the `/etc/hosts` file. Static table lookup for hostnames. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/os-release | A copy of the `/etc/os-release` file. Contain operating system identification data. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/replicated.conf | A copy of the `/etc/replicated.conf` file. Rplicated legacy 1.x configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/sysconfig/docker | A copy of the `/etc/sysconfig/docker` file. Legacy systemd docker configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/sysconfig/replicated | A copy of the `/etc/sysconfig/replicated` file. Systemd replicated configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/sysconfig/replicated-operator | A copy of the `/etc/sysconfig/replicated-operator` file. Systemd replicated-operator configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/system-release | A copy of the `/etc/system-release` file. Contain operating system identification data. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/systemd/system/docker.service.d/http-proxy.conf | A copy of the `/etc/systemd/system/docker.service.d/http-proxy.conf` file. Systemd docker proxy configuration. |
+| /scheduler/node/*&lt;node_id&gt;*/etc/timezone | A copy of the `/etc/timezone` file. The system's timezone. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/cpuinfo | A copy of the `/proc/cpuinfo` file. Information about the processor, such as its type, make, model, and performance. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/meminfo | A copy of the `/proc/meminfo` file. Information about memory usage, both physical and swap. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/mounts | A copy of the `/proc/mounts` file. Mounted filesystems. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/uptime | A copy of the `/proc/uptime` file. The time the system has been up. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/version | A copy of the `/proc/version` file. The kernel version. |
+| /scheduler/node/*&lt;node_id&gt;*/proc/vmstat | A copy of the `/proc/vmstat` file. Detailed virtual memory statistics from the kernel. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/replicated-operator-inspect.json | Result of the command `docker inspect replicated-operator`. Return low-level information on the replicated-operator container. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/replicated-operator.log | Result of the command `docker logs replicated-operator --tail 10000`. Docker replicated-operator container logs. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/runtime/goroutines.txt | Stack traces of all current goroutines. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/var/lib/replicated-operator/logs/* | Archived vendor application container logs. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/var/lib/replicated-operator/replicated-operator.conf | A copy of the `/var/lib/replicated-operator/replicated-operator.conf` file. Replicated operator generated configuration file. |
+| /scheduler/node/*&lt;node_id&gt;*/var/log/upstart/docker.log | A copy of the `/var/log/upstart/docker.log` file. Upstart docker logs. |
+| /scheduler/node/*&lt;node_id&gt;*/var/log/upstart/replicated-operator.log | A copy of the `/var/log/upstart/replicated-operator.log` file. Upstart replicated-operator logs. |
+| /scheduler/node/*&lt;node_id&gt;*/var/log/upstart/replicated-ui.log | A copy of the `/var/log/upstart/replicated-ui.log` file. Upstart replicated-ui logs. |
+| /scheduler/node/*&lt;node_id&gt;*/var/log/upstart/replicated.log | A copy of the `/var/log/upstart/replicated.log` file. Upstart replicated logs. |
+| /scheduler/nodes.txt | A list of all scheduler nodes. |
