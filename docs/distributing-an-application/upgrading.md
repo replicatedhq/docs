@@ -32,6 +32,15 @@ If you have additional nodes you will independently need to run the following on
 curl -sSL https://get.replicated.com/operator | sudo bash
 ```
 
+## Upgrading Airgap Installs
+Airgap installations can be upgraded by downloading a newer version of the Replicated release, uncompressing it and re-running the install script using the airgap flag.  The latest Replicated release can be found at https://s3.amazonaws.com/replicated-airgap-work/replicated.tar.gz.
+
+```shell
+tar xzvf replicated.tar.gz
+cat ./install.sh | sudo bash -s airgap
+```
+
+
 ## Migrating from Replicated v1 to v2
 Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop your app 
 and backup all Replicated data in case there is a need for a restore. To invoke the migration script all you have to do 
