@@ -419,7 +419,7 @@ Learn more about [overriding entrypoints](https://docs.docker.com/engine/referen
 ```
 
 ### Ulimits
-Since setting ulimit settings in a container requires extra privileges not available in the default container, you can set these using the ulimits property of the container. Learn more about ulimits [here](https://docs.docker.com/engine/reference/commandline/run/#/set-ulimits-in-container---ulimit).
+{{< version version="2.5.0" >}} Since setting ulimit settings in a container requires extra privileges not available in the default container, you can set these using the ulimits property of the container. Learn more about ulimits [here](https://docs.docker.com/engine/reference/commandline/run/#/set-ulimits-in-container---ulimit).
 
 ```yml
     ulimits:
