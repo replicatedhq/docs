@@ -158,6 +158,60 @@ config_files:
       expiration.date: {{repl LicenseProperty "expiration.date"}}
 ```
 
+## AppID
+```go
+func AppID() string
+```
+Returns the app id.
+```yml
+env_vars:
+- name: APP_ID
+  static_val: '{{repl AppID }}'
+```
+
+## AppVersion
+```go
+func AppVersion() int
+```
+Returns the app version sequence.
+```yml
+env_vars:
+- name: APP_VERSION
+  static_val: '{{repl AppVersion }}'
+```
+
+## AppVersionFirst
+```go
+func AppVersionFirst() int
+```
+Returns the version sequence of the first version installed.
+```yml
+env_vars:
+- name: APP_VERSION_FIRST
+  static_val: '{{repl AppVersionFirst }}'
+```
+
+## AppVersionCurrent
+```go
+func AppVersionCurrent() int
+```
+Returns the current app version sequence.
+```yml
+env_vars:
+- name: APP_VERSION_CURRENT
+  static_val: '{{repl AppVersionCurrent }}'
+```
+
+## RunOffline
+```go
+func RunOffline() bool
+```
+Returns whether or not we are running in airgap mode.
+```yml
+env_vars:
+- name: IS_AIRGAP
+  static_val: '{{repl RunOffline }}'
+```
 
 ## AppSetting
 ```go
@@ -269,29 +323,6 @@ func ThisNodeDockerAddress() string
 Returns the docker0 address on the host on which the current container instance is deployed.
 For a clustered application this value will be different for each host.
 
-
-## Now
-```go
-func Now() string
-```
-Returns the current timestamp as an RFC3339 formatted string.
-```yml
-env_vars:
-- name: START_TIME
-  static_val: "{{repl Now }}"
-```
-
-## Split
-```go
-func Split(s string, sep string) []string
-```
-Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
-```yml
-env_vars:
-  - name: BROKEN_APART_A_B_C
-    static_val: '{{repl Split "A,B,C" "," }}'
-```
-
 ## LdapCopyAuthFrom
 ```go
 func LdapCopyAuthFrom(keyName string) string
@@ -308,8 +339,62 @@ Possible Options:
 `LoginUsername`
 ```yml
 env_vars:
-  - name: LDAP_HOSTNAME
-    static_val: '{{repl LdapCopyAuthFrom "Hostname"}}'
+- name: LDAP_HOSTNAME
+  static_val: '{{repl LdapCopyAuthFrom "Hostname"}}'
+```
+
+## Now
+```go
+func Now() string
+```
+Returns the current timestamp as an RFC3339 formatted string.
+```yml
+env_vars:
+- name: START_TIME
+  static_val: "{{repl Now }}"
+
+## NowFmt
+```go
+func NowFmt(format string) string
+```
+Returns the current timestamp as a formatted string. See Golang's time formatting guidelines [here](https://golang.org/pkg/time/#pkg-constants.
+```yml
+env_vars:
+- name: START_DATE
+  static_val: "{{repl Now "20060102" }}"
+```
+
+## TrimSpace
+```go
+func TrimSpace(s string) string
+```
+Trim returns a string with all leading and trailing spaces removed.
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | Trim }}
+```
+
+## Trim
+```go
+func Trim(s string, args ...string) string
+```
+Trim returns a string with all leading and trailing string contained in the optional args removed (default space).
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | Trim " " "." }}
+```
+
+## Split
+```go
+func Split(s string, sep string) []string
+```
+Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
+```yml
+env_vars:
+- name: BROKEN_APART_A_B_C
+  static_val: '{{repl Split "A,B,C" "," }}'
 ```
 
 ## ToLower
@@ -332,6 +417,17 @@ Returns the string, in uppercase.
 env_vars:
 - name: COMPANY_NAME
   static_val: '{{repl ConfigOption "company_name" | ToUpper }}'
+```
+
+## HumanSize
+```go
+func HumanSize(size interface{}) string
+```
+HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number. 
+```yml
+env_vars:
+- name: MIN_SIZE_HUMAN
+  static_val: '{{repl ConfigOption "min_size_bytes" | HumanSize }}
 ```
 
 ## UrlEncode
@@ -365,6 +461,50 @@ Returns decoded string from a Base64 stored value.
 env_vars:
 - name: NAME_PLAIN_TEXT
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
+```
+
+## ParseBool
+```go
+func ParseBool(str string) bool
+```
+ParseBool returns the boolean value represented by the string.
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | ParseBool }}'
+```
+
+## ParseFloat
+```go
+func ParseFloat(str string) float64
+```
+ParseFloat returns the float value represented by the string.
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | ParseFloat }}'
+```
+
+## ParseInt
+```go
+func ParseInt(str string, args ...int) int64
+```
+ParseInt returns the integer value represented by the string with optional base (default 10).
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | ParseInt }}'
+```
+
+## ParseUint
+```go
+func ParseUint(str string, args ...int) uint64
+```
+ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
+```yml
+env_vars:
+- name: VALUE
+  static_val: '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
 ## Add
