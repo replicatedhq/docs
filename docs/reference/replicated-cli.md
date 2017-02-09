@@ -174,6 +174,29 @@ Note: task-id is retrieved utilizing the apps command.
 replicated task <task-id> logs
 ```
 
+## Snapshots
+{{< version version="2.5.0" >}} Show available snapshots for an installed app.  This command will use settings for installed app to discover information about snapshots.
+
+```shell
+replicated snapshot list app <app id>
+```
+
+{{< version version="2.5.0" >}} Show available snapshots from a location on the local file system.  This command can be used when application has not been installed yet in cases when recovery from a snapshot is needed.
+
+```shell
+replicated snapshot list location <location>
+```
+
+{{< version version="2.5.0" >}} Restore an application from the specified snapshot.  When optional `--dismiss-prechecks` flag is specified, failed preflight checks will be ignored.  The optional `--node-timeout` parameter indicates how long to wait for the initial node to connect.  The default is 60 seconds.
+
+{{< note title="Warning" >}}
+This command cannot be used on a system with an already installed license.
+{{< /note >}}
+
+```shell
+replicated snapshot restore <location> <snapshot id> --dismiss-prechecks --node-timeout <seconds>
+```
+
 ## Admin
 Additionally you can define ad-hoc commands that can be executed inside a running container,
 see the dedicated [Admin Commands](/packaging-an-application/admin-commands) section
