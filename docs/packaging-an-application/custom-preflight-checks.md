@@ -108,7 +108,7 @@ are all that can be specified in the container section of the yaml.
 | **Name** | **Type** | **Required** | **Description** |
 |----------|----------|--------------|-----------------|
 | cmd | string | yes | The cmd to be run when executing the container |
-| cluster | string | no | Will determine if this requirement should be run (evaluated to a boolean value) |
+| cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
 | tags | array[string] | no | Cluster tags |
 | conflicts | array[string] | no | Cluster conflicts |
 | additional... |  | no | all possible container properties |
@@ -147,7 +147,7 @@ custom_requirements:
 The disk space available command will return the disk space available in bytes. Note that the
 result is always a string and must be parsed (e.g. `{{repl .Result | ParseFloat | lt 1e+9 }}` or
 `{{repl .Result | ParseFloat | HumanSize }}`). The clustering and tags properties will determine
-where the command is run. If clustering is disabled the command will run on all nodes in the
+where the command is run. If cluster is *false* the command will run on all nodes in the
 cluster.
 
 **Id:** `disk_space_available`
@@ -157,7 +157,7 @@ cluster.
 | **Name** | **Type** | **Required** | **Description** |
 |----------|----------|--------------|-----------------|
 | dir | string | yes | The directory to check |
-| cluster | string | no | Will determine if this requirement should be run (evaluated to a boolean value) |
+| cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
 | tags | array[string] | no | Cluster tags |
 | conflicts | array[string] | no | Cluster conflicts |
 
@@ -202,7 +202,7 @@ custom_requirements:
 The disk space total command will return the disk space available in bytes. Note that the result is
 always a string and must be parsed (e.g. `{{repl .Result | ParseFloat | lt 1e+9 }}` or
 `{{repl .Result | ParseFloat | HumanSize }}`). The clustering and tags properties will determine
-where the command is run. If clustering is disabled the command will run on all nodes in the
+where the command is run. If cluster is *false* the command will run on all nodes in the
 cluster.
 
 **Id:** `disk_space_total`
@@ -212,7 +212,7 @@ cluster.
 | **Name** | **Type** | **Required** | **Description** |
 |----------|----------|--------------|-----------------|
 | dir | string | yes | The directory to check |
-| cluster | string | no | Will determine if this requirement should be run (evaluated to a boolean value) |
+| cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
 | tags | array[string] | no | Cluster tags |
 | conflicts | array[string] | no | Cluster conflicts |
 
@@ -256,7 +256,7 @@ custom_requirements:
 
 The port available command will determine whether the port and ip are available for use. Status
 code 98 (address already in use) will be returned when unable to bind to the address. The
-clustering and tags properties will determine where the command is run. If clustering is disabled
+clustering and tags properties will determine where the command is run. If cluster is *false*
 the command will run on all nodes in the cluster.
 
 **Id:** `port_available`
@@ -269,7 +269,7 @@ the command will run on all nodes in the cluster.
 | proto | string | no | The protocol, one of `tcp` (default) or `udp` |
 | ip | string | no | The ip to bind to, defaults to 0.0.0.0 (will take precedence over interface if set) |
 | interface | string | no | The interface to bind to |
-| cluster | string | no | Will determine if this requirement should be run (evaluated to a boolean value) |
+| cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
 | tags | array[string] | no | Cluster tags |
 | conflicts | array[string] | no | Cluster conflicts |
 
@@ -309,8 +309,8 @@ custom_requirements:
 
 The tcp dial command will determine whether a connection can be made over tcp to the address
 specified. Status code 111 (connection refused) will be returned when unable to connect to the
-address. The clustering and tags properties will determine where the command is run. If clustering
-is disabled the command will run **only** on the local node.
+address. The clustering and tags properties will determine where the command is run. If cluster is
+*false* the command will run **only** on the local node.
 
 **Id:** `tcp_dial`
 
@@ -319,7 +319,7 @@ is disabled the command will run **only** on the local node.
 | **Name** | **Type** | **Required** | **Description** |
 |----------|----------|--------------|-----------------|
 | addr | string | yes | The address to connect to |
-| cluster | string | no | Will determine if this requirement should be run (evaluated to a boolean value) |
+| cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
 | tags | array[string] | no | Cluster tags |
 | conflicts | array[string] | no | Cluster conflicts |
 
