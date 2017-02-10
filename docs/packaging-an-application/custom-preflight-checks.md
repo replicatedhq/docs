@@ -109,8 +109,8 @@ are all that can be specified in the container section of the yaml.
 |----------|----------|--------------|-----------------|
 | cmd | string | yes | The cmd to be run when executing the container |
 | cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
-| tags | array[string] | no | Cluster tags |
-| conflicts | array[string] | no | Cluster conflicts |
+| tags | array[string] | no | Determines nodes where the check is performed when cluster=true |
+| conflicts | array[string] | no | Skips nodes with the tag when cluster=true |
 | additional... |  | no | all possible container properties |
 
 ### Example
@@ -133,8 +133,6 @@ custom_requirements:
   command:
     id: raw
     data:
-      cluster: true
-      tags: ["app"]
       cmd: '["test", "-e", "/host/etc/vendor-license"]'
       volumes:
       - host_path: /etc
@@ -158,8 +156,8 @@ cluster.
 |----------|----------|--------------|-----------------|
 | dir | string | yes | The directory to check |
 | cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
-| tags | array[string] | no | Cluster tags |
-| conflicts | array[string] | no | Cluster conflicts |
+| tags | array[string] | no | Determines nodes where the check is performed when cluster=true |
+| conflicts | array[string] | no | Skips nodes with the tag when cluster=true |
 
 ### Example
 
@@ -213,8 +211,8 @@ cluster.
 |----------|----------|--------------|-----------------|
 | dir | string | yes | The directory to check |
 | cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
-| tags | array[string] | no | Cluster tags |
-| conflicts | array[string] | no | Cluster conflicts |
+| tags | array[string] | no | Determines nodes where the check is performed when cluster=true |
+| conflicts | array[string] | no | Skips nodes with the tag when cluster=true |
 
 ### Example
 
@@ -270,8 +268,8 @@ the command will run on all nodes in the cluster.
 | ip | string | no | The ip to bind to, defaults to 0.0.0.0 (will take precedence over interface if set) |
 | interface | string | no | The interface to bind to |
 | cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
-| tags | array[string] | no | Cluster tags |
-| conflicts | array[string] | no | Cluster conflicts |
+| tags | array[string] | no | Determines nodes where the check is performed when cluster=true |
+| conflicts | array[string] | no | Skips nodes with the tag when cluster=true |
 
 ### Example
 
@@ -320,8 +318,8 @@ address. The clustering and tags properties will determine where the command is 
 |----------|----------|--------------|-----------------|
 | addr | string | yes | The address to connect to |
 | cluster | string | no | Is clustering enabled (evaluated to a boolean value) |
-| tags | array[string] | no | Cluster tags |
-| conflicts | array[string] | no | Cluster conflicts |
+| tags | array[string] | no | Determines nodes where the check is performed when cluster=true |
+| conflicts | array[string] | no | Skips nodes with the tag when cluster=true |
 
 ### Example
 
