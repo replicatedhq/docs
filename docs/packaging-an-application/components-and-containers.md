@@ -393,7 +393,7 @@ Sets the hostname inside of the container.  See the network host section under [
 ```
 
 ### Extra Hosts
-Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts).
+Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#extrahosts).
 ```yml
   extra_hosts:
   - hostname: mysql
