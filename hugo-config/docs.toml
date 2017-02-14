@@ -27,11 +27,11 @@ category = "categories"
   # Syntax highlighting theme
   highlight_css  = ""
 
-  docker_version_default = "1.12.3"
+  docker_version_default = "1.13.1"
   docker_version_minimum = "1.7.1"
-  replicated_api_version_current = "2.4.2"
-  replicated_latest_version = "2.4.2"
-  replicated_latest_release_date = "January 19, 2017"
+  replicated_api_version_current = "2.5.0"
+  replicated_latest_version = "2.5.0"
+  replicated_latest_release_date = "February 09, 2017"
 
   [params.palette]
   primary = "red"
