@@ -22,7 +22,7 @@ Before installing Replicated review the list of
 [supported operating systems](/distributing-an-application/supported-operating-systems/).
 
 ## Replicated Version
-The current release of Replicated is version {{< replicated_latest_version >}} released on {{< replicated_latest_release_date >}}.  Prior versions are available and can also be installed and instructions how depend on your install method. To read about the latest features of Replicated see the [Replicated changelog](https://vendor.replicated.com/#/changelog).
+The current release of Replicated is version {{< replicated_latest_version >}} released on {{< replicated_latest_release_date >}}.  Prior versions are available and can also be installed and instructions how depend on your install method. To read about the latest features of Replicated see the [Replicated changelog](https://release-notes.replicated.com).
 
 ### TL;DR
 
