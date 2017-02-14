@@ -28,8 +28,6 @@ List version of currently running replicated components.
 
 ```shell
 replicated -version
-replicated-ui -version
-replicated-operator -version
 ```
 
 ## Status
@@ -58,7 +56,7 @@ replicated app <appid>
 
 Show and modify app state
 ```shell
-replicated app <appid> status|components|rm|start|restart|stop|pause|unpause|settings
+replicated app <appid> status|components|rm|start|stop|pause|unpause|settings
 ```
 
 | Command | Description |
@@ -66,7 +64,7 @@ replicated app <appid> status|components|rm|start|restart|stop|pause|unpause|set
 | {{< version version="2.0" >}} status | Show app status (`Started`, `Paused`, etc) |
 | components | List app components |
 | rm | Delete app |
-| start &#124; restart &#124; stop &#124; pause &#124; unpause | Transition app into the specified state |
+| start &#124; stop &#124; pause &#124; unpause | Transition app into the specified state |
 | {{< version version="2.1" >}} settings | Export app settings in JSON format |
 
 The settings command is useful for [automating an installation](/kb/developer-resources/automate-install/).
@@ -174,6 +172,29 @@ Note: task-id is retrieved utilizing the apps command.
 
 ```shell
 replicated task <task-id> logs
+```
+
+## Snapshots
+{{< version version="2.5.0" >}} Show available snapshots for an installed app.  This command will use settings for installed app to discover information about snapshots.
+
+```shell
+replicated snapshot list app <app id>
+```
+
+{{< version version="2.5.0" >}} Show available snapshots from a location on the local file system.  This command can be used when application has not been installed yet in cases when recovery from a snapshot is needed.
+
+```shell
+replicated snapshot list location <location>
+```
+
+{{< version version="2.5.0" >}} Restore an application from the specified snapshot.  When optional `--dismiss-prechecks` flag is specified, failed preflight checks will be ignored.  The optional `--node-timeout` parameter indicates how long to wait for the initial node to connect.  The default is 60 seconds.
+
+{{< note title="Warning" >}}
+This command cannot be used on a system with an already installed license.
+{{< /note >}}
+
+```shell
+replicated snapshot restore <location> <snapshot id> --dismiss-prechecks --node-timeout <seconds>
 ```
 
 ## Admin

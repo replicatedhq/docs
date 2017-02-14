@@ -10,7 +10,7 @@ categories = [ "Knowledgebase", "Supporting Your Customers" ]
 
 If snapshots are enabled in the application YAML, the user will have the ability
 to perform manual and scheduled snapshots.  More information on configuring snapshots can be
-found in the [Snapshots](packaging-an-application/snapshots/) section.
+found in the [Snapshots](/packaging-an-application/snapshots/) section.
 
 To restore you need to create a fresh install of replicated which you can find instructions
 for [here](/distributing-an-application/installing/#easy-installation). Before

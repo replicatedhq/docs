@@ -17,7 +17,7 @@ purpose of these `cmds` is to generate data for input in the configuration scree
 
 A command takes a variable number of string arguments and returns an array of strings. We have created an API with some
 useful commands. There is also the option to run the command raw. This command will take any `raw` string input and run
-the command in an Ubuntu Trusty container.
+the command in an [Ubuntu Trusty container](https://hub.docker.com/r/replicated/cmd/).
 
 The command is run at YAML import time only (during app installation & during app updates).
 

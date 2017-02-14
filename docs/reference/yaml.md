@@ -12,4 +12,4 @@ url        = "/docs/reference/yaml"
 parent     = "/reference"
 +++
 
-For a full reference to the Replicated YAML options, visit [gitub.com/replicatedhq/libyaml](https://github.com/replicatedhq/libyaml).
+For a full reference to the Replicated YAML options, visit [github.com/replicatedhq/libyaml](https://github.com/replicatedhq/libyaml).

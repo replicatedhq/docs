@@ -145,12 +145,13 @@ into the config items within this group. The arguments, in expected order:
 
 - Address:port of the SMTP server to test against
 - Whether or not to use SSL/TLS. Possible values: "0" or "1"
-- Type of authentication to try. Possible values: "Plain", "CRAM-MD5", or "Login"
+- Type of authentication to try. Possible values: "Plain", "CRAM-MD5", "Login" or "None"
 - Username to send
 - Password to send
 
 **Note that the address of the SMTP server must contain the correct port number ie
-smtp.gmail.com:587 for the test proc to validate correctly.**
+smtp.gmail.com:587 for the test proc to validate correctly. A type of "None" will only
+ensure the socket is evailable.**
 
 See [sample YAML for common SMTP inputs](https://support.replicated.com/hc/en-us/articles/216080448)
 and leveraging the test_proc.

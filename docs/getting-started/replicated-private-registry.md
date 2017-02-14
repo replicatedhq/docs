@@ -12,11 +12,11 @@ parent     = "/getting-started"
 url        = "/docs/getting-started/replicated-private-registry"
 +++
 
-When building your application, you have the option of hosting your private images on the Replicated private registry.
+When building your application, you have the option of hosting your private images on the Replicated private registry or [using external private and public registries](/kb/supporting-your-customers/registries/).
 
 ## Tagging Images
 
-The first thing you will need to do is tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images tab of the [Replicated Vendor Portal](https://vendor.replicated.com/).
+The first thing you will need to do is tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images tab of the [Replicated Vendor Portal](https://vendor.replicated.com/#/images).
 
 An example of tagging an existing image is:
 

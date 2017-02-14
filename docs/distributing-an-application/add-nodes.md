@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Add Nodes"
 description = "When an application is configured by the vendor with a clustering strategy, Replicated makes it possible for the end customer to install additional nodes on remote instances to run a distributed application."
-weight = "308"
+weight = "330"
 categories = [ "Distributing" ]
 
 [menu.main]
