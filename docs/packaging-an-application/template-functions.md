@@ -12,13 +12,12 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/template-functions"
 +++
 
-Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be
-dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.
+Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.
+
+Template functions that refer to you containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition. 
 
 ### Go Templates
-Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to execute the following functions.  In addition
-to the functions listed here, all of the Go template runtime is available.  Please note that Go template functions must still
-be escaped with "repl" escape sequence as demonstrated below.
+Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to execute the following functions.  In addition to the functions listed here, all of the Go template runtime is available.  Please note that Go template functions must still be escaped with "repl" escape sequence as demonstrated below.
 
 ```go
 {{repl if pipeline}} T1 {{repl else}} T0 {{repl end}}
@@ -77,7 +76,7 @@ ports:
 
 ## HostPrivateIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
-func HostPrivateIpAddress(componentName string, containerName string) string
+func HostPrivateIpAddress(componentName string, imageName string) string
 ```
 Returns Private IP Address of Component as a string.
 
@@ -89,7 +88,7 @@ env_vars:
 
 ## HostPrivateIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
-func HostPrivateIpAddressAll(componentName string, containerName string) []string
+func HostPrivateIpAddressAll(componentName string, imageName string) []string
 ```
 Returns host private IP addresses for all instances of a given Component as an array of strings.
 
@@ -97,7 +96,7 @@ Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddress
 
 ## HostPublicIpAddress [*](/packaging-an-application/template-functions/#notes)
 ```go
-func HostPublicIpAddress(componentName string, containerName string) string
+func HostPublicIpAddress(componentName string, imageName string) string
 ```
 Returns Public IP Address of Component as a string.
 ```yml
@@ -108,7 +107,7 @@ env_vars:
 
 ## HostPublicIpAddressAll [*](/packaging-an-application/template-functions/#notes)
 ```go
-func HostPublicIpAddressAll(componentName string, containerName string) []string
+func HostPublicIpAddressAll(componentName string, imageName string) []string
 ```
 Returns host public IP addresses for all instances of a given Component as an array of strings.
 
@@ -116,7 +115,7 @@ Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddress
 
 ## ContainerExposedPort [*](/packaging-an-application/template-functions/#notes)
 ```go
-func ContainerExposedPort(componentName string, containerName string, internalPort string) string
+func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
 Returns the host's public port mapped to the supplied exposed container port as a string.
 
@@ -128,7 +127,7 @@ env_vars:
 
 ## ContainerExposedPortAll [*](/packaging-an-application/template-functions/#notes)
 ```go
-func ContainerExposedPortAll(componentName string, containerName string, internalPort string) string
+func ContainerExposedPortAll(componentName string, imageName string, internalPort string) string
 ```
 Returns the host public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
 
@@ -282,8 +281,7 @@ Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or This
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
-Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string.
-For a clustered application this value will be different for each host.
+Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string. For a clustered application this value will be different for each host.
 ```yml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
@@ -294,8 +292,7 @@ env_vars:
 ```go
 func ThisNodePublicIPAddress() string
 ```
-Returns the public IP address of the host on which the current container instance is deployed as a string.
-For a clustered application this value will be different for each host.
+Returns the public IP address of the host on which the current container instance is deployed as a string. For a clustered application this value will be different for each host.
 ```yml
 env_vars:
 - name: CASSANDRA_ADDRESS_PUBLIC
@@ -307,8 +304,7 @@ Replaces ThisHostPublicIpAddress which is deprecated.
 ```go
 func ThisNodePrivateIPAddress() string
 ```
-Returns the private IP address of the host on which the current container instance is deployed as a string. This address is either what was entered manually when host was provisioned or detected from eth0 interface by default.
-For a clustered application this value will be different for each host.
+Returns the private IP address of the host on which the current container instance is deployed as a string. This address is either what was entered manually when host was provisioned or detected from eth0 interface by default. For a clustered application this value will be different for each host.
 ```yml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
@@ -568,7 +564,5 @@ env_vars:
 ```
 
 ## Notes
-
-The containerName argument references the image_name property from the container yaml. 
 
 When referencing another container in a template object, you must make sure the referenced container is started first.  Please see the [Events and Orchestration](/packaging-an-application/events-and-orchestration/) section for more information on orchestrating container startup.
