@@ -6,11 +6,15 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-The current release of Replicated supports deploying Replicated and your application to a Kubernetes cluster. This is not yet intended for production installations. Contact the Replicated team to ensure that your account has this feature enabled.
+The current release of Replicated supports deploying Replicated and your application to a Kubernetes 
+cluster. This is not yet intended for production installations. Contact the Replicated team to ensure 
+that your account has this feature enabled.
 
 ## Requirements
 
-You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
+You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will 
+contain at least one deployment spec (replication controllers are currently unsupported, use deployments 
+instead).
 
 ## Create a Kubernetes Cluster with a persistent volume (minimum capacity 10 GB)
 
@@ -301,9 +305,18 @@ spec:
         - containerPort: 80
 ```
 
+### Load Balancers and Ingress
+
+Only some environments (typically cloud providers) have support for the Service resource type 
+`LoadBalancer`. An Ingress resource is recommended for more broad support for allowing inbound 
+connections to the cluster. Replicated does not provide an Ingress controller and therefore one must 
+be included in your application yaml. For more detailes on Ingress see 
+[https://kubernetes.io/docs/user-guide/ingress/](https://kubernetes.io/docs/user-guide/ingress/).
+
 ## Advanced Replicated Configuration
 
-Replicated can be deployed into your kubernetes cluster or it can be deployed independently with the following environment variables:
+Replicated can be deployed into your kubernetes cluster or it can be deployed independently with the 
+following environment variables:
 
 ```bash
 SCHEDULER_ENGINE=kubernetes
