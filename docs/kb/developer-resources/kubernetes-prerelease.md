@@ -1,6 +1,6 @@
 +++
 date = "2016-07-26T00:00:00Z"
-lastmod = "2016-09-29T00:00:00Z"
+lastmod = "2017-02-24T00:00:00Z"
 title = "Kubernetes Pre-release"
 weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
@@ -9,161 +9,64 @@ categories = [ "Knowledgebase", "Developer Resources" ]
 The current release of Replicated supports deploying Replicated and your application to a Kubernetes cluster. This is not yet intended for production installations. Contact the Replicated team to ensure that your account has this feature enabled.
 
 ## Requirements
+
 You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
 
 ## Create a Kubernetes Cluster with a persistent volume (minimum capacity 10 GB)
-example:
+
+### GCE
+
+```bash
+gcloud compute disks create --size=10GB --zone=<zone> replicated-pv
+```
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
- name: replicated-pv
+  name: replicated-pv
 spec:
- capacity:
-   storage: 10Gi
- accessModes:
-   - ReadWriteOnce
- gcePersistentDisk:
-   pdName: replicated-pv
-   fsType: ext4
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: replicated-pv
+    fsType: ext4
+```
+
+### HostPath
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: replicated-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /data/pv0002/
 ```
 
 ## Install Replicated on the cluster
-Kubernetes specs to install Replicated:
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: replicated-lb
-  labels:
-    app: replicated
-spec:
-  type: LoadBalancer
-  selector:
-    app: replicated
-  ports:
-    - port: 8800
-      name: repl-ui
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: replicated
-  labels:
-    app: replicated
-spec:
-  type: ClusterIP
-  selector:
-    app: replicated
-  ports:
-    - port: 9874
-      name: repl-registry
-    - port: 9880
-      name: repl-iapi
-    - port: 9877
-      name: repl-liapi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: replicated-pv-claim
-  labels:
-    app: replicated
-  annotations:
-    volume.beta.kubernetes.io/storage-class: ""
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: replicated
-  labels:
-    app: replicated
-    tier: master
-spec:
-  template:
-    metadata:
-      labels:
-        app: replicated
-    spec:
-      containers:
-      - name: replicated
-        image: quay.io/replicated/replicated:stable-2.4.1
-        imagePullPolicy: Always
-        env:
-        - name: SCHEDULER_ENGINE
-          value: kubernetes
-        - name: LOG_LEVEL
-          value: info
-        - name: RELEASE_CHANNEL
-          value: stable
-        - name: LOCAL_ADDRESS
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP # is this sufficient?
-        - name: PREMKIT_ENABLED
-          value: "false"
-        ports:
-        - containerPort: 9874
-        - containerPort: 9880
-        - containerPort: 9877
-        volumeMounts:
-        - name: replicated-persistent
-          mountPath: /var/lib/replicated
-        - name: replicated-socket
-          mountPath: /var/run/replicated
-        - name: docker-socket
-          mountPath: /host/var/run/docker.sock
-        - name: proc
-          mountPath: /host/proc
-          readOnly: true
-      - name: replicated-ui
-        image: quay.io/replicated/replicated-ui:stable-2.4.1
-        imagePullPolicy: Always
-        env:
-        - name: LOG_LEVEL
-          value: info
-        - name: RELEASE_CHANNEL
-          value: stable
-        ports:
-        - containerPort: 8800
-        volumeMounts:
-        - name: replicated-socket
-          mountPath: /var/run/replicated
-          readOnly: true
-      volumes:
-      - name: replicated-persistent
-        persistentVolumeClaim:
-          claimName: replicated-pv-claim
-      - name: replicated-socket
-      - name: docker-socket
-        hostPath:
-          path: /var/run/docker.sock
-      - name: proc
-        hostPath:
-          path: /proc
+
+```bash
+kubectl apply -f https://get.replicated.com/kubernetes.yml
 ```
 
 ## Create a sample app by using this Kubernetes YAML with Replicated
+
 ```yaml
 ---
 # kind: replicated
-# apiVersion: 2.3.5
 replicated_api_version: "2.3.5"
 version: "alpha"
 name: "Guestbook"
 properties:
-  app_url:
-    kubernetes:
-      value_from:
-        services_url:
-          name: frontend
-          port: 80
+  app_url: '{{repl ServiceAddress "frontend" 80 }}'
   logo_url: http://www.replicated.com/images/logo.png
   console_title: Guestbook Console
 backup:
@@ -173,22 +76,30 @@ monitors:
   memory: []
 
 config:
-- name: db
-  title: DB
+- name: advanced
+  title: Advanced
   items:
-  - name: redis_slave_replicas
-    title: Redis Slave Replicas
+  - name: redis_pv_storage_class
+    title: Redis PV Storage Class
     type: text
-    default: 2
-- name: frontend
-  title: Frontend
-  items:
-  - name: frontend_replicas
-    title: App Replicas
-    type: text
-    default: 2
+    default: default
 
-components:[]
+---
+# kind: scheduler-kubernetes
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis-pvc
+  labels:
+    app: redis
+  annotations:
+    volume.alpha.kubernetes.io/storage-class: {{repl ConfigOption "redis_pv_storage_class" }}
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
 
 ---
 # kind: scheduler-kubernetes
@@ -209,8 +120,8 @@ spec:
     app: redis
     tier: backend
     role: master
----
 
+---
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -249,8 +160,15 @@ spec:
             memory: 100Mi
         ports:
         - containerPort: 6379
----
+        volumeMounts:
+        - mountPath: /redis-master-data
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: redis-pvc
 
+---
 # kind: scheduler-kubernetes
 apiVersion: v1
 kind: Service
@@ -268,8 +186,8 @@ spec:
     app: redis
     tier: backend
     role: slave
----
 
+---
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -316,8 +234,8 @@ spec:
           # value: env
         ports:
         - containerPort: 6379
----
 
+---
 # kind: scheduler-kubernetes
 apiVersion: v1
 kind: Service
@@ -336,8 +254,8 @@ spec:
   selector:
     app: guestbook
     tier: frontend
----
 
+---
 # kind: scheduler-kubernetes
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -384,20 +302,35 @@ spec:
 ```
 
 ## Advanced Replicated Configuration
-Replicated can be deployed into your kubernetes cluster (TODO: document this) or it can be deployed independently with the following /etc/replicated.conf:
-```json
-{
-        "SchedulerEngine": "kubernetes",
-        "K8sOverrideClusterConfig": true,
-        "K8sHost": "https://10.10.10.10",
-        "K8sUsename": "admin",
-        "K8sPassword": "password",
-        "K8sClusterCACertData": "<base64 encoded cert>"
-}
+
+Replicated can be deployed into your kubernetes cluster or it can be deployed independently with the following environment variables:
+
+```bash
+SCHEDULER_ENGINE=kubernetes
+K8S_OVERRIDE_CLUSTER_CONFIG=true
+K8S_HOST=https://10.10.10.10
+K8S_TLS_INSECURE=true
+K8S_USERNAME=admin
+K8S_PASSWORD=password
+K8S_CLIENT_CERT_DATA="-----BEGIN CERTIFICATE-----…"
+K8S_CLIENT_KEY_DATA="-----BEGIN RSA PRIVATE KEY-----…"
+K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 ```
 
-### Known Limitations
-- Replicated admin commands are not supported
-- Replicated snapshots are not supported
-- Replicated auto update does not work
-- Preflight checks have limited checks
+### Feature Support
+
+- [ ] Admin commands
+- [ ] Airgapped installation
+- [x] Application state monitoring
+- [ ] CPU and memory container monitoring
+- [x] Config settings
+- [ ] Custom monitors
+- [x] Easy install script
+- [ ] Integration API
+- [x] Licensing
+- [ ] On-Prem registry
+- [x] Preflight checks (limited)
+- [ ] Ready state
+- [ ] Replicated snapshots
+- [ ] Replicated auto-updates
+- [x] Support bundle
