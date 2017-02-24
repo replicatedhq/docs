@@ -403,7 +403,7 @@ Add extra hostname mappings with hostname, address and an optional when field.  
 ```
 
 ### Named Containers
-The name argument sets the name of your running container. It is provided as a convience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
+The name argument sets the name of your running container. It is provided as a convenience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
 
 ```yml
   name: redis
