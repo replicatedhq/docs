@@ -45,8 +45,9 @@ host_requirements:
 
 {{< version version="2.3.0" >}} The application level `host_requirements` key can be used to automatically upgrade Replicated.  This feature can be enabled by specifying a version range in the the `replicated_version` key.  Version range syntax is similar to that used by [npm](https://docs.npmjs.com/misc/semver).  Versions that don't support this feature will simply ignore the value.  This key is also ignored by the pre-flight checks.
 
-It is possible to override all properties (except docker version) of the root `host_requirements` on a per-component basis. On distributed
-installs, the component host requirements will only apply to nodes tagged for that component.
+It is possible to override all properties (except docker version) of the root `host_requirements` on a per-component basis. On distributed installs, the component host requirements will only apply to nodes tagged for that component.
+
+`docker_version` refers to the lowest acceptable version of docker on the host. Any host running a docker version at or above this value will meet the requirement.
 
 ```yaml
 components:
