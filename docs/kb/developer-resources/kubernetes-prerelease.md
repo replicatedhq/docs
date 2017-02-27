@@ -301,6 +301,10 @@ spec:
         - containerPort: 80
 ```
 
+### Load Balancers and Ingress
+
+Only some environments (typically cloud providers) have support for the Service resource type `LoadBalancer`. An Ingress resource is recommended for more broad support for allowing inbound connections to the cluster. Replicated does not provide an Ingress controller and therefore one must be included in your application yaml. For more detailes on Ingress see [https://kubernetes.io/docs/user-guide/ingress/](https://kubernetes.io/docs/user-guide/ingress/).
+
 ## Advanced Replicated Configuration
 
 Replicated can be deployed into your kubernetes cluster or it can be deployed independently with the following environment variables:
