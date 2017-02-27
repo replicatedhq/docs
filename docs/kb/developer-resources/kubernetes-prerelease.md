@@ -82,7 +82,7 @@ config:
   - name: redis_pv_storage_class
     title: Redis PV Storage Class
     type: text
-    default: default
+    default: slow
 
 ---
 # kind: scheduler-kubernetes
