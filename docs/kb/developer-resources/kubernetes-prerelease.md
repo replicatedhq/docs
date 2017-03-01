@@ -321,7 +321,7 @@ K8S_CLIENT_KEY_DATA="-----BEGIN RSA PRIVATE KEY-----…"
 K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 ```
 
-### Feature Support
+## Feature Support
 
 - [ ] Admin commands
 - [ ] Airgapped installation
@@ -338,3 +338,57 @@ K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 - [ ] Replicated snapshots
 - [ ] Replicated auto-updates
 - [x] Support bundle
+- [x] Vendor registry
+
+## Vendor Registry
+
+Replicated creates an image pull secret named `replicatedregistrykey` along with your application resources. You can make use of this secret when using the Replicated vendor registry. See the example below for more details.
+
+```yml
+    spec:
+      containers:
+      - name: frontend
+        image: registry.replicated.com/guestbook/gb-frontend:v4
+        ...
+      imagePullSecrets:
+      - name: replicatedregistrykey
+```
+
+
+## Template Functions
+
+Below are additional Kubernetes specific template functions.
+
+### Namespace
+
+```go
+func Namespace() string
+```
+
+Namespace returns the value of the namespace the vendor application is installed in.
+
+### ServiceAddress
+
+```go
+ServiceAddress(name string, port int32) string
+```
+
+ServiceAddress returns the address of the ingress.
+
+```yml
+properties:
+  app_url: '{{repl ServiceAddress "frontend" 80 }}'
+```
+
+### IngressAddress
+
+```go
+IngressAddress(name string, port int32) string
+```
+
+IngressAddress returns the address of the ingress.
+
+```yml
+properties:
+  app_url: '{{repl IngressAddress "frontend" 80 }}'
+```
