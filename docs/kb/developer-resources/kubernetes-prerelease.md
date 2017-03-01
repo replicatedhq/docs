@@ -354,6 +354,37 @@ Replicated creates an image pull secret named `replicatedregistrykey` along with
       - name: replicatedregistrykey
 ```
 
+## Secrets
+
+Replicated supports runtime secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the On-Prem Console settings page. See below for an example of creating a secret in your application.
+
+```yml
+
+# kind: replicated
+...
+config:
+- name: auth
+  title: Authentication
+  items:
+  - name: config_username
+    title: Username
+    type: password
+  - name: config_password
+    title: Password
+    type: password
+
+---
+# kind: scheduler-kubernetes
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+  labels:
+    app: guestbook
+data:
+  username: {{repl ConfigOption "config_username" | Base64Encode }}
+  password: {{repl ConfigOption "config_password" | Base64Encode }}
+```
 
 ## Template Functions
 
