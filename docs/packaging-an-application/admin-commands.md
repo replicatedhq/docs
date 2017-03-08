@@ -32,9 +32,7 @@ admin_commands:
   command: [service, nginx, reload]
   run_type: exec
   component: MyComponent
-  image:
-    image_name: nginx
-    version: latest
+  container: nginx
 ```
 
 ### `redis-sadd`
@@ -50,9 +48,7 @@ admin_commands:
   command: [redis-cli, sadd]
   run_type: exec
   component: MyComponent
-  image:
-    image_name: redis
-    version: latest
+  container: redis
 ```
 
 ## Configuration

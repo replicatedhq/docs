@@ -156,12 +156,11 @@ Optionally you can expose [admin commands](/packaging-an-application/admin-comma
 
 ```yaml
 admin_commands:
-- command: redis-cli
-  component: DB
+- alias: redis-cli
+  command: [redis-cli]
   run_type: exec
-  image:
-    image_name: redis
-    version: latest
+  component: DB
+  container: redis
 ```
 
 ## Custom Preflight Checks
