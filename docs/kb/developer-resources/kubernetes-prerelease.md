@@ -78,7 +78,7 @@ admin_commands:
     app: redis
     tier: backend
     role: master
-  container: master
+  container: master # optional, will choose first in pod
 
 config:
 - name: advanced
@@ -331,6 +331,7 @@ K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 - [x] Admin commands
 - [ ] Airgapped installation
 - [x] Application state monitoring
+- [x] CLI
 - [ ] CPU and memory container monitoring
 - [x] Config settings
 - [ ] Custom monitors
@@ -389,6 +390,30 @@ metadata:
 data:
   username: {{repl ConfigOption "config_username" | Base64Encode }}
   password: {{repl ConfigOption "config_password" | Base64Encode }}
+```
+
+## CLI
+
+The Replicated CLI can be run via the `kubectl exec` command. See below for an example of running a Replicated CLI command.
+
+```bash
+kubectl exec -it "$(kubectl get pods -l=app=replicated -o=jsonpath='{.items..metadata.name}')" -c replicated -- replicated apps
+```
+
+## Admin Commands
+
+Admin commands are supported on Kubernetes. Replicated uses Kubernetes selectors to identify the target pod in which to run the admin command. If multiple pods match the selector then replicated will choose a random pod in which to run the command. Specifying a container is optional as well. If no container is specified the first in the pod will be chosen. See below for an example command.
+
+```yml
+admin_commands:
+- alias: redis-cli
+  command: [redis-cli]
+  run_type: exec
+  selectors:
+    app: redis
+    tier: backend
+    role: master
+  container: master # optional, will choose first in pod
 ```
 
 ## Template Functions
