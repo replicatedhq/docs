@@ -69,11 +69,16 @@ properties:
   app_url: '{{repl ServiceAddress "frontend" 80 }}'
   logo_url: http://www.replicated.com/images/logo.png
   console_title: Guestbook Console
-backup:
-  enabled: false
-monitors:
-  cpuacct: []
-  memory: []
+
+admin_commands:
+- alias: redis-cli
+  command: [redis-cli]
+  run_type: exec
+  selectors:
+    app: redis
+    tier: backend
+    role: master
+  container: master
 
 config:
 - name: advanced
@@ -323,7 +328,7 @@ K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 
 ## Feature Support
 
-- [ ] Admin commands
+- [x] Admin commands
 - [ ] Airgapped installation
 - [x] Application state monitoring
 - [ ] CPU and memory container monitoring

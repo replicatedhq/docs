@@ -43,24 +43,15 @@ components:
 ```yml
 admin_commands:
 - alias: backup-redis-to-rdb
- command:
- - redis-cli
- - bgsave
- run_type: exec
- component: DB
- image:
-   image_name: redis
-   version: latest
+  command: [redis-cli, bgsave]
+  run_type: exec
+  component: DB
+  container: redis
 - alias: mv-backup-rdb-to-safe-place
- command:
- - mv
- - /data/dump.rdb
- - /backup/dump.rdb
- run_type: exec
- component: DB
- image:
-   image_name: redis
-   version: latest
+  command: [mv, /data/dump.rdb, /backup/dump.rdb]
+  run_type: exec
+  component: DB
+  container: redis
 ```
 
 ## Step 3: Enable backups
