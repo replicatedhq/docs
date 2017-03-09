@@ -334,15 +334,15 @@ K8S_CLUSTER_CA_CERT_DATA="-----BEGIN CERTIFICATE-----..."
 - [x] CLI
 - [ ] CPU and memory container monitoring
 - [x] Config settings
-- [ ] Custom monitors
+- [x] Custom monitors
 - [x] Easy install script
-- [ ] Integration API
+- [x] Integration API
 - [x] Licensing
 - [ ] On-Prem registry
 - [x] Preflight checks (limited)
 - [ ] Ready state
 - [ ] Replicated snapshots
-- [ ] Replicated auto-updates
+- [x] Replicated auto-updates
 - [x] Support bundle
 - [x] Vendor registry
 
