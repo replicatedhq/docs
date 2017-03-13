@@ -34,7 +34,7 @@ I am going to loop through the newly created array of expiring licenses from the
       	 -H 'Authorization: <YOUR-API-TOKEN>' \
       	 -H 'Content-Type: application/json' \
       	 https://api.replicated.com/vendor/v2/license/<YOUR-LICENSE-ID> \
-      	 -d '{"license_type":"not-set",
+      	 -d '{"license_type":"dev",
               "activation_email": false,
               "airgap_download_enabled": false,
               "assignee":"My-App",
