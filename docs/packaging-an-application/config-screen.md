@@ -122,28 +122,33 @@ in the settings section of the On-Prem Console.
 
 ## Properties
 ### `required`
-When set, required fields will prevent the application from starting until there is a value.
+A required field will prevent the application from starting until it has a value.
 ```yaml
     required: true
 ```
 
 ### `when`
-The when value is used to denote conditional inputs that will only be visible (or required) when
-the condition evaluates to true.
+The when value is used to denote conditional inputs that will only be visible (or required) when the condition evaluates to true. The `when` item can be used on groups, items and select_one or select_many options.
+
+The settings UI will update right away when a field used in a when clause is updated (no need to save) and can be used to used to show optional config sections. The equality check should match exactly without quotes.
+
 ```yaml
+- name: database_settings_group
   items:
-  - name: key
+  - name: db_type
+    type: select_one
+    default: embedded
+    items:
+    - name: external
+      title: External
+    - name: embedded
+      title: Embedded DB
+  - name: database_host
+    title: Database Hostname
+    description: MySQL hostname
     type: text
-    default: "1"
-  - name: value
-    type: text
-    when: key=1
-  - name: key2
-    type: text
-    default: "1"
-  - name: value2
-    type: text
-    when: key2!=1
+    default: ''
+    when: db_type=external
 ```
 
 ### `recommended`
