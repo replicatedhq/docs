@@ -10,7 +10,7 @@ In order to utilize many of the developer API endpoints you will need to know yo
 
 ## API Token
 
-You can create and show your API Token inside your Vendor Web portal by clicking on the Teams & Tokens link.
+You can create and show your API Token inside your Vendor Web portal by clicking on the [Teams & Tokens](https://vendor.replicated.com/#/team) link.
 
 
 ## APP ID
