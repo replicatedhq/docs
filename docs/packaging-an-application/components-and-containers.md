@@ -403,10 +403,13 @@ Add extra hostname mappings with hostname, address and an optional when field.  
 ```
 
 ### Named Containers
-Use name to set the name of the container.  References to the container in template functions should continue to the use imagename.  Do not use named containers when clustering and starting multiple copies of the same container on one server.
+The name argument sets the name of your running container. It is provided as a convenience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
+
 ```yml
   name: redis
 ```
+
+For more information see [named containers](https://docs.docker.com/engine/reference/run/#/container-identification).
 
 ### Entrypoint
 When working with third party containers you may want to override the default entry point using the
