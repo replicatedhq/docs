@@ -18,7 +18,7 @@ To find your App and Channel ID values:
 
     curl -X GET \
     -H 'Authorization: <YOUR-API-TOKEN>' \
-    https://api.replicated.com/vendor/v2/apps \
+    https://api.replicated.com/vendor/v1/apps \
     | python -m json.tool
 
 You will receive a json response that includes the "App:Id" for each of your Apps along with the "Channel:Id" for each release channel.
@@ -28,5 +28,5 @@ To look up a Channel ID for a specific App:
 
     curl -X GET \
     -H 'Authorization: <YOUR-API-TOKEN>' \
-    https://api.replicated.com/vendor/v2/app/<YOUR-APP-ID>/channels \
+    https://api.replicated.com/vendor/v1/app/<YOUR-APP-ID>/channels \
     | python -m json.tool
