@@ -486,7 +486,7 @@ spec:
     image: mycompany/myservice:1.0
     env:
     - name: REPLICATED_INTEGRATIONAPI
-      value: {{repl PremkitApiAddress }}
+      value: {{repl PremkitAPIAddress }}
 ```
 
 ###  StatsdAddress
