@@ -12,12 +12,16 @@ The current release of Replicated supports deploying Replicated and your applica
 
 You should have a standard Kubernetes YAML available to deploy. Replicated expects that the YAML will contain at least one deployment spec (replication controllers are currently unsupported, use deployments instead).
 
-## Create a Kubernetes Cluster with a persistent volume (minimum capacity 10 GB)
+## Create a Kubernetes Cluster with two persistent volumes (minimum capacity 10 GB)
 
 ### GCE
 
 ```bash
-gcloud compute disks create --size=10GB --zone=<zone> replicated-pv
+$ gcloud compute disks create --size=10GB --zone=<zone> replicated-pv
+
+and
+
+$ gcloud compute disks create --size=10GB --zone=<zone> replicated-statsd-pv
 ```
 
 ```yaml
@@ -32,6 +36,19 @@ spec:
     - ReadWriteOnce
   gcePersistentDisk:
     pdName: replicated-pv
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: replicated-statsd-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: replicated-statsd-pv
     fsType: ext4
 ```
 
@@ -452,4 +469,40 @@ IngressAddress returns the address of the ingress.
 ```yml
 properties:
   app_url: '{{repl IngressAddress "frontend" 80 }}'
+```
+
+###  PremkitAPIAddress
+
+```go
+PremkitAPIAddress() string
+```
+
+PremkitAPIAddress return the address of the Premkit service in the cluster.
+
+```yml
+spec:
+  containers:
+  - name: myservice
+    image: mycompany/myservice:1.0
+    env:
+    - name: REPLICATED_INTEGRATIONAPI
+      value: {{repl PremkitApiAddress }}
+```
+
+###  StatsdAddress
+
+```go
+StatsdAddress() string
+```
+
+StatsdAddress return the address of the Statsd service in the cluster.
+
+```yml
+spec:
+  containers:
+  - name: myservice
+    image: mycompany/myservice:1.0
+    env:
+    - name: STATSD_ADDRESS
+      value: {{repl StatsdAddress }}
 ```
