@@ -486,7 +486,7 @@ spec:
     image: mycompany/myservice:1.0
     env:
     - name: REPLICATED_INTEGRATIONAPI
-      value: {{repl PremkitApiAddress }}
+      value: {{repl PremkitAPIAddress }}
 ```
 
 ###  StatsdAddress
@@ -503,6 +503,6 @@ spec:
   - name: myservice
     image: mycompany/myservice:1.0
     env:
-    - name: STATSD_ADDRESS
+    - name: REPLICATED_STATSD_ADDRESS
       value: {{repl StatsdAddress }}
 ```
