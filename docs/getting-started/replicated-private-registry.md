@@ -53,3 +53,19 @@ Pushing tag for rev [8e471642d573] on {https://registry.replicated.com/v1/reposi
 
 For additional information on building, tagging and pushing docker images, please refer to the
 [Docker CLI Documentation](https://docs.docker.com/reference/commandline/cli/).
+
+## Deploying to Kubernetes
+
+When deploying an application to a [Kubernetes](/packaging-an-application/kubernetes) cluster, Replicated will automatically deploy a secret named `replicatedregistrykey`. This secret can be used as an `imagePullSecret` to gain read-only access to the images from the on-prem environment.
+
+For example:
+
+```yml
+     spec:
+       containers:
+       - name: frontend
+         image: registry.replicated.com/guestbook/gb-frontend:v4
+         ...
+       imagePullSecrets:
+       - name: replicatedregistrykey
+```
