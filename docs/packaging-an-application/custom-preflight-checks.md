@@ -48,7 +48,7 @@ by the component section of the container yaml.
 |----------|----------|--------------|-----------------|
 | source | ReplicatedSchedulerSource<br />`{component: string, container: string}` | yes | A component and container reference |
 | cmd | string | no | Optionally override the container cmd |
-| config_files | array[ConfigFile] | no | {{< version version="2.6.0" >}} Additional config files to mount as volumes in the container |
+| config_files | array[ConfigFile] | no | {{< version version="2.7.0" >}} Additional config files to mount as volumes in the container |
 | entrypoint | array[string] | no | Optionally override the container entrypoint |
 | ports | array[ExposedPort] | no | Optionally override the container exposed ports |
 

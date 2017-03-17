@@ -30,9 +30,10 @@ The install script can take flags to help your customers with specialized enterp
 
 |Flag|Usage|
 |----|-----|
-|no-auto|Prompts will wait indefinetly instead of 20 second timeouts|
+|no-auto|Prompts will wait indefinitely instead of 20 second timeouts|
 |ui-bind-port <PORT_NUMBER>|Change the default UI port binding from port 8800|
 |docker-version <VERSION>|Install with a specific version of Docker|
+|bypass-storagedriver-warnings|For automation bypasses the warning for devicemapper with loopback|
 
 Example call with flags:
 
