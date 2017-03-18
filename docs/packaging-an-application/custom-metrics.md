@@ -93,7 +93,6 @@ monitors:
     targets:
       - stats.gauges.myapp100.disk.*.free
       - stats.gauges.myapp100.disk.*.total
-    dashboard: "true" # templates are allowed
     from: "-3days"
     until: "-30minutes"
     display:
@@ -109,7 +108,6 @@ monitors:
   - name: Disk Free (%)
     targets:
       - scale(divideSeries(stats.gauges.myapp100.disk.*.free,stats.gauges.myapp100.disk.*.total),100) # Show values between 0 and 100
-    dashboard: "true"
     display:
       label_unit: "%"
       label_scale: none
