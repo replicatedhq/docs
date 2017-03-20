@@ -4,6 +4,9 @@ title = "Kubernetes"
 description = "Packaging a Kubernetes application in Replicated"
 weight = "218"
 categories = [ "Packaging" ]
+aliases = [
+    "/kb/developer-resources/kubernetes-prerelease/"
+]
 
 [menu.main]
 Name       = "Replicated on Kubernetes"
