@@ -74,55 +74,83 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-{{< template_function name="HostPrivateIpAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIpAddress" replicated="true" kubernetes="false" >}}
 ```go
-func HostPrivateIpAddress(componentName string, imageName string) string
+func NodePrivateIpAddress(componentName string, imageName string) string
 ```
 Returns Private IP Address of Component as a string.
 
 ```yml
 env_vars:
 - name: REDIS_HOST_PRIVATE
-  static_val: '{{repl HostPrivateIpAddress "DB" "redis" }}'
+  static_val: '{{repl NodePrivateIpAddress "DB" "redis" }}'
 ```
+Replaces HostPrivateIpAddress which is deprecated.
 
-{{< template_function name="HostPrivateIpAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIpAddressFirst" replicated="true" kubernetes="false" >}}
 ```go
-func HostPrivateIpAddressAll(componentName string, imageName string) []string
+func NodePrivateIpAddressFirst(componentName string, imageName string) string
 ```
-Returns host private IP addresses for all instances of a given Component as an array of strings.
+Returns the first node's Private IP Address of Component as a string.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
-
-{{< template_function name="HostPublicIpAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIpAddressAll" replicated="true" kubernetes="false" >}}
 ```go
-func HostPublicIpAddress(componentName string, imageName string) string
+func NodePrivateIpAddressAll(componentName string, imageName string) []string
+```
+Returns node private IP addresses for all instances of a given Component as an array of strings.
+Replaces HostPrivateIpAddressAll which is deprecated.
+
+Note: `ContainerExposedPortAll`, `NodePrivateIpAddressAll`, `NodePublicIpAddressAll` are guaranteed to return in the same order
+
+{{< template_function name="NodePublicIpAddress" replicated="true" kubernetes="false" >}}
+```go
+func NodePublicIpAddress(componentName string, imageName string) string
 ```
 Returns Public IP Address of Component as a string.
 ```yml
 env_vars:
 - name: REDIS_HOST_PUBLIC
-  static_val: '{{repl HostPublicIpAddress "DB" "redis" }}'
+  static_val: '{{repl NodePublicIpAddress "DB" "redis" }}'
 ```
+Replaces HostPublicIpAddress which is deprecated.
 
-{{< template_function name="HostPublicIpAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePublicIpAddressFirst" replicated="true" kubernetes="false" >}}
 ```go
-func HostPublicIpAddressAll(componentName string, imageName string) []string
+func NodePublicIpAddressFirst(componentName string, imageName string) string
+```
+Returns first node's public IP addresses for a given Component as a string.
+
+{{< template_function name="NodePublicIpAddressAll" replicated="true" kubernetes="false" >}}
+```go
+func NodePublicIpAddressAll(componentName string, imageName string) []string
 ```
 Returns host public IP addresses for all instances of a given Component as an array of strings.
+Replaces HostPublicIpAddressAll which is deprecated.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
+Note: `ContainerExposedPortAll`, `NodePrivateIpAddressAll`, `Node PublicIpAddressAll` are guaranteed to return in the same order
 
 {{< template_function name="ContainerExposedPort" replicated="true" kubernetes="false" >}}
 ```go
 func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
-Returns the host's public port mapped to the supplied exposed container port as a string.
+Returns the node's public port mapped to the supplied exposed container port as a string.
 
 ```yml
 env_vars:
 - name: REDIS_PORT
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
+```
+
+{{< template_function name="ContainerExposedPortFirst" replicated="true" kubernetes="false" >}}
+```go
+func ContainerExposedPortFirst(componentName string, imagename string, internalPort string) string
+```
+Returns the first node's public port mapped to the supplied exposed container port as a string.
+
+```yml
+env_vars:
+- name: REDIS_PORT
+  static_val: '{{repl ContainerExposedPortFirst "DB" "redis" "6379" }}'
 ```
 
 {{< template_function name="ContainerExposedPortAll" replicated="true" kubernetes="false" >}}
@@ -131,7 +159,7 @@ func ContainerExposedPortAll(componentName string, imageName string, internalPor
 ```
 Returns the host public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
+Note: `ContainerExposedPortAll`, `NodePrivateIpAddressAll`, `NodePublicIpAddressAll` are guaranteed to return in the same order
 
 {{< template_function name="LicenseFieldValue" replicated="true" kubernetes="true" >}}
 ```go
