@@ -25,7 +25,7 @@ Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to e
 
 # Replicated Template Functions
 
-## ConfigOption
+{{< template_function name="ConfigOption" replicated="true" kubernetes="true" >}}
 ```go
 func ConfigOption(optionName string) string
 ```
@@ -35,7 +35,7 @@ properties:
   app_url: http://{{repl ConfigOption "hostname" }}
 ```
 
-## ConfigOptionData
+{{< template_function name="ConfigOptionData" replicated="true" kubernetes="true" >}}
 (only supports `type: file`)
 
 ```go
@@ -48,7 +48,7 @@ config_files:
   contents: {{repl ConfigOptionData "ssl_key"}}
 ```
 
-## ConfigOptionEquals
+{{< template_function name="ConfigOptionEquals" replicated="true" kubernetes="true" >}}
 ```go
 func ConfigOptionEquals(optionName string, expectedValue string) bool
 ```
@@ -61,7 +61,7 @@ ports:
      when: '{{repl ConfigOptionEquals "http_enabled" "1" }}'
 ```
 
-## ConfigOptionNotEquals
+{{< template_function name="ConfigOptionNotEquals" replicated="true" kubernetes="true" >}}
 ```go
 func ConfigOptionNotEquals(optionName string, expectedValue string) bool
 ```
@@ -74,7 +74,7 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-## HostPrivateIpAddress [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="HostPrivateIpAddress" replicated="true" kubernetes="false" >}}
 ```go
 func HostPrivateIpAddress(componentName string, imageName string) string
 ```
@@ -86,7 +86,7 @@ env_vars:
   static_val: '{{repl HostPrivateIpAddress "DB" "redis" }}'
 ```
 
-## HostPrivateIpAddressAll [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="HostPrivateIpAddressAll" replicated="true" kubernetes="false" >}}
 ```go
 func HostPrivateIpAddressAll(componentName string, imageName string) []string
 ```
@@ -94,7 +94,7 @@ Returns host private IP addresses for all instances of a given Component as an a
 
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## HostPublicIpAddress [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="HostPublicIpAddress" replicated="true" kubernetes="false" >}}
 ```go
 func HostPublicIpAddress(componentName string, imageName string) string
 ```
@@ -105,7 +105,7 @@ env_vars:
   static_val: '{{repl HostPublicIpAddress "DB" "redis" }}'
 ```
 
-## HostPublicIpAddressAll [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="HostPublicIpAddressAll" replicated="true" kubernetes="false" >}}
 ```go
 func HostPublicIpAddressAll(componentName string, imageName string) []string
 ```
@@ -113,7 +113,7 @@ Returns host public IP addresses for all instances of a given Component as an ar
 
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## ContainerExposedPort [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="ContainerExposedPort" replicated="true" kubernetes="false" >}}
 ```go
 func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
@@ -125,7 +125,7 @@ env_vars:
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
 ```
 
-## ContainerExposedPortAll [*](/packaging-an-application/template-functions/#notes)
+{{< template_function name="ContainerExposedPortAll" replicated="true" kubernetes="false" >}}
 ```go
 func ContainerExposedPortAll(componentName string, imageName string, internalPort string) string
 ```
@@ -133,7 +133,7 @@ Returns the host public port mapped to the supplied exposed container port for a
 
 Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
 
-## LicenseFieldValue
+{{< template_function name="LicenseFieldValue" replicated="true" kubernetes="true" >}}
 ```go
 func LicenseFieldValue(customLicenseFieldName string) string
 ```
@@ -145,7 +145,7 @@ config_files:
       max_users: '{{repl LicenseFieldValue "maximum_users" }}'
 ```
 
-## LicenseProperty
+{{< template_function name="LicenseProperty" replicated="true" kubernetes="true" >}}
 ```go
 func LicenseProperty(propertyName string) string
 ```
@@ -157,7 +157,7 @@ config_files:
       expiration.date: {{repl LicenseProperty "expiration.date"}}
 ```
 
-## AppID
+{{< template_function name="AppID" replicated="true" kubernetes="true" >}}
 ```go
 func AppID() string
 ```
@@ -168,7 +168,7 @@ env_vars:
   static_val: '{{repl AppID }}'
 ```
 
-## AppVersion
+{{< template_function name="AppVersion" replicated="true" kubernetes="true" >}}
 ```go
 func AppVersion() int
 ```
@@ -179,7 +179,7 @@ env_vars:
   static_val: '{{repl AppVersion }}'
 ```
 
-## AppVersionFirst
+{{< template_function name="AppVersionFirst" replicated="true" kubernetes="true" >}}
 ```go
 func AppVersionFirst() int
 ```
@@ -190,7 +190,7 @@ env_vars:
   static_val: '{{repl AppVersionFirst }}'
 ```
 
-## AppVersionCurrent
+{{< template_function name="AppVersionCurrent" replicated="true" kubernetes="true" >}}
 ```go
 func AppVersionCurrent() int
 ```
@@ -201,18 +201,18 @@ env_vars:
   static_val: '{{repl AppVersionCurrent }}'
 ```
 
-## RunOffline
+{{< template_function name="RunOffline" replicated="true" kubernetes="true" >}}
 ```go
 func RunOffline() bool
 ```
-Returns whether or not we are running in airgap mode.
+Returns whether or not we are running in airgap mode. This is available in the Kubernetes implementation, but will always return false.
 ```yml
 env_vars:
 - name: IS_AIRGAP
   static_val: '{{repl RunOffline }}'
 ```
 
-## AppSetting
+{{< template_function name="AppSetting" replicated="true" kubernetes="true" >}}
 ```go
 func AppSetting(key string) string
 ```
@@ -239,7 +239,7 @@ env_vars:
   static_val: '{{repl AppSetting "release.channel"}}'
 ```
 
-## ConsoleSetting
+{{< template_function name="ConsoleSetting" replicated="true" kubernetes="true" >}}
 ```go
 func ConsoleSetting(consoleSettingName string) string
 ```
@@ -264,19 +264,19 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
-## ConsoleSettingEquals
+{{< template_function name="ConsoleSettingEquals" replicated="true" kubernetes="true" >}}
 ```go
 func ConsoleSettingEquals(name string, value string) bool
 ```
 Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
 
-## ConsoleSettingNotEquals
+{{< template_function name="ConsoleSettingNotEquals" replicated="true" kubernetes="true" >}}
 ```go
 func ConsoleSettingNotEquals(name string, value string) bool
 ```
 Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
 
-## ThisHostInterfaceAddress
+{{< template_function name="ThisHostInterfaceAddress" replicated="true" kubernetes="false" >}}
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
@@ -288,7 +288,7 @@ env_vars:
   static_val: '{{repl ThisHostInterfaceAddress "docker0" }}'
 ```
 
-## ThisNodePublicIPAddress
+{{< template_function name="ThisNodePublicIPAddress" replicated="true" kubernetes="false" >}}
 ```go
 func ThisNodePublicIPAddress() string
 ```
@@ -300,7 +300,7 @@ env_vars:
 ```
 Replaces ThisHostPublicIpAddress which is deprecated.
 
-## ThisNodePrivateIPAddress
+{{< template_function name="ThisNodePrivateIPAddress" replicated="true" kubernetes="false" >}}
 ```go
 func ThisNodePrivateIPAddress() string
 ```
@@ -312,14 +312,14 @@ env_vars:
 ```
 Replaces ThisHostPrivateIpAddress which is depreciated.
 
-## ThisNodeDockerAddress
+{{< template_function name="ThisNodeDockerAddress" replicated="true" kubernetes="false" >}}
 ```go
 func ThisNodeDockerAddress() string
 ```
 Returns the docker0 address on the host on which the current container instance is deployed.
 For a clustered application this value will be different for each host.
 
-## LdapCopyAuthFrom
+{{< template_function name="LDAPCopyAuthFrom" replicated="true" kubernetes="true" >}}
 ```go
 func LdapCopyAuthFrom(keyName string) string
 ```
@@ -339,7 +339,7 @@ env_vars:
   static_val: '{{repl LdapCopyAuthFrom "Hostname"}}'
 ```
 
-## Now
+{{< template_function name="Now" replicated="true" kubernetes="true" >}}
 ```go
 func Now() string
 ```
@@ -348,8 +348,9 @@ Returns the current timestamp as an RFC3339 formatted string.
 env_vars:
 - name: START_TIME
   static_val: "{{repl Now }}"
+```
 
-## NowFmt
+{{< template_function name="NowFmt" replicated="true" kubernetes="true" >}}
 ```go
 func NowFmt(format string) string
 ```
@@ -360,7 +361,7 @@ env_vars:
   static_val: "{{repl Now "20060102" }}"
 ```
 
-## TrimSpace
+{{< template_function name="TrimSpace" replicated="true" kubernetes="true" >}}
 ```go
 func TrimSpace(s string) string
 ```
@@ -371,7 +372,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | Trim }}
 ```
 
-## Trim
+{{< template_function name="Trim" replicated="true" kubernetes="true" >}}
 ```go
 func Trim(s string, args ...string) string
 ```
@@ -382,7 +383,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | Trim " " "." }}
 ```
 
-## Split
+{{< template_function name="Split" replicated="true" kubernetes="true" >}}
 ```go
 func Split(s string, sep string) []string
 ```
@@ -393,7 +394,7 @@ env_vars:
   static_val: '{{repl Split "A,B,C" "," }}'
 ```
 
-## ToLower
+{{< template_function name="ToLower" replicated="true" kubernetes="true" >}}
 ```go
 func ToLower(stringToAlter string) string
 ```
@@ -404,7 +405,7 @@ env_vars:
   static_val: '{{repl ConfigOption "company_name" | ToLower }}'
 ```
 
-## ToUpper
+{{< template_function name="ToUpper" replicated="true" kubernetes="true" >}}
 ```go
 func ToUpper(stringToAlter string) string
 ```
@@ -415,7 +416,7 @@ env_vars:
   static_val: '{{repl ConfigOption "company_name" | ToUpper }}'
 ```
 
-## HumanSize
+{{< template_function name="HumanSize" replicated="true" kubernetes="true" >}}
 ```go
 func HumanSize(size interface{}) string
 ```
@@ -426,7 +427,7 @@ env_vars:
   static_val: '{{repl ConfigOption "min_size_bytes" | HumanSize }}
 ```
 
-## UrlEncode
+{{< template_function name="UrlEncode" replicated="true" kubernetes="true" >}}
 ```go
 func UrlEncode(stringToEncode string) string
 ```
@@ -437,7 +438,7 @@ env_vars:
   static_val: '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-## Base64 Encode
+{{< template_function name="Base64Encode" replicated="true" kubernetes="true" >}}
 ```go
 func Base64Encode(stringToEncode string) string
 ```
@@ -448,7 +449,7 @@ env_vars:
   static_val: '{{repl ConfigOption "name" | Base64Encode }}'
 ```
 
-## Base64 Decode
+{{< template_function name="Base64Decode" replicated="true" kubernetes="true" >}}
 ```go
 func Base64Decode(stringToDecode string) string
 ```
@@ -459,7 +460,7 @@ env_vars:
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
 
-## ParseBool
+{{< template_function name="ParseBool" replicated="true" kubernetes="true" >}}
 ```go
 func ParseBool(str string) bool
 ```
@@ -470,7 +471,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseBool }}'
 ```
 
-## ParseFloat
+{{< template_function name="ParseFloat" replicated="true" kubernetes="true" >}}
 ```go
 func ParseFloat(str string) float64
 ```
@@ -481,7 +482,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseFloat }}'
 ```
 
-## ParseInt
+{{< template_function name="ParseInt" replicated="true" kubernetes="true" >}}
 ```go
 func ParseInt(str string, args ...int) int64
 ```
@@ -492,7 +493,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseInt }}'
 ```
 
-## ParseUint
+{{< template_function name="ParseUint" replicated="true" kubernetes="true" >}}
 ```go
 func ParseUint(str string, args ...int) uint64
 ```
@@ -503,7 +504,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
-## Add
+{{< template_function name="Add" replicated="true" kubernetes="true" >}}
 ```go
 func Add(x interface{}, y interface{}) interface{}
 ```
@@ -518,7 +519,7 @@ env_vars:
   static_val: '{{repl Add (LicenseFieldValue "maximum_users") 1}}'
 ```
 
-## Sub
+{{< template_function name="Sub" replicated="true" kubernetes="true" >}}
 ```go
 func Sub(x interface{}, y interface{}) interface{}
 ```
@@ -533,7 +534,7 @@ env_vars:
   static_val: '{{repl Sub (LicenseFieldValue "maximum_users") 1}}'
 ```
 
-## Mult
+{{< template_function name="Mult" replicated="true" kubernetes="true" >}}
 ```go
 func Mult(x interface{}, y interface{}) interface{}
 ```
@@ -548,7 +549,7 @@ env_vars:
   static_val: '{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
 ```
 
-## Div
+{{< template_function name="Div" replicated="true" kubernetes="true" >}}
 ```go
 func Div(x interface{}, y interface{}) interface{}
 ```
@@ -561,6 +562,71 @@ If both operands are integers, the result will be an integer and will be rounded
 env_vars:
 - name: HALF_MAX_USERS
   static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
+```
+
+{{< template_function name="Namespace" replicated="false" kubernetes="true" >}}
+```go
+func Namespace() string
+```
+
+Namespace returns the value of the namespace the vendor application is installed in.
+
+{{< template_function name="ServiceAddress" replicated="false" kubernetes="true" >}}
+```go
+ServiceAddress(name string, port int32) string
+```
+
+ServiceAddress returns the address of the ingress.
+
+```yml
+properties:
+  app_url: '{{repl ServiceAddress "frontend" 80 }}'
+```
+
+{{< template_function name="IngressAddress" replicated="false" kubernetes="true" >}}
+```go
+IngressAddress(name string, port int32) string
+```
+
+IngressAddress returns the address of the ingress.
+
+```yml
+properties:
+  app_url: '{{repl IngressAddress "frontend" 80 }}'
+```
+
+{{< template_function name="PremitAPIAddress" replicated="false" kubernetes="true" >}}
+```go
+PremkitAPIAddress() string
+```
+
+PremkitAPIAddress return the address of the Premkit service in the cluster.
+
+```yml
+spec:
+  containers:
+  - name: myservice
+    image: mycompany/myservice:1.0
+    env:
+    - name: REPLICATED_INTEGRATIONAPI
+      value: {{repl PremkitAPIAddress }}
+```
+
+{{< template_function name="StatsdAddress" replicated="false" kubernetes="true" >}}
+```go
+StatsdAddress() string
+```
+
+StatsdAddress return the address of the Statsd service in the cluster.
+
+```yml
+spec:
+  containers:
+  - name: myservice
+    image: mycompany/myservice:1.0
+    env:
+    - name: REPLICATED_STATSD_ADDRESS
+      value: {{repl StatsdAddress }}
 ```
 
 ## Notes

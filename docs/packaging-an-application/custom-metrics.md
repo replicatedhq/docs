@@ -2,7 +2,7 @@
 date = "2016-07-02T00:00:00Z"
 lastmod = "2016-07-02T00:00:00Z"
 title = "Custom Metrics"
-weight = "999999"
+weight = "217"
 categories = [ "Packaging" ]
 
 [menu.main]
@@ -12,10 +12,7 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/custom-metrics"
 +++
 
-All Replicated 2.0 installations come with a StatsD/Graphite/Carbon container that can be used by
-the application to report data to StatsD. Application YAML can also include optional custom
-monitors that will be used to display additional charts in Replicated dashboard. Applications
-can also query Graphite directly.
+All Replicated installations come with a StatsD/Graphite/Carbon container that can be used by the application to report data to StatsD. Application YAML can also include optional custom monitors that will be used to display additional charts in Replicated dashboard. Applications can also query Graphite directly.
 
 ## Defining Metrics
 
@@ -44,16 +41,13 @@ custom_metrics:
 
 ### Limitations
 
-Please note that changing retention and aggregation settings will have no effect on keys that already
-exist in Carbon.
+Please note that changing retention and aggregation settings will have no effect on keys that already exist in Carbon.
 
-StatsD is configured to use the flush interval of 1 second. Using average aggregators with bucket
-size greater than 1 second may result in inaccurate data.
+StatsD is configured to use the flush interval of 1 second. Using average aggregators with bucket size greater than 1 second may result in inaccurate data.
 
 ## Defining Monitors
 
-Each custom monitor will be added as a tile to the Replicated dashboard. The following elements are
-supported
+Each custom monitor will be added as a tile to the Replicated dashboard. The following elements are supported
 
 - `name` - String that will appear as the top label for the graph
 - `target` - Deprecated.  Use `targets`.
@@ -93,7 +87,6 @@ monitors:
     targets:
       - stats.gauges.myapp100.disk.*.free
       - stats.gauges.myapp100.disk.*.total
-    dashboard: "true" # templates are allowed
     from: "-3days"
     until: "-30minutes"
     display:
@@ -109,7 +102,6 @@ monitors:
   - name: Disk Free (%)
     targets:
       - scale(divideSeries(stats.gauges.myapp100.disk.*.free,stats.gauges.myapp100.disk.*.total),100) # Show values between 0 and 100
-    dashboard: "true"
     display:
       label_unit: "%"
       label_scale: none
@@ -138,8 +130,7 @@ statsd:
 
 ## Custom CSS
 
-Custom CSS can be used to define background colors for each metric's tile and chart background.
-CSS class name must match the name specified in the css_class_name tag.
+Custom CSS can be used to define background colors for each metric's tile and chart background. CSS class name must match the name specified in the css_class_name tag.
 
 ```css
 /* custom graphs */
@@ -155,9 +146,7 @@ The CSS can be added in Vendor Web dashboard in [App Settings](https://vendor.re
 
 ## Integration API
 
-StatsD host can be discovered via Replicated Console Settings. The following Go function will
-return the current end point. Note that this value can change, and applications should periodically
-query Integration API to obtain the current end point.
+StatsD host can be discovered via Replicated Console Settings. The following Go function will return the current endpoint. Note that this value can change, and applications should periodically query Integration API to obtain the current endpoint.
 
 ```go
 func GetStatsdEndpoint() (string, error) {
@@ -196,10 +185,7 @@ func GetStatsdEndpoint() (string, error) {
 
 ## Installed Configuration
 
-The Graphite/StatsD/Carbon container managed by Replicated has some baked in configurations. These
-defaults will apply to all data that matches the specified patterns. If application sends data to
-this container and the application has no matching custom_metrics, these defaults will be applied
-permanently.
+The Graphite/StatsD/Carbon container managed by Replicated has some baked in configurations. These defaults will apply to all data that matches the specified patterns. If application sends data to this container and the application has no matching custom_metrics, these defaults will be applied permanently.
 
 Please note that statsd-config.js cannot be customized at this time.
 
