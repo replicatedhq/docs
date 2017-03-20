@@ -14,7 +14,7 @@ url        = "/docs/packaging-an-application/template-functions"
 
 Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.
 
-Template functions that refer to you containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition. 
+Template functions that refer to you containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition.
 
 ### Go Templates
 Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to execute the following functions.  In addition to the functions listed here, all of the Go template runtime is available.  Please note that Go template functions must still be escaped with "repl" escape sequence as demonstrated below.
@@ -420,7 +420,7 @@ env_vars:
 ```go
 func HumanSize(size interface{}) string
 ```
-HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number. 
+HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number.
 ```yml
 env_vars:
 - name: MIN_SIZE_HUMAN
