@@ -47,3 +47,9 @@ Some installations may not have outbound Internet access.  Replicated provides y
 
 [Continue with an airgapped install](/distributing-an-application/airgapped-installations)
 
+### Kubernetes Install
+Replicated can be installed to a Kubernetes cluster. This requires a provisioned Kubernetes cluster and the application release to be installed must include Kubernetes YAML.
+
+[Continue with a Kubernetes install](/distributing-an-application/installing-on-kubernetes)
+
+
