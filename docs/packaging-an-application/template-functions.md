@@ -348,6 +348,7 @@ Returns the current timestamp as an RFC3339 formatted string.
 env_vars:
 - name: START_TIME
   static_val: "{{repl Now }}"
+```
 
 {{< template_function name="NowFmt" replicated="true" kubernetes="true" >}}
 ```go
