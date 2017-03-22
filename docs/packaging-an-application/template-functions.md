@@ -14,7 +14,7 @@ url        = "/docs/packaging-an-application/template-functions"
 
 Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.
 
-Template functions that refer to you containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition. 
+Template functions that refer to your containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition.
 
 ### Go Templates
 Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to execute the following functions.  In addition to the functions listed here, all of the Go template runtime is available.  Please note that Go template functions must still be escaped with "repl" escape sequence as demonstrated below.
@@ -74,50 +74,66 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-{{< template_function name="HostPrivateIpAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddress" replicated="true" kubernetes="false" >}}
 ```go
-func HostPrivateIpAddress(componentName string, imageName string) string
+func NodePrivateIPAddress(componentName string, imageName string) string
 ```
-Returns Private IP Address of Component as a string.
+Returns Private IP Address of a given Component as a string.
 
 ```yml
 env_vars:
 - name: REDIS_HOST_PRIVATE
-  static_val: '{{repl HostPrivateIpAddress "DB" "redis" }}'
+  static_val: '{{repl NodePrivateIPAddress "DB" "redis" }}'
 ```
+Replaces HostPrivateIpAddress which is deprecated.
 
-{{< template_function name="HostPrivateIpAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddressFirst" replicated="true" kubernetes="false" >}}
 ```go
-func HostPrivateIpAddressAll(componentName string, imageName string) []string
+func NodePrivateIPAddressFirst(componentName string, imageName string) string
 ```
-Returns host private IP addresses for all instances of a given Component as an array of strings.
+Returns the first node's Private IP Address of a given Component as a string.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
-
-{{< template_function name="HostPublicIpAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddressAll" replicated="true" kubernetes="false" >}}
 ```go
-func HostPublicIpAddress(componentName string, imageName string) string
+func NodePrivateIPAddressAll(componentName string, imageName string) []string
 ```
-Returns Public IP Address of Component as a string.
+Returns node private IP addresses for all instances of a given Component as an array of strings.
+Replaces HostPrivateIpAddressAll which is deprecated.
+
+Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddressAll` are guaranteed to return in the same order
+
+{{< template_function name="NodePublicIPAddress" replicated="true" kubernetes="false" >}}
+```go
+func NodePublicIPAddress(componentName string, imageName string) string
+```
+Returns Public IP Address of a given Component as a string.
 ```yml
 env_vars:
 - name: REDIS_HOST_PUBLIC
-  static_val: '{{repl HostPublicIpAddress "DB" "redis" }}'
+  static_val: '{{repl NodePublicIPAddress "DB" "redis" }}'
 ```
+Replaces HostPublicIpAddress which is deprecated.
 
-{{< template_function name="HostPublicIpAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePublicIPAddressFirst" replicated="true" kubernetes="false" >}}
 ```go
-func HostPublicIpAddressAll(componentName string, imageName string) []string
+func NodePublicIPAddressFirst(componentName string, imageName string) string
 ```
-Returns host public IP addresses for all instances of a given Component as an array of strings.
+Returns first node's public IP addresses for a given Component as a string.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
+{{< template_function name="NodePublicIPAddressAll" replicated="true" kubernetes="false" >}}
+```go
+func NodePublicIPAddressAll(componentName string, imageName string) []string
+```
+Returns node public IP addresses for all instances of a given Component as an array of strings.
+Replaces HostPublicIpAddressAll which is deprecated.
+
+Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `Node PublicIPAddressAll` are guaranteed to return in the same order
 
 {{< template_function name="ContainerExposedPort" replicated="true" kubernetes="false" >}}
 ```go
 func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
-Returns the host's public port mapped to the supplied exposed container port as a string.
+Returns the node's public port mapped to the supplied exposed container port as a string.
 
 ```yml
 env_vars:
@@ -125,13 +141,25 @@ env_vars:
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
 ```
 
+{{< template_function name="ContainerExposedPortFirst" replicated="true" kubernetes="false" >}}
+```go
+func ContainerExposedPortFirst(componentName string, imageName string, internalPort string) string
+```
+Returns the first node's public port mapped to the supplied exposed container port as a string.
+
+```yml
+env_vars:
+- name: REDIS_PORT
+  static_val: '{{repl ContainerExposedPortFirst "DB" "redis" "6379" }}'
+```
+
 {{< template_function name="ContainerExposedPortAll" replicated="true" kubernetes="false" >}}
 ```go
 func ContainerExposedPortAll(componentName string, imageName string, internalPort string) string
 ```
-Returns the host public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
+Returns the node public port mapped to the supplied exposed container port for all instances of a given Component as an array of strings.
 
-Note: `ContainerExposedPortAll`, `HostPrivateIpAddressAll`, `HostPublicIpAddressAll` are guaranteed to return in the same order
+Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddressAll` are guaranteed to return in the same order
 
 {{< template_function name="LicenseFieldValue" replicated="true" kubernetes="true" >}}
 ```go
@@ -420,7 +448,7 @@ env_vars:
 ```go
 func HumanSize(size interface{}) string
 ```
-HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number. 
+HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number.
 ```yml
 env_vars:
 - name: MIN_SIZE_HUMAN
