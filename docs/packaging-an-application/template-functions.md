@@ -271,15 +271,19 @@ env_vars:
 ```go
 func ConsoleSetting(consoleSettingName string) string
 ```
-Returns customer defined console settings for the TLS data provided by customers during their initial setup as a string.
+Returns customer defined console settings for the TLS data or proxy settings. Values are returned as a string.
 
-Possible Options:
-`tls.key.name`
-`tls.cert.name`
-`tls.key.data`
-`tls.cert.data`
-`tls.hostname`
-`tls.source` (where the tls cert/key originated from)
+|Option|Returned Value|
+|---|-----------|
+|tls.key.name|TLS key filename|
+|tls.key.data|TLS key contents|
+|tls.cert.name|TLS cert filename|
+|tls.cert.data|TLS cert contents|
+|tls.hostname|Hostname used to secure Replicated TLS traffic|
+|tls.source|Source of the TLS cert, either "self-signed", "key-cert" or "server-path"|
+|http.proxy|Proxy http address (e.g. http://10.128.0.4:3128)|
+|http.proxy.enabled|Proxy is enabled when value is 1, not enabled when it is 0|
+
 
 ```yml
 config:
