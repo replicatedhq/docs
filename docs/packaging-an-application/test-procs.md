@@ -298,8 +298,6 @@ config:
   test_proc:
     display_name: Validate JSON
     command: validate_json
-    arg_field:
+    arg_fields:
     - json
 ```
-
-
