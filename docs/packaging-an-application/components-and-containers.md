@@ -184,6 +184,7 @@ Optional properties:
 
 - `permission` should be a octal permission string
 - `owner` should be the uid of the user inside the container
+- `options` optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode *supported as of 2.3.0
 - `is_ephemeral` Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots. *supported as of 2.3.5
 - `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
 
@@ -195,6 +196,7 @@ Optional properties:
       owner: "100"
       is_ephemeral: false
       is_excluded_from_backup: true
+      options: ["rw"]
 ```
 
 Replicated supports volumes_from to attach several mounts from a colocated container.
@@ -429,4 +431,12 @@ Learn more about [overriding entrypoints](https://docs.docker.com/engine/referen
     - name: nofile
       soft: 1024
       hard: 1024
+```
+
+### Pid Mode
+
+{{< version version="2.1.0" >}} Pid mode lets you specify the process namespace for your container. By default each container has its own space and by declaring a `pid_mode` you can see the processes of another container or host. See [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) to learn more.
+
+```yml
+    pid_mode: host
 ```
