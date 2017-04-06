@@ -37,6 +37,20 @@ admin_commands:
   container: master # optional, will choose first in pod
 
 config:
+- name: frontend
+  title: Frontend
+  items:
+  - name: frontend_replicas
+    title: App Replicas
+    type: text
+    default: 2
+- name: db
+  title: DB
+  items:
+  - name: redis_slave_replicas
+    title: Redis Slave Replicas
+    type: text
+    default: 2
 - name: advanced
   title: Advanced
   items:
