@@ -108,7 +108,7 @@ monitors:
 ```
 
 ## Custom Metrics
-Regardless of the scheduler used, Replicated can also display [custom metrics](packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
+Regardless of the scheduler used, Replicated can also display [custom metrics](/packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
 
 ```yml
 custom_metrics:
