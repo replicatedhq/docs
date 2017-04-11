@@ -52,4 +52,7 @@ Replicated can be installed to a Kubernetes cluster. This requires a provisioned
 
 [Continue with a Kubernetes install](/distributing-an-application/installing-on-kubernetes)
 
+### Docker Swarm Install
+Replicated can be installed with a Swarm cluster. This doesn't require any additional setup, but the application YAML must be written as Swarm services and the machines must be capable of running Docker 1.13.1 or newer.
 
+[Continue with a Swarm install](/distributing-an-application/installing-with-swarm)

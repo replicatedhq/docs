@@ -13,7 +13,7 @@ url        = "/docs/examples/kubernetes-guestbook"
 +++
 
 ## Guestbook
-We've taking the standard Kubernetes Guestbook example application and wrapped it in a Replicated YAML to show you how this would look.
+We've taken the standard Kubernetes Guestbook example application and wrapped it in a Replicated YAML to show you how this would look.
 
 ```yaml
 ---
