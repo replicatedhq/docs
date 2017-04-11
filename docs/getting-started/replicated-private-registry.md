@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Replicated Private Registry"
 description = "How to push and access private images in Replicated's hosted private registry."
-weight = "104"
+weight = "105"
 categories = [ "Getting Started" ]
 
 [menu.main]

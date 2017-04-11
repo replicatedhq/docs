@@ -25,7 +25,7 @@ Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to e
 
 # Replicated Template Functions
 
-{{< template_function name="ConfigOption" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConfigOption" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConfigOption(optionName string) string
 ```
@@ -35,7 +35,7 @@ properties:
   app_url: http://{{repl ConfigOption "hostname" }}
 ```
 
-{{< template_function name="ConfigOptionData" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConfigOptionData" replicated="true" kubernetes="true" swarm="true" >}}
 (only supports `type: file`)
 
 ```go
@@ -48,7 +48,7 @@ config_files:
   contents: {{repl ConfigOptionData "ssl_key"}}
 ```
 
-{{< template_function name="ConfigOptionEquals" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConfigOptionEquals" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConfigOptionEquals(optionName string, expectedValue string) bool
 ```
@@ -61,7 +61,7 @@ ports:
      when: '{{repl ConfigOptionEquals "http_enabled" "1" }}'
 ```
 
-{{< template_function name="ConfigOptionNotEquals" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConfigOptionNotEquals" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConfigOptionNotEquals(optionName string, expectedValue string) bool
 ```
@@ -161,7 +161,7 @@ Returns the node public port mapped to the supplied exposed container port for a
 
 Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddressAll` are guaranteed to return in the same order
 
-{{< template_function name="LicenseFieldValue" replicated="true" kubernetes="true" >}}
+{{< template_function name="LicenseFieldValue" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func LicenseFieldValue(customLicenseFieldName string) string
 ```
@@ -173,7 +173,7 @@ config_files:
       max_users: '{{repl LicenseFieldValue "maximum_users" }}'
 ```
 
-{{< template_function name="LicenseProperty" replicated="true" kubernetes="true" >}}
+{{< template_function name="LicenseProperty" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func LicenseProperty(propertyName string) string
 ```
@@ -185,7 +185,7 @@ config_files:
       expiration.date: {{repl LicenseProperty "expiration.date"}}
 ```
 
-{{< template_function name="AppID" replicated="true" kubernetes="true" >}}
+{{< template_function name="AppID" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func AppID() string
 ```
@@ -196,7 +196,7 @@ env_vars:
   static_val: '{{repl AppID }}'
 ```
 
-{{< template_function name="AppVersion" replicated="true" kubernetes="true" >}}
+{{< template_function name="AppVersion" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func AppVersion() int
 ```
@@ -207,7 +207,7 @@ env_vars:
   static_val: '{{repl AppVersion }}'
 ```
 
-{{< template_function name="AppVersionFirst" replicated="true" kubernetes="true" >}}
+{{< template_function name="AppVersionFirst" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func AppVersionFirst() int
 ```
@@ -218,7 +218,7 @@ env_vars:
   static_val: '{{repl AppVersionFirst }}'
 ```
 
-{{< template_function name="AppVersionCurrent" replicated="true" kubernetes="true" >}}
+{{< template_function name="AppVersionCurrent" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func AppVersionCurrent() int
 ```
@@ -229,18 +229,18 @@ env_vars:
   static_val: '{{repl AppVersionCurrent }}'
 ```
 
-{{< template_function name="RunOffline" replicated="true" kubernetes="true" >}}
+{{< template_function name="RunOffline" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func RunOffline() bool
 ```
-Returns whether or not we are running in airgap mode. This is available in the Kubernetes implementation, but will always return false.
+Returns whether or not we are running in airgap mode. This is available in the Kubernetes and Swarm implementations, but will always return false.
 ```yml
 env_vars:
 - name: IS_AIRGAP
   static_val: '{{repl RunOffline }}'
 ```
 
-{{< template_function name="AppSetting" replicated="true" kubernetes="true" >}}
+{{< template_function name="AppSetting" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func AppSetting(key string) string
 ```
@@ -267,7 +267,7 @@ env_vars:
   static_val: '{{repl AppSetting "release.channel"}}'
 ```
 
-{{< template_function name="ConsoleSetting" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConsoleSetting" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConsoleSetting(consoleSettingName string) string
 ```
@@ -296,19 +296,19 @@ config:
     value: '{{repl ConsoleSetting "tls.key.name"}}'
 ```
 
-{{< template_function name="ConsoleSettingEquals" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConsoleSettingEquals" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConsoleSettingEquals(name string, value string) bool
 ```
 Returns a bool indicating if the value is the currently applied value for ConsoleSetting with name.
 
-{{< template_function name="ConsoleSettingNotEquals" replicated="true" kubernetes="true" >}}
+{{< template_function name="ConsoleSettingNotEquals" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ConsoleSettingNotEquals(name string, value string) bool
 ```
 Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
 
-{{< template_function name="ThisHostInterfaceAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="ThisHostInterfaceAddress" replicated="true" kubernetes="false" swarm="true" >}}
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
@@ -351,7 +351,7 @@ func ThisNodeDockerAddress() string
 Returns the docker0 address on the host on which the current container instance is deployed.
 For a clustered application this value will be different for each host.
 
-{{< template_function name="LDAPCopyAuthFrom" replicated="true" kubernetes="true" >}}
+{{< template_function name="LDAPCopyAuthFrom" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func LdapCopyAuthFrom(keyName string) string
 ```
@@ -371,7 +371,7 @@ env_vars:
   static_val: '{{repl LdapCopyAuthFrom "Hostname"}}'
 ```
 
-{{< template_function name="Now" replicated="true" kubernetes="true" >}}
+{{< template_function name="Now" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Now() string
 ```
@@ -382,7 +382,7 @@ env_vars:
   static_val: "{{repl Now }}"
 ```
 
-{{< template_function name="NowFmt" replicated="true" kubernetes="true" >}}
+{{< template_function name="NowFmt" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func NowFmt(format string) string
 ```
@@ -393,7 +393,7 @@ env_vars:
   static_val: "{{repl Now "20060102" }}"
 ```
 
-{{< template_function name="TrimSpace" replicated="true" kubernetes="true" >}}
+{{< template_function name="TrimSpace" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func TrimSpace(s string) string
 ```
@@ -404,7 +404,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | Trim }}
 ```
 
-{{< template_function name="Trim" replicated="true" kubernetes="true" >}}
+{{< template_function name="Trim" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Trim(s string, args ...string) string
 ```
@@ -415,7 +415,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | Trim " " "." }}
 ```
 
-{{< template_function name="Split" replicated="true" kubernetes="true" >}}
+{{< template_function name="Split" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Split(s string, sep string) []string
 ```
@@ -426,7 +426,7 @@ env_vars:
   static_val: '{{repl Split "A,B,C" "," }}'
 ```
 
-{{< template_function name="ToLower" replicated="true" kubernetes="true" >}}
+{{< template_function name="ToLower" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ToLower(stringToAlter string) string
 ```
@@ -437,7 +437,7 @@ env_vars:
   static_val: '{{repl ConfigOption "company_name" | ToLower }}'
 ```
 
-{{< template_function name="ToUpper" replicated="true" kubernetes="true" >}}
+{{< template_function name="ToUpper" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ToUpper(stringToAlter string) string
 ```
@@ -448,7 +448,7 @@ env_vars:
   static_val: '{{repl ConfigOption "company_name" | ToUpper }}'
 ```
 
-{{< template_function name="HumanSize" replicated="true" kubernetes="true" >}}
+{{< template_function name="HumanSize" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func HumanSize(size interface{}) string
 ```
@@ -459,7 +459,7 @@ env_vars:
   static_val: '{{repl ConfigOption "min_size_bytes" | HumanSize }}
 ```
 
-{{< template_function name="UrlEncode" replicated="true" kubernetes="true" >}}
+{{< template_function name="UrlEncode" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func UrlEncode(stringToEncode string) string
 ```
@@ -470,7 +470,7 @@ env_vars:
   static_val: '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-{{< template_function name="Base64Encode" replicated="true" kubernetes="true" >}}
+{{< template_function name="Base64Encode" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Base64Encode(stringToEncode string) string
 ```
@@ -481,7 +481,7 @@ env_vars:
   static_val: '{{repl ConfigOption "name" | Base64Encode }}'
 ```
 
-{{< template_function name="Base64Decode" replicated="true" kubernetes="true" >}}
+{{< template_function name="Base64Decode" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Base64Decode(stringToDecode string) string
 ```
@@ -492,7 +492,7 @@ env_vars:
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
 ```
 
-{{< template_function name="ParseBool" replicated="true" kubernetes="true" >}}
+{{< template_function name="ParseBool" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ParseBool(str string) bool
 ```
@@ -503,7 +503,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseBool }}'
 ```
 
-{{< template_function name="ParseFloat" replicated="true" kubernetes="true" >}}
+{{< template_function name="ParseFloat" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ParseFloat(str string) float64
 ```
@@ -514,7 +514,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseFloat }}'
 ```
 
-{{< template_function name="ParseInt" replicated="true" kubernetes="true" >}}
+{{< template_function name="ParseInt" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ParseInt(str string, args ...int) int64
 ```
@@ -525,7 +525,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseInt }}'
 ```
 
-{{< template_function name="ParseUint" replicated="true" kubernetes="true" >}}
+{{< template_function name="ParseUint" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func ParseUint(str string, args ...int) uint64
 ```
@@ -536,7 +536,7 @@ env_vars:
   static_val: '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
-{{< template_function name="Add" replicated="true" kubernetes="true" >}}
+{{< template_function name="Add" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Add(x interface{}, y interface{}) interface{}
 ```
@@ -551,7 +551,7 @@ env_vars:
   static_val: '{{repl Add (LicenseFieldValue "maximum_users") 1}}'
 ```
 
-{{< template_function name="Sub" replicated="true" kubernetes="true" >}}
+{{< template_function name="Sub" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Sub(x interface{}, y interface{}) interface{}
 ```
@@ -566,7 +566,7 @@ env_vars:
   static_val: '{{repl Sub (LicenseFieldValue "maximum_users") 1}}'
 ```
 
-{{< template_function name="Mult" replicated="true" kubernetes="true" >}}
+{{< template_function name="Mult" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Mult(x interface{}, y interface{}) interface{}
 ```
@@ -581,7 +581,7 @@ env_vars:
   static_val: '{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
 ```
 
-{{< template_function name="Div" replicated="true" kubernetes="true" >}}
+{{< template_function name="Div" replicated="true" kubernetes="true" swarm="true" >}}
 ```go
 func Div(x interface{}, y interface{}) interface{}
 ```
@@ -596,7 +596,7 @@ env_vars:
   static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
 ```
 
-{{< template_function name="Namespace" replicated="false" kubernetes="true" >}}
+{{< template_function name="Namespace" replicated="false" kubernetes="true" swarm="true" >}}
 ```go
 func Namespace() string
 ```
