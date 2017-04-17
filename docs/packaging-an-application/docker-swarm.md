@@ -42,7 +42,7 @@ When running Replicated in Swarm mode, the standard statsd endpoint is still run
 Replicated will consider the application running when all replicas of the Swarm services are running. Ready state functionality is not currently supported when running in Swarm mode. This functionality will be included in an upcoming release.
 
 ### Template Functions
-There are some additional [template functions](/packaging-an-application/template-functions#kubernetes) available when running in Swarm mode.
+There are some additional [template functions](/packaging-an-application/template-functions#swawrm) available when running in Swarm mode.
 
 ### Secrets
 Just like using the native Replicated scheduler, secrets are supported through the combination of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/) and environment variables. Additionally your application has the option of using [Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) management. Replicated will add support for Swarm secrets in a future release.
