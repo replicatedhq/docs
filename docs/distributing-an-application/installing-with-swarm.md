@@ -9,11 +9,11 @@ We distribute an installation script that can be used to install Replicated into
 
 ### Basic Install
 
-Save the install script to a file and run. We recommend reading and understanding the install script prior to running.
+Save the Docker Compose yaml to a file and run. We recommend reading and understanding the Compose file prior to running.
 
 ```shell
-curl -sSL -o install.sh https://get.replicated.com/swarm-init
-sudo bash ./install
+curl -sSL -o docker-compose.yml https://get.replicated.com/docker-compose.yml
+docker stack deploy -c docker-compose.yml
 ```
 
 Quick install:
@@ -24,3 +24,4 @@ curl -sSL https://get.replicated.com/swarm-init | sudo bash
 
 ## Installing Behind A Proxy
 
+Proxy support for Swarm will be included in a future release of Replicated.
