@@ -13,7 +13,7 @@ to perform manual and scheduled snapshots.  More information on configuring snap
 found in the [Snapshots](/packaging-an-application/snapshots/) section.
 
 To restore you need to create a fresh install of replicated which you can find instructions
-for [here](/distributing-an-application/installing/#easy-installation). Before
+for [here](/distributing-an-application/installing-via-script/). Before
 running the web console at https://<server_address>:8800 place a copy of the full snapshot directory
 on the host. Proceed through the https setup screen and on the upload your license page click the
 "restore from a snapshot" link.
