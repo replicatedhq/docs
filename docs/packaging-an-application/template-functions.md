@@ -720,7 +720,7 @@ networks:
   voteapp:
   statsd:
     external:
-      name: {{repl StatsdNetworkName }}:
+      name: {{repl StatsdNetworkName }}
 ```
 
 ## Notes
