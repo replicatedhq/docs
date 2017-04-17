@@ -678,7 +678,7 @@ networks:
   voteapp:
   premkit:
     external:
-      name: {{repl PremkitNetworkName }}:
+      name: {{repl PremkitNetworkName }}
 ```
 
 {{< template_function name="StatsdAddress" replicated="false" kubernetes="true" swarm="true" >}}
