@@ -26,7 +26,7 @@ name: "Compose Sample"
 # https://www.replicated.com/docs/packaging-an-application/application-properties
 #
 properties:
-  app_url: http://{{repl ConfigOption "hostname" }}
+  app_url: http://{{repl ConfigOption "hostname" }}:5000
   console_title: "Compose Sample"
 
 #
