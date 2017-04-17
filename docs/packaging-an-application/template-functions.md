@@ -74,7 +74,7 @@ ports:
      when: '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-{{< template_function name="NodePrivateIPAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePrivateIPAddress(componentName string, imageName string) string
 ```
@@ -87,13 +87,13 @@ env_vars:
 ```
 Replaces HostPrivateIpAddress which is deprecated.
 
-{{< template_function name="NodePrivateIPAddressFirst" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddressFirst" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePrivateIPAddressFirst(componentName string, imageName string) string
 ```
 Returns the first node's Private IP Address of a given Component as a string.
 
-{{< template_function name="NodePrivateIPAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePrivateIPAddressAll" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePrivateIPAddressAll(componentName string, imageName string) []string
 ```
@@ -102,7 +102,7 @@ Replaces HostPrivateIpAddressAll which is deprecated.
 
 Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddressAll` are guaranteed to return in the same order
 
-{{< template_function name="NodePublicIPAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePublicIPAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePublicIPAddress(componentName string, imageName string) string
 ```
@@ -114,13 +114,13 @@ env_vars:
 ```
 Replaces HostPublicIpAddress which is deprecated.
 
-{{< template_function name="NodePublicIPAddressFirst" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePublicIPAddressFirst" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePublicIPAddressFirst(componentName string, imageName string) string
 ```
 Returns first node's public IP addresses for a given Component as a string.
 
-{{< template_function name="NodePublicIPAddressAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="NodePublicIPAddressAll" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func NodePublicIPAddressAll(componentName string, imageName string) []string
 ```
@@ -129,7 +129,7 @@ Replaces HostPublicIpAddressAll which is deprecated.
 
 Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `Node PublicIPAddressAll` are guaranteed to return in the same order
 
-{{< template_function name="ContainerExposedPort" replicated="true" kubernetes="false" >}}
+{{< template_function name="ContainerExposedPort" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
@@ -141,7 +141,7 @@ env_vars:
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
 ```
 
-{{< template_function name="ContainerExposedPortFirst" replicated="true" kubernetes="false" >}}
+{{< template_function name="ContainerExposedPortFirst" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ContainerExposedPortFirst(componentName string, imageName string, internalPort string) string
 ```
@@ -153,7 +153,7 @@ env_vars:
   static_val: '{{repl ContainerExposedPortFirst "DB" "redis" "6379" }}'
 ```
 
-{{< template_function name="ContainerExposedPortAll" replicated="true" kubernetes="false" >}}
+{{< template_function name="ContainerExposedPortAll" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ContainerExposedPortAll(componentName string, imageName string, internalPort string) string
 ```
@@ -308,7 +308,7 @@ func ConsoleSettingNotEquals(name string, value string) bool
 ```
 Returns a bool indicating if the value is not the currently applied value for ConsoleSetting with name.
 
-{{< template_function name="ThisHostInterfaceAddress" replicated="true" kubernetes="false" swarm="true" >}}
+{{< template_function name="ThisHostInterfaceAddress" replicated="true" kubernetes="false" swarm="false" >}}
 Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or ThisNodeDockerAddress instead.
 ```go
 func ThisHostInterfaceAddress(interfaceName string) string
@@ -320,7 +320,7 @@ env_vars:
   static_val: '{{repl ThisHostInterfaceAddress "docker0" }}'
 ```
 
-{{< template_function name="ThisNodePublicIPAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="ThisNodePublicIPAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ThisNodePublicIPAddress() string
 ```
@@ -332,7 +332,7 @@ env_vars:
 ```
 Replaces ThisHostPublicIpAddress which is deprecated.
 
-{{< template_function name="ThisNodePrivateIPAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="ThisNodePrivateIPAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ThisNodePrivateIPAddress() string
 ```
@@ -344,7 +344,7 @@ env_vars:
 ```
 Replaces ThisHostPrivateIpAddress which is depreciated.
 
-{{< template_function name="ThisNodeDockerAddress" replicated="true" kubernetes="false" >}}
+{{< template_function name="ThisNodeDockerAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
 func ThisNodeDockerAddress() string
 ```
@@ -603,7 +603,7 @@ func Namespace() string
 
 Namespace returns the value of the namespace the vendor application is installed in.
 
-{{< template_function name="ServiceAddress" replicated="false" kubernetes="true" >}}
+{{< template_function name="ServiceAddress" replicated="false" kubernetes="true" swarm="false" >}}
 ```go
 ServiceAddress(name string, port int32) string
 ```
@@ -615,7 +615,7 @@ properties:
   app_url: '{{repl ServiceAddress "frontend" 80 }}'
 ```
 
-{{< template_function name="IngressAddress" replicated="false" kubernetes="true" >}}
+{{< template_function name="IngressAddress" replicated="false" kubernetes="true" swarm="false" >}}
 ```go
 IngressAddress(name string, port int32) string
 ```
@@ -627,12 +627,24 @@ properties:
   app_url: '{{repl IngressAddress "frontend" 80 }}'
 ```
 
-{{< template_function name="PremitAPIAddress" replicated="false" kubernetes="true" >}}
+{{< template_function name="SwarmIngressAddress" replicated="false" kubernetes="false" swarm="true" >}}
+```go
+SwarmIngressAddress() string
+```
+
+SwarmIngressAddress returns the ingress address of the swarm cluster.
+
+```yml
+properties:
+  app_url: '{{repl SwarmIngressAddress }}'
+```
+
+{{< template_function name="PremitAPIAddress" replicated="false" kubernetes="true" swarm="true" >}}
 ```go
 PremkitAPIAddress() string
 ```
 
-PremkitAPIAddress return the address of the Premkit service in the cluster.
+PremkitAPIAddress returns the address of the Premkit service in the cluster.
 
 ```yml
 spec:
@@ -644,12 +656,37 @@ spec:
       value: {{repl PremkitAPIAddress }}
 ```
 
-{{< template_function name="StatsdAddress" replicated="false" kubernetes="true" >}}
+{{< template_function name="PremkitNetworkName" replicated="false" kubernetes="false" swarm="true" >}}
+```go
+PremkitNetworkName() string
+```
+
+PremkitNetworkName returns the name of the premkit docker network.
+
+```yml
+services:
+  voting-app:
+    image: gaiadocker/example-voting-app-vote:good
+    environment:
+      REPLICATED_INTEGRATIONAPI: {{repl PremkitAPIAddress }}
+    ...
+    networks:
+      - voteapp
+      - premkit
+...
+networks:
+  voteapp:
+  premkit:
+    external:
+      name: {{repl PremkitNetworkName }}:
+```
+
+{{< template_function name="StatsdAddress" replicated="false" kubernetes="true" swarm="true" >}}
 ```go
 StatsdAddress() string
 ```
 
-StatsdAddress return the address of the Statsd service in the cluster.
+StatsdAddress returns the address of the Statsd service in the cluster.
 
 ```yml
 spec:
@@ -659,6 +696,31 @@ spec:
     env:
     - name: REPLICATED_STATSD_ADDRESS
       value: {{repl StatsdAddress }}
+```
+
+{{< template_function name="StatsdNetworkName" replicated="false" kubernetes="false" swarm="true" >}}
+```go
+StatsdNetworkName() string
+```
+
+StatsdNetworkName returns the name of the Statsd docker network.
+
+```yml
+services:
+  voting-app:
+    image: gaiadocker/example-voting-app-vote:good
+    environment:
+      REPLICATED_STATSD_ADDRESS: {{repl StatsdAddress }}
+    ...
+    networks:
+      - voteapp
+      - statsd
+...
+networks:
+  voteapp:
+  statsd:
+    external:
+      name: {{repl StatsdNetworkName }}:
 ```
 
 ## Notes
