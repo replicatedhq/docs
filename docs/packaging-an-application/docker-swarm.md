@@ -33,7 +33,17 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
 ### Admin Commands
-Admin commands are not supported when running in Swarm mode. This functionality will be included in a future release.
+Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
+
+```yml
+properties:
+  shell_alias: mycli
+admin_commands:
+- alias: redis-sadd
+  command: [redis-cli, sadd]
+  run_type: exec
+  service: redis
+```
 
 ### Dashboard Metrics
 When running Replicated in Swarm mode, the standard statsd endpoint is still running. The only difference here is that the standard CPU and Memory usage graphs will not be available and will be included in an upcoming release. You can use the [custom metrics](/packaging-an-application/custom-metrics) feature to define you own application-specific metrics to show on the admin console dashboard.
@@ -46,10 +56,3 @@ There are some additional [template functions](/packaging-an-application/templat
 
 ### Secrets
 Just like using the native Replicated scheduler, secrets are supported through the combination of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/) and environment variables. Additionally your application has the option of using [Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) management. Replicated will add support for Swarm secrets in a future release.
-
-### Replicated CLI
-The Replicated CLI can be run via the `docker exec` command. See below for an example of running a Replicated CLI command.
-
-```shell
-sudo docker exec -it "$(sudo docker inspect --format "{{.Status.ContainerStatus.ContainerID}}" "$(sudo docker service ps replicated_replicated -q)")" replicated apps
-```
