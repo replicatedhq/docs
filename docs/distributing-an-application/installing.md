@@ -34,7 +34,7 @@ sudo bash ./install.sh
 ## Pick your Install Method
 
 ### Easy Installation
-We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the docker-engine. 
+We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the Docker Engine. 
 
 [Continue with the easy install script](/distributing-an-application/installing-via-script)
 ### Manual Install
@@ -48,11 +48,11 @@ Some installations may not have outbound Internet access.  Replicated provides y
 [Continue with an airgapped install](/distributing-an-application/airgapped-installations)
 
 ### Kubernetes Install
-Replicated can be installed to a Kubernetes cluster. This requires a provisioned Kubernetes cluster and the application release to be installed must include Kubernetes YAML.
+{{< version version="2.6.0" >}} Replicated can be installed to a Kubernetes cluster. This requires a provisioned Kubernetes cluster and the application release to be installed must include Kubernetes YAML.
 
 [Continue with a Kubernetes install](/distributing-an-application/installing-on-kubernetes)
 
 ### Docker Swarm Install
-Replicated can be installed with a Swarm cluster. This doesn't require any additional setup, but the application YAML must be written as Swarm services and the machines must be capable of running Docker 1.13.1 or newer.
+{{< version version="2.7.0" >}} Replicated can be installed with a Swarm cluster. This doesn't require any additional setup, but the application YAML must be written as Swarm services and the machines must be capable of running Docker 1.13.1 or newer.
 
 [Continue with a Swarm install](/distributing-an-application/installing-with-swarm)

@@ -33,7 +33,7 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
 ### Admin Commands
-Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
+{{< version version="2.8.0" >}} Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
 
 ```yml
 properties:
@@ -55,7 +55,7 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the On-Prem Console settings page. See below for an example of creating a secret in your application.
+{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the On-Prem Console settings page. See below for an example of creating a secret in your application.
 
 For example:
 ```yml

@@ -5,7 +5,7 @@ description = "Instructions for installing Replicated with a Swarm cluster"
 keywords= "installing, swarm"
 +++
 
-We distribute an installation script that can be used to install Replicated into a new Swarm cluster. The cluster does not have to be created at this point, the Replicated install script will install docker-engine and provision a new swarm cluster.
+We distribute an installation script that can be used to install Replicated into a new Swarm cluster. The cluster does not have to be created at this point, the Replicated install script will install Docker Engine and provision a new swarm cluster.
 
 ### Basic Install
 
