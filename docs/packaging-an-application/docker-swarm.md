@@ -45,39 +45,4 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the On-Prem Console settings page. See below for an example of creating a secret in your application.
-
-For example:
-```yml
-# kind: replicated
-...
-config:
-- name: secrets
-  title: Secrets
-  items:
-  - name: config_my_secret
-    title: My Secret
-    type: password
-...
-swarm:
-  secrets:
-  - name: my_secret
-    value: '{{repl ConfigOption "config_my_secret" }}'
-    labels:
-      foo: bar
-      baz: 
-
----
-# kind: scheduler-swarm
-version: "3.1"
-services:
-  redis:
-    image: redis:latest
-    deploy:
-      replicas: 1
-    secrets:
-      - my_secret
-secrets:
-  my_secret:
-    external: true
-```
+Secrets are not supported when running in Swarm mode. This functionality will be included in a future release.
