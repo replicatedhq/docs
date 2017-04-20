@@ -7,7 +7,7 @@ categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
 
 It's possible your customers might run into problems while uploading their license after 
-[installing](/distributing-an-application/installing/#easy-installation) Replicated.
+[installing](/distributing-an-application/installing-via-script/) Replicated.
 
 ![Invalid License](/static/license-not-valid.png)
 

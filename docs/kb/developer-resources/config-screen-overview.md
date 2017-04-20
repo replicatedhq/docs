@@ -29,7 +29,7 @@ Saved anytime to restart with new values.
 ## Conditional Inputs
 
 Conditional inputs allow you to determine when an item or group is shown.
-([technical documentation](http://docs.replicated.com/v1.0/docs/on-prem-config#section-when-conditional-inputs-))
+([technical documentation](/on-prem-config#section-when-conditional-inputs-))
 
 ![Conditional Inputs](/static/conditional-inputs.gif)
 

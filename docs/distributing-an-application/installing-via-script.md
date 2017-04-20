@@ -59,7 +59,7 @@ curl -x http://<proxy_address>:<proxy_port> https://get.replicated.com/docker | 
 ## Post-Installation Maintenance
 
 ## Upgrade to latest Replicated build.
-If you would like to upgrade Replicated to the latest release simply [rerun the installation script](https://www.replicated.com/docs/distributing-an-application/installing/#easy-installation) and that will upgrade the Replicated components to the latest build.
+If you would like to upgrade Replicated to the latest release simply [rerun the installation script](/distributing-an-application/installing-via-script/) and that will upgrade the Replicated components to the latest build.
 
 ## Restarting Replicated
 If you installed Replicated using the easy installation script, the script will have created an init service you can use to control Replicated. In this case, restarting replicated varies depending on your host OS, please see below for the correct instructions to restarting replicated.

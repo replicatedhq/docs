@@ -12,4 +12,4 @@ can be done from https://vendor.replicated.com/#/settings
 ![Settings Github](/static/settings-github.png)
 
 For detailed technical documentation on how to 
-[reference GitHub files in the Replicated YAML](http://docs.replicated.com/v1.0/docs/components-and-containers#section-github-reference).
+[reference GitHub files in the Replicated YAML](/kb/developer-resources/github-integration/).
