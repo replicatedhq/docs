@@ -49,13 +49,13 @@ for each stack with `replicated` in the name. Some portions of the stack deletio
 __Services__
 
 ```shell
-$ sudo docker service ls
+$ docker service ls
 ```
 
 Using that output, run:
 
 ```shell
-$ sudo docker service rm <service_name>
+$ docker service rm <service_name>
 ```
 
 for each service with `premkit`, `statsd`, or `replicated` in the name.
@@ -79,35 +79,35 @@ __Lingering Containers__
 
 
 ```shell
-$ sudo docker ps
+$ docker ps
 ```
 
 for each container which is related to the Replicated onprem installation, run:
 
 ```shell
-$ sudo docker rm <container_id>
+$ docker rm <container_id>
 ```
 
 __Secrets__
 
 ```shell
-$ sudo docker secret ls
+$ docker secret ls
 ```
 
 for each secret which is related to the Replicated onprem installation, run:
 
 ```shell
-$ sudo docker secret rm <secret_name>
+$ docker secret rm <secret_name>
 ```
 
 __Volumes__
 
 ```shell
-$ sudo docker volume ls
+$ docker volume ls
 ```
 
 for each volume which is related to the Replicated onprem installation, run:
 
 ```shell
-$ sudo docker volume rm <volume_name>
+$ docker volume rm <volume_name>
 ```
