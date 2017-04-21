@@ -69,3 +69,19 @@ For example:
        imagePullSecrets:
        - name: replicatedregistrykey
 ```
+
+## Deploying to Swarm
+
+When deploying an application to a [swarm](/packaging-an-application/docker-swarm) cluster, just reference the image in the Replicated registry. Replicated will automatically authenticate with the registry using the customer's license.
+
+For example:
+
+```
+version: '3.1'
+
+services:
+  megaladon:
+    image: registry.replicated.com/guestbook/gb-frontend:v4
+    deploy:
+      replicas: 1
+```
