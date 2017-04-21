@@ -73,3 +73,23 @@ docker stack deploy -c docker-compose.yml replicated
 ## Installing Behind A Proxy
 
 Proxy support for Swarm will be included in a future release of Replicated.
+
+## Uninstall Entire Swarm Stack
+To remove the entire Swarm stack run the following script.
+{{< warning title="Swarm Uninstall Warning" >}}
+This will remove everything including images, volumes, secrets, etc.. Don't do this unless you are planning on completely starting over.
+{{< /warning >}}
+
+```
+docker stack ls | grep replicated_ | awk '{print $1}' | xargs docker stack rm
+sleep 5; docker service rm premkit_replicated
+sleep 5; docker service rm statsd_replicated
+sleep 5; docker volume rm replicated-premkit-data-volume
+sleep 5; docker volume ls | grep statsd | awk '{print $2}' | xargs docker volume rm
+sleep 5; docker network rm statsd_replicated premkit_replicated
+sleep 5; docker stack rm replicated
+sleep 5; docker ps -a | grep piper | awk '{print $1}' | xargs docker rm
+sleep 10; docker volume ls | grep replicated | awk '{print $2}' | xargs docker volume rm
+sleep 5; docker images | grep 'replicated\|premkit' | awk '{print $3}' | xargs docker rmi
+sleep 5; docker secret ls | grep 'replicated\daemon_token' | awk '{print $1}' | xargs docker secret rm
+```
