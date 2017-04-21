@@ -62,7 +62,6 @@ for each service with `premkit`, `statsd`, or `replicated` in the name.
 
 __Stacks Again__
 
-
 ```shell
 $ docker stack ls
 ```
@@ -83,7 +82,7 @@ __Lingering Containers__
 $ sudo docker ps
 ```
 
-for each container which is related to the Replicated onprem installation
+for each container which is related to the Replicated onprem installation, run:
 
 ```shell
 $ sudo docker rm <container_id>
@@ -95,7 +94,7 @@ __Secrets__
 $ sudo docker secret ls
 ```
 
-for each secret which is related to the Replicated onprem installation
+for each secret which is related to the Replicated onprem installation, run:
 
 ```shell
 $ sudo docker secret rm <secret_name>
@@ -107,7 +106,7 @@ __Volumes__
 $ sudo docker volume ls
 ```
 
-for each volume which is related to the Replicated onprem installation
+for each volume which is related to the Replicated onprem installation, run:
 
 ```shell
 $ sudo docker volume rm <volume_name>
