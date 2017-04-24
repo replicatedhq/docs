@@ -79,7 +79,7 @@ __Lingering Containers__
 
 
 ```shell
-$ docker ps
+$ docker ps -a
 ```
 
 for each container which is related to the Replicated onprem installation, run:
