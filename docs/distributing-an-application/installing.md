@@ -42,7 +42,7 @@ We provide a short set of steps to install Replicated manually, for situations w
 
 [Continue with a manual install](/distributing-an-application/installing-manually)
 
-### Airgap Install
+### Airgapped Install
 Some installations may not have outbound Internet access.  Replicated provides you the option to do airgapped installs to support those customers.  To install your customer will download Replicated, your license and the airgap installation file containing your application.
 
 [Continue with an airgapped install](/distributing-an-application/airgapped-installations)

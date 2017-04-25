@@ -26,6 +26,14 @@ tar xzvf replicated.tar.gz
 cat ./install.sh | sudo bash -s airgap
 ```
 
+### Swarm Mode
+
+{{< version version="2.8.0" >}}
+```shell
+tar xzvf replicated.tar.gz
+cat ./swarm-init.sh | sudo bash -s airgap
+```
+
 ## Download & Rename Airgap Package
 On the license properties page in the vendor portal, enable Airgap installations for this license and copy the
 download link. This URL is designed to be delivered to that customer. They will use this link to download
@@ -47,3 +55,7 @@ Once this screen is completed, Replicated runs as normal. In the :8800/console/s
 to set the Airgap mode settings. You can install updates and sync the license by downloading new versions of these,
 renaming them with the .airgap extension and placing them in the locations specified on the /console/settings
 page.
+
+## Adding Additional Nodes
+
+In order to add additional nodes to your cluster, just navigate to the Cluster page of the Admin Console, click the "Add Node" button, and follow the instructions there. For more detailed instructions see the [add nodes](/distributing-an-application/add-nodes/) page of the docs.
