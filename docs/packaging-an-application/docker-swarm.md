@@ -15,7 +15,7 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/docker-swarm"
 +++
 
-If your application is defined as a Docker Compose version 3 or 3.1 yaml file, Replicated can provide the same standard functionality deploying your application via the [Docker Swarm](https://docs.docker.com/engine/swarm/) scheduler as a [Docker Stack](https://docs.docker.com/docker-cloud/apps/stacks/). Using the Swarm scheduler, you can use all of the Swarm functionality including overlay networks, DNS service discovery, Docker secrets and more. To see a full example, check out the [Voting App example](/examples/swarm-votingapp).
+If your application is defined as a Docker Compose version 3 or 3.1 yaml file, Replicated can provide the same standard functionality deploying your application via the [Docker Swarm](https://docs.docker.com/engine/swarm/) scheduler as a [Docker Stack](https://docs.docker.com/docker-cloud/apps/stacks/) as of Replicated {{< version version="2.7.0" >}}. Using the Swarm scheduler, you can use all of the Swarm functionality including overlay networks, DNS service discovery, Docker secrets and more. To see a full example, check out the [Voting App example](/examples/swarm-votingapp).
 
 ## Differences from the Replicated scheduler
 
@@ -36,7 +36,17 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
 ### Admin Commands
-Admin commands are not supported when running in Swarm mode. This functionality will be included in a future release.
+{{< version version="2.8.0" >}} Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
+
+```yml
+properties:
+  shell_alias: mycli
+admin_commands:
+- alias: redis-sadd
+  command: [redis-cli, sadd]
+  run_type: exec
+  service: redis
+```
 
 ### Dashboard Metrics
 When running Replicated in Swarm mode, the standard statsd endpoint is still running. The only difference here is that the standard CPU and Memory usage graphs will not be available and will be included in an upcoming release. You can use the [custom metrics](/packaging-an-application/custom-metrics) feature to define you own application-specific metrics to show on the admin console dashboard.
@@ -48,4 +58,38 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-Secrets are not supported when running in Swarm mode. This functionality will be included in a future release.
+{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
+
+```yml
+# kind: replicated
+...
+config:
+- name: secrets
+  title: Secrets
+  items:
+  - name: config_my_secret
+    title: My Secret
+    type: password
+...
+swarm:
+  secrets:
+  - name: my_secret
+    value: '{{repl ConfigOption "config_my_secret" }}'
+    labels:
+      foo: bar
+      baz: 
+
+---
+# kind: scheduler-swarm
+version: "3.1"
+services:
+  redis:
+    image: redis:latest
+    deploy:
+      replicas: 1
+    secrets:
+      - my_secret
+secrets:
+  my_secret:
+    external: true
+```
