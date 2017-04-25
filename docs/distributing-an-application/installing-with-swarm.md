@@ -16,7 +16,7 @@ Save the Docker Compose yaml to a file and run. We recommend reading and underst
 
 ```shell
 curl -sSL -o docker-compose.yml https://get.replicated.com/docker-compose.yml
-docker stack deploy -c docker-compose.yml
+docker stack deploy -c docker-compose.yml replicated
 ```
 
 Quick install:
