@@ -14,9 +14,17 @@ Running devicemapper in loopback mode is discouraged for production. It has know
 | 3.18 - 4.0 |  | Consider moving to overlay but be aware that overlay uses a lot of inodes and so you should therefore use a volume that has a large number of inodes and monitor inode usage. See [overlay and docker performance](https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/#overlayfs-and-docker-performance) for details and best practices. |
 | 4.0+ | 1.12+ | You have the option to use overlay2 which overcomes the inode issue in overlay and has good performance. |
 
-To bypass the warning add a `bypass-storagedriver-warnings` flag when running the replicated or operator install scripts. For example
+For Replicated 2.5+ where the host is using IPv4 you can use Docker 1.13.1 which should install an improved storage driver. You can install Docker 1.13.1 prior to running the Replicated daemon or install script using
+
+```bash
+curl -sSL https://get.replicated.com/docker > install
+cat install | sudo bash -s install-docker-only docker-version=1.13.1
+```
+
+To bypass the warning completely (for example in automation scripts for CI/CD pipelines) add the `bypass-storagedriver-warnings` flag when running the replicated or operator install scripts.
 
 ```bash
 curl -sSL https://get.replicated.com/docker > install
 cat install | sudo bash -s bypass-storagedriver-warnings
 ```
+
