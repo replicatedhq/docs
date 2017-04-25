@@ -19,6 +19,9 @@ The Replicated scheduler is a propietary, mature container scheduler that suppor
 
 Our YAML definition is stored in a public repo at [https://github.com/replicatedhq/libyaml/](https://github.com/replicatedhq/libyaml/).
 
+## Swarm Scheduler
+More recent versions of the Docker Engine include swarm mode for natively scheduling containers across a cluster of Docker Engines called a swarm. Replicated supports Docker version 13.1 or greater and the Swarm scheduler. A Docker Compose version 3 YAML is required to distribute your application in swarm mode. We recommend choosing the Docker Swarm scheduler if you have existing Compose YAML and if your customer does not require a Linux distribution without support for newer Docker versions.
+
 ## Kubernetes Scheduler
 Kubernetes is a popular cluster and orchestration tool when running Docker containers. Often, you may already have Kubernetes resources written to deploy your application. Replicated can deliver this down to an existing Kubernetes cluster, and provide all of the enterprise features that will be required to support, maintain, update and run your application behind the firewall. We recommend choosing the Kubernetes scheduler if you have existing Kubernetes YAML and if you customer is able to provision and maintain a Kubernetes cluster.
 
@@ -108,7 +111,7 @@ monitors:
 ```
 
 ## Custom Metrics
-Regardless of the scheduler used, Replicated can also display [custom metrics](packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
+Regardless of the scheduler used, Replicated can also display [custom metrics](/packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
 
 ```yml
 custom_metrics:
@@ -160,7 +163,7 @@ config:
 ```
 
 ## Admin Commands
-Optionally you can expose [admin commands](/packaging-an-application/admin-commands/) in your containers. To configure the commands, add the following section. This example will allow the customer to run the `redis-cli` command with any arbitrary arguments. The command will be executed only in the docker containers that match image name and version as well as defined in the named component. A command that will work with this configuration is `replicated admin redis-cli info`. Replicated will find the appropriate node to run this command on; the customer can run these on the main admin console.
+Optionally you can expose [admin commands](/packaging-an-application/admin-commands/) in your containers. To configure the commands, add the following section. This example will allow the customer to run the `redis-cli` command with any arbitrary arguments. The command will be executed only in the Docker containers that match image name and version as well as defined in the named component. A command that will work with this configuration is `replicated admin redis-cli info`. Replicated will find the appropriate node to run this command on; the customer can run these on the main admin console.
 
 ```yaml
 admin_commands:

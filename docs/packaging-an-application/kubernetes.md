@@ -38,12 +38,12 @@ Standard Replicated snapshots are not supported when running in Kubernetes. This
 Preflight checks are not currently supported when running in Kubernetes. These will be available in a future release.
 
 ### Admin Commands
-Admin commands are supported on Kubernetes. Replicated uses Kubernetes selectors to identify the target pod in which to run the admin command. If multiple pods match the selector then replicated will choose a random pod in which to run the command. Specifying a container is optional as well. If no container is specified the first in the pod will be chosen. See below for an example command.
+Admin commands are supported on Kubernetes. Replicated uses Kubernetes selectors to identify the target pod in which to run the admin command. If multiple pods match the selector then replicated will choose a random pod in which to run the command. Specifying a container is optional as well. If no container is specified the first in the container in the pod will be chosen. See below for an example command.
 
 ```yml
 admin_commands:
-- alias: redis-cli
-  command: [redis-cli]
+- alias: redis-sadd
+  command: [redis-cli, sadd]
   run_type: exec
   selectors:
     app: redis
@@ -72,7 +72,7 @@ Replicated will consider the application running when all of the Kubernetes reso
 There are some additional [template functions](/packaging-an-application/template-functions#kubernetes) available when running in Kubernetes.
 
 ### Secrets
-Replicated supports runtime secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the On-Prem Console settings page. See below for an example of creating a secret in your application.
+Replicated supports runtime secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
 
 For example:
 ```yml

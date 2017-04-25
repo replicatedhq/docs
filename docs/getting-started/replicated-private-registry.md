@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Replicated Private Registry"
 description = "How to push and access private images in Replicated's hosted private registry."
-weight = "104"
+weight = "105"
 categories = [ "Getting Started" ]
 
 [menu.main]
@@ -68,4 +68,20 @@ For example:
          ...
        imagePullSecrets:
        - name: replicatedregistrykey
+```
+
+## Deploying to Swarm
+
+When deploying an application to a [swarm](/packaging-an-application/docker-swarm) cluster, just reference the image in the Replicated registry. Replicated will automatically authenticate with the registry using the customer's license.
+
+For example:
+
+```
+version: '3.1'
+
+services:
+  megaladon:
+    image: registry.replicated.com/guestbook/gb-frontend:v4
+    deploy:
+      replicas: 1
 ```

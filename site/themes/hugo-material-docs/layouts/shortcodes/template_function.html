@@ -5,6 +5,10 @@
   </span>
   &nbsp;
   <span class="badge badge-grey">
+    {{ if ne "true" (.Get "swarm") }}<i class="fa fa-times"></i>{{ else }} <i class="fa fa-check"></i>{{ end }}&nbsp;Swarm
+  </span>
+  &nbsp;
+  <span class="badge badge-grey">
     {{ if ne "true" (.Get "kubernetes") }}<i class="fa fa-times"></i>{{ else }} <i class="fa fa-check"></i>{{ end }}&nbsp;Kubernetes
   </span>
 </div>
