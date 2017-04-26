@@ -44,7 +44,7 @@ and `type` properties. Specific item types can including new types.
 ## Examples
 
 ### `bool`
-The `bool` input type will accept a default value of "0" or "1"
+The `bool` input type should use a "0" or "1" to set the value
 ```yaml
 - name: toggles
   items:
