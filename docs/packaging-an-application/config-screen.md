@@ -43,6 +43,18 @@ and `type` properties. Specific item types can including new types.
 
 ## Examples
 
+### `bool`
+The `bool` input type should use a "0" or "1" to set the value
+```yaml
+- name: toggles
+  items:
+  - name: http_enabled
+    title: HTTP Enabled
+    help_text: When enabled we will listen to http
+    type: bool
+    default: "0"
+```
+
 ### `select`
 Types `select_one` and `select_many` are special cases. These types must have nested items
 that act as options. These types will be displayed as radio buttons (`select_one`) or
