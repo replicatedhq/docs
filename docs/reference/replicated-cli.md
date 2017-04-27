@@ -187,7 +187,13 @@ replicated snapshot list app <app id>
 replicated snapshot list location <location>
 ```
 
-{{< version version="2.5.0" >}} Restore an application from the specified snapshot.  When optional `--dismiss-prechecks` flag is specified, failed preflight checks will be ignored.  The optional `--node-timeout` parameter indicates how long to wait for the initial node to connect.  The default is 60 seconds.
+{{< version version="2.8.0" >}} Start a snapshot. When the optional `--wait` flag is specified, the command will block until the current snapshot is complete. The optional `--exclude-app-data` flag indicates to back up only Replicated data, excluding all vendor application data from the snapshot.
+
+```shell
+replicated snapshot start <app id>:<version> --wait --exclude-app-data
+```
+
+{{< version version="2.5.0" >}} Restore an application from the specified snapshot.  When optional `--dismiss-prechecks` flag is specified, failed preflight checks will be ignored.  The optional `--node-timeout` flag indicates how long to wait for the initial node to connect.  The default is 60 seconds.
 
 {{< note title="Warning" >}}
 This command cannot be used on a system with an already installed license.
