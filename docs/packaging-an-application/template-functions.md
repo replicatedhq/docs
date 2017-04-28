@@ -16,8 +16,6 @@ Template functions are marked by the double curly bracket + *"repl"* escape sequ
 
 Template functions that refer to your containers are always addressed in pairs with "component name" and "image name".  You should use the full image name as it appears in your container definition.
 
-To ensure template functions will return the correct values start all referenced containers prior to referring to them using [container event sequencing](docs/packaging-an-application/template-functions/).
-
 ### Go Templates
 Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to execute the following functions.  In addition to the functions listed here, all of the Go template runtime is available.  Please note that Go template functions must still be escaped with "repl" escape sequence as demonstrated below.
 
@@ -135,7 +133,7 @@ Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `Node PublicIPAddres
 ```go
 func ContainerExposedPort(componentName string, imageName string, internalPort string) string
 ```
-Returns the node's public port mapped to the supplied exposed container port as a string. Works with static and dynamically assigned ports provided the referenced containers are already started.
+Returns the node's public port mapped to the supplied exposed container port as a string.
 
 ```yml
 env_vars:
