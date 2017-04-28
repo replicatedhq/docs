@@ -27,6 +27,8 @@ application and are designed to be used to help manage the state of your applica
 when a container changes state. These events are published as soon as the Replicated operator reports that
 the container state has changed.
 
+When setting up event orchestration use unique event names and follow the rule of thumb that multiple children are fine but each container should have one parent. Event orchestration is critical for template functions, such as ContainerExposedPort with dynamically assigned ports, which requires the referenced container to be started prior to making the template function call.
+
 ## Container Started Event
 A `container-start` event is published as soon as the Docker Engine reports that your container is started. The container
 may still be initializing and loading, but control of the process has been transferred to the `ENTRYPOINT` or `CMD`
