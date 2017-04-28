@@ -27,7 +27,7 @@ application and are designed to be used to help manage the state of your applica
 when a container changes state. These events are published as soon as the Replicated operator reports that
 the container state has changed.
 
-When setting up event orchestration use unique event names. When starting a container with constraints from multiple parents the first event to fire causes the container to start.
+When setting up event orchestration use unique event names. When starting a container with constraints from multiple parents, the first event to fire causes the container to start.
 
 ## Container Started Event
 A `container-start` event is published as soon as the Docker Engine reports that your container is started. The container
