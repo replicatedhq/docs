@@ -1,8 +1,8 @@
 +++
 date = "2016-07-03T04:02:20Z"
 title = "Add Nodes"
-description = "When an application is configured by the vendor with a clustering strategy, Replicated makes it possible for the end customer to install additional nodes on remote instances to run a distributed application."
-weight = "308"
+description = "When a Replicated-orchestrated application is configured with a clustering strategy, additional nodes can be installed on remote instances to take part in the cluster."
+weight = "330"
 categories = [ "Distributing" ]
 
 [menu.main]
@@ -12,16 +12,10 @@ parent     = "/distributing-an-application"
 url        = "/docs/distributing-an-application/add-nodes"
 +++
 
-When an application is configured by the vendor with a clustering strategy, Replicated makes it possible for the end customer to install additional nodes on remote instances to run a distributed application. Installations of Replicated using the [easy installation script](/distributing-an-application/installing/#easy-installation) will install an operator on the local node automatically.
+The instructions to add additional nodes are different depending the running scheduler.
 
-On the Cluster page on the On-Prem Console an "Add Node" button will be visible. This will prompt the end customer with two simple options for adding a node.
+## Replicated Scheduler
+To add additional nodes when running on the Replicatd schdduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Replicated nodes](/distributing-an-application/add-nodes-replicated).
 
-## Scripted Installation
-The scripted install is the recommended means for adding an additional node to Replicated. The end customer will be prompted for the private and optionally the public address of the server.
-
-![Add Node Script](/static/add-node-script.png)
-
-## Docker Installation
-If a scripted install is not possible, additionally a docker script is provided for installing additional nodes.
-
-![Add Node Docker](/static/add-node-docker.png)
+## Swarm Scheduler
+To add additional nodes when running on the Swarm scheduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Swarm nodes](/distributing-an-application/add-nodes-swarm).

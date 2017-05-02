@@ -20,7 +20,7 @@ The name of the customer to whom this license is assigned.
 ## License Channel (Required)
 When you create a license you'll need to assign it to a release channel (if it is a customer,
 likely channel is Stable, but for your internal testing you'll also likely need unstable &
- beta licenses). [More about release channel management](/docs/getting-started/manage-releases/)).
+ beta licenses). [More about release channel management](/getting-started/manage-releases/)).
 
 ## Expiration
 When you create a license you can specify how the license will behave when it expires.  The policy can ignore expiration, allow a running application to continue but prevent updates, or stop the running application and prevent updates.  License expiration to stop running the application is supported in Replicated 2.1.0 or newer.

@@ -156,6 +156,10 @@ Next we have the option of specifying environment variables. There is also a fla
       is_excluded_from_support: true
 ```
 
+{{< note title="Sensitive data" >}}
+Having environment variables in Support Bundles can be invaluable for troubleshooting.   However, environment variables can contain sensitive data.  Setting `is_excluded_from_support` to `true` will exclude them from Support Bundles.
+{{< /note >}}
+
 ## Ports
 We can use the ports property to publish a container's exposed port (private_port) to the host (public_port). The when property allows us to
 conditionally expose that port mapping when some prior condition is satisfied. Use the interface property to force the public port to be
@@ -180,6 +184,7 @@ Optional properties:
 
 - `permission` should be a octal permission string
 - `owner` should be the uid of the user inside the container
+- `options` optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode *supported as of 2.3.0
 - `is_ephemeral` Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots. *supported as of 2.3.5
 - `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
 
@@ -191,6 +196,7 @@ Optional properties:
       owner: "100"
       is_ephemeral: false
       is_excluded_from_backup: true
+      options: ["rw"]
 ```
 
 Replicated supports volumes_from to attach several mounts from a colocated container.
@@ -389,7 +395,7 @@ Sets the hostname inside of the container.  See the network host section under [
 ```
 
 ### Extra Hosts
-Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#/extra-hosts). 
+Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#extrahosts).
 ```yml
   extra_hosts:
   - hostname: mysql
@@ -399,17 +405,38 @@ Add extra hostname mappings with hostname, address and an optional when field.  
 ```
 
 ### Named Containers
-Use name to set the name of the container.  References to the container in template functions should continue to the use imagename.  Do not use named containers when clustering and starting multiple copies of the same container on one server.
+The name argument sets the name of your running container. It is provided as a convenience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
+
 ```yml
   name: redis
 ```
 
+For more information see [named containers](https://docs.docker.com/engine/reference/run/#/container-identification).
+
 ### Entrypoint
-When working with third party containers you may want to override the default entry point using the 
+When working with third party containers you may want to override the default entry point using the
 entrypoint option.
-Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the 
+Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the
 [cmd and entrypoint options](https://docs.docker.com/engine/reference/builder/#/understand-how-cmd-and-entrypoint-interact) work together.  Entrypoint takes an array of strings.
 
 ```yml
     entrypoint: ["redis", "-p", "6380"]
+```
+
+### Ulimits
+{{< version version="2.5.0" >}} Since setting ulimit settings in a container requires extra privileges not available in the default container, you can set these using the ulimits property of the container. Learn more about ulimits [here](https://docs.docker.com/engine/reference/commandline/run/#/set-ulimits-in-container---ulimit).
+
+```yml
+    ulimits:
+    - name: nofile
+      soft: 1024
+      hard: 1024
+```
+
+### Pid Mode
+
+{{< version version="2.1.0" >}} Pid mode lets you specify the process namespace for your container. By default each container has its own space and by declaring a `pid_mode` you can see the processes of another container or host. See [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) to learn more.
+
+```yml
+    pid_mode: host
 ```

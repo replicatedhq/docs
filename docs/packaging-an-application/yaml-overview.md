@@ -12,10 +12,22 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/yaml-overview"
 +++
 
-Our YAML definition is stored in a public repo at  [https://github.com/replicatedhq/libyaml/](https://github.com/replicatedhq/libyaml/).
+Replicated will deploy an application that is defined in a YAML spec. We currently support deploying an application that uses the Replicated scheduler or deploying a Kubernetes application. Understanding how each of these will be installed and maintained is an important consideration when choosing the scheduler to use to deploy your application.
+
+## Replicated Scheduler
+The Replicated scheduler is a propietary, mature container scheduler that supports the features required by enterprise customers. It was designed and built to enable your customer to install a complex application on one or a cluster of servers, without having to preinstall anything else. They can simply bring Linux servers that are compatible with Docker 1.7.1 or newer, and can deploy and manage your application on their servers. This scheduler supports [airgap installations](/distributing-your-application/airgapped-installations) and many other features that enterprise users need. We recommend choosing the Replicated scheduler for most installations.
+
+Our YAML definition is stored in a public repo at [https://github.com/replicatedhq/libyaml/](https://github.com/replicatedhq/libyaml/).
+
+## Swarm Scheduler
+More recent versions of the Docker Engine include swarm mode for natively scheduling containers across a cluster of Docker Engines called a swarm. Replicated supports Docker version 13.1 or greater and the Swarm scheduler. A Docker Compose version 3 YAML is required to distribute your application in swarm mode. We recommend choosing the Docker Swarm scheduler if you have existing Compose YAML and if your customer does not require a Linux distribution without support for newer Docker versions.
+
+## Kubernetes Scheduler
+Kubernetes is a popular cluster and orchestration tool when running Docker containers. Often, you may already have Kubernetes resources written to deploy your application. Replicated can deliver this down to an existing Kubernetes cluster, and provide all of the enterprise features that will be required to support, maintain, update and run your application behind the firewall. We recommend choosing the Kubernetes scheduler if you have existing Kubernetes YAML and if you customer is able to provision and maintain a Kubernetes cluster.
+
 
 ## Replicated API Version
-At the top of the file we must specify a Replicated API version. For the 2.x replicated we use API version {{<replicated_api_version_current >}}. Note: The [Changelog](https://vendor.replicated.com/#/changelog) tracks the API version.
+At the top of the YAML file, regardless of the scheduler, there must be a Replicated API version. The current API version to use is {{<replicated_api_version_current >}}. Note: The [Changelog](https://vendor.replicated.com/#/changelog) tracks the API version.
 
 ```yml
 replicated_api_version: {{< replicated_api_version_current >}}
@@ -29,7 +41,7 @@ name: My Enterprise Application
 ```  
 
 ## Detailed App Properties Description
-Next we specify some optional application properties. For a list of available properties see [Application Properties](/packaging-an-application/application-properties). You will notice the `{{repl` escape sequence. This invokes a Replicated [template function](/packaging-an-application/template-functions), which will be discussed in more detail soon.
+The properties section includes definitions of some optional (but recommended) application properties. For a list of available properties see [Application Properties](/packaging-an-application/application-properties). You will notice the `{{repl` escape sequence. This invokes a Replicated [template function](/packaging-an-application/template-functions), which will be discussed in more detail soon.
 
 ```yml
 properties:
@@ -38,7 +50,7 @@ properties:
 ```  
 
 ## Support Page
-We can also specify additional markdown content that will be displayed on the Support page of the admin console:
+Replicated supports displaying custom markdown content on the Support page of the admin console. This can be defined in the console_support_markdown key.
 
 ```yml
 console_support_markdown: |
@@ -50,7 +62,7 @@ console_support_markdown: |
 ```
 
 ## Snapshots (Backups)
-We can optionally specify a section to enable [Snapshots](/packaging-an-application/snapshots/). The following example will allow your customer to enable snapshots and create a script to run the snapshot.
+The snapshots key is available to to enable and configure [Snapshots](/packaging-an-application/snapshots/). The following example will allow your customer to enable snapshots and create a script to run the snapshot.
 
 ```yaml
 backup:
@@ -61,8 +73,6 @@ backup:
     #!/bin/sh
     myappcli backup
 ```
-
-If backups are not enabled the Replicated dashboard snapshots tile can be hidden by adding `hidden: true`.
 
 ## CMD
 The Replicated platform has some built in [commands](/packaging-an-application/commands/) that make writing your configuration much more powerful. In the cmds section you can write commands which we will use later.  These are useful to generate install-time values such as default certs/keys, randomized passwords, JWT token keys, etc.
@@ -76,7 +86,7 @@ cmds:
 ```
 
 ## Components
-The [components section](/packaging-an-application/components-and-containers/) is where the containers are defined.  This will include everything from the container image, environment variables, [application orchestration](/packaging-an-application/events-and-orchestration/), config files, [optional clustering](/packaging-an-application/clustering/) and more.
+The [components section](/packaging-an-application/components-and-containers/) defines the container runtime environment for your containers, if using the Replicated scheduler.  This will include everything from the container image, environment variables, [application orchestration](/packaging-an-application/events-and-orchestration/), config files, [optional clustering](/packaging-an-application/clustering/) and more.
 
 ```yaml
 components:
@@ -88,8 +98,7 @@ components:
 ```
 
 ## Monitors
-The containers which make up your components can be monitored for resource usage metrics on an individual basis. For each metric, simply specify each component and container image pair. For example, if you want to see CPU and memory usage metrics for some of your Redis container and your
-private worker image pulled from quay.io (in a Worker component):
+When using the Replicated scheduler, the containers which make up your components can be monitored for resource usage metrics on an individual basis. For each metric, simply specify each component and container image pair. For example, if you want to see CPU and memory usage metrics for some of your Redis container and your private worker image pulled from quay.io (in a Worker component):
 
 ```yaml
 monitors:
@@ -102,7 +111,7 @@ monitors:
 ```
 
 ## Custom Metrics
-In addition to the default CPU & Memory monitors, Replicated can also display [custom metrics](packaging-an-application/custom-metrics/) sent from the running instance to the on-prem dashboard.
+Regardless of the scheduler used, Replicated can also display [custom metrics](/packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
 
 ```yml
 custom_metrics:
@@ -117,7 +126,9 @@ custom_metrics:
 ```  
 
 ## Ready State
-You can optionally add a health check that we will poll after the customer starts your application. The purpose of this is to report when your application is fully started and ready to start using. Once your application is running, we stop polling this health check and rely on other methods to monitor the status. Timeout allows to specify (in seconds) how long to keep retrying the command if it fails. Use -1 for "never timeout". A timeout of 0 is reserved for backwards compatibility, which is the same as omitting the timeout value, which causes the default of 10 minutes to be used.
+(Note: The Ready State is only compatible with the Replicated scheduler. To learn how Replicated starts a Kubernetes application, see the detail in the [Kubernetes](/packaging-an-application/kubernetes) document).
+
+You can add a health check that Replicated will poll after your containers have all been started. The purpose of this is to report when your application is fully running and ready to start using. Once your application is running, we stop polling this health check and rely on other methods to monitor the status. The timeout parameter allows you to specify (in seconds) how long to keep retrying the command, if it fails. You can use a timeout value of -1 to indicate infinite polling. A timeout of 0 is not supported and causes the default of 10 minutes to be used.
 
 ### Available Commands:
 - `http_status_code`
@@ -152,16 +163,15 @@ config:
 ```
 
 ## Admin Commands
-Optionally you can expose [admin commands](/packaging-an-application/admin-commands/) in your containers. To configure the commands, add the following section. This example will allow the customer to run the `redis-cli` command with any arbitrary arguments. The command will be executed only in the docker containers that match image name and version as well as defined in the named component. A command that will work with this configuration is `replicated admin redis-cli info`. Replicated will find the appropriate node to run this command on; the customer can run these on the main admin console.
+Optionally you can expose [admin commands](/packaging-an-application/admin-commands/) in your containers. To configure the commands, add the following section. This example will allow the customer to run the `redis-cli` command with any arbitrary arguments. The command will be executed only in the Docker containers that match image name and version as well as defined in the named component. A command that will work with this configuration is `replicated admin redis-cli info`. Replicated will find the appropriate node to run this command on; the customer can run these on the main admin console.
 
 ```yaml
 admin_commands:
-- command: redis-cli
-  component: DB
+- alias: redis-cli
+  command: [redis-cli]
   run_type: exec
-  image:
-    image_name: redis
-    version: latest
+  component: DB
+  container: redis
 ```
 
 ## Custom Preflight Checks

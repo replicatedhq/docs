@@ -17,7 +17,7 @@ Before installing your app, you need to install Replicated on a compatible machi
 We support the server versions of the following OS's
 
 - Debian 7.7+
-- Ubuntu 14.04 / 15.10 / 16.04
+- Ubuntu 14.04 / 15.10
 - Fedora 21 / 22
 - Red Hat Enterprise Linux 7.1
 - CentOS 7+
@@ -225,3 +225,15 @@ Replicated UI.
 
 Please note that this may have security implications, so make sure you check the
 documentation for your OS and consider the effects carefully.
+
+
+## Migrating to Replicated v2
+Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop your app and backup all Replicated data in case there is a need for a restore. To invoke the migration script all you have to do is run the script below and follow the prompts.
+
+```shell
+curl -sSL https://get.replicated.com/migrate-v2 | sudo bash
+```
+
+{{< warning title="Warning" >}}
+To prevent loss of data, backing up your server is highly recommended before performing a migration.
+{{< /warning >}}

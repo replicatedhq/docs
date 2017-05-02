@@ -40,6 +40,7 @@ These settings are explained in the following table:
 |---------|-------------------|-------------|
 | DaemonAuthenticationType | `anonymous` or `password` | For test automation Replicated supports anonymous and password protected access. |
 | DaemonAuthenticationPassword | Any `string` | If DaemonAuthenticationType is set to `password` this value is required to access the Replicated console. |
+| DaemonToken | Any `string` | Authentication token used by operators for automating a cluster installation |
 | TlsBootstrapType | `['server-path', 'self-signed']` | The type of TLS cert the Replicated UI will run with. Use self-signed for a fully automated setup, use server-path to provide a static cert and key to bootstrap the console with. |
 | TlsBootstrapHostname | Any `string` | The hostname to use for the Replicated-UI :8800 console |
 | TlsBootstrapCert | A file location as a `string` | If TlsBootstrapType is set to server-path, this value should be present and set to the location of a PEM encoded certificate file. |

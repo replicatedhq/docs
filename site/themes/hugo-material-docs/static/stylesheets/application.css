@@ -1340,3 +1340,31 @@ h1 .article .headerlink {
     width: 100%;
   }
 }
+
+
+.badge {
+  border-radius: 12px !important;
+  font-size: 12px;
+  color: #fff;
+  padding: 8px;
+}
+
+.badge-grey {
+  background-color: #848586;
+}
+
+.badge-red {
+  background-color: #ff0000;
+}
+
+.badge-green {
+  background-color: #7FC65E;
+}
+
+.badge-blue {
+  badge-color: #5896bb;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}

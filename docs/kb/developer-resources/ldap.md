@@ -22,7 +22,7 @@ So, how does it work? There are 2 parts to this… the first piece will do the a
 & should only take about 3-5 lines of new code. The second piece is optional, takes a bit
 more effort but will provide you with full LDAP/AD Sync to your user table (so you can do
 things like show a list of users etc). This is the ‘producty’ description...
-[developer docs are available](http://docs.replicated.com/v1.0/docs/identity-api))
+[developer docs are available](https://replicated.readme.io/docs/identity-api))
 
 ## PART 1: AUTH
 If you have any type of federated login, then you likely have an if block that determines

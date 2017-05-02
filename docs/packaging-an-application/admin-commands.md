@@ -12,17 +12,35 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/admin-commands"
 +++
 
-The `admin_commands` section allows you to define ad-hoc commands that can be executed
-inside a running container from the shell.
+The `admin_commands` section allows you to define ad-hoc commands that can be executed inside a running container from the shell.
 
 *Note: If you are calling admin commands from a script use the `--no-tty` flag.*
+
+## Executing
+
+### Replicated
+```bash
+$ <shell_alias> <command_alias> <params>
+```
+or
+```bash
+$ replicated admin <command_alias> <params>
+```
+or
+```bash
+$ docker exec -it replicated replicated admin <command_alias> <params>
+```
+
+### Kubernetes
+```bash
+$ kubectl exec -it "$(kubectl get pods -l=app=replicated -o=jsonpath='{.items..metadata.name}')" -c replicated -- replicated admin <command_alias> <params>
+```
 
 ## Examples
 
 ### `nginx-reload`
-This example admin command will create a shell alias to allow `mycli nginx-reload` to execute the
-command `service nginx reload` inside the running nginx container. This same admin command
-will also be available to run with `replicated admin nginx-reload`, or simply as `nginx-reload`
+
+This example admin command will create a shell alias to allow `mycli nginx-reload` to execute the command `service nginx reload` inside the running nginx container. This same admin command will also be available to run with `replicated admin nginx-reload`, or simply as `nginx-reload`
 
 ```yaml
 properties:
@@ -32,15 +50,12 @@ admin_commands:
   command: [service, nginx, reload]
   run_type: exec
   component: MyComponent
-  image:
-    image_name: nginx
-    version: latest
+  container: nginx
 ```
 
 ### `redis-sadd`
-This example admin command will create a shell alias to allow `mycli redis-sadd mykey myvalue` to execute
-the command `redis-cli sadd mykey myvalue` inside the redis container. This same admin command
-will also be available to run with `replicated admin redis-sadd mykey myvalue` or `redis-sadd mykey myvalue`
+
+This example admin command will create a shell alias to allow `mycli redis-sadd mykey myvalue` to execute the command `redis-cli sadd mykey myvalue` inside the redis container. This same admin command will also be available to run with `replicated admin redis-sadd mykey myvalue` or `redis-sadd mykey myvalue`
 
 ```yaml
 properties:
@@ -50,31 +65,67 @@ admin_commands:
   command: [redis-cli, sadd]
   run_type: exec
   component: MyComponent
-  image:
-    image_name: redis
-    version: latest
+  container: redis
+```
+
+### Swarm
+
+```yml
+properties:
+  shell_alias: mycli
+admin_commands:
+- alias: redis-sadd
+  command: [redis-cli, sadd]
+  run_type: exec
+  service: redis
+```
+
+### Kubernetes
+
+```yml
+admin_commands:
+- alias: redis-sadd
+  command: [redis-cli, sadd]
+  run_type: exec
+  selectors:
+    app: redis
+    tier: backend
+    role: master
+  container: master # optional, will choose first in pod
 ```
 
 ## Configuration
+
 ### shell_alias
-This is the shell alias that will be created during installation. Commands can be invoked
-using this alias or using the replicated CLI directly. Note that this is defined in
-Application Properties, not in the admin command.
+This is the shell alias that will be created during installation when using the Replicated scheduler.  Commands can be invoked using this alias or using the replicated CLI directly. Note that this is defined in Application Properties, not in the admin command. This alias is not available for Kubernetes applications.
 
 ### alias
 This is the command that the user will specify on the command line.  When `shell_alias` is defined, shell aliases will also be created for each individual admin command.
 
 ### command
-This is the actual command that will be executed inside the container when the alias is
-invoked through the replicated CLI.
+This is the actual command that will be executed inside the container when the alias is invoked through the replicated CLI.
 
 ### run_type
-Specify `exec` to execute the command in the currently running container. This is currently
-the only option.
+Specify `exec` to execute the command in the currently running container. This is currently the only option.
 
 ### component
-Identifies the component under which the container image is defined.
+* Replicated (required): This identifies the component under which to run the command.
+* Swarm: unavailable
+* Kubernetes: unavailable
 
-### image
-Identifies the image whose container will be used to run the command. This will not create a new
-instance of the container; the command will run inside the existing container.
+### service
+* Replicated: unavailable
+* Swarm (required): This identifies the service under which to run the command. A container will be chosen at random to run the command in.
+* Kubernetes: unavailable
+
+### selectors
+* Replicated: unavailable
+* Swarm: unavailable
+* Kubernetes (required): This is a Kubernetes map of selectors to identify the pod that the admin command should be run in.
+
+### container
+* Replicated (required): This specifies the container in which to run the admin command.
+* Swarm: unavailable
+* Kubernetes (optional): This specifies the container in the pod in which to run the admin command. If not supplied the first container will be chosen.
+
+

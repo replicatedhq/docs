@@ -6,20 +6,13 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-**This Works with Replicated Daemon 1.2.81 and above.**  
-
-Replicated provides a way to achieve zero downtime backups by combining two of our more powerful
-replicated features: [Admin Commands](/packaging-an-application/admin-commands/) and
-[Snapshots](/packaging-an-application/snapshots/).
+Replicated provides a way to achieve zero downtime backups by combining two of our more powerful replicated features: [Admin Commands](/packaging-an-application/admin-commands/) and [Snapshots](/packaging-an-application/snapshots/).
 
 In this example we will demonstrate how to backup redis without having to stop the redis process itself:
 
 ## Step 1: Create Redis Container with 2 volumes.
 
-**Note: This YAML creates 2 Docker volumes: 1) A primary volume (“data”) 2) a secondary volume
-(“backup”) that will be used to store the redis dump. Make sure that your primary volume
-(ie “data”) has `is_excluded_from_backup: true` to ensure that it isn't paused during the backup
-process.**  
+**Note: This YAML creates 2 Docker volumes: 1) A primary volume (“data”) 2) a secondary volume (“backup”) that will be used to store the redis dump. Make sure that your primary volume (ie “data”) has `is_excluded_from_backup: true` to ensure that it isn't paused during the backup process.**  
 
 ```yml
 components:
@@ -43,30 +36,20 @@ components:
 ```yml
 admin_commands:
 - alias: backup-redis-to-rdb
- command:
- - redis-cli
- - bgsave
- run_type: exec
- component: DB
- image:
-   image_name: redis
-   version: latest
+  command: [redis-cli, bgsave]
+  run_type: exec
+  component: DB
+  container: redis
 - alias: mv-backup-rdb-to-safe-place
- command:
- - mv
- - /data/dump.rdb
- - /backup/dump.rdb
- run_type: exec
- component: DB
- image:
-   image_name: redis
-   version: latest
+  command: [mv, /data/dump.rdb, /backup/dump.rdb]
+  run_type: exec
+  component: DB
+  container: redis
 ```
 
 ## Step 3: Enable backups
 
-We enable backups and inline a script that calls our admin commands (notice that we use the `--no-tty`
-flag ). Note: `pause_all` is set to false thus enabling 0 downtime backups!
+We enable backups and inline a script that calls our admin commands (notice that we use the `--no-tty` flag). Note: `pause_all` is set to false thus enabling 0 downtime backups!
 
 ```yml
 backup:

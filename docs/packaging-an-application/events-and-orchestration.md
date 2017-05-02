@@ -27,6 +27,8 @@ application and are designed to be used to help manage the state of your applica
 when a container changes state. These events are published as soon as the Replicated operator reports that
 the container state has changed.
 
+When setting up event orchestration use unique event names. When starting a container with constraints from multiple parents, the first event to fire causes the container to start.
+
 ## Container Started Event
 A `container-start` event is published as soon as the Docker Engine reports that your container is started. The container
 may still be initializing and loading, but control of the process has been transferred to the `ENTRYPOINT` or `CMD`
@@ -76,7 +78,7 @@ containers:
 The `exec` event type is provided to execute arbitrary scripts in a container. This command is attempted immediately after the
 container starts, and again at an interval of 2 seconds until it returns 0 or 10 minutes has elapsed. If the command succeeds
 with a result code of 0, the event triggers. If not, the command will retry for up to 10 minutes and result in a failure if
-the exit code is never 0. The command to be executed is given in the `data` field as the arguments are represented as an array
+the exit code is never 0. The command to be executed is given in the `args` field as the arguments are represented as an array
 of strings.
 
 ```yaml
