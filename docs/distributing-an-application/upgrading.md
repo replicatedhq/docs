@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Upgrading Replicated"
 description = "The process for end customers to update Replicated services to access the latest improvements to the underlying system since their installation."
-weight = "320"
+weight = "305"
 categories = [ "Distributing" ]
 
 [menu.main]
@@ -42,8 +42,8 @@ cat ./install.sh | sudo bash -s airgap
 
 
 ## Migrating from Replicated v1 to v2
-Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop your app 
-and backup all Replicated data in case there is a need for a restore. To invoke the migration script all you have to do 
+Replicated provides a one line migration script to upgrade your v1 installation to v2. The script will first stop your app
+and backup all Replicated data in case there is a need for a restore. To invoke the migration script all you have to do
 is run the script below and follow the prompts.
 
 ```shell
