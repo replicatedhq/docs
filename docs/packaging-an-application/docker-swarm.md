@@ -26,6 +26,22 @@ Some of the standard Replicated features operate differently or are not supporte
 ### External Private Images
 External private images are not supported currently. Replicated hosts a [private registry](/getting-started/replicated-private-registry) that you can use to ship private images. Replicated also supports public (unauthenticated) images in any registry.
 
+### Airgapped Installations
+Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified a new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
+
+```yml
+images:
+- name: redis
+  tag: 3.2-alpine
+  source: public
+- name: postgres
+  tag: 9.4
+  source: public
+- name: example-voting-app-vote
+  tag: good
+  source: replicated
+```
+
 ### Replicated Auto Updates
 Replicated auto updates work as expected when running in Swarm mode. While the Replicated update is applying, the UI will not be available. Once it finishes, refresh the UI to get the update.
 
