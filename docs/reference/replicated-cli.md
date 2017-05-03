@@ -2,7 +2,7 @@
 date = "2016-07-03T04:12:27Z"
 title = "Replicated CLI Reference"
 description = "Generated documentation on the default Replicated CLI commands available for all Replicated installed instances."
-weight = "505"
+weight = "592"
 categories = [ "Reference" ]
 
 [menu.main]
