@@ -27,7 +27,7 @@ Some of the standard Replicated features operate differently or are not supporte
 External private images are not supported currently. Replicated hosts a [private registry](/getting-started/replicated-private-registry) that you can use to ship private images. Replicated also supports public (unauthenticated) images in any registry.
 
 ### Airgapped Installations
-Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified a new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
+{{< version version="2.8.0" >}} Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified a new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
 
 ```yml
 images:
