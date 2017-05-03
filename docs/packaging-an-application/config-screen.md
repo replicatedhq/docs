@@ -55,6 +55,20 @@ The `bool` input type should use a "0" or "1" to set the value
     default: "0"
 ```
 
+### `label`
+The `label` input type allows you to display an input label.
+```yaml
+- name: Email
+  items:
+  - name: email-address
+    title: Email Address
+    type: text
+  - name: description
+    type: label
+    title: "Note: The system will send you an email every hour."
+
+```
+
 ### `select`
 Types `select_one` and `select_many` are special cases. These types must have nested items
 that act as options. These types will be displayed as radio buttons (`select_one`) or
