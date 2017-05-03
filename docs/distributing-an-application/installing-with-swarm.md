@@ -8,7 +8,7 @@ aliases = [
 ]
 +++
 
-We distribute an installation script that can be used to install Replicated into a new or existing Swarm cluster. The cluster does not have to be created at this point, the Replicated install script can install the Docker Engine and provision a new swarm cluster.
+We distribute an installation script that can be used to install Replicated into a new or existing Swarm cluster. The cluster does not have to be created at this point, the Replicated install script can install Docker Engine and provision a new Swarm cluster.
 
 ### Basic install (recommended):
 
@@ -22,23 +22,13 @@ sudo bash ./install.sh
 
 ### Quick Install:  
 
-The quick swarm install will install Docker (as needed) and Replicated. Use this method if you have no need to view/change the installer script and you just want a one-line install.
+The quick Swarm install will install Docker (as needed) and Replicated. Use this method if you have no need to view/change the installer script and you just want a one-line install.
 
 ```shell
 curl -sSL https://get.replicated.com/swarm-init | sudo bash
 ```
 
-### Advanced Install:
-
-The advanced swarm install requires the host is running Docker with a version between  {{< swarm_docker_version_minimum >}} - {{< swarm_docker_version_default >}}.
-
-This method will save the Docker Compose YAML to a file and then run a command using the YAML file as the input. We recommend reading and understanding the Compose file prior to running.
-
-```shell
-curl -sSL -o docker-compose.yml https://get.replicated.com/docker-compose.yml
-docker stack deploy -c docker-compose.yml replicated
-```
-### Flags:
+#### Flags:
 The install script can take flags to help your customers with specialized enterprise setups.
 
 |Flag|Usage|
@@ -60,6 +50,17 @@ The install script can take flags to help your customers with specialized enterp
 Example quick install with flags:
 ```shell
 curl -sSL https://get.replicated.com/swarm-init | sudo bash -s no-proxy ui-bind-port=8000
+```
+
+### Advanced Install:
+
+The advanced Swarm install requires the host is running Docker with a version between {{< swarm_docker_version_minimum >}} - {{< swarm_docker_version_default >}}.
+
+This method will save the Docker Compose YAML to a file and then run a command using the YAML file as the input. We recommend reading and understanding the Compose file prior to running.
+
+```shell
+curl -sSL -o docker-compose.yml https://get.replicated.com/docker-compose.yml
+docker stack deploy -c docker-compose.yml replicated
 ```
 
 ## Installing Behind A Proxy
