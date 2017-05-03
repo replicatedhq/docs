@@ -2,7 +2,7 @@
 date = "2016-07-03T04:12:27Z"
 title = "Replicated Integration API Reference"
 description = "Generated documentation on the on-prem features provided by Replicated."
-weight = "504"
+weight = "591"
 categories = [ "Reference" ]
 
 [menu.main]

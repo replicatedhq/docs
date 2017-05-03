@@ -11,34 +11,42 @@ page_metadata() {
         CAPS_API="Manage Apps"
         DESCRIPTION="Create, update and delete apps."
         KEYWORDS="applications, apps"
+        WEIGHT="510"
     elif [ "$1" = "audit" ]; then
         CAPS_API="Audit Logs"
         DESCRIPTION="Send audit logs through Replicated."
         KEYWORDS="audit logs"
+        WEIGHT="511"
     elif [ "$1" = "auth" ]; then
         CAPS_API="Authentication"
         DESCRIPTION="Login, logout and create team members."
         KEYWORDS="authentication"
+        WEIGHT="512"
     elif [ "$1" = "branding" ]; then
         CAPS_API="Custom Branding"
         DESCRIPTION="Brand the Replicated user experience."
         KEYWORDS="brand, branding"
+        WEIGHT="513"
     elif [ "$1" = "channels" ]; then
         CAPS_API="Manage Channels"
         DESCRIPTION="Create, update, delete, and archive channels."
         KEYWORDS="channels"
+        WEIGHT="514"
     elif [ "$1" = "license" ]; then
         CAPS_API="Manage Licenses"
         DESCRIPTION="Create, update, delete, revoke licenses and download license keys."
         KEYWORDS="license, licenses"
+        WEIGHT="515"
     elif [ "$1" = "releases" ]; then
         CAPS_API="Manage Releases"
         DESCRIPTION="Create, list, promote, update and archive releases."
         KEYWORDS="license, licenses"
+        WEIGHT="516"
     else
         CAPS_API=""
         DESCRIPTION=""
         KEYWORDS=""
+        WEIGHT=""
     fi
 }
 
@@ -57,7 +65,7 @@ title = "$CAPS_API"
 type = "swagger"
 description = "$DESCRIPTION"
 keywords= "$KEYWORDS"
-weight = "305"
+weight = "$WEIGHT"
 categories = [ "Vendor API" ]
 +++
 EOM
