@@ -277,6 +277,7 @@ the command will run on all nodes in the cluster.
 custom_requirements:
 - id: port-available-lb-80
   message: Load balancer port is available
+  when: '{{repl eq AppVersion AppVersionFirst }}' # only on first install
   details: Port 80 must be available for the load balancer.
   results:
   - status: success
