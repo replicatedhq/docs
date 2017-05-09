@@ -15,7 +15,7 @@ url        = "/docs/distributing-an-application/add-nodes"
 The instructions to add additional nodes are different depending the running scheduler.
 
 ### Replicated Scheduler
-To add additional nodes when running on the Replicatd schdduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Replicated nodes](/distributing-an-application/add-nodes-replicated).
+To add additional nodes when running on the Replicated scheduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Replicated nodes](/distributing-an-application/add-nodes-replicated).
 
 ### Swarm Scheduler
 To add additional nodes when running on the Swarm scheduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Swarm nodes](/distributing-an-application/add-nodes-swarm).
