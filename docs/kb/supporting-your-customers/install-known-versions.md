@@ -6,53 +6,43 @@ weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
 
-Starting with the Replicated 2.0 installation scripts, we support installing specific versions of any of the Replicated components.
-Previously, we always installed the most recent version of the Replicated daemons. We would ensure that the “latest” versions
-would be compatible with each other and with existing application YAML. But we also recognize that developers depend on Replicated
-to provide a known experience each and every installation attempt, so we now do support installing specific versions of our 2.0
-release.
+We recognize that developers depend on Replicated to provide a known experience each and every installation.
 
-The easy installation method of Replicated today is:
+Starting with Replicated 2.3.0 we support specifying the version of Replicated you want to use via the app YAML and Replicated can auto update itself during app updates. By using the channel install script the installer will automatically select the right version of Replicated for you. When updating your application, if the version of Replicated is lower than you specified, Replicated will auto update prior to installing your software. The auto update happens automatically and does not require any effort on your customers behalf.
 
-```shell
-curl -sSL https://get.replicated.com/docker | sudo bash
+To specify the version to use, add replicated_version into your preflight checks:
+
+```
+replicated_api_version: 2.4.2
+
+host_requirements:
+  replicated_version: ">=2.4.2 < 2.9.0"
 ```
 
-If you want to install a specific version of each of the components, you can simply use:
+For the installer to use the version of Replicated you specify you should use the channel release install script url. This version of the script is similar to the easy install url but is customized based on your app YAML. To get the install link, login to your [vendor.replicated.com](https://vendor.replicated.com/) account, select your app and click "build history" for your channel and click "Copy install script url".
+
+## Installing earlier versions
+
+To install older versions of Replicated after 2.0 we support specifying the version in the install url.
 
 ```shell
 curl -sSL "https://get.replicated.com/docker?replicated_tag=2.3.2&replicated_ui_tag=2.3.2&replicated_operator_tag=2.3.2" | sudo bash
 ```
 
-There are some best practices around using this new functionality:
+# Best Practices
 
-## 1. Always install versions of the Replicated components that are known to work together.
+Here are some best practices for installing your application with Replicated.
 
-If you are just starting, we recommend installing using the top (latest) install script and using those versions. Before you
-ship to a customer, you can query your test environment to learn which versions are install and pin to these versions. Not all versions
-of the Replicated components are compatible with all other versions.
+## 1. Always install versions of the Replicated components that are known to work together
 
-To query the versions of Replicated, you can download a support bundle and look in the versions folder.
+If you are just starting, we recommend using the host requirements to set the Replicated version. When moving to a newer version of Replicated always test your application prior to release. On a regular basis test the latest Replicated version by updating your replicated_version range and when ready publish it to your customers. Subscribe to and read our [release notes](https://release-notes.replicated.com).
 
-Our images are publicly listed at:
-https://quay.io/repository/replicated/replicated?tab=tags
-https://quay.io/repository/replicated/replicated-ui?tab=tags
-https://quay.io/repository/replicated/replicated-operator?tab=tags
+## 2. Proxy this to give out a branded and standard install url
 
-You don't need to list the “stable” or “beta” part of the image tag, just the version number. Replicated will automatically install
-from the correct channel.
+For example, if you want to host the installation script on https://get.company.com/docker, we recommend setting up an nginx proxy. Proxy /docker externally to https://get.replicated.com/docker/app-id/channel-name.
 
-## 2. Proxy this to remove the version numbers from your customer's install script.
+## 3. Install latest for support sometimes
 
-For example, if you want to host the installation script on https://get.company.com/docker, we'd recommend setting up an nginx proxy where
-you control the versions. Proxy /docker externally to /docker?replicated_tag=x&replicated_ui_tag=y&replicated_operator_tag=z. This gives
-you the ability to tell your customers to simply “rerun the installation script” and they will upgrade the Replicated components to a
-known version you support.
+Occasionally, when supporting a customer running an older version of Replicated, we may ask that they upgrade it. We ship new versions constantly, and often will have a fix in a newer version. For this reason, we encourage you to keep as close to latest as possible.
 
-## 3. Install latest for support sometimes.
-
-Occasionally, when supporting a customer running an older version of Replicated, we may ask that they upgrade it. We ship new versions
-constantly, and often will have a fix in a newer version. For this reason, we encourage you to keep as close to “latest” as possible.
-
-We definitely encourage and support any installation that's running a “latest” tag of Replicated. We continue to encourage you to install
-from “latest” if possible. But this method will allow you to install known versions for environments when you need a little more control.
+We definitely encourage and support any installation that is running a production release of Replicated. We encourage you to install our latest release if possible but use host requirements to control when your customers start using the new version.
