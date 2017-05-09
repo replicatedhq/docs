@@ -31,6 +31,19 @@ or
 $ docker exec -it replicated replicated admin <command_alias> <params>
 ```
 
+### Swarm
+```bash
+$ <shell_alias> <command_alias> <params>
+```
+or
+```bash
+$ replicated admin <command_alias> <params>
+```
+or
+```bash
+$ docker exec -it "$(docker inspect --format "{{.Status.ContainerStatus.ContainerID}}" "$(docker service ps "$(docker service inspect --format "{{.ID}}" replicated_replicated | awk "NR==1")" -q)")" replicated admin <command_alias> <params>
+```
+
 ### Kubernetes
 ```bash
 $ kubectl exec -it "$(kubectl get pods -l=app=replicated -o=jsonpath='{.items..metadata.name}')" -c replicated -- replicated admin <command_alias> <params>

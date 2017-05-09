@@ -70,6 +70,7 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 | /daemon/proc/version | A copy of the `/proc/version` file. The kernel version. |
 | /daemon/proc/vmstat | A copy of the `/proc/vmstat` file. Detailed virtual memory statistics from the kernel. |
 | /daemon/replicated/config-commands.txt | A list of all configuration test commands that were run and the results. |
+| /daemon/replicated/daemon.json | Daemon properties and runtime configuration. |
 | /daemon/replicated/ledis-app.dump | A dump of the Replicated database. |
 | /daemon/replicated/ledis-registry.dump | A dump of the Replicated registry database. |
 | /daemon/replicated/replicated-inspect.json | Result of the command `docker inspect replicated`. Return low-level information on the replicated container. |
