@@ -62,7 +62,7 @@ components:
       initial: 3
 ```
 
-In the example above at least 2 hosts are required. 3 instances of the freighter/worker container with be started on each of these 2 hosts.
+In the example above at least 2 hosts are required. 3 instances of the freighter/worker container will be started on each of these 2 hosts.
 
 ## Templates
 
