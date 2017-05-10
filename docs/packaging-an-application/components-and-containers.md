@@ -161,9 +161,7 @@ Having environment variables in Support Bundles can be invaluable for troublesho
 {{< /note >}}
 
 ## Ports
-We can use the ports property to publish a container's exposed port (private_port) to the host (public_port). The when property allows us to
-conditionally expose that port mapping when some prior condition is satisfied. Use the interface property to force the public port to be
-bound on a specific network interface.
+We can use the ports property to expose a container's port (private_port) and bind it to the host (public_port). The when property allows us to conditionally expose and bind that port when some prior condition is satisfied. Use the interface property to force the public port to be bound on a specific network interface. The public_port property is optional as of {{< version version="2.8.0" >}} allowing a port to be exposed but not bound.
 
 ```yml
     ports:
@@ -184,8 +182,8 @@ Optional properties:
 
 - `permission` should be a octal permission string
 - `owner` should be the uid of the user inside the container
-- `options` optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode *supported as of 2.3.0
-- `is_ephemeral` Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots. *supported as of 2.3.5
+- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode
+- `is_ephemeral` {{< version version="2.3.5" >}} Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots.
 - `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
 
 ```yml
