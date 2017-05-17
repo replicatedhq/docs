@@ -178,13 +178,25 @@ We can use the ports property to expose a container's port (private_port) and bi
 
 ## Volumes
 We can also specify volumes that will be bind mounted from our host to our container.
+
+Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new versions of your app, or data that should be backed up then you will define a volume to store it.
+
+You need to specify only the `container_path` of the volume. Replicated will pick an appropriate host path when the volume is first created. When new versions of your container are deployed, the volume will be mounted in the updated container. This is considered a "named" volume and will live and die with the container itself. You may also assign a name to the named volume by providing a host_path without a leading "/" (ex. `host_path: myvolume`).
+
+If you would like to have the volume mounted at a specific location on the host (ex. /data) then you will provide a host_path value with a leading "/" (ex. `host_path: /data`). An absolute host_path will allow the volume to live even if the container that utilizes the volume is removed.
+
+Required properties:
+  
+- `container_path` The absolute location inside the container the volume will bind to (ex. /var/lib/mysql).
+
 Optional properties:
 
-- `permission` should be a octal permission string
-- `owner` should be the uid of the user inside the container
-- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode
+- `host_path` For named volumes, this is the volume name. For absolute volumes, this is the host location for the volume.
+- `permission` should be a octal permission string.
+- `owner` should be the uid of the user inside the container.
+- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode.
 - `is_ephemeral` {{< version version="2.3.5" >}} Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots.
-- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
+- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled.
 
 ```yml
     volumes:
@@ -319,13 +331,6 @@ Common examples of when it is necessary to list an exposed port are for web serv
 of discovering dynamic port mappings.
 
 Port mappings support the Replicated template library.
-
-## Volumes
-Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new
-versions of your app, or data that should be backed up, define a volume to store it.
-
-You need to specify only the container path of the volume. Replicated will pick an appropriate host path when the volume is first created. When
-new versions of your container are deployed, the volume will be mounted in the updated container.
 
 ## Startup
 The startup section of a container allows you to specify the CMD value that will be passed to your container when it's started. It's generally
