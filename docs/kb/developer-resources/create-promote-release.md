@@ -23,6 +23,20 @@ Next, you should have the YML that you want to promote. One common method to gen
 template values indicating the image tags to use. When your build server creates a new Docker image, it’s easy to
 generate a new YAML programmatically.
 
+## Test Your App YAML Changes
+
+When creating new releases during an automated process we recommend testing your app YAML first. This will allow you to validate, and if there are errors during validation exit your build process prior to creating a new release sequence.
+
+To validate your app YAML we use the same call as updating but with a dry_run flag. This will allow you find any errors without updating your application. On success the response will be HTTP 200 OK. If there is a problem with your app YAML the service will return a HTTP 400 response with a JSON payload indicating the error. A HTTP 403 response indicates that the sequence you're trying to update has already been promoted in which case your would create a new release and retry the dry run.
+
+```curl
+curl -X PUT \
+     -H 'Authorization: <API_Token>' \
+     -H 'Content-Type: application/yaml' \
+     -d <YAML CONTENTS> \
+     https://api.replicated.com/vendor/v1/app/<AppId>/<Seq>/raw?dry_run=1
+```
+
 ## Create a new release
 
 First, we will create a [new release](/reference/vendor-api/) with the current YAML. This release will not be
