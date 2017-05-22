@@ -177,21 +177,23 @@ We can use the ports property to expose a container's port (private_port) and bi
 ```
 
 ## Volumes
-We can also specify volumes that will be bind mounted from our host to our container.
+We can also specify volumes that will be mounted.
 
-Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new versions of your app, or data that should be backed up then you will define a volume to store it.
+Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new versions of your app, or data that should be backed up then you will define a volume to store it. Volumes are also useful for services that require a fast filesystem such as database or cache applications.
 
-You need to specify only the `container_path` of the volume. Replicated will pick an appropriate host path when the volume is first created. When new versions of your container are deployed, the volume will be mounted in the updated container. This is considered a "named" volume and will live and die with the container itself. You may also assign a name to the named volume by providing a host_path without a leading "/" (ex. `host_path: myvolume`).
+You need to specify only the `host_path` and `container_path` of the volume. When new versions of your container are deployed, the volume will be mounted in the updated container.
 
-If you would like to have the volume mounted at a specific location on the host (ex. /data) then you will provide a host_path value with a leading "/" (ex. `host_path: /data`). An absolute host_path will allow the volume to live even if the container that utilizes the volume is removed.
+Named Volumes: You may create a "named" volume by providing a host_path without a leading "/" (ex. `host_path: dbdata`). On creation, named volumes will copy the information inside the container_path into the host_path location. After the initial sync the volume will act as a shared folder between your host and your docker container. Only folders can be named volumes.
+
+Bind-Mount Host Volumes: If you would like to have the volume mounted at a specific location on the host then you will provide a host_path value with a leading "/" (ex. `host_path: /dbdata`). Bind-mount volumes will initially copy the host_path contents into the container_path location. After the initial sync the volume will act as a shared folder between your host and your docker container. Folders or files can be bind-mount host volumes.
 
 Required properties:
-  
+
+- `host_path` For named volumes, this is the volume name (ex. dbdata). For bind-mount host volumes, this is the absolute host location for the volume (ex. /dbdata).
 - `container_path` The absolute location inside the container the volume will bind to (ex. /var/lib/mysql).
 
 Optional properties:
 
-- `host_path` For named volumes, this is the volume name. For absolute volumes, this is the host location for the volume.
 - `permission` should be a octal permission string.
 - `owner` should be the uid of the user inside the container.
 - `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode.
@@ -200,9 +202,9 @@ Optional properties:
 
 ```yml
     volumes:
-    - host_path: /data
-      container_path: /data
-      permission: "0644"
+    - host_path: /dbdata
+      container_path: /var/lib/mysql
+      permission: "0755"
       owner: "100"
       is_ephemeral: false
       is_excluded_from_backup: true
@@ -231,8 +233,7 @@ Replicated supports volumes_from to attach several mounts from a colocated conta
     volumes_from: ["datastore"]
 ```
 
-The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of
-strings where each string identifies a named container running on the same server.
+The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of strings where each string identifies a named container running on the same server.
 
 ## Logs
 We can configure logs for containers by specifying the max number of logs files and the max size of the log files. The max size string should include
