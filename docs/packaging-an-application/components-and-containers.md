@@ -183,13 +183,13 @@ Volumes are required for any persistent data created by your application. If you
 
 You need to specify only the `host_path` and `container_path` of the volume. When new versions of your container are deployed, the volume will be mounted in the updated container.
 
-Named Volumes: You may create a "named" volume by providing a host_path without a leading "/" (ex. `host_path: dbdata`). On creation, named volumes will copy the information inside the container_path into the host_path location. After the initial sync the volume will act as a shared folder between your host and your docker container. Only folders can be named volumes.
+Named Volumes: You may create a "named" volume by providing a host_path without a leading "/" (ex. `host_path: dbdata`) which becomes the name of the volume. On creation, named volumes will link the information inside the container_path into the host_path location and will act as a shared folder between your host and your docker container. Only folders can be named volumes.
 
-Bind-Mount Host Volumes: If you would like to have the volume mounted at a specific location on the host then you will provide a host_path value with a leading "/" (ex. `host_path: /dbdata`). Bind-mount volumes will initially copy the host_path contents into the container_path location. After the initial sync the volume will act as a shared folder between your host and your docker container. Folders or files can be bind-mount host volumes.
+Host Volumes: If you would like to have the volume mounted at a specific location on the host then you will provide a host_path value with a leading "/" (ex. `host_path: /dbdata`). Host volumes will bind-mount the host_path contents into the container_path location and will act as a shared mount between your host and your docker container. Folders or files can be bind-mounted host volumes.
 
 Required properties:
 
-- `host_path` For named volumes, this is the volume name (ex. dbdata). For bind-mount host volumes, this is the absolute host location for the volume (ex. /dbdata).
+- `host_path` For named volumes, this is the volume name (ex. dbdata). For host volumes, this is the absolute host location for the volume (ex. /dbdata).
 - `container_path` The absolute location inside the container the volume will bind to (ex. /var/lib/mysql).
 
 Optional properties:
