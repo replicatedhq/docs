@@ -177,20 +177,34 @@ We can use the ports property to expose a container's port (private_port) and bi
 ```
 
 ## Volumes
-We can also specify volumes that will be bind mounted from our host to our container.
+We can also specify volumes that will be mounted.
+
+Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new versions of your app, or data that should be backed up then you will define a volume to store it. Volumes are also useful for services that require a fast filesystem such as database or cache applications.
+
+You need to specify only the `host_path` and `container_path` of the volume. When new versions of your container are deployed, the volume will be mounted in the updated container.
+
+Named Volumes: You may create a "named" volume by providing a host_path without a leading "/" (ex. `host_path: dbdata`) which becomes the name of the volume. On creation, named volumes will link the information inside the container_path into the host_path location and will act as a shared folder between your host and your docker container. Only folders can be named volumes.
+
+Host Volumes: If you would like to have the volume mounted at a specific location on the host then you will provide a host_path value with a leading "/" (ex. `host_path: /dbdata`). Host volumes will bind-mount the host_path contents into the container_path location and will act as a shared mount between your host and your docker container. Folders or files can be bind-mounted host volumes.
+
+Required properties:
+
+- `host_path` For named volumes, this is the volume name (ex. dbdata). For host volumes, this is the absolute host location for the volume (ex. /dbdata).
+- `container_path` The absolute location inside the container the volume will bind to (ex. /var/lib/mysql).
+
 Optional properties:
 
-- `permission` should be a octal permission string
-- `owner` should be the uid of the user inside the container
-- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode
+- `permission` should be a octal permission string.
+- `owner` should be the uid of the user inside the container.
+- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode.
 - `is_ephemeral` {{< version version="2.3.5" >}} Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots.
-- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
+- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled.
 
 ```yml
     volumes:
-    - host_path: /data
-      container_path: /data
-      permission: "0644"
+    - host_path: /dbdata
+      container_path: /var/lib/mysql
+      permission: "0755"
       owner: "100"
       is_ephemeral: false
       is_excluded_from_backup: true
@@ -219,8 +233,7 @@ Replicated supports volumes_from to attach several mounts from a colocated conta
     volumes_from: ["datastore"]
 ```
 
-The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of
-strings where each string identifies a named container running on the same server.
+The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of strings where each string identifies a named container running on the same server.
 
 ## Logs
 We can configure logs for containers by specifying the max number of logs files and the max size of the log files. The max size string should include
@@ -319,13 +332,6 @@ Common examples of when it is necessary to list an exposed port are for web serv
 of discovering dynamic port mappings.
 
 Port mappings support the Replicated template library.
-
-## Volumes
-Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new
-versions of your app, or data that should be backed up, define a volume to store it.
-
-You need to specify only the container path of the volume. Replicated will pick an appropriate host path when the volume is first created. When
-new versions of your container are deployed, the volume will be mounted in the updated container.
 
 ## Startup
 The startup section of a container allows you to specify the CMD value that will be passed to your container when it's started. It's generally
