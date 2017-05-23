@@ -41,3 +41,6 @@ The admin console header title (in the navbar) and HTML page title.
 ### shell_alias
 Shell alias that can be used to run admin commands. See [Admin Commands](/packaging-an-application/admin-commands/)
 for more information.
+
+### console_support_markdown
+Additional markdown content that will be displayed on the Support page of the admin console.

@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Replicated Private Registry"
 description = "How to push and access private images in Replicated's hosted private registry."
-weight = "104"
+weight = "105"
 categories = [ "Getting Started" ]
 
 [menu.main]
@@ -12,11 +12,11 @@ parent     = "/getting-started"
 url        = "/docs/getting-started/replicated-private-registry"
 +++
 
-When building your application, you have the option of hosting your private images on the Replicated private registry.
+When building your application, you have the option of hosting your private images on the Replicated private registry or [using external private and public registries](/kb/supporting-your-customers/registries/).
 
 ## Tagging Images
 
-The first thing you will need to do is tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images tab of the [Replicated Vendor Portal](https://vendor.replicated.com/).
+The first thing you will need to do is tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images tab of the [Replicated Vendor Portal](https://vendor.replicated.com/#/images).
 
 An example of tagging an existing image is:
 
@@ -26,7 +26,7 @@ $ sudo docker tag myapp/worker registry.replicated.com/mycounterapp/worker:1.0.1
 
 ## Logging In
 
-Next you will need to log into the Replicated private registry with your Vendor account credentials. When prompted, you will use your email address for both your username.
+Next you will need to log into the Replicated private registry with your Vendor account credentials. When prompted, you will use your email address for your username.
 
 ```shell
 $ sudo docker login registry.replicated.com
@@ -53,3 +53,35 @@ Pushing tag for rev [8e471642d573] on {https://registry.replicated.com/v1/reposi
 
 For additional information on building, tagging and pushing docker images, please refer to the
 [Docker CLI Documentation](https://docs.docker.com/reference/commandline/cli/).
+
+## Deploying to Kubernetes
+
+When deploying an application to a [Kubernetes](/packaging-an-application/kubernetes) cluster, Replicated will automatically deploy a secret named `replicatedregistrykey`. This secret can be used as an `imagePullSecret` to gain read-only access to the images from the on-prem environment.
+
+For example:
+
+```yml
+     spec:
+       containers:
+       - name: frontend
+         image: registry.replicated.com/guestbook/gb-frontend:v4
+         ...
+       imagePullSecrets:
+       - name: replicatedregistrykey
+```
+
+## Deploying to Swarm
+
+When deploying an application to a [swarm](/packaging-an-application/docker-swarm) cluster, just reference the image in the Replicated registry. Replicated will automatically authenticate with the registry using the customer's license.
+
+For example:
+
+```
+version: '3.1'
+
+services:
+  megaladon:
+    image: registry.replicated.com/guestbook/gb-frontend:v4
+    deploy:
+      replicas: 1
+```

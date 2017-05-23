@@ -12,8 +12,9 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/preflight-checks"
 +++
 
-A preflight check is a test that is run before installing and running an application.  The
-test will analyze the system to determine if the environment meets the minimum requirements.  
+A preflight check is a test that is run before installing and running an application.  The test will analyze the system to determine if the environment meets the minimum requirements.
+
+The preflight check may be manually run for an existing installation by visiting https://&lt;your server address&gt;:8800/run-checks
 
 By default, Replicated automatically adds preflight checks for:
 
@@ -26,7 +27,6 @@ By default, Replicated automatically adds preflight checks for:
 | Docker Version | {{< docker_version_minimum >}} - {{< docker_version_default >}} |
 | Disk Space | /tmp 1 GB <br /> /var/lib/replicated 250 MB <br /> /var/lib/docker/aufs 1 GB (aufs storage driver root directory) |
 | TCP Ports (Replicated services) | 9870-9880 on docker0 |
-| TCP Ports (app services) | Defined in app YAML |
 | Outbound internet access (if required) | Replicated APIs, external registries |
 
 Additionally, it's recommended to specify additional system requirements in the `host_requirements` section of the
@@ -41,10 +41,14 @@ host_requirements:
   cpu_mhz: 2400
   memory: 8GB
   disk_space: 8GB
+  replicated_version: ">=2.3.0 <2.4.1"
 ```
 
-It is possible to override all properties (except docker version) of the root `host_requirements` on a per-component basis. On distributed
-installs, the component host requirements will only apply to nodes tagged for that component.
+{{< version version="2.3.0" >}} The application level `host_requirements` key can be used to automatically upgrade Replicated.  This feature can be enabled by specifying a version range in the the `replicated_version` key.  Version range syntax is similar to that used by [npm](https://docs.npmjs.com/misc/semver).  Versions that don't support this feature will simply ignore the value.  This key is also ignored by the pre-flight checks.
+
+It is possible to override all properties (except docker version) of the root `host_requirements` on a per-component basis. On distributed installs, the component host requirements will only apply to nodes tagged for that component.
+
+`docker_version` refers to the lowest acceptable version of docker on the host. Any host running a docker version at or above this value will meet the requirement.
 
 ```yaml
 components:
@@ -60,7 +64,7 @@ components:
 Note that component host requirements are not additive, thus when multiple components are allocated to a single host, each requirement
 will be evaluated individually.
 
-It is also possible to require minimum disk space requirements for volumes on the host machine via the host_volumes property of the
+It is also possible to define minimum disk space requirements for volumes on the host machine via the host_volumes property of the
 component configuration.
 
 ```yaml
@@ -75,7 +79,7 @@ components:
 ```
 
 Replicated enforces these requirements and will not allow the customer to start the application without either meeting these requirements or
-dismissing the warnings. Upon dismissing preflight warnings, and entry will be recorded in the on-premise audit log.
+dismissing the warnings. Upon dismissing preflight warnings, an entry will be recorded in the on-premise audit log.
 
 ![Preflight Checks Screenshot](/static/preflight-checks.png)
 

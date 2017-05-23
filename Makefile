@@ -6,12 +6,10 @@ run:
 	docker-compose up
 
 vendordocs:
-	@echo "Downloading API docs from '${SOURCE}'"
-	curl -o swagger.json ${SOURCE}
-	git checkout docs/reference/vendor-api.adoc
-	java -cp java/swagger2markup-1.0.0.jar -jar java/swagger2markup-cli-1.0.0.jar convert -i swagger.json -f vendor-api
-	@sed -e 's/^== /= /' -e 's/^=== /== /' vendor-api.adoc >> docs/reference/vendor-api.adoc
-	@rm vendor-api.adoc
+	rm -f docs/reference/vendor-api.adoc
+	git checkout docs/reference/vendor-api/index.md
+	find . -name "*vendor-api*" -ls
+	VENDOR_API="${SOURCE}" ./vendor.sh
 
 setup:
 	mkdir java

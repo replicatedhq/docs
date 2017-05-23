@@ -1,8 +1,8 @@
 +++
 date = "2016-07-03T04:02:20Z"
 title = "Add Nodes"
-description = "If an application is configured by the vendor with tags and a clustering strategy, Replicated provides several simple options for end customers to scale the application to multiple nodes."
-weight = "308"
+description = "When a Replicated-orchestrated application is configured with a clustering strategy, additional nodes can be installed on remote instances to take part in the cluster."
+weight = "307"
 categories = [ "Distributing" ]
 
 [menu.main]
@@ -12,24 +12,13 @@ parent     = "/distributing-an-application"
 url        = "/docs/distributing-an-application/add-nodes"
 +++
 
-All installations of Replicated should install the first node automatically.  But it's
-possible to install additional nodes and run a distributed app.
+The instructions to add additional nodes are different depending the running scheduler.
 
-![Add Node](/static/add-host.png)
+### Replicated Scheduler
+To add additional nodes when running on the Replicated scheduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Replicated nodes](/distributing-an-application/add-nodes-replicated).
 
-## Scripted Install
-This is a new feature that allows your customers to run a curl script on additional hosts to have them
-automatically connect into the primary Replicated management machine. V1 of manual installation requires
-that they install the agent from the internet, but future versions will allow them to install the agent
-from the Replicated daemon.
+### Swarm Scheduler
+To add additional nodes when running on the Swarm scheduler, refer to the instructions on the /cluster page of the Admin Console. For details, visit the [instructions for adding additional Swarm nodes](/distributing-an-application/add-nodes-swarm).
 
-![Add Node Modal](/static/add-host-modal.png)
-
-## Docker Install
-
-## Local Install
-In most instances this will be grayed out because Replicated automatically installs an agent on the local
-machine if the interface was identified during initial installation. However, if no interface was initially
-available, your customer will be able to use this path to install it.
-
-![Add Node Locally](/static/add-host-local.png)
+## Airgapped Installations
+When adding a remote node in an airgapped installation, each node will require that Docker is already installed. When adding a node via the easy installation method, the Replicated airgap archive must be copied over manually to the remote node. The archive can be downloaded [here](/distributing-an-application/airgapped-installations/#install-replicated).

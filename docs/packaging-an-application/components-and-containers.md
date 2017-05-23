@@ -156,10 +156,12 @@ Next we have the option of specifying environment variables. There is also a fla
       is_excluded_from_support: true
 ```
 
+{{< note title="Sensitive data" >}}
+Having environment variables in Support Bundles can be invaluable for troubleshooting.   However, environment variables can contain sensitive data.  Setting `is_excluded_from_support` to `true` will exclude them from Support Bundles.
+{{< /note >}}
+
 ## Ports
-We can use the ports property to publish a container's exposed port (private_port) to the host (public_port). The when property allows us to
-conditionally expose that port mapping when some prior condition is satisfied. Use the interface property to force the public port to be
-bound on a specific network interface.
+We can use the ports property to expose a container's port (private_port) and bind it to the host (public_port). The when property allows us to conditionally expose and bind that port when some prior condition is satisfied. Use the interface property to force the public port to be bound on a specific network interface. The public_port property is optional as of {{< version version="2.8.0" >}} allowing a port to be exposed but not bound.
 
 ```yml
     ports:
@@ -175,23 +177,63 @@ bound on a specific network interface.
 ```
 
 ## Volumes
-We can also specify volumes that will be bind mounted from our host to our container.
+We can also specify volumes that will be mounted.
+
+Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new versions of your app, or data that should be backed up then you will define a volume to store it. Volumes are also useful for services that require a fast filesystem such as database or cache applications.
+
+You need to specify only the `host_path` and `container_path` of the volume. When new versions of your container are deployed, the volume will be mounted in the updated container.
+
+Named Volumes: You may create a "named" volume by providing a host_path without a leading "/" (ex. `host_path: dbdata`) which becomes the name of the volume. On creation, named volumes will link the information inside the container_path into the host_path location and will act as a shared folder between your host and your docker container. Only folders can be named volumes.
+
+Host Volumes: If you would like to have the volume mounted at a specific location on the host then you will provide a host_path value with a leading "/" (ex. `host_path: /dbdata`). Host volumes will bind-mount the host_path contents into the container_path location and will act as a shared mount between your host and your docker container. Folders or files can be bind-mounted host volumes.
+
+Required properties:
+
+- `host_path` For named volumes, this is the volume name (ex. dbdata). For host volumes, this is the absolute host location for the volume (ex. /dbdata).
+- `container_path` The absolute location inside the container the volume will bind to (ex. /var/lib/mysql).
+
 Optional properties:
 
-- `permission` should be a octal permission string
-- `owner` should be the uid of the user inside the container
-- `is_ephemeral` Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots. *supported as of 2.3.5
-- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled
+- `permission` should be a octal permission string.
+- `owner` should be the uid of the user inside the container.
+- `options` {{< version version="2.3.0" >}} optional volume settings in an array of strings, a "ro" entry puts the volume into read-only mode.
+- `is_ephemeral` {{< version version="2.3.5" >}} Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots.
+- `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled.
 
 ```yml
     volumes:
-    - host_path: /data
-      container_path: /data
-      permission: "0644"
+    - host_path: /dbdata
+      container_path: /var/lib/mysql
+      permission: "0755"
       owner: "100"
       is_ephemeral: false
       is_excluded_from_backup: true
+      options: ["rw"]
 ```
+
+Replicated supports volumes_from to attach several mounts from a colocated container.
+
+```yml
+  - source: public
+    ...
+    name: datastore
+    publish_events:
+    - name: Datastore started
+      trigger: port-listen
+      data: '6379'
+      subscriptions:
+      - component: DBs
+        container: alpine
+        action: start
+  - source: public
+    image_name: alpine
+    version: 3
+    ephemeral: true
+    cmd: '["migrate_data.sh"]'
+    volumes_from: ["datastore"]
+```
+
+The container using "volumes_from" must start after any containers it mounts from.  Property "volumes_from" takes an array of strings where each string identifies a named container running on the same server.
 
 ## Logs
 We can configure logs for containers by specifying the max number of logs files and the max size of the log files. The max size string should include
@@ -291,15 +333,114 @@ of discovering dynamic port mappings.
 
 Port mappings support the Replicated template library.
 
-## Volumes
-Volumes are required for any persistent data created by your application. If you have data in a container that needs to be available to new
-versions of your app, or data that should be backed up, define a volume to store it.
-
-You need to specify only the container path of the volume. Replicated will pick an appropriate host path when the volume is first created. When
-new versions of your container are deployed, the volume will be mounted in the updated container.
-
 ## Startup
 The startup section of a container allows you to specify the CMD value that will be passed to your container when it's started. It's generally
 good to end your Dockerfile with an ENTRYPOINT command. If you specify a value for the CMD, it will be passed as parameters to the your ENTRYPOINT.
 
 As with all inputs to containers, you have full access to the Replicated template library when creating a CMD value.
+
+## Docker Options
+You may also limit the resources used by your containers with the memory, cpushares and network modes and further secure your containers with security options
+
+### Memory and Swap Limit
+The amount of memory or swap for your container.  The format is number|unit where unit may be one of b, k, m or g.  By default there is no memory or swap limit and your container can use as much as needed.  You can learn more at [User Memory Constraints documentation](https://docs.docker.com/engine/reference/run/#/user-memory-constraints).
+```yml
+  memory_limit: 500m
+  memory_swap_limit: 1g
+```
+
+### CPU Shares
+Using CPU shares you can change the access to the servers CPU at busy times.  When non CPU-intensive processes are other containers may use extra CPU time.  The default is 1024 and by increasing or decreasing the value on a container you change how the weighted CPU access is granted across all running containers.  You can learn more at [CPU Share Constraints documentation](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint).
+```yml
+  cpu_shares: 2048
+```
+
+### Network Mode
+Network mode supports bridge, host, container or none.  Learn more about Docker's network modes at [Network Settings](https://docs.docker.com/engine/reference/run/#/network-settings).
+```yml
+  network_mode: host
+```
+
+### Security Options
+With security options you can use Docker security with existing well know systems such as apparmor.
+```yml
+  security_options:
+  - apparmor=unconfined
+```
+
+When specifying your security options you can use template functions and any blank security option is allowed and will be filtered out by Replicated.
+```yml
+  security_options:
+    - '{{repl if ConfigOptionEquals "enable_unconfined_apparmor_profile" "1"}}apparmor=unconfined{{repl end}}'
+```
+
+Learn more about Docker's [security configuration](https://docs.docker.com/engine/reference/run/#/security-configuration).
+
+### Privileged Mode and Security Capability
+Security capabilities and access to devices are limited for containers by default, however you can add security capabilities with the privileged and security_cap_add option.
+```yml
+    privileged: true
+    security_cap_add:
+    - SYS_MODULE
+```
+
+Learn more about [Security Capabilities](https://docs.docker.com/engine/reference/run/#/runtime-privilege-and-linux-capabilities).
+
+### Allocate TTY
+For interactive processes you can allocate a TTYL with allocate_tty.  Learn more by reading about container process [Foreground](https://docs.docker.com/engine/reference/run/#/foreground).
+```yml
+  allocate_tty: true
+```
+
+### Hostname
+Sets the hostname inside of the container.  See the network host section under [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings).
+```yml
+  hostname: anxiety-closet
+```
+
+### Extra Hosts
+Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#extrahosts).
+```yml
+  extra_hosts:
+  - hostname: mysql
+    address: 10.0.1.16
+  - hostname: redis
+    address: 10.0.1.32
+```
+
+### Named Containers
+The name argument sets the name of your running container. It is provided as a convenience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
+
+```yml
+  name: redis
+```
+
+For more information see [named containers](https://docs.docker.com/engine/reference/run/#/container-identification).
+
+### Entrypoint
+When working with third party containers you may want to override the default entry point using the
+entrypoint option.
+Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the
+[cmd and entrypoint options](https://docs.docker.com/engine/reference/builder/#/understand-how-cmd-and-entrypoint-interact) work together.  Entrypoint takes an array of strings.
+
+```yml
+    entrypoint: ["redis", "-p", "6380"]
+```
+
+### Ulimits
+{{< version version="2.5.0" >}} Since setting ulimit settings in a container requires extra privileges not available in the default container, you can set these using the ulimits property of the container. Learn more about ulimits [here](https://docs.docker.com/engine/reference/commandline/run/#/set-ulimits-in-container---ulimit).
+
+```yml
+    ulimits:
+    - name: nofile
+      soft: 1024
+      hard: 1024
+```
+
+### Pid Mode
+
+{{< version version="2.1.0" >}} Pid mode lets you specify the process namespace for your container. By default each container has its own space and by declaring a `pid_mode` you can see the processes of another container or host. See [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) to learn more.
+
+```yml
+    pid_mode: host
+```

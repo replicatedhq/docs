@@ -13,7 +13,7 @@ simplify container sequencing. Note that containers will not be guaranteed to st
 order if no events are present in your yaml.
 
 **I want to ensure that my DB (Redis) is started before I turn on my app and eventually my load balancer. 
-We are going to use [Publish Events](http://docs.replicated.com/v1.0/docs/configuring-your-app#section-published-events) 
+We are going to use [Publish Events](/packaging-an-application/events-and-orchestration/#published-events) 
 functionality to accomplish this.**  
 
 Im going to add `container-start` triggers to our containers, I will also specify a `subscription` to this 
@@ -46,7 +46,7 @@ publish_events:
 ```
 
 **Bonus: I also want to make sure that my app is actually started before my on-premise dashboard 
-indicates that it is ready. We are going to use [Health Check](http://docs.replicated.com/docs/yaml-configuration#section-health-check) 
+indicates that it is ready. We are going to use [Health Check](/packaging-an-application/yaml-overview/#section-health-check) 
 functionality to accomplish this.**  
 
 By adding the following snippet I am able to tell Replicated that my app is ready when my load balancer 

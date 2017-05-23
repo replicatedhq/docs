@@ -43,10 +43,38 @@ and `type` properties. Specific item types can including new types.
 
 ## Examples
 
+### `bool`
+The `bool` input type should use a "0" or "1" to set the value
+```yaml
+- name: toggles
+  items:
+  - name: http_enabled
+    title: HTTP Enabled
+    help_text: When enabled we will listen to http
+    type: bool
+    default: "0"
+```
+
+### `label`
+The `label` input type allows you to display an input label.
+```yaml
+- name: Email
+  items:
+  - name: email-address
+    title: Email Address
+    type: text
+  - name: description
+    type: label
+    title: "Note: The system will send you an email every hour."
+
+```
+
 ### `select`
 Types `select_one` and `select_many` are special cases. These types must have nested items
 that act as options. These types will be displayed as radio buttons (`select_one`) or
 checkboxes (`select_many`) in the admin console.
+
+At this time these two control types do not support the `title` field.
 
 ```yaml
 - name: inputs
@@ -54,7 +82,6 @@ checkboxes (`select_many`) in the admin console.
   description: ""
   items:
   - name: logstash_input_enabled
-    title: Choose which Logstash inputs to enable.
     default: ""
     type: select_many
     items:
@@ -69,7 +96,6 @@ checkboxes (`select_many`) in the admin console.
   description: ""
   items:
   - name: authentication_type
-    title: Secure your application with authentication.
     default: authentication_type_anonymous
     type: select_one
     items:
@@ -122,28 +148,33 @@ in the settings section of the On-Prem Console.
 
 ## Properties
 ### `required`
-When set, required fields will prevent the application from starting until there is a value.
+A required field will prevent the application from starting until it has a value.
 ```yaml
     required: true
 ```
 
 ### `when`
-The when value is used to denote conditional inputs that will only be visible (or required) when
-the condition evaluates to true.
+The when value is used to denote conditional inputs that will only be visible (or required) when the condition evaluates to true. The `when` item can be used on groups, items and select_one or select_many options.
+
+The settings UI will update right away when a field used in a when clause is updated (no need to save) and can be used to used to show optional config sections. The equality check should match exactly without quotes.
+
 ```yaml
+- name: database_settings_group
   items:
-  - name: key
+  - name: db_type
+    type: select_one
+    default: embedded
+    items:
+    - name: external
+      title: External
+    - name: embedded
+      title: Embedded DB
+  - name: database_host
+    title: Database Hostname
+    description: MySQL hostname
     type: text
-    default: "1"
-  - name: value
-    type: text
-    when: key=1
-  - name: key2
-    type: text
-    default: "1"
-  - name: value2
-    type: text
-    when: key2!=1
+    default: ''
+    when: db_type=external
 ```
 
 ### `recommended`

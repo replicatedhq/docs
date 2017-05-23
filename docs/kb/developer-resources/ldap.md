@@ -22,7 +22,7 @@ So, how does it work? There are 2 parts to this… the first piece will do the a
 & should only take about 3-5 lines of new code. The second piece is optional, takes a bit
 more effort but will provide you with full LDAP/AD Sync to your user table (so you can do
 things like show a list of users etc). This is the ‘producty’ description...
-[developer docs are available](http://docs.replicated.com/v1.0/docs/identity-api))
+[developer docs are available](https://replicated.readme.io/docs/identity-api))
 
 ## PART 1: AUTH
 If you have any type of federated login, then you likely have an if block that determines
@@ -50,7 +50,7 @@ differently, so if you need something to be there, require it for your integrati
 
 If you manage a user table in your SaaS product you might want to consider going beyond
 simple DS auth and use the Replicated DS Sync functionality
-([see sync developer docs](http://docs.replicated.com/docs/provisioning-api)). This will
+([see sync developer docs](/reference/integration-api/)). This will
 allow you to access your user table for product features like user profiles, sharing,
 attribution etc. Sync is designed to work in conjunction with auth, so make sure you
 enable Part 1 before moving on to Part 2.

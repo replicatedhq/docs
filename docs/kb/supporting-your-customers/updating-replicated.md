@@ -6,8 +6,14 @@ weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
 
-For your customers to be able to take advantage of the latest features available in 
-Replicated, they will occasionally need to update the version of Replicated they are 
+{{< warning title="Old Version Warning" >}}
+The content in this document is for a previous version of Replicated. If you are looking
+for the current version, it is available at
+<a href="{{< baseurl >}}distributing-an-application/upgrading/">{{< baseurl >}}distributing-an-application/upgrading/</a>
+{{< /warning >}}
+
+For your customers to be able to take advantage of the latest features available in
+Replicated, they will occasionally need to update the version of Replicated they are
 running in their server.
 
 This is done differently based on which OS they are running.
@@ -28,6 +34,5 @@ If they are running a distributed version of your application across multiple ho
 curl -sSL https://get.replicated.com/agent | sudo sh
 ```
 
-You should make sure that they also [update Docker](https://docs.docker.com/engine/installation/) 
+You should make sure that they also [update Docker](https://docs.docker.com/engine/installation/)
 to the Replicated supported version as well.
-

@@ -17,12 +17,12 @@ purpose of these `cmds` is to generate data for input in the configuration scree
 
 A command takes a variable number of string arguments and returns an array of strings. We have created an API with some
 useful commands. There is also the option to run the command raw. This command will take any `raw` string input and run
-the command in an Ubuntu Trusty container.
+the command in an [Ubuntu Trusty container](https://hub.docker.com/r/replicated/cmd/).
 
 The command is run at YAML import time only (during app installation & during app updates).
 
-Below is an example of a command that will generate a private key, a x509 certificate, and an random admin password that
-is used as in configuring our app.
+Below is an example of a command that will generate a private key, a x509 certificate, and a random admin password that
+are used as configuration for our app.
 
 ```yml
 cmds:
@@ -116,10 +116,11 @@ This function reaches out to an external service to acquire the ip and the resul
 ```
 
 ## random
-Generates a random string with the default charset _A-Z-a-z-0-9.
+Generates a random string with the default charset [_A-Za-z0-9].
 
 ### Arguments
 - Length - The length of the string (default 16 characters).
+- Charset
 
 ### Return value
 - 0: Random string
@@ -129,6 +130,7 @@ Generates a random string with the default charset _A-Z-a-z-0-9.
   cmd: random
   args:
   - "64"
+  - "[A-Za-z0-9]"
 ```
 
 ## echo
@@ -148,7 +150,7 @@ Echos the first argument.
 ```
 
 ## system
-Runs command directly on the machine on which the Replicated container is running. Be careful as Replicated supports many
+{{< version version="1.2.x only" >}} Runs command directly on the machine on which Replicated is running. Be careful as Replicated supports many
 linux distributions.
 
 ### Arguments
@@ -166,7 +168,7 @@ linux distributions.
 ```
 
 ## raw
-Runs command from a bash shell inside an "ubuntu:trusty" docker container.
+Runs command from a bash shell inside an "ubuntu:trusty" docker container. The docker image is hosted on dockerhub at https://hub.docker.com/r/freighter/cmd/
 
 ### Arguments
 - Variable

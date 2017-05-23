@@ -2,7 +2,7 @@
 date = "2016-07-03T04:12:27Z"
 title = "Replicated YAML Reference"
 description = "Generated documentation for the Replicated YAML spec."
-weight = "502"
+weight = "590"
 categories = [ "Reference" ]
 
 [menu.main]
@@ -12,4 +12,4 @@ url        = "/docs/reference/yaml"
 parent     = "/reference"
 +++
 
-Reference to the YAML
+For a full reference to the Replicated YAML options, visit [github.com/replicatedhq/libyaml](https://github.com/replicatedhq/libyaml).

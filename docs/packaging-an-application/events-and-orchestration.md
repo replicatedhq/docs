@@ -27,6 +27,8 @@ application and are designed to be used to help manage the state of your applica
 when a container changes state. These events are published as soon as the Replicated operator reports that
 the container state has changed.
 
+When setting up event orchestration use unique event names. When starting a container with constraints from multiple parents, the first event to fire causes the container to start.
+
 ## Container Started Event
 A `container-start` event is published as soon as the Docker Engine reports that your container is started. The container
 may still be initializing and loading, but control of the process has been transferred to the `ENTRYPOINT` or `CMD`
@@ -73,10 +75,10 @@ containers:
 ```
 
 ## Container Exec Event
-The `exec` event type is provided to execite arbitrary scripts in a container. This command is attempted immediately after the
+The `exec` event type is provided to execute arbitrary scripts in a container. This command is attempted immediately after the
 container starts, and again at an interval of 2 seconds until it returns 0 or 10 minutes has elapsed. If the command succeeds
 with a result code of 0, the event triggers. If not, the command will retry for up to 10 minutes and result in a failure if
-the exit code is never 0. The command to be executed is given in the `data` field as the arguments are represented as an array
+the exit code is never 0. The command to be executed is given in the `args` field as the arguments are represented as an array
 of strings.
 
 ```yaml
@@ -87,14 +89,33 @@ containers:
     publish_events:
     - name: Minecraft Server Started
       trigger: exec
-       args: ["grep", "Done", "/data/logs/latest.log"]
-       subscriptions:
-       - component: Redis
-         container: redis
-         action: start
+      args: ["grep", "Done", "/data/logs/latest.log"]
+      subscriptions:
+      - component: Redis
+        container: redis
+        action: start
 ```
 
 ## Subscribed Events
 Any container can subscribe to events from any other container in your application. A subscribed event must also define an action to
 take upon triggering of the event. The only action which is currently available is the start action, which causes the subscribing
 container to start.
+
+## Timeouts
+{{< version version="2.3.0" >}} The `timeout` parameter must be an integer and indicates the number of seconds an event has to execute before a timeout is initiated.  
+If the event does not execute before the timeout is reached, then an error will show in the UI and the event sequence will terminate.  
+By default the `timeout` option will be set to 10 minutes.  Setting the `timeout` parameter to -1 will disable the timeout feature.
+
+```yaml
+containers:
+  -source: public
+    image_name: example
+    publish_events:
+    - name: Some Event Started
+      trigger: container-stop
+      timeout: 30
+      subscriptions:
+      - component: DB
+        container: mysql
+        action: start
+```
