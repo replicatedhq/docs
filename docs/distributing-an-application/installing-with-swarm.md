@@ -33,7 +33,7 @@ The install script can take flags to help your customers with specialized enterp
 
 |Flag|Usage|
 |----|-----|
-|airgap|arigap implies "no proxy" and "skip docker"|
+|airgap|airgap implies "no proxy" and "skip docker"|
 |bypass-storagedriver-warnings|Bypass the storagedriver warning|
 |daemon-token|Authentication token used by operators for automating a cluster installation|
 |docker-version|Install a specific version of docker|
