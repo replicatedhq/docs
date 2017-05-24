@@ -5,8 +5,6 @@ theme = "hugo-material-docs"
 metadataformat = "yaml"
 canonifyurls = true
 googleAnalytics = "UA-61084834-1"
-sourceRelativeLinksEval = true
-sourceRelativeLinksProjectFolder = "/docs"
 
 [taxonomies]
 category = "categories"

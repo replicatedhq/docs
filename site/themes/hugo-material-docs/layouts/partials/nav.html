@@ -1,28 +1,20 @@
 {{ $currentNode := . }}
 
 {{ range .Site.Menus.main.ByWeight }}
-
-{{ $.Scratch.Set "currentMenuEntry" . }}
-<li>
-  {{ if $currentNode.IsPage }}
-  {{ if .HasChildren }}
-
-  {{ if eq .URL $currentNode.Source.Section }}
-    <span class="section">{{ .Name | title }}</span>
-    <ul>
-      {{ range .Children }}
-        {{ $.Scratch.Set "currentMenuEntry" . }}
+    {{ $.Scratch.Set "currentMenuEntry" . }}
+    <li>
         {{ partial "nav_link" $currentNode }}
-      {{ end }}
-    </ul>
-  {{ else }}
-  {{ partial "nav_link" $currentNode }}
-  {{ end }}
-  {{ else }}
-  {{ partial "nav_link" $currentNode }}
-  {{ end }}
-  {{ else }}
-  {{ partial "nav_link" $currentNode }}
-  {{ end }}
-</li>
+        {{ if eq .URL $currentNode.Source.Section }}
+            {{ if $currentNode.IsPage }}
+                {{ if .HasChildren }}
+                    <ul>
+                    {{ range .Children }}
+                        {{ $.Scratch.Set "currentMenuEntry" . }}
+                        {{ partial "nav_child" $currentNode }}
+                    {{ end }}
+                    </ul>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </li>
 {{ end }}

@@ -19,7 +19,7 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in {{ .Title | singularize }}</h1>
+			<h1>Pages in {{ .Title }}</h1>
 
 			{{ range .Data.Pages }}
 			<a href="{{ .Permalink }}" title="{{ .Title }}">
