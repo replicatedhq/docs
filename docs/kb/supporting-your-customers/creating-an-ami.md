@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Creating An AMI"
 weight = "999999"
-categories = [ "Knowledgebase", "Supporting Your Customers" ]
+categories = [ "knowledgebase", "supporting-your-customers" ]
 +++
 
 At times, it can be desirable to ship an Amazon Machine Image (AMI) to allow customers a familiar installation path. 
@@ -85,7 +85,7 @@ sudo curl -o /etc/init/replicated-init.conf https://get.replicated.com/utils/aws
 
 To learn more about using the `/etc/replicated.conf` file to provide the license for an automated install, and
 how you can set your settings during an automated install process, please read 
-[Automate Install for Testing](/docs/kb/developer-resources/automate-install/).
+[Automate Install for Testing](/kb/developer-resources/automate-install/).
 
 ### Step 5
 

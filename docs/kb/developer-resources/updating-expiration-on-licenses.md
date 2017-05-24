@@ -3,7 +3,7 @@ date = "2017-03-13T00:00:00Z"
 lastmod = "2017-03-13T00:00:00Z"
 title = "Updating Expiration on Licenses"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "knowledgebase", "developer-resources" ]
 +++
 
 An example use case for using the Vendor API is license maintenance. This example will show how to extend the expiration dates of all licenses in a specific channels.

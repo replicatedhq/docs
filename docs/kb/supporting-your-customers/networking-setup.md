@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Networking Setup"
 weight = "999999"
-categories = [ "Knowledgebase", "Supporting Your Customers" ]
+categories = [ "knowledgebase", "supporting-your-customers" ]
 +++
 
 Enterprise customers frequently run iptables on their servers. If you need a quick

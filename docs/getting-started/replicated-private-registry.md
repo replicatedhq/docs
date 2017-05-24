@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Replicated Private Registry"
 description = "How to push and access private images in Replicated's hosted private registry."
 weight = "105"
-categories = [ "Getting Started" ]
+categories = [ "getting-started" ]
 
 [menu.main]
 Name       = "Replicated Private Registry"
 identifier = "replicated-private-registry"
 parent     = "/getting-started"
-url        = "/docs/getting-started/replicated-private-registry"
+url        = "/getting-started/replicated-private-registry"
 +++
 
 When building your application, you have the option of hosting your private images on the Replicated private registry or [using external private and public registries](/kb/supporting-your-customers/registries/).

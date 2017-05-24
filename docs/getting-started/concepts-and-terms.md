@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Concepts and Terminology"
 description = "The core concepts and terms used in these documents to describe the Replicated functionality."
 weight = "102"
-categories = [ "Getting Started" ]
+categories = [ "getting-started" ]
 
 [menu.main]
 Name       = "Concepts and Terminology"
 identifier = "concepts-and-terms"
 parent     = "/getting-started"
-url        = "/docs/getting-started/concepts-and-terms"
+url        = "/getting-started/concepts-and-terms"
 +++
 
 Before shipping your application, there are a few terms to learn, as they are used throughout this guide.

@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Template Functions"
 description = "The dynamic configuration management functionality available throughout the Replicated YAML."
 weight = "210"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Template Functions"
 identifier = "template-functions"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/template-functions"
+url        = "/packaging-an-application/template-functions"
 +++
 
 Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.

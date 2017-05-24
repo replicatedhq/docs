@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Components And Containers"
 description = "The `components` section of the Replicated YAML defines how the containers will be created and started."
 weight = "206"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Components And Containers"
 identifier = "components-and-containers"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/components-and-containers"
+url        = "/packaging-an-application/components-and-containers"
 +++
 
 The `components` section of the YAML defines how the containers will be created and started. A component is

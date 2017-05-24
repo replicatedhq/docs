@@ -3,12 +3,12 @@ date = "2016-07-03T04:12:27Z"
 title = "Replicated YAML Reference"
 description = "Generated documentation for the Replicated YAML spec."
 weight = "590"
-categories = [ "Reference" ]
+categories = [ "reference" ]
 
 [menu.main]
 Name       = "YAML"
 identifier = "yaml"
-url        = "/docs/reference/yaml"
+url        = "/reference/yaml"
 parent     = "/reference"
 +++
 

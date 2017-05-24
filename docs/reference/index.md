@@ -4,7 +4,7 @@ title = "Reference"
 description = "Reference sections."
 weight = "500"
 type = "section"
-categories = [ "Reference" ]
+categories = [ "reference" ]
 hideSection = true
 +++
 

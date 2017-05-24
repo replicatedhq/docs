@@ -3,13 +3,13 @@ date = "2016-07-02T00:00:00Z"
 lastmod = "2016-07-02T00:00:00Z"
 title = "Custom Metrics"
 weight = "217"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Custom Metrics"
 identifier = "custom-metrics"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/custom-metrics"
+url        = "/packaging-an-application/custom-metrics"
 +++
 
 All Replicated installations come with a StatsD/Graphite/Carbon container that can be used by the application to report data to StatsD. Application YAML can also include optional custom monitors that will be used to display additional charts in Replicated dashboard. Applications can also query Graphite directly.

@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Manage Releases"
 description = "An introduction to the release channel management workflow for development on the Replicated platform."
 weight = "103"
-categories = [ "Getting Started" ]
+categories = [ "getting-started" ]
 
 [menu.main]
 Name       = "Manage Releases"
 identifier = "manage-releases"
 parent     = "/getting-started"
-url        = "/docs/getting-started/manage-releases"
+url        = "/getting-started/manage-releases"
 +++
 
 The [Replicated vendor site](https://vendor.replicated.com) provides you with a location to create and release versions of your application to various release channels. By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated, you'll see these default release channels created:

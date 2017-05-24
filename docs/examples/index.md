@@ -4,7 +4,7 @@ title = "Replicated Examples"
 description = "A series of sample Replicated YAML files that display how to leverage various features of Replicated."
 weight = "401"
 type = "section"
-categories = [ "Examples" ]
+categories = [ "examples" ]
 hideSection = true
 +++
 

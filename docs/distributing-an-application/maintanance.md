@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Maintenance"
 description = "Maintenance processes to use after Replicated is installed"
 weight = "306"
-categories = [ "Distributing" ]
+categories = [ "distributing" ]
 
 [menu.main]
 Name       = "Maintenance"
 identifier = "maintenance"
 parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/maintanance"
+url        = "/distributing-an-application/maintanance"
 +++
 
 ## Command Line Interface

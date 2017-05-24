@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Application Properties"
 description = "The Replicated YAML section `properties` allows several high level items to be defined. "
 weight = "203"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Application Properties"
 identifier = "application-properties"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/application-properties"
+url        = "/packaging-an-application/application-properties"
 +++
 
 The properties section of the YAML allows you to configure properties of the admin console.

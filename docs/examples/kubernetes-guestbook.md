@@ -3,13 +3,13 @@ date = "2017-03-17T00:00:00Z"
 title = "Kubernetes Guestbook"
 description = "The Kubernetes Guestbook Application, in a Replicated YAML."
 weight = "405"
-categories = [ "Examples" ]
+categories = [ "examples" ]
 
 [menu.main]
 Name       = "Kubernetes Guestbook"
 identifier = "guestbook"
 parent     = "/examples"
-url        = "/docs/examples/kubernetes-guestbook"
+url        = "/examples/kubernetes-guestbook"
 +++
 
 ## Guestbook

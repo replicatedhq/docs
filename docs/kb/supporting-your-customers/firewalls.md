@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2017-03-22T00:00:00Z"
 title = "Firewalls"
 weight = "999999"
-categories = [ "Knowledgebase", "Supporting Your Customers" ]
+categories = [ "knowledgebase", "supporting-your-customers" ]
 +++
 
 Often, customers will need to have a complete list of expected internal and outbound network traffic so they can open ports in firewalls and whitelist hosts and IP addresses for outbound connectivity. This document provides the list of all known connections that Replicated requires to run. Any external services required are not listed here.
@@ -25,7 +25,7 @@ When Replicated is installed, it can be downloaded from the Internet or packaged
 
 | Host | Online Installation | Airgap Installation | Description |
 |---|---|---|---|
-| get.replicated.com | <i class="fa fa-check" /> Required | <i class="fa fa-times" /> Not Required | This endpoint hosts the install script that used in the Replicated [easy install](/distributing-your-application/installing-via-script) script. |
+| get.replicated.com | <i class="fa fa-check" /> Required | <i class="fa fa-times" /> Not Required | This endpoint hosts the install script that used in the Replicated [easy install](/distributing-an-application/installing-via-script) script. |
 | quay.io | <i class="fa fa-check" /> Required | <i class="fa fa-times" /> Not Required | The current Replicated images are hosted as public images in the Quay.io registry. |
 | Docker Hub | <i class="fa fa-check" /> Required | <i class="fa fa-times" /> Not Required | Some dependencies of Replicated are hosted as public images in Docker Hub.|
 

@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Add Nodes"
 description = "When a Replicated-orchestrated application is configured with a clustering strategy, additional nodes can be installed on remote instances to take part in the cluster."
 weight = "307"
-categories = [ "Distributing" ]
+categories = [ "distributing" ]
 
 [menu.main]
 Name       = "Add Nodes"
 identifier = "add-nodes"
 parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/add-nodes"
+url        = "/distributing-an-application/add-nodes"
 +++
 
 The instructions to add additional nodes are different depending the running scheduler.

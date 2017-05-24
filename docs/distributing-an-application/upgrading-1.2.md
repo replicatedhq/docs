@@ -7,8 +7,7 @@ description = "A guide to installing the legacy version of Replicated 1.2.x via 
 
 {{< warning title="Old Version Warning" >}}
 The content in this document is for a previous version of Replicated. If you are looking
-for the current version, it is available at
-<a href="{{< baseurl >}}distributing-an-application/upgrading/">{{< baseurl >}}distributing-an-application/upgrading/</a>
+for the current version, it is available at [{{< baseurl >}}distributing-an-application/upgrading](/distributing-an-application/upgrading)
 {{< /warning >}}
 
 You may need to add the Replicated repository and GPG key to the package manager before

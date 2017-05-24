@@ -3,7 +3,7 @@ date = "2016-08-01T00:00:00Z"
 lastmod = "2016-08-01T00:00:00Z"
 title = "Running Commands on the Host OS"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "knowledgebase", "developer-resources" ]
 +++
 
 The current version of Replicted is delivered as Docker images and run in containers on every supported operating system. The Replicated containers are built on top of a small Alpine Linux base image. Sometimes, it's desirable to access the host operating system and execute commands or change the environment in some way.

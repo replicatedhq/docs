@@ -3,13 +3,13 @@ date = "2017-04-11T00:00:00Z"
 title = "Docker Swarm Voting Application"
 description = "The Docker Swarm Voting Application, in a Replicated YAML."
 weight = "406"
-categories = [ "Examples" ]
+categories = [ "examples" ]
 
 [menu.main]
 Name       = "Docker Swarm Voting Application"
 identifier = "votingapp"
 parent     = "/examples"
-url        = "/docs/examples/swarm-votingapp"
+url        = "/examples/swarm-votingapp"
 +++
 
 ## VotingApp

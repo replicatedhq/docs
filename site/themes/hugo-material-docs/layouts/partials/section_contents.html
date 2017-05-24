@@ -1,20 +1,18 @@
 
 <div style="border-top:1px solid rgba(0, 0, 0, .12);margin-top:25px;">
-    {{ $categories := index .Params.categories }}
     {{ $site := .Site }}
-    {{ range $categories }}
+    {{ range .Params.categories }}
       {{ $pages := $site.Taxonomies.categories.Get . }}
       {{ range $pages.Pages.ByWeight }}
         {{ $hidesection := index .Params "hidesection" }}
-          {{ if index .Params "description" }}
-            {{ if ne $hidesection true }}
-      <div class="site-page">
-        <h3><a href="{{ .Permalink}}"> {{ .LinkTitle }} </a></h3>
-        {{ index .Params "description" }}
-      </div>
-
-            {{ end }}
-          {{ end }}
+        {{ if index .Params "description" }}
+        {{ if ne $hidesection true }}
+        <div class="site-page">
+            <h3><a href="{{ .Permalink}}"> {{ .LinkTitle }} </a></h3>
+            {{ index .Params "description" }}
+        </div>
+        {{ end }}
+        {{ end }}
       {{ end }}
     {{ end }}
 </div>

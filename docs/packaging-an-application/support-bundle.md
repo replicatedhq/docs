@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Support Bundle"
 description = "Installed instances can generate a support bundle with relevant logs and instance information."
 weight = "212"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Support Bundle"
 identifier = "support-bundle"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/support-bundle"
+url        = "/packaging-an-application/support-bundle"
 +++
 
 A support bundle archive will be available for your customer to download via the Support tab of the On-Prem Console.

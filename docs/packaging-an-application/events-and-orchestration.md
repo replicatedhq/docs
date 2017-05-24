@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Events and Orchestration"
 description = "The `events` section of the Replicated YAML allows application vendors to sequence and orchestrate containers based on events from other containers."
 weight = "207"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Events and Orchestration"
 identifier = "events-and-orchestration"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/events-and-orchestration"
+url        = "/packaging-an-application/events-and-orchestration"
 +++
 
 Events are provided to help with the startup, orchestration and service discovery between your containers. There are

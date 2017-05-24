@@ -3,7 +3,7 @@ date = "2016-07-22T00:00:00Z"
 lastmod = "2016-07-22T00:00:00Z"
 title = "Docker Links"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "knowledgebase", "developer-resources" ]
 +++
 
 In the earlier releases of Docker, there was a concept of [container linking](https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/). This has been deprecated in recent versions of Docker, but some Docker Compose YAMLs may still reference them. If you are dependent on the legacy Docker links to deploy your application, it's possible to use the `extra_hosts` option in Replicated to simulate this and deploy your containers without any changes.

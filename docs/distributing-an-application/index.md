@@ -4,7 +4,7 @@ title = "Distributing an Application"
 description = "This section of the docs explains how to install, upgrade and distribute your application."
 weight = "301"
 type = "section"
-categories = [ "Distributing" ]
+categories = [ "distributing" ]
 hideSection = true
 +++
 

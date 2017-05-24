@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Image Tagging Best Practices"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "knowledgebase", "developer-resources" ]
 +++
 
 For your Replicated YAML, we highly encourage you to push images with a specific tag & avoid the 

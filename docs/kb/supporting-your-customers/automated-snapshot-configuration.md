@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Automated Snapshot Configuration"
 weight = "999999"
-categories = [ "Knowledgebase", "Supporting Your Customers" ]
+categories = [ "knowledgebase", "supporting-your-customers" ]
 +++
 
 In Replicated, snapshots can be run any time by clicking the “Run” button on the dashboard. 

@@ -3,13 +3,12 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Updating Replicated"
 weight = "999999"
-categories = [ "Knowledgebase", "Supporting Your Customers" ]
+categories = [ "knowledgebase", "supporting-your-customers" ]
 +++
 
 {{< warning title="Old Version Warning" >}}
 The content in this document is for a previous version of Replicated. If you are looking
-for the current version, it is available at
-<a href="{{< baseurl >}}distributing-an-application/upgrading/">{{< baseurl >}}distributing-an-application/upgrading/</a>
+for the current version, it is available at [{{< baseurl >}}distributing-an-application/upgrading](/distributing-an-application/upgrading)
 {{< /warning >}}
 
 For your customers to be able to take advantage of the latest features available in

@@ -4,18 +4,25 @@
 
 {{ $.Scratch.Set "currentMenuEntry" . }}
 <li>
-    {{ partial "nav_link" $currentNode }}
-    {{ if .HasChildren }}
-      {{ if $currentNode.IsPage }}
-      {{ if eq .URL $currentNode.Source.Section }}
-      <ul>
-        {{ range .Children }}
-          {{ $.Scratch.Set "currentMenuEntry" . }}
-          {{ partial "nav_child" $currentNode }}
-        {{ end }}
-      </ul>
+  {{ if $currentNode.IsPage }}
+  {{ if .HasChildren }}
+
+  {{ if eq .URL $currentNode.Source.Section }}
+    <span class="section">{{ .Name | title }}</span>
+    <ul>
+      {{ range .Children }}
+        {{ $.Scratch.Set "currentMenuEntry" . }}
+        {{ partial "nav_link" $currentNode }}
       {{ end }}
-      {{ end }}
-    {{ end }}
+    </ul>
+  {{ else }}
+  {{ partial "nav_link" $currentNode }}
+  {{ end }}
+  {{ else }}
+  {{ partial "nav_link" $currentNode }}
+  {{ end }}
+  {{ else }}
+  {{ partial "nav_link" $currentNode }}
+  {{ end }}
 </li>
 {{ end }}

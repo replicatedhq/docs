@@ -3,7 +3,7 @@ date = "2016-07-01T00:00:00Z"
 lastmod = "2016-07-01T00:00:00Z"
 title = "Branding Your Configuration Screen"
 weight = "999999"
-categories = [ "Knowledgebase", "Developer Resources" ]
+categories = [ "knowledgebase", "developer-resources" ]
 +++
 
 With the release of Replicated 1.2.73 you can now customize the look & feel of the 

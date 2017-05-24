@@ -3,7 +3,7 @@ date = "2017-06-16T00:00:00Z"
 title = "Kubernetes"
 description = "Packaging a Kubernetes application in Replicated"
 weight = "218"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 aliases = [
     "/kb/developer-resources/kubernetes-prerelease/"
 ]
@@ -12,7 +12,7 @@ aliases = [
 Name       = "Replicated on Kubernetes"
 identifier = "kubernetes"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/kubernetes"
+url        = "/packaging-an-application/kubernetes"
 +++
 
 If your application is defined as a set of Kubernetes resources, and your customer can run a Kubernetes cluster, Replicated can provide the same standard functionality but on top of a Kubernetes cluster. To see a full example, check out the [Guestbook example](/examples/kubernetes-guestbook).
@@ -72,7 +72,7 @@ Replicated will consider the application running when all of the Kubernetes reso
 There are some additional [template functions](/packaging-an-application/template-functions#kubernetes) available when running in Kubernetes.
 
 ### Secrets
-Replicated supports runtime secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
+Replicated supports runtime secrets through the use of [template functions](/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
 
 For example:
 ```yml

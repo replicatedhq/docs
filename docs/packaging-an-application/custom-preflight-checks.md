@@ -3,13 +3,13 @@ date = "2017-01-26T00:00:00Z"
 title = "Custom Preflight Checks"
 description = "A guide to implementing the Custom Preflight Checks feature to analyze customer systems to determine if the environment meets the minimum requirements for installation or update."
 weight = "214"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Custom Preflight Checks"
 identifier = "custom-preflight-checks"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/custom-preflight-checks"
+url        = "/packaging-an-application/custom-preflight-checks"
 +++
 
 The host requirements section of the yaml gives Replicated the ability to analyze system

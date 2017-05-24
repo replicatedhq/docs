@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Clustering"
 description = "An implementation guide for using the Replicated built in clustering functionality."
 weight = "208"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Clustering"
 identifier = "clustering"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/clustering"
+url        = "/packaging-an-application/clustering"
 +++
 
 By default Replicated will start one instance per component and container in your application on a single host. With the addition of clustering your application can optionally leverage multiple hosts as well as multiple instances per host.

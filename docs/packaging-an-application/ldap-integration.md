@@ -3,13 +3,13 @@ date = "2016-07-07T04:02:20Z"
 title = "LDAP and Identity Integration"
 description = "Enabling LDAP and AD user auth and sync in an application through Replicated."
 weight = "216"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "LDAP Integration"
 identifier = "ldap"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/ldap-integration"
+url        = "/packaging-an-application/ldap-integration"
 +++
 
 Replicated can be integrated with LDAP servers to provide real time user authentication & sync. A quick overview of this feature is available. Announcement: [DS Auth & Sync Support](https://blog.replicated.com/2015/12/03/ldap-active-directory-sync-support/)

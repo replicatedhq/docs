@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Counter App Example"
 description = "An example of a general-purpose Replicated app definition. This can be used as a starting point as it covers the basic functionality of the Replicated platform."
 weight = "402"
-categories = [ "Examples" ]
+categories = [ "examples" ]
 
 [menu.main]
 Name       = "Counter App"
 identifier = "counter-app"
 parent     = "/examples"
-url        = "/docs/examples/counter-app"
+url        = "/examples/counter-app"
 +++
 
 ## Counter App

@@ -4,7 +4,7 @@ title = "Packaging an Application"
 description = "An overview of the Replicated YAML."
 weight = "201"
 type = "section"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 hideSection = true
 +++
 

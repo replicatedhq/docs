@@ -1,12 +1,14 @@
-/*
- * overwrite the current primary color of the
- * theme that is used as fallback in codeblocks
+/* 
+ * overwrite the current primary color of the 
+ * theme that is used as fallback in codeblocks 
  */
 .article pre code {
-	color: #222 !important;
+	color: rgba(0, 0, 0, 0.8) !important;
 }
-/*
-	HIGHLIGHT.JS THEME
+
+
+/*	
+	HIGHLIGHT.JS THEME 
 
 	tweaked version of the Github theme
 */

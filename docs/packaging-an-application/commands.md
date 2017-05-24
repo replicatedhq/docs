@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Commands"
 description = "The `cmds` section of the Replicated YAML allows you to leverage the power of external commands within your application configuration."
 weight = "209"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Commands"
 identifier = "commands"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/commands"
+url        = "/packaging-an-application/commands"
 +++
 
 The `cmds` section of the YAML allows you to leverage the power of external commands within your configuration. The sole

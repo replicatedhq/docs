@@ -4,17 +4,17 @@ title = "Installing Replicated"
 description = "Instructions for installing Replicated via the easy install script, manually or behind a proxy. Also includes instructions for uninstalling Replicated."
 keywords= "installing, removing, migrating"
 weight = "304"
-categories = [ "Distributing" ]
+categories = [ "distributing" ]
 
 [menu.main]
 Name       = "Installing Replicated"
 identifier = "installing"
 parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/installing"
+url        = "/distributing-an-application/installing"
 +++
 
 {{< note title="Replicated 2.0" >}}
-The content in this document is specific to Replicated 2.0. If you are looking for the Replicated 1.2 version of this document, it is available at <a href="distributing-an-application/installing-1.2/">{{< baseurl >}}distributing-an-application/installing-1.2/</a>
+The content in this document is specific to Replicated 2.0. If you are looking for the Replicated 1.2 version of this document, it is available at [{{< baseurl >}}distributing-an-application/installing-1.2](/distributing-an-application/installing-1.2)
 {{< /note >}}
 
 ## Prerequisites

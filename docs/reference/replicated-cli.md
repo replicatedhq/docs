@@ -3,16 +3,16 @@ date = "2016-07-03T04:12:27Z"
 title = "Replicated CLI Reference"
 description = "Generated documentation on the default Replicated CLI commands available for all Replicated installed instances."
 weight = "592"
-categories = [ "Reference" ]
+categories = [ "reference" ]
 
 [menu.main]
 Name       = "Replicated CLI"
 identifier = "replicated-cli"
-url        = "/docs/reference/replicated-cli"
+url        = "/reference/replicated-cli"
 parent     = "/reference"
 +++
 
-After [installing replicated](/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
+After [installing replicated](/distributing-an-application/installing/) onto a remote host a CLI is enabled
 that can be utilized for both management and maintenance. This tool can be especially helpful when debugging issues that can arise if the
 replicated-ui is not fully installed or working properly.
 

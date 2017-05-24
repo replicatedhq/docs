@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Admin Commands"
 description = "Implementation guide for application vendors to provide customers with aliased CLI commands that can be performed in the containers across a cluster."
 weight = "211"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Admin Commands"
 identifier = "admin-commands"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/admin-commands"
+url        = "/packaging-an-application/admin-commands"
 +++
 
 The `admin_commands` section allows you to define ad-hoc commands that can be executed inside a running container from the shell.

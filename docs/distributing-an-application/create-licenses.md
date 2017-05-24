@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Create Licenses"
 description = "Details on the options available to vendors when creating a license for an end customer's upcoming installation."
 weight = "302"
-categories = [ "Distributing" ]
+categories = [ "distributing" ]
 
 [menu.main]
 Name       = "Create Licenses"
 identifier = "create-licenses"
 parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/create-licenses"
+url        = "/distributing-an-application/create-licenses"
 +++
 
 Each customer you deploy to via Replicated will need a separate license file for their installation. This license file identifies the customer & application during the installation and update processes. Licenses & custom license fields are created & managed in the [vendor portal](https://vendor.replicated.com/customers) or via the [Vendor License API](/reference/vendor-api/license/). License values are used by Replicated to enable/disable various functionality, many of the values are also available in the on-prem instance via the [license integration API](https://replicated.readme.io/docs/license-api).

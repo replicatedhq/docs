@@ -6,8 +6,7 @@ description = "How to install the legacy version of Replicated 1.2 via Deb and Y
 
 {{< warning title="Old Version Warning" >}}
 The content in this document is for a previous version of Replicated. If you are looking
-for the current version, it is available at
-<a href="{{< baseurl >}}distributing-an-application/installing/">{{< baseurl >}}distributing-an-application/installing/</a>
+for the current version, it is available at [{{< baseurl >}}distributing-an-application/installing](/distributing-an-application/installing)
 {{< /warning >}}
 
 ## Host Setup

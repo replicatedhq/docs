@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Test Procs"
 description = "Test Procs enable customers to easily test the validity of the unsaved configuration parameters they're entering during installation."
 weight = "205"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Test Procs"
 identifier = "test-procs"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/test-procs"
+url        = "/packaging-an-application/test-procs"
 +++
 
 Using the `test_proc` directive in your app definition YAML, you enable your customers to

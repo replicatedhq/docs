@@ -3,13 +3,13 @@ date = "2016-07-03T04:02:20Z"
 title = "Config Screen"
 description = "The `config` section of the Replicated YAML creates a dynamic settings page that customers can use to configure their instance."
 weight = "204"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 
 [menu.main]
 Name       = "Config Screen"
 identifier = "config-screen"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/config-screen"
+url        = "/packaging-an-application/config-screen"
 +++
 
 The admin console settings screen configuration is specified as an array configuration

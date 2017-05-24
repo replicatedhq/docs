@@ -24,26 +24,27 @@
 
 	<article class="article">
 		<div class="wrapper">
-                        <h1>{{ .Title }} {{ if .IsDraft }} (Draft){{ end }}</h1>
-                        <div style="float: right; position: relative; top: -100px;">
-                                {{ if .IsPage }}
-                                        <a href="https://github.com/replicatedhq/docs/edit/master/docs/{{ .File.Path }}">Edit this page</a>
-                                {{ end }}
-                        </div>
+			<h1>{{ .Title }} {{ if .IsDraft }} (Draft){{ end }}</h1>
+			{{ if .IsPage }}
+			<div style="float: right; position: relative; top: -100px;">
+				<a href="https://github.com/replicatedhq/docs/edit/master/docs/{{ .File.Path }}">Edit this page</a>
+			</div>
+			{{ end }}
 
 			{{ .Content }}
 
+			<aside class="copyright" role="note">
+				{{ with .Site.Params.copyright }}
+				&copy; {{ now.Format "2006" }} {{ . }} &ndash;
+				{{ end }}
+				<a href="https://vendor.replicated.com/#/site/privacy" target="_blank">Privacy Policy</a> ·
+				<a href="https://vendor.replicated.com/#/site/terms-of-service" target="_blank">Terms of Service</a>
+			</aside>
+
+			<footer class="footer">
+				{{ partial "footer" . }}
+			</footer>
 		</div>
-
-		<aside class="copyright" role="note">
-			&copy; {{ $.Now.Format "2006" }} {{ .Site.Params.copyright }}
-			<a href="https://vendor.replicated.com/#/site/privacy" target="_blank">Privacy Policy</a> ·
-			<a href="https://vendor.replicated.com/#/site/terms-of-service" target="_blank">Terms of Service</a>
-		</aside>
-
-		<footer class="footer">
-			{{ partial "footer" . }}
-		</footer>
 	</article>
 
 	<div class="results" role="status" aria-live="polite">

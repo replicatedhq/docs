@@ -3,7 +3,7 @@ date = "2017-07-11T00:00:00Z"
 title = "Docker Swarm"
 description = "Packaging a Docker Swarm application in Replicated"
 weight = "219"
-categories = [ "Packaging" ]
+categories = [ "packaging" ]
 aliases = [
     "/packaging-an-application/swarm/"
 ]
@@ -12,7 +12,7 @@ aliases = [
 Name       = "Replicated with Docker Swarm"
 identifier = "docker-swarm"
 parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/docker-swarm"
+url        = "/packaging-an-application/docker-swarm"
 +++
 
 If your application is defined as a Docker Compose version 3 or 3.1 yaml file, Replicated can provide the same standard functionality deploying your application via the [Docker Swarm](https://docs.docker.com/engine/swarm/) scheduler as a [Docker Stack](https://docs.docker.com/docker-cloud/apps/stacks/) as of Replicated {{< version version="2.7.0" >}}. Using the Swarm scheduler, you can use all of the Swarm functionality including overlay networks, DNS service discovery, Docker secrets and more. To see a full example, check out the [Voting App example](/examples/swarm-votingapp).
@@ -77,7 +77,7 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
+{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
 
 ```yml
 # kind: replicated

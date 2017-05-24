@@ -5,12 +5,14 @@ theme = "hugo-material-docs"
 metadataformat = "yaml"
 canonifyurls = true
 googleAnalytics = "UA-61084834-1"
+sourceRelativeLinksEval = true
+sourceRelativeLinksProjectFolder = "/docs"
 
 [taxonomies]
 category = "categories"
 
 [params]
-  description = "Documentation and knowledgebase for Replicated."
+  description = "Documentation and knowledge base for Replicated."
   copyright = "Replicated, Inc."
 
   logo = "images/logo.png"
@@ -84,7 +86,7 @@ category = "categories"
   weight     = 600
 
 [blackfriday]
-  smartypants	= true
-  fractions = true
-  smartDashes = true
+  smartypants    = true
+  fractions      = true
+  smartDashes    = true
   plainIDAnchors = true
