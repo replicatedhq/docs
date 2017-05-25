@@ -22,7 +22,7 @@ All other status codes will be interpreted as errors and sync will not be initia
 
 ### POST /v1/user/create
 
-This endpoint is called when a new user record is being added. Your implementation should update and return a 201 for a user that already exists.
+This endpoint is called when a new user record is being created or updated. Your implementation should update and return a 201 for a user that already exists.
 
 #### Request Payload
 
@@ -46,7 +46,7 @@ All other status codes will be interpreted as errors and sync will not continue.
 
 ### POST /v1/user/modify
 
-This endpoint is called when an existing user record is being update. Your implementation should create the user and return a 204 response when updating a user that did not exist prior to the call.
+This endpoint is called to update a user record. Your implementation should create the user and return a 204 response when updating a user that did not exist prior to the call.
 
 #### Request Payload
 
