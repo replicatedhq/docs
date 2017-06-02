@@ -27,7 +27,7 @@ Some of the standard Replicated features operate differently or are not supporte
 External private images are not supported currently. Replicated hosts a [private registry](/getting-started/replicated-private-registry) that you can use to ship private images. Replicated also supports public (unauthenticated) images in any registry.
 
 ### Airgapped Installations
-{{< version version="2.8.0" >}} Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified in the new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
+Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified in the new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
 
 ```yml
 images:
@@ -52,7 +52,7 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
 ### Admin Commands
-{{< version version="2.8.0" >}} Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
+Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
 
 ```yml
 properties:
@@ -74,7 +74,7 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
+Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
 
 ```yml
 # kind: replicated
