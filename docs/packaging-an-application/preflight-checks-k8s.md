@@ -15,7 +15,7 @@ By default, Replicated automatically adds preflight checks for:
 
 Additionally, it's recommended to specify additional system requirements in the `kubernetes` section of the application YAML.
 
-### For example:
+### Example:
 
 ```yaml
 kubernetes:
@@ -25,16 +25,8 @@ kubernetes:
     cluster_size: 3
     total_cores: 3
     total_memory: 11.25GB
-  persistent_volume_claims:
-  - name: redis-pv
-    storage: 2Gi
-    access_modes: [ReadWriteOnce]
-  - name: mysql-pv
-    storage: 20Gi
-    access_modes: [ReadWriteOnce]
 ```
 
-### Notes:#
+### Notes:
 
-- server_version must be specified as a semver range
-- 
+- `server_version` must be specified as a semver range
