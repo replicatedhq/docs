@@ -45,9 +45,6 @@ images:
 ### Replicated Auto Updates
 Replicated auto updates work as expected when running in Swarm mode. While the Replicated update is applying, the UI will not be available. Once it finishes, refresh the UI to get the update.
 
-### Integration API
-The Integration API works as expected when running in swarm mode, although the environment variable `REPLICATED_INTEGRATIONAPI` is not automatically injected into the running containers as it is with the Replicated Native scheduler. The [`PremkitAPIAddress`](/packaging-an-application/template-functions#premkitapiaddress) template function has been made available to inject the address into the container's environment.
-
 ### Snapshots
 Standard Replicated snapshots are not supported when running in Swarm mode. This functionality will be included in an upcoming release.
 
