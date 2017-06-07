@@ -1,7 +1,7 @@
 +++
 date = "2016-07-03T04:12:27Z"
 title = "License API"
-description = "Read the current application version, release notes, pending updates and apply updates"
+description = "Provides methods for your application to query properties of the installed license"
 weight = "553"
 categories = [ "Integration API" ]
 +++
