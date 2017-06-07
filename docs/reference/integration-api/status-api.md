@@ -1,7 +1,7 @@
 +++
 date = "2016-07-03T04:12:27Z"
 title = "Status API"
-description = "Read the current application version, release notes, pending updates and apply updates"
+description = "Provides endpoints for your application to report various kinds of status information back to the management console"
 weight = "554"
 categories = [ "Integration API" ]
 +++
