@@ -41,6 +41,6 @@ service replicated restart
 systemctl restart replicated
 ```
 
-Take a look at our [restoring from a snapshot](https://support.replicated.com/hc/en-us/articles/216896067) article 
+Take a look at our [restoring from a snapshot](https://www.replicated.com/docs/kb/supporting-your-customers/restoring-from-a-snapshot/) article 
 for more on this subject.
 
