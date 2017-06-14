@@ -62,7 +62,7 @@ Replicated will consider the application running when all of the Kubernetes reso
 |-----|----|
 | Deployments | Same as [Kubernetes rollout status] (https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) |
 | Replication Controller | Same as [Kubernetes rollout status](https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) | 
-| Persistent Volume Claim | When the claim in bound | 
+| Persistent Volume Claim | When the claim is bound | 
 | Service | When type is set to LoadBalancer, it's running when the IP address is assigned. | 
 | Ingress | When the LoadBalancer IP is assigned. |
 | Pod | Deployed pods are not monitored. The higher level object is. | 
