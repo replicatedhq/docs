@@ -73,6 +73,7 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 | /daemon/replicated/daemon.json | Daemon properties and runtime configuration. |
 | /daemon/replicated/ledis-app.dump | A dump of the Replicated database. |
 | /daemon/replicated/ledis-registry.dump | A dump of the Replicated registry database. |
+| /daemon/replicated/params.json | Daemon runtime configuration. |
 | /daemon/replicated/replicated-inspect.json | Result of the command `docker inspect replicated`. Return low-level information on the replicated container. |
 | /daemon/replicated/replicated-operator-inspect.json | Result of the command `docker inspect replicated-operator`. Return low-level information on the replicated-operator container. |
 | /daemon/replicated/replicated-operator.log | Result of the command `docker logs replicated-operator --tail 10000`. Docker replicated-operator container logs. |
@@ -124,6 +125,7 @@ You can identify [custom support bundle files](/packaging-an-application/compone
 | /scheduler/node/*&lt;node_id&gt;*/proc/uptime | A copy of the `/proc/uptime` file. The time the system has been up. |
 | /scheduler/node/*&lt;node_id&gt;*/proc/version | A copy of the `/proc/version` file. The kernel version. |
 | /scheduler/node/*&lt;node_id&gt;*/proc/vmstat | A copy of the `/proc/vmstat` file. Detailed virtual memory statistics from the kernel. |
+| /scheduler/node/*&lt;node_id&gt;*/scheduler/params.json | Operator runtime configuration. |
 | /scheduler/node/*&lt;node_id&gt;*/scheduler/replicated-operator-inspect.json | Result of the command `docker inspect replicated-operator`. Return low-level information on the replicated-operator container. |
 | /scheduler/node/*&lt;node_id&gt;*/scheduler/replicated-operator.log | Result of the command `docker logs replicated-operator --tail 10000`. Docker replicated-operator container logs. |
 | /scheduler/node/*&lt;node_id&gt;*/scheduler/runtime/goroutines.txt | Stack traces of all current goroutines. |
