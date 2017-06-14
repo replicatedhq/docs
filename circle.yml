@@ -40,6 +40,5 @@ deployment:
       - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS quay.io
       - sudo docker push quay.io/replicatedcom/docs:production-${CIRCLE_SHA1:0:7}
       - sudo docker push quay.io/replicatedcom/docs:staging-${CIRCLE_SHA1:0:7}
-      - sudo apt-get update
-      - sudo apt-get install -y python-boto
+      - pip install boto
       - python ./deploy/deploy.py
