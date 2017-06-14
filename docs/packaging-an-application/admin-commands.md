@@ -46,7 +46,7 @@ $ docker exec -it "$(docker inspect --format "{{.Status.ContainerStatus.Containe
 
 ### Kubernetes
 ```bash
-$ kubectl exec -it "$(kubectl get pods -l=app=replicated -o=jsonpath='{.items..metadata.name}')" -c replicated -- replicated admin <command_alias> <params>
+$ kubectl exec -it "$(kubectl get pods -l=app=replicated -l=tier=master -o=jsonpath='{.items..metadata.name}')" -c replicated -- replicated admin <command_alias> <params>
 ```
 
 ## Examples
