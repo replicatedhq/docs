@@ -6,7 +6,7 @@ weight = "213"
 categories = [ "Packaging" ]
 +++
 
-There is limited support for Kubernetes preflight checks as of {{< version version="2.9.0" >}}. Additional support will be available in a future release.
+Support for Kubernetes preflight checks has been added as of Replicated {{< version version="2.9.0" >}}.
 
 By default, Replicated automatically adds preflight checks for:
 
@@ -14,7 +14,17 @@ By default, Replicated automatically adds preflight checks for:
 |--------------|-----------|
 | Outbound internet access (if required) | Replicated APIs, external registries |
 
-Additionally, it's recommended to specify additional system requirements in the `kubernetes` section of the application YAML.
+Additional Kubernetes system requirements can be specified in the `kubernetes.requirements` section of the application YAML.
+
+Possible checks include:
+
+| **Property** | **Check** |
+|--------------|-----------|
+| server_version | Kubernetes server version (must be specified as a semver range) |
+| api_versions | Supported API versions on the server (in the form of "group/version") |
+| cluster_size | Minumum cluster size (nodes) |
+| total_cores | Minumum total cores |
+| total_memory | Minumum total memory |
 
 ### Example:
 
@@ -27,7 +37,3 @@ kubernetes:
     total_cores: 3
     total_memory: 11.25GB
 ```
-
-### Notes:
-
-- `server_version` must be specified as a semver range
