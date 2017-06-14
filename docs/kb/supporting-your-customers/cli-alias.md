@@ -1,7 +1,7 @@
 +++
 date = "2017-06-13T00:00:00Z"
 lastmod = "2017-06-14T00:00:00Z"
-title = "Replicated CLI alias"
+title = "Replicated CLI Alias"
 weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
