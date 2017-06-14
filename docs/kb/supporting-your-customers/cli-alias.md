@@ -12,7 +12,7 @@ Depending on your scheduler, run the following shell scripts as `sudo` to set up
 
 _Please note that the customer will have to hit enter after the last command._
 
-### Native Scheduler
+### Replicated Scheduler
 
 ```shell
 cat > /usr/local/bin/replicated <<-EOF
