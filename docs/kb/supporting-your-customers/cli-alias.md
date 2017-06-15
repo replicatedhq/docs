@@ -6,11 +6,9 @@ weight = "999999"
 categories = [ "Knowledgebase", "Supporting Your Customers" ]
 +++
 
-The Replicated [Easy Install Scripts](https://www.replicated.com/docs/distributing-an-application/installing-via-script/) will automatically set up the [Replicated CLI V1](https://www.replicated.com/docs/reference/replicated-cli/) and [Replicated CLI V2](https://www.replicated.com/docs/reference/replicatedctl/) aliases. However, if your customer has upgraded from Replicated version 2.8.2 to 2.9.0, then the Replicated CLI V2 alias is not automatically available. Likewise, if your customer performed a [manual installation](https://www.replicated.com/docs/distributing-an-application/installing-manually/), then neither Replicated CLI versions will be available as an alias.
+The Replicated [easy install script](https://www.replicated.com/docs/distributing-an-application/installing-via-script/) will automatically set up the [`replicated` CLI](https://www.replicated.com/docs/reference/replicated-cli/) and [`replicatedctl` CLI](https://www.replicated.com/docs/reference/replicatedctl/) aliases. However, if a server is automatically upgraded from a version before 2.9.0, then the `replicatedctl` alias will not be automatically installed. Likewise, if your customer performed a [manual installation](https://www.replicated.com/docs/distributing-an-application/installing-manually/), then neither Replicated CLI versions will be available as an alias.
 
-Depending on your scheduler, run the following shell scripts as `sudo` to set up the Replicated CLI V1 and V2 alias on Replicated installations.
-
-_Please note that the customer will have to hit enter after the last command._
+Depending on the scheduler Replicated is running with, run the following shell scripts as `sudo` to set up the `replicated` and `replicatedctl` aliases:
 
 ### Replicated Scheduler
 
