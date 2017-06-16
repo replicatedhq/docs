@@ -254,7 +254,7 @@ components:
 ```
 
 ## Custom Support Bundle Files
-And finally we have the option to specify additional files as part of the On-Prem Support Bundle. We can include both files from within our app's containers,
+Finally, we have the option to specify additional files as part of the On-Prem Support Bundle. We can include both files from within our app's containers,
 as well as output of commands executed within the container.
 *Note: Every individual command will have 30 seconds to execute and then subsequently timeout.*
 
@@ -267,6 +267,18 @@ as well as output of commands executed within the container.
       command: [tail, -n1000, /var/log/nginx/access.log]
     - filename: error_last_1000.log
       command: [tail, -n1000, /var/log/nginx/error.log]
+```
+
+Keep in mind that support commands are not templated. If a support command needs to access templated variables, create a config file and execute that file from a support command.
+
+```yml
+  config_files:
+  - filename: /scratch/ping.sh
+    contents: |
+      ping {{ repl ConfigOption "bindaddress" }}
+  support_commands:
+  - filename: ping.log
+    command: [/scratch/ping.sh]
 ```
 
 ## Restart Policies
