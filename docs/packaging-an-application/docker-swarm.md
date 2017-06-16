@@ -23,6 +23,14 @@ Like the standard Replicated scheduler, when shipping an application using Swarm
 
 Some of the standard Replicated features operate differently or are not supported on Swarm:
 
+### New YAML format
+The Swarm scheduler requires a different YAML format which combines some of the Replicated YAML with your own  Docker Compose V3 YAML. For an example of how this is done see here: [Swarm Voting App](/examples/swarm-votingapp/) which is utilizing the `kind:` tag to designate Replicated and Swarm YAML sections.
+```
+---
+# kind: scheduler-swarm
+version: "3.1"
+```
+
 ### External Private Images
 External private images are not supported currently. Replicated hosts a [private registry](/getting-started/replicated-private-registry) that you can use to ship private images. Replicated also supports public (unauthenticated) images in any registry.
 
@@ -96,7 +104,7 @@ swarm:
     value: '{{repl ConfigOption "config_my_secret" }}'
     labels:
       foo: bar
-      baz: 
+      baz:
 
 ---
 # kind: scheduler-swarm
