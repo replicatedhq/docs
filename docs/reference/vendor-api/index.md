@@ -14,4 +14,7 @@ url        = "/docs/reference/vendor-api"
 parent     = "/reference"
 +++
 
-This section of the docs explains how to use the Vendor API.
+The Vendor API is available for integrating Replicated into your business workflows, such as automating your continuous integration pipeline or customer license creation.
+
+
+The base URL for the Vendor API is https://api.replicated.com/vendor/v1. So the API method documented as "GET /apps" will be available at https://api.replicated.com/vendor/v1/apps.

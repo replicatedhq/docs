@@ -3,7 +3,7 @@ date = "2016-07-03T04:02:20Z"
 title = "Installing Replicated"
 description = "Instructions for installing Replicated via the easy install script, manually or behind a proxy. Also includes instructions for uninstalling Replicated."
 keywords= "installing, removing, migrating"
-weight = "310"
+weight = "304"
 categories = [ "Distributing" ]
 
 [menu.main]
@@ -18,7 +18,7 @@ The content in this document is specific to Replicated 2.0. If you are looking f
 {{< /note >}}
 
 ## Prerequisites
-Before installing Replicated review the list of 
+Before installing Replicated review the list of
 [supported operating systems](/distributing-an-application/supported-operating-systems/).
 
 ## Replicated Version
@@ -34,7 +34,7 @@ sudo bash ./install.sh
 ## Pick your Install Method
 
 ### Easy Installation
-We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the Docker Engine. 
+We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install the Replicated.  Included in the install will be init scripts, configuration files and as needed the Docker Engine.
 
 [Continue with the easy install script](/distributing-an-application/installing-via-script)
 ### Manual Install
@@ -42,8 +42,8 @@ We provide a short set of steps to install Replicated manually, for situations w
 
 [Continue with a manual install](/distributing-an-application/installing-manually)
 
-### Airgap Install
-Some installations may not have outbound Internet access.  Replicated provides you the option to do airgapped installs to support those customers.  To install your customer will download Replicated, your license and the airgap installation file containing your application.
+### Airgapped Install
+Some installations may not have outbound Internet access.  Replicated provides you the option to do airgapped installs to support those customers.  To install, your customer will download Replicated, your license and the airgap installation file containing your application.
 
 [Continue with an airgapped install](/distributing-an-application/airgapped-installations)
 

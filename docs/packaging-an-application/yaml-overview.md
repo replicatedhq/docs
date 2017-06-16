@@ -27,7 +27,7 @@ Kubernetes is a popular cluster and orchestration tool when running Docker conta
 
 
 ## Replicated API Version
-At the top of the YAML file, regardless of the scheduler, there must be a Replicated API version. The current API version to use is {{<replicated_api_version_current >}}. Note: The [Changelog](https://vendor.replicated.com/#/changelog) tracks the API version.
+At the top of the YAML file, regardless of the scheduler, there must be a Replicated API version. The current API version to use is {{<replicated_api_version_current >}}. Note: The [Changelog](https://release-notes.replicated.com/) tracks the API version.
 
 ```yml
 replicated_api_version: {{< replicated_api_version_current >}}
@@ -130,6 +130,8 @@ custom_metrics:
 
 You can add a health check that Replicated will poll after your containers have all been started. The purpose of this is to report when your application is fully running and ready to start using. Once your application is running, we stop polling this health check and rely on other methods to monitor the status. The timeout parameter allows you to specify (in seconds) how long to keep retrying the command, if it fails. You can use a timeout value of -1 to indicate infinite polling. A timeout of 0 is not supported and causes the default of 10 minutes to be used.
 
+{{< version version="2.7.0" >}} You can specify an optional third argument to set the HTTP timeout. Replicated will use a default timeout of 5 seconds if not specified.
+
 ### Available Commands:
 - `http_status_code`
 - `tcp_port_accept`
@@ -141,6 +143,7 @@ state:
     args:
     - 'http://{{repl HostPublicIpAddress "My Component" "my-web-container" }}/ping'
     - '200'
+    - '5'
     timeout: 900
 ```
 

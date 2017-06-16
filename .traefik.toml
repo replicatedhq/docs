@@ -19,7 +19,7 @@ address = ":8080"
 [backends]
   [backends.docs]
     [backends.docs.servers.server1]
-    url = "http://172.16.141.110:1313"
+    url = "http://docs:1313"
     weight = 1
 
 

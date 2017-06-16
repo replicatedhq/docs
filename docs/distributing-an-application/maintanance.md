@@ -2,7 +2,7 @@
 date = "2016-07-03T04:02:20Z"
 title = "Maintenance"
 description = "Maintenance processes to use after Replicated is installed"
-weight = "322"
+weight = "306"
 categories = [ "Distributing" ]
 
 [menu.main]
@@ -14,7 +14,7 @@ url        = "/docs/distributing-an-application/maintanance"
 
 ## Command Line Interface
 
-You can use the [command line interface](/reference/replicated-cli/) to list the installed app, start and stop 
+You can use the [command line interface](/reference/replicated-cli/) to list the installed app, start and stop
 your application, get the current status, ask for updates or support bundles and more.
 
 ## Reset Console Password
@@ -26,8 +26,5 @@ KB article.
 ## Automate Install
 
 Replicated allows for [install automation](/kb/developer-resources/automate-install/),
-allowing you to install TLS certificates and configure hostnames and control your 
+allowing you to install TLS certificates and configure hostnames and control your
 application settings, including for LDAP integration.
-
-
-

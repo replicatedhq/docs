@@ -1,4 +1,4 @@
-<h2>{{ .Get "name" }}</h2>
+<h2 id={{ .Get "name" }}>{{ .Get "name" }}</h2>
 <div style="margin-top: 8px; margin-bottom: 8px;">
   <span class="badge badge-grey">
     {{ if ne "true" (.Get "replicated") }}<i class="fa fa-times"></i>{{ else }} <i class="fa fa-check"></i>{{ end }}&nbsp;Replicated

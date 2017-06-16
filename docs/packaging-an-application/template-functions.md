@@ -663,24 +663,6 @@ PremkitNetworkName() string
 
 PremkitNetworkName returns the name of the premkit docker network.
 
-```yml
-services:
-  voting-app:
-    image: gaiadocker/example-voting-app-vote:good
-    environment:
-      REPLICATED_INTEGRATIONAPI: {{repl PremkitAPIAddress }}
-    ...
-    networks:
-      - voteapp
-      - premkit
-...
-networks:
-  voteapp:
-  premkit:
-    external:
-      name: {{repl PremkitNetworkName }}
-```
-
 {{< template_function name="StatsdAddress" replicated="false" kubernetes="true" swarm="true" >}}
 ```go
 StatsdAddress() string
@@ -704,24 +686,6 @@ StatsdNetworkName() string
 ```
 
 StatsdNetworkName returns the name of the Statsd docker network.
-
-```yml
-services:
-  voting-app:
-    image: gaiadocker/example-voting-app-vote:good
-    environment:
-      REPLICATED_STATSD_ADDRESS: {{repl StatsdAddress }}
-    ...
-    networks:
-      - voteapp
-      - statsd
-...
-networks:
-  voteapp:
-  statsd:
-    external:
-      name: {{repl StatsdNetworkName }}
-```
 
 ## Notes
 
