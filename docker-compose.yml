@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 
 services:
   traefik:
@@ -9,11 +9,13 @@ services:
     volumes:
       - ./.traefik.toml:/etc/traefik/traefik.toml
       - ./logs:/logs
-    networks:
-      internal:
-        ipv4_address: 172.16.141.1
 
-  vendor-api-docs:
+  replicated-docs:
+    image: quay.io/replicated/replicated-docs:unstable
+    volumes:
+      - replicatedctl:/usr/src/docs/replicatedctl
+
+  docs:
     build:
       context: .
       dockerfile: ./Dockerfiles/Dockerfile.hugo
@@ -24,18 +26,6 @@ services:
       - ./site:/src
       - ./docs:/src/content
       - ./hugo-config/docs.toml:/src/config.toml
-    networks:
-      internal:
-        ipv4_address: 172.16.141.110
-
-networks:
-  internal:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-      - subnet: 172.16.141.0/24
-        gateway: 172.16.141.254
-  default:
-    external:
-      name: bridge
+      - replicatedctl:/src/content/reference/replicatedctl:ro
+volumes:
+  replicatedctl:

@@ -35,7 +35,7 @@ Replicated auto updates work as expected when running in Kubernetes. While the R
 Standard Replicated snapshots are not supported when running in Kubernetes. This functionality will be included in an upcoming release.
 
 ### Preflight Checks
-Preflight checks are not currently supported when running in Kubernetes. These will be available in a future release.
+There is limited support for preflight checks as of {{< version version="2.9.0" >}}. See the [Kubernetes Preflight Checks](/packaging-an-application/preflight-checks-k8s) section of the docs for more details. Additional support will be available in a future release.
 
 ### Admin Commands
 Admin commands are supported on Kubernetes. Replicated uses Kubernetes selectors to identify the target pod in which to run the admin command. If multiple pods match the selector then replicated will choose a random pod in which to run the command. Specifying a container is optional as well. If no container is specified the first in the container in the pod will be chosen. See below for an example command.
@@ -62,7 +62,7 @@ Replicated will consider the application running when all of the Kubernetes reso
 |-----|----|
 | Deployments | Same as [Kubernetes rollout status] (https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) |
 | Replication Controller | Same as [Kubernetes rollout status](https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) | 
-| Persistent Volume Claim | When the claim in bound | 
+| Persistent Volume Claim | When the claim is bound | 
 | Service | When type is set to LoadBalancer, it's running when the IP address is assigned. | 
 | Ingress | When the LoadBalancer IP is assigned. |
 | Pod | Deployed pods are not monitored. The higher level object is. | 
