@@ -70,6 +70,89 @@ export LC_CTYPE=C;echo "$(head -c 128 /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -
 docker stack deploy -c docker-compose.yml replicated
 ```
 
-## Installing Behind A Proxy
+### Installing Behind A Proxy
 
 Proxy support for Swarm will be included in a future release of Replicated.
+
+### Uninstall
+
+__Stacks__
+
+
+```shell
+$ docker stack ls
+```
+
+Using that output, run:
+
+```shell
+$ docker stack rm <stack_name>
+```
+
+for each stack with `replicated` in the name. Some portions of the stack deletion might fail, we will get back to those.
+
+__Services__
+
+```shell
+$ docker service ls
+```
+
+Using that output, run:
+
+```shell
+$ docker service rm <service_name>
+```
+
+for each service with `premkit`, `statsd`, or `replicated` in the name.
+
+__Stacks Again__
+
+```shell
+$ docker stack ls
+```
+
+Using that output, run:
+
+```shell
+$ docker stack rm <stack_name>
+```
+
+for each stack with `replicated` in the name.
+
+
+__Lingering Containers__
+
+
+```shell
+$ docker ps -a
+```
+
+for each container which is related to the Replicated onprem installation, run:
+
+```shell
+$ docker rm <container_id>
+```
+
+__Secrets__
+
+```shell
+$ docker secret ls
+```
+
+for each secret which is related to the Replicated onprem installation, run:
+
+```shell
+$ docker secret rm <secret_name>
+```
+
+__Volumes__
+
+```shell
+$ docker volume ls
+```
+
+for each volume which is related to the Replicated onprem installation, run:
+
+```shell
+$ docker volume rm <volume_name>
+```
