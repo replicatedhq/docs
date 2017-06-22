@@ -14,6 +14,12 @@ url        = "/docs/getting-started/manage-releases"
 ## Create Releases
 The [Replicated vendor portal](https://vendor.replicated.com) provides you with a location to create and release versions of your application to various release channels.
 
+## Editing Releases
+Once you have created a release you can use the built-in YAML editor to define the release contents. The editor provides various keyboard shortcuts as [defined here](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
+
+## Promoting Releases
+In order to deploy a release you will need to promote the release to the proper channel(s). More details can be found in our [Promote Releases](/distributing-an-application/promote-releases/) documentation.
+
 ## Manage Releases & Channel
 By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated and select the Channels tab, you'll see these default release channels created:
 
