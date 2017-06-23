@@ -61,18 +61,18 @@ Replicated will consider the application running when all of the Kubernetes reso
 | **Resource Type** | **Replicated Considers Running When...** |
 |-----|----|
 | Deployments | Same as [Kubernetes rollout status] (https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) |
-| Replication Controller | Same as [Kubernetes rollout status](https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) | 
-| Persistent Volume Claim | When the claim is bound | 
-| Service | When type is set to LoadBalancer, it's running when the IP address is assigned. | 
+| Replication Controller | Same as [Kubernetes rollout status](https://kubernetes.io/docs/user-guide/kubectl/kubectl_rollout_status/) |
+| Persistent Volume Claim | When the claim is bound |
+| Service | When type is set to LoadBalancer, it's running when the IP address is assigned. |
 | Ingress | When the LoadBalancer IP is assigned. |
-| Pod | Deployed pods are not monitored. The higher level object is. | 
-| Job | Jobs are not expected to stay running and are not monitored. | 
+| Pod | Deployed pods are not monitored. The higher level object is. |
+| Job | Jobs are not expected to stay running and are not monitored. |
 
 ### Template Functions
 There are some additional [template functions](/packaging-an-application/template-functions#kubernetes) available when running in Kubernetes.
 
 ### Secrets
-Replicated supports runtime secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
+Replicated supports runtime secrets through the use of [template functions](/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
 
 For example:
 ```yml
