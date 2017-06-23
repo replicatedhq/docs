@@ -11,10 +11,10 @@ aliases = [
 We distribute an installation script that can be used to install Replicated into a new or existing Swarm cluster. The cluster does not have to be created at this point, the Replicated install script can install Docker Engine and provision a new Swarm cluster.
 
 {{< note title="Swarm YAML Required" >}}
-The Swarm scheduler requires a new YAML format as discussed here: [Replicate with Docker Swarm](/packaging-an-application/docker-swarm/) with an example shown here: [Swarm Voting App](/examples/swarm-votingapp/). If you intend to use both Replicated and Swarm schedulers, best practice would be to create a separate app in the vendor UI that will be your Swarm version (ex. "My App Swarm").
+The Swarm scheduler requires a new YAML format as discussed here: [Replicated with Docker Swarm](/packaging-an-application/docker-swarm/). If you intend to use both Replicated and Swarm schedulers, it is recommended to create a separate application in the [Vendor Portal](https://vendor.replicated.com) that will be your Swarm version.
 {{< /note >}}
 
-### Basic install (recommended):
+## Basic install (recommended):
 
 The basic install will install Docker (as needed) and Replicated. It will save the install script to a file which you can inspect and then run. We recommend reading and understanding the install script prior to running.
 
@@ -24,7 +24,7 @@ curl -sSL -o install.sh  https://get.replicated.com/swarm-init
 sudo bash ./install.sh
 ```
 
-### Quick Install:  
+## Quick Install:  
 
 The quick Swarm install will install Docker (as needed) and Replicated. Use this method if you have no need to view/change the installer script and you just want a one-line install.
 
@@ -32,7 +32,7 @@ The quick Swarm install will install Docker (as needed) and Replicated. Use this
 curl -sSL https://get.replicated.com/swarm-init | sudo bash
 ```
 
-#### Flags:
+## Flags:
 The install script can take flags to help your customers with specialized enterprise setups.
 
 |Flag|Usage|
@@ -56,7 +56,7 @@ Example quick install with flags:
 curl -sSL https://get.replicated.com/swarm-init | sudo bash -s no-proxy ui-bind-port=8000
 ```
 
-### Advanced Install:
+## Advanced Install:
 
 The advanced Swarm install requires the host is running Docker with a version between {{< swarm_docker_version_minimum >}} - {{< swarm_docker_version_default >}}.
 
