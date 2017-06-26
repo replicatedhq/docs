@@ -71,16 +71,13 @@ config:
 
 # Available Commands
 ## cert
-Generates a private key and x509 certificate pair. The resulting certificate is signed by the master authority belonging to
-the local instance of the Replicated management container. The authority certificate is also returned by this command so
-that clients can verify the full X.509 chain.
-*Note 1*: the authority certificate is generated the first time the management container is run on a system.
-*Note 2*: if you don't pass your own domain or IP address values to this command, you'll need to make sure that your server is
-set up to ignore bad certificate chains.
-*Note 2 (long explanation)*: to properly verify the resulting certificate chain, the server using this new certificate must be
-accessible via the domains or the IP addresses encoded into the cert. You can specify these values as arguments to the cert
-command. If you don't, default values will be used, and the defaults will almost certainly not match the domain or IP address of
-the actual machine using the cert.
+Generates a private key and x509 certificate pair. The resulting certificate is signed by the master authority belonging to the local instance of the Replicated management container. The authority certificate is also returned by this command so that clients can verify the full X.509 chain.
+
+*Note 1*: The authority certificate is generated the first time the management container is run on a system.
+
+*Note 2*: If you do not pass-in your own domain or IP address values to this command, you'll need to make sure that your server is set up to ignore bad certificate chains.
+
+*Note 2 (long explanation)*: To properly verify the resulting certificate chain, the server using this new certificate must be accessible via the domains or the IP addresses encoded into the cert. You can specify these values as arguments to the cert command. If you don't, default values will be used, and the defaults will almost certainly not match the domain or IP address of the actual machine using the cert.
 
 ### Arguments
 - Key length: The length in bits of the private key. Default: 1024
