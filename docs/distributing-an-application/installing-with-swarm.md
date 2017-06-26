@@ -11,10 +11,10 @@ aliases = [
 We distribute an installation script that can be used to install Replicated into a new or existing Swarm cluster. The cluster does not have to be created at this point, the Replicated install script can install Docker Engine and provision a new Swarm cluster.
 
 {{< note title="Swarm YAML Required" >}}
-The Swarm scheduler requires a new YAML format as discussed here: [Replicate with Docker Swarm](/packaging-an-application/docker-swarm/) with an example shown here: [Swarm Voting App](/examples/swarm-votingapp/). If you intend to use both Replicated and Swarm schedulers, best practice would be to create a separate app in the vendor UI that will be your Swarm version (ex. "My App Swarm").
+The Swarm scheduler requires a new YAML format as discussed here: [Replicated with Docker Swarm](/packaging-an-application/docker-swarm/). If you intend to use both Replicated and Swarm schedulers, it is recommended to create a separate application in the [Vendor Portal](https://vendor.replicated.com) that will be your Swarm version.
 {{< /note >}}
 
-### Basic install (recommended):
+## Basic install (recommended):
 
 The basic install will install Docker (as needed) and Replicated. It will save the install script to a file which you can inspect and then run. We recommend reading and understanding the install script prior to running.
 
@@ -24,7 +24,7 @@ curl -sSL -o install.sh  https://get.replicated.com/swarm-init
 sudo bash ./install.sh
 ```
 
-### Quick Install:  
+## Quick Install:  
 
 The quick Swarm install will install Docker (as needed) and Replicated. Use this method if you have no need to view/change the installer script and you just want a one-line install.
 
@@ -32,7 +32,7 @@ The quick Swarm install will install Docker (as needed) and Replicated. Use this
 curl -sSL https://get.replicated.com/swarm-init | sudo bash
 ```
 
-#### Flags:
+## Flags:
 The install script can take flags to help your customers with specialized enterprise setups.
 
 |Flag|Usage|
@@ -56,7 +56,7 @@ Example quick install with flags:
 curl -sSL https://get.replicated.com/swarm-init | sudo bash -s no-proxy ui-bind-port=8000
 ```
 
-### Advanced Install:
+## Advanced Install:
 
 The advanced Swarm install requires the host is running Docker with a version between {{< swarm_docker_version_minimum >}} - {{< swarm_docker_version_default >}}.
 
@@ -73,3 +73,23 @@ docker stack deploy -c docker-compose.yml replicated
 ## Installing Behind A Proxy
 
 Proxy support for Swarm will be included in a future release of Replicated.
+
+## Uninstall Entire Swarm Stack
+To remove the entire Swarm stack run the following script.
+{{< warning title="Swarm Uninstall Warning" >}}
+This will remove everything including images, volumes, secrets, etc.. Don't do this unless you are planning on completely starting over.
+{{< /warning >}}
+
+```
+docker stack ls | grep replicated_ | awk '{print $1}' | xargs docker stack rm
+sleep 5; docker service rm premkit_replicated
+sleep 5; docker service rm statsd_replicated
+sleep 5; docker volume rm replicated-premkit-data-volume
+sleep 5; docker volume ls | grep statsd | awk '{print $2}' | xargs docker volume rm
+sleep 5; docker network rm statsd_replicated premkit_replicated
+sleep 5; docker stack rm replicated
+sleep 5; docker ps -a | grep piper | awk '{print $1}' | xargs docker rm
+sleep 10; docker volume ls | grep replicated | awk '{print $2}' | xargs docker volume rm
+sleep 5; docker images | grep 'replicated\|premkit' | awk '{print $3}' | xargs docker rmi
+sleep 5; docker secret ls | grep 'replicated\daemon_token' | awk '{print $1}' | xargs docker secret rm
+```
