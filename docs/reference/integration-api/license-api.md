@@ -7,8 +7,6 @@ categories = [ "Integration API" ]
 +++
 
 ## License API
-### GET /version/v1/current
-#### Example request:
 
 The License API provides methods for your application to query properties of the installed license.
 
