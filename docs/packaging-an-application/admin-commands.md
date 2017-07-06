@@ -100,7 +100,7 @@ admin_commands:
 - alias: redis-sadd
   command: [redis-cli, sadd]
   run_type: exec
-  selectors:
+  selector:
     app: redis
     tier: backend
     role: master
@@ -131,7 +131,7 @@ Specify `exec` to execute the command in the currently running container. This i
 * Swarm (required): This identifies the service under which to run the command. A container will be chosen at random to run the command in.
 * Kubernetes: unavailable
 
-### selectors
+### selector
 * Replicated: unavailable
 * Swarm: unavailable
 * Kubernetes (required): This is a Kubernetes map of selectors to identify the pod that the admin command should be run in.
