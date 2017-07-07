@@ -1,7 +1,7 @@
 # Replicated Documentation Site
 
 ## Contributing
-Contributions are welcome and encouraged!  We have published a [Contributing Guide](CONTRIBUTING.md) te define a writing style to use.
+Contributions are welcome and encouraged!  We have published a [Contributing Guide](CONTRIBUTING.md) to define a writing style to use.
 
 ## Running locally
 
