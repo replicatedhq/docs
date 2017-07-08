@@ -1,10 +1,11 @@
-baseurl = "https://www.replicated.com/docs/"
+baseURL = "https://www.replicated.com/docs/"
 languageCode = "en-us"
 title = "Replicated Documentation"
 theme = "hugo-material-docs"
-metadataformat = "yaml"
-canonifyurls = true
+canonifyURLs = true
 googleAnalytics = "UA-61084834-1"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
 
 [taxonomies]
 category = "categories"
@@ -21,8 +22,6 @@ category = "categories"
   # Custom assets
   custom_css = []
   custom_js  = []
-  pygmentsuseclasses = "false"
-  pygmentscodefences = "true"
 
   # Syntax highlighting theme
   highlight_css  = ""
