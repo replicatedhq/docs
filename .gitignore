@@ -2,3 +2,4 @@
 .local/*.jar
 .local/*.log
 .local/*.adoc
+.local/output/*
