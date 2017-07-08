@@ -1,9 +1,9 @@
 #!/bin/bash
 ## Build the vendor documentation with swagger
 
-rm -f app_name
-rm -f tmp_swagger.json
-rm -f tmp_adoc.adoc
+rm -f .local/app_name
+rm -f .local/tmp_swagger.json
+rm -f .local/tmp_adoc.adoc
 rm -f site/content/reference/vendor-api.adoc
 
 page_metadata() {
@@ -54,8 +54,8 @@ mkdir -p site/content/reference/vendor-api
 
 for name in apps audit auth branding channels license releases ; do
     echo "Downloading ${VENDOR_API}/v1/spec/$name.json"
-    curl -o tmp_swagger.json ${VENDOR_API}/v1/spec/$name.json
-    java -cp java/swagger2markup-1.0.0.jar -jar java/swagger2markup-cli-1.0.0.jar convert -i tmp_swagger.json -f tmp_swagger
+    curl -o .local/tmp_swagger.json ${VENDOR_API}/v1/spec/$name.json
+    java -cp .local/swagger2markup-1.3.1.jar -jar .local/swagger2markup-cli-1.3.1.jar convert -i .local/tmp_swagger.json -f .local/tmp_swagger
     page_metadata $name
     OUTPUT_FILE="site/content/reference/vendor-api/$name.adoc"
     cat <<EOM >$OUTPUT_FILE
@@ -69,9 +69,9 @@ weight = "$WEIGHT"
 categories = [ "Vendor API" ]
 +++
 EOM
-    sed -e 's/^== /= /' -e 's/^=== /== /' tmp_swagger.adoc >> $OUTPUT_FILE
-    rm -f tmp_swagger.json
-    rm -f tmp_adoc.adoc
+    sed -e 's/^== /= /' -e 's/^=== /== /' .local/tmp_swagger.adoc >> $OUTPUT_FILE
+    rm -f .local/tmp_swagger.json
+    rm -f .local/tmp_adoc.adoc
 done
 
 exit 0
