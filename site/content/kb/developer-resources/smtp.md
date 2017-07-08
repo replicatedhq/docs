@@ -6,16 +6,16 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-Many SaaS applications rely on external email services such as SendGrid or Amazon SES to deliver 
-emails. This isn't always portable to enterprise installations because these services might not 
-be reachable. It's preferable to provide configuration options to let your customer configure 
+Many SaaS applications rely on external email services such as SendGrid or Amazon SES to deliver
+emails. This isn't always portable to enterprise installations because these services might not
+be reachable. It's preferable to provide configuration options to let your customer configure
 their own SMTP gateway, and use that to deliver emails for on-prem installations.
 
-There are many settings that are needed to completely configure an SMTP connection. To help, 
-we've created a config snippet you can copy and paste into your YAML. This YAML snippet is at 
-the bottom of this page. We also have created and included in the snippet an 
-[SMTP Auth test command](/packaging-an-application/test-procs/#smtp-auth). 
-This will create a test button next to the settings so that the customer can validate they've 
+There are many settings that are needed to completely configure an SMTP connection. To help,
+we've created a config snippet you can copy and paste into your YAML. This YAML snippet is at
+the bottom of this page. We also have created and included in the snippet an
+[SMTP Auth test command](/packaging-an-application/test-procs/#smtp-auth).
+This will create a test button next to the settings so that the customer can validate they've
 entered valid information.
 
 Following this example, you'll have a settings section that looks like this:
@@ -24,7 +24,7 @@ Following this example, you'll have a settings section that looks like this:
 
 The YAML to create this is:
 
-```yml
+```yaml
 - name: smtp_on
   title: Email Server Settings
   description: Configure your outgoing email server settings

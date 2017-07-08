@@ -14,7 +14,7 @@ Update the application YAML with a hidden item that represents the license flag.
 
 Find the config item to be controlled by the license field.  The item may represent a single setting or a collection of settings.  Set the *when* option check the value for the hidden field and on the next application publish you can control the settings page with license flags.
 
-```yml
+```yaml
 config:
 - name: authentication
   title: Authentication

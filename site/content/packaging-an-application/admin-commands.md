@@ -83,7 +83,7 @@ admin_commands:
 
 ### Swarm
 
-```yml
+```yaml
 properties:
   shell_alias: mycli
 admin_commands:
@@ -95,7 +95,7 @@ admin_commands:
 
 ### Kubernetes
 
-```yml
+```yaml
 admin_commands:
 - alias: redis-sadd
   command: [redis-cli, sadd]

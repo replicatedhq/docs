@@ -30,7 +30,7 @@ Replicated uses Go's [template engine](http://golang.org/pkg/text/template) to e
 func ConfigOption(optionName string) string
 ```
 Returns the value of the config option as a string.
-```yml
+```yaml
 properties:
   app_url: http://{{repl ConfigOption "hostname" }}
 ```
@@ -42,7 +42,7 @@ properties:
 func ConfigOptionData(fileName string) string
 ```
 Returns the contents of the file uploaded for a configuration option as a string.
-```yml
+```yaml
 config_files:
 - filename: /opt/certs/server.key
   contents: {{repl ConfigOptionData "ssl_key"}}
@@ -53,7 +53,7 @@ config_files:
 func ConfigOptionEquals(optionName string, expectedValue string) bool
 ```
 Returns true if the configuration option value is equal to the supplied value.
-```yml
+```yaml
 ports:
    - private_port: "80"
      public_port: "80"
@@ -66,7 +66,7 @@ ports:
 func ConfigOptionNotEquals(optionName string, expectedValue string) bool
 ```
 Returns true if the configuration option value is not equal to the supplied value.
-```yml
+```yaml
 ports:
    - private_port: "443"
      public_port: "443"
@@ -80,7 +80,7 @@ func NodePrivateIPAddress(componentName string, imageName string) string
 ```
 Returns Private IP Address of a given Component as a string.
 
-```yml
+```yaml
 env_vars:
 - name: REDIS_HOST_PRIVATE
   static_val: '{{repl NodePrivateIPAddress "DB" "redis" }}'
@@ -107,7 +107,7 @@ Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddress
 func NodePublicIPAddress(componentName string, imageName string) string
 ```
 Returns Public IP Address of a given Component as a string.
-```yml
+```yaml
 env_vars:
 - name: REDIS_HOST_PUBLIC
   static_val: '{{repl NodePublicIPAddress "DB" "redis" }}'
@@ -135,7 +135,7 @@ func ContainerExposedPort(componentName string, imageName string, internalPort s
 ```
 Returns the node's public port mapped to the supplied exposed container port as a string.
 
-```yml
+```yaml
 env_vars:
 - name: REDIS_PORT
   static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
@@ -147,7 +147,7 @@ func ContainerExposedPortFirst(componentName string, imageName string, internalP
 ```
 Returns the first node's public port mapped to the supplied exposed container port as a string.
 
-```yml
+```yaml
 env_vars:
 - name: REDIS_PORT
   static_val: '{{repl ContainerExposedPortFirst "DB" "redis" "6379" }}'
@@ -166,7 +166,7 @@ Note: `ContainerExposedPortAll`, `NodePrivateIPAddressAll`, `NodePublicIPAddress
 func LicenseFieldValue(customLicenseFieldName string) string
 ```
 Returns the value for the Custom License Field as a string.
-```yml
+```yaml
 config_files:
   - filename: /opt/app/config.yml
     contents: |
@@ -178,7 +178,7 @@ config_files:
 func LicenseProperty(propertyName string) string
 ```
 Returns a property from the License as a string.  Valid propertyNames are "assignee", "channel.name", "expiration.date", and "expiration.policy".
-```yml
+```yaml
 config_files:
   - filename: /opt/app/config.yml
     contents: |
@@ -190,7 +190,7 @@ config_files:
 func AppID() string
 ```
 Returns the app id.
-```yml
+```yaml
 env_vars:
 - name: APP_ID
   static_val: '{{repl AppID }}'
@@ -201,7 +201,7 @@ env_vars:
 func AppVersion() int
 ```
 Returns the app version sequence.
-```yml
+```yaml
 env_vars:
 - name: APP_VERSION
   static_val: '{{repl AppVersion }}'
@@ -212,7 +212,7 @@ env_vars:
 func AppVersionFirst() int
 ```
 Returns the version sequence of the first version installed.
-```yml
+```yaml
 env_vars:
 - name: APP_VERSION_FIRST
   static_val: '{{repl AppVersionFirst }}'
@@ -223,7 +223,7 @@ env_vars:
 func AppVersionCurrent() int
 ```
 Returns the current app version sequence.
-```yml
+```yaml
 env_vars:
 - name: APP_VERSION_CURRENT
   static_val: '{{repl AppVersionCurrent }}'
@@ -234,7 +234,7 @@ env_vars:
 func RunOffline() bool
 ```
 Returns whether or not we are running in airgap mode. This is available in the Kubernetes and Swarm implementations, but will always return false.
-```yml
+```yaml
 env_vars:
 - name: IS_AIRGAP
   static_val: '{{repl RunOffline }}'
@@ -253,7 +253,7 @@ Possible Options:
 `install.date`
 `release.channel`
 
-```yml
+```yaml
 env_vars:
 - name: VERSION
   static_val: '{{repl AppSetting "version.label"}}'
@@ -285,7 +285,7 @@ Returns customer defined console settings for the TLS data or proxy settings. Va
 |http.proxy.enabled|Proxy is enabled when value is 1, not enabled when it is 0|
 
 
-```yml
+```yaml
 config:
 - name: console_info
   title: Console Info
@@ -314,7 +314,7 @@ Deprecated, please use ThisNodePublicIPAddress, ThisNodePrivateIPAddress or This
 func ThisHostInterfaceAddress(interfaceName string) string
 ```
 Returns the valid IPv4 address associated with the given network interface of the host on which the current container instance is deployed as a string. For a clustered application this value will be different for each host.
-```yml
+```yaml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
   static_val: '{{repl ThisHostInterfaceAddress "docker0" }}'
@@ -325,7 +325,7 @@ env_vars:
 func ThisNodePublicIPAddress() string
 ```
 Returns the public IP address of the host on which the current container instance is deployed as a string. For a clustered application this value will be different for each host.
-```yml
+```yaml
 env_vars:
 - name: CASSANDRA_ADDRESS_PUBLIC
   static_val: "{{repl ThisNodePublicIPAddress }}"
@@ -337,7 +337,7 @@ Replaces ThisHostPublicIpAddress which is deprecated.
 func ThisNodePrivateIPAddress() string
 ```
 Returns the private IP address of the host on which the current container instance is deployed as a string. This address is either what was entered manually when host was provisioned or detected from eth0 interface by default. For a clustered application this value will be different for each host.
-```yml
+```yaml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
   static_val: "{{repl ThisNodePrivateIPAddress }}"
@@ -365,7 +365,7 @@ Possible Options:
 `RestrictedGroupCNs`
 `FieldUsername`
 `LoginUsername`
-```yml
+```yaml
 env_vars:
 - name: LDAP_HOSTNAME
   static_val: '{{repl LdapCopyAuthFrom "Hostname"}}'
@@ -376,7 +376,7 @@ env_vars:
 func Now() string
 ```
 Returns the current timestamp as an RFC3339 formatted string.
-```yml
+```yaml
 env_vars:
 - name: START_TIME
   static_val: "{{repl Now }}"
@@ -387,7 +387,7 @@ env_vars:
 func NowFmt(format string) string
 ```
 Returns the current timestamp as a formatted string. See Golang's time formatting guidelines [here](https://golang.org/pkg/time/#pkg-constants.
-```yml
+```yaml
 env_vars:
 - name: START_DATE
   static_val: "{{repl Now "20060102" }}"
@@ -398,7 +398,7 @@ env_vars:
 func TrimSpace(s string) string
 ```
 Trim returns a string with all leading and trailing spaces removed.
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | Trim }}
@@ -409,7 +409,7 @@ env_vars:
 func Trim(s string, args ...string) string
 ```
 Trim returns a string with all leading and trailing string contained in the optional args removed (default space).
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | Trim " " "." }}
@@ -420,7 +420,7 @@ env_vars:
 func Split(s string, sep string) []string
 ```
 Split slices s into all substrings separated by sep and returns an array of the substrings between those separators.
-```yml
+```yaml
 env_vars:
 - name: BROKEN_APART_A_B_C
   static_val: '{{repl Split "A,B,C" "," }}'
@@ -431,7 +431,7 @@ env_vars:
 func ToLower(stringToAlter string) string
 ```
 Returns the string, in lowercase.
-```yml
+```yaml
 env_vars:
 - name: COMPANY_NAME
   static_val: '{{repl ConfigOption "company_name" | ToLower }}'
@@ -442,7 +442,7 @@ env_vars:
 func ToUpper(stringToAlter string) string
 ```
 Returns the string, in uppercase.
-```yml
+```yaml
 env_vars:
 - name: COMPANY_NAME
   static_val: '{{repl ConfigOption "company_name" | ToUpper }}'
@@ -453,7 +453,7 @@ env_vars:
 func HumanSize(size interface{}) string
 ```
 HumanSize returns a human-readable approximation of a size in bytes capped at 4 valid numbers (eg. "2.746 MB", "796 KB"). The size must be a integer or floating point number.
-```yml
+```yaml
 env_vars:
 - name: MIN_SIZE_HUMAN
   static_val: '{{repl ConfigOption "min_size_bytes" | HumanSize }}
@@ -464,7 +464,7 @@ env_vars:
 func UrlEncode(stringToEncode string) string
 ```
 Returns the string, url encoded.
-```yml
+```yaml
 env_vars:
 - name: SMTP_CONNECTION_URL
   static_val: '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
@@ -475,7 +475,7 @@ env_vars:
 func Base64Encode(stringToEncode string) string
 ```
 Returns a Base64 encoded string.
-```yml
+```yaml
 env_vars:
 - name: NAME_64_VALUE
   static_val: '{{repl ConfigOption "name" | Base64Encode }}'
@@ -486,7 +486,7 @@ env_vars:
 func Base64Decode(stringToDecode string) string
 ```
 Returns decoded string from a Base64 stored value.
-```yml
+```yaml
 env_vars:
 - name: NAME_PLAIN_TEXT
   static_val: '{{repl ConfigOption "base_64_encoded_name" | Base64Decode }}'
@@ -497,7 +497,7 @@ env_vars:
 func ParseBool(str string) bool
 ```
 ParseBool returns the boolean value represented by the string.
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | ParseBool }}'
@@ -508,7 +508,7 @@ env_vars:
 func ParseFloat(str string) float64
 ```
 ParseFloat returns the float value represented by the string.
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | ParseFloat }}'
@@ -519,7 +519,7 @@ env_vars:
 func ParseInt(str string, args ...int) int64
 ```
 ParseInt returns the integer value represented by the string with optional base (default 10).
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | ParseInt }}'
@@ -530,7 +530,7 @@ env_vars:
 func ParseUint(str string, args ...int) uint64
 ```
 ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
-```yml
+```yaml
 env_vars:
 - name: VALUE
   static_val: '{{repl ConfigOption "str_value" | ParseUint }}'
@@ -545,7 +545,7 @@ Adds x and y.
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
 If both operands are integers, the result will be an integer.
-```yml
+```yaml
 env_vars:
 - name: MAX_USERS_PLUS_ONE
   static_val: '{{repl Add (LicenseFieldValue "maximum_users") 1}}'
@@ -560,7 +560,7 @@ Subtracts y from x.
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
 If both operands are integers, the result will be an integer.
-```yml
+```yaml
 env_vars:
 - name: MAX_USERS_MINUS_ONE
   static_val: '{{repl Sub (LicenseFieldValue "maximum_users") 1}}'
@@ -575,7 +575,7 @@ Multiplies x and y.
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
 If both operands are integers, the result will be an integer.
-```yml
+```yaml
 env_vars:
 - name: DOUBLE_NUM_ADDRESSES
   static_val: '{{repl Mult (NodePrivateIPAddressAll "DB" "redis" | len) 2}}'
@@ -590,7 +590,7 @@ Divides x by y.
 If at least one of the operands is a floating point number, the result will be a floating point number.
 
 If both operands are integers, the result will be an integer and will be rounded down.
-```yml
+```yaml
 env_vars:
 - name: HALF_MAX_USERS
   static_val: '{{repl Div (LicenseFieldValue "maximum_users") 2.0}}'
@@ -610,7 +610,7 @@ ServiceAddress(name string, port int32) string
 
 ServiceAddress returns the address of the ingress.
 
-```yml
+```yaml
 properties:
   app_url: '{{repl ServiceAddress "frontend" 80 }}'
 ```
@@ -622,7 +622,7 @@ IngressAddress(name string, port int32) string
 
 IngressAddress returns the address of the ingress.
 
-```yml
+```yaml
 properties:
   app_url: '{{repl IngressAddress "frontend" 80 }}'
 ```
@@ -634,7 +634,7 @@ SwarmIngressAddress() string
 
 SwarmIngressAddress returns the ingress address of the swarm cluster.
 
-```yml
+```yaml
 properties:
   app_url: '{{repl SwarmIngressAddress }}'
 ```
@@ -646,7 +646,7 @@ PremkitAPIAddress() string
 
 PremkitAPIAddress returns the address of the Premkit service in the cluster.
 
-```yml
+```yaml
 spec:
   containers:
   - name: myservice
@@ -670,7 +670,7 @@ StatsdAddress() string
 
 StatsdAddress returns the address of the Statsd service in the cluster.
 
-```yml
+```yaml
 spec:
   containers:
   - name: myservice

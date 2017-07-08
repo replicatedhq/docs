@@ -37,7 +37,7 @@ External private images are not supported currently. Replicated hosts a [private
 ### Airgapped Installations
 Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified in the new `images` section of your YAML in order to be included in the airgap bundle your customer will download. See below for an example.
 
-```yml
+```yaml
 images:
 - name: redis
   tag: 3.2-alpine
@@ -62,7 +62,7 @@ Custom preflight checks are not currently supported when running in Swarm mode. 
 ### Admin Commands
 Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
 
-```yml
+```yaml
 properties:
   shell_alias: mycli
 admin_commands:
@@ -84,7 +84,7 @@ There are some additional [template functions](/packaging-an-application/templat
 ### Secrets
 Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
 
-```yml
+```yaml
 # kind: replicated
 ...
 config:

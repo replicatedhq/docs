@@ -24,7 +24,7 @@ The command is run at YAML import time only (during app installation & during ap
 Below is an example of a command that will generate a private key, a x509 certificate, and a random admin password that
 are used as configuration for our app.
 
-```yml
+```yaml
 cmds:
 - name: cert_cmd_result
   cmd: cert
@@ -36,7 +36,7 @@ cmds:
   - "32"
 ```
 
-```yml
+```yaml
 config:
   ...
   items:
@@ -89,7 +89,7 @@ Generates a private key and x509 certificate pair. The resulting certificate is 
 - 1: The new PEM-encoded certificate.
 - 2: The PEM-encoded cert authority used to sign the new certificate.
 
-```yml
+```yaml
 cmds:
 - name: cert_cmd_result
   cmd: cert
@@ -106,7 +106,7 @@ This function reaches out to an external service to acquire the ip and the resul
 ### Return value
 - 0: Public IP address
 
-```yml
+```yaml
 - name: host_ip
   cmd: publicip
   args: []
@@ -122,7 +122,7 @@ Generates a random string with the default charset [_A-Za-z0-9].
 ### Return value
 - 0: Random string
 
-```yml
+```yaml
 - name: hash_key
   cmd: random
   args:
@@ -139,7 +139,7 @@ Echos the first argument.
 ### Return value
 - 0: String
 
-```yml
+```yaml
 - name: hello_world
   cmd: echo
   args:
@@ -156,7 +156,7 @@ linux distributions.
 ### Return value
 - 0: String
 
-```yml
+```yaml
 - name: hello_world
   cmd: system
   args:
@@ -173,7 +173,7 @@ Runs command from a bash shell inside an "ubuntu:trusty" docker container. The d
 ### Return value
 - 0: String
 
-```yml
+```yaml
 - name: hello_world
   cmd: raw
   args:

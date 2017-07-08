@@ -12,9 +12,9 @@ In this example we will demonstrate how to backup redis without having to stop t
 
 ## Step 1: Create Redis Container with 2 volumes.
 
-**Note: This YAML creates 2 Docker volumes: 1) A primary volume (“data”) 2) a secondary volume (“backup”) that will be used to store the redis dump. Make sure that your primary volume (ie “data”) has `is_excluded_from_backup: true` to ensure that it isn't paused during the backup process.**  
+**Note: This YAML creates 2 Docker volumes: 1) A primary volume (“data”) 2) a secondary volume (“backup”) that will be used to store the redis dump. Make sure that your primary volume (ie “data”) has `is_excluded_from_backup: true` to ensure that it isn't paused during the backup process.**
 
-```yml
+```yaml
 components:
 - name: DB
   containers:
@@ -33,7 +33,7 @@ components:
 
 ## Step 2: Create your admin Commands to backup and move data
 
-```yml
+```yaml
 admin_commands:
 - alias: backup-redis-to-rdb
   command: [redis-cli, bgsave]
@@ -51,7 +51,7 @@ admin_commands:
 
 We enable backups and inline a script that calls our admin commands (notice that we use the `--no-tty` flag). Note: `pause_all` is set to false thus enabling 0 downtime backups!
 
-```yml
+```yaml
 backup:
   enabled: true
   pause_all: false
