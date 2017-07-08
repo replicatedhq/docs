@@ -11,11 +11,11 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 List, create, update, delete and archive channels.
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -23,10 +23,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_createchannel]]
-== Create a channel for an app.
+=== Create a channel for an app.
 ....
 POST /app/{app_id}/channel
 ....
@@ -104,7 +104,7 @@ __optional__|< <<_appchannel,AppChannel>> > array
 
 
 [[_updatechannel]]
-== Update a channel for an app.
+=== Update a channel for an app.
 ....
 POST /app/{app_id}/channel/{channel_id}
 ....
@@ -174,7 +174,7 @@ __required__|string
 
 
 [[_archivechannel]]
-== Archive a channel for an app.
+=== Archive a channel for an app.
 ....
 POST /app/{app_id}/channel/{channel_id}/archive
 ....
@@ -220,7 +220,7 @@ __required__|Channel identifier|string
 
 
 [[_updatechannelreleases]]
-== Update an existing release.
+=== Update an existing release.
 ....
 POST /app/{app_id}/channel/{channel_id}/release/{sequence}
 ....
@@ -290,7 +290,7 @@ __required__|string
 
 
 [[_listchannelreleases]]
-== List the releases for an app channel.
+=== List the releases for an app channel.
 ....
 GET /app/{app_id}/channel/{channel_id}/releases
 ....
@@ -354,7 +354,7 @@ __required__|< <<_channelrelease,ChannelRelease>> > array
 
 
 [[_listchannels]]
-== List channels for an app.
+=== List channels for an app.
 ....
 GET /app/{app_id}/channels
 ....
@@ -416,10 +416,10 @@ __optional__|< <<_appchannel,AppChannel>> > array
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_appchannel]]
-== AppChannel
+=== AppChannel
 An app channel belongs to an app. It contains references to the top (current)
 release in the channel.
 
@@ -449,7 +449,7 @@ __optional__|A reference to the current release sequence|integer (int64)
 
 
 [[_channeladoption]]
-== ChannelAdoption
+=== ChannelAdoption
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
@@ -472,7 +472,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_channelrelease]]
-== ChannelRelease
+=== ChannelRelease
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -501,7 +501,7 @@ __optional__|string
 
 
 [[_licensecounts]]
-== LicenseCounts
+=== LicenseCounts
 LicenseCounts is a struct to hold license count information
 
 
@@ -520,7 +520,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_time]]
-== Time
+=== Time
 Programs using times should typically store and pass them as values,
 not pointers. That is, time variables and struct fields should be of
 type time.Time, not *time.Time. A Time value can be used by

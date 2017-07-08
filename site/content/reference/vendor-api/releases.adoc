@@ -11,11 +11,11 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 Create, list, promote, update and archive releases.
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -23,10 +23,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_createrelease]]
-== Create a new release.
+=== Create a new release.
 ....
 POST /app/{app_id}/release
 ....
@@ -96,7 +96,7 @@ __required__|integer (int64)
 
 
 [[_listapprelease]]
-== Lists the releases for an app.
+=== Lists the releases for an app.
 ....
 GET /app/{app_id}/releases
 ....
@@ -150,7 +150,7 @@ __required__|App identifier|string
 
 
 [[_pagedlistapprelease]]
-== Returns a paged set of releases for an app.
+=== Returns a paged set of releases for an app.
 ....
 GET /app/{app_id}/releases/paged
 ....
@@ -203,7 +203,7 @@ __required__|Start of the next page, defaults to zero|integer (int64)
 
 
 [[_archivereleaseproperties]]
-== Archive a release.
+=== Archive a release.
 ....
 POST /app/{app_id}/{sequence}/archive
 ....
@@ -254,7 +254,7 @@ __required__|Release identifier|integer (int64)
 
 
 [[_readpreflightchecks]]
-== Get the release preflight checks.
+=== Get the release preflight checks.
 ....
 GET /app/{app_id}/{sequence}/preflightchecks
 ....
@@ -305,7 +305,7 @@ __required__|Release identifier|integer (int64)
 
 
 [[_promotereleaseproperties]]
-== Promote a release.
+=== Promote a release.
 ....
 POST /app/{app_id}/{sequence}/promote
 ....
@@ -374,7 +374,7 @@ __required__|boolean
 
 
 [[_readreleaseproperties]]
-== Get the release properties.
+=== Get the release properties.
 ....
 GET /app/{app_id}/{sequence}/properties
 ....
@@ -425,7 +425,7 @@ __required__|Release identifier|integer (int64)
 
 
 [[_readrawrelease]]
-== Get the release config.
+=== Get the release config.
 ....
 GET /app/{app_id}/{sequence}/raw
 ....
@@ -480,7 +480,7 @@ In: header.|No Content
 
 
 [[_updaterawrelease]]
-== Update the release config.
+=== Update the release config.
 ....
 PUT /app/{app_id}/{sequence}/raw
 ....
@@ -536,10 +536,10 @@ __required__|Config|< integer (uint8) > array
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_app]]
-== App
+=== App
 An app belongs to a team. It contains channels onto which releases can be
 promoted.
 
@@ -557,7 +557,7 @@ __required__|A unique slug for the app|string
 
 
 [[_appchannel]]
-== AppChannel
+=== AppChannel
 An app channel belongs to an app. It contains references to the top (current)
 release in the channel.
 
@@ -587,7 +587,7 @@ __optional__|A reference to the current release sequence|integer (int64)
 
 
 [[_apprelease]]
-== AppRelease
+=== AppRelease
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -606,7 +606,7 @@ __optional__|integer (int64)
 
 
 [[_appreleaseinfo]]
-== AppReleaseInfo
+=== AppReleaseInfo
 AppReleaseInfo represents an app release
 
 
@@ -633,7 +633,7 @@ __optional__|The vendor supplied version|string
 
 
 [[_channeladoption]]
-== ChannelAdoption
+=== ChannelAdoption
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
@@ -656,7 +656,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_licensecounts]]
-== LicenseCounts
+=== LicenseCounts
 LicenseCounts is a struct to hold license count information
 
 
@@ -675,7 +675,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_preflightcheck]]
-== PreflightCheck
+=== PreflightCheck
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -696,7 +696,7 @@ __optional__|string
 
 
 [[_time]]
-== Time
+=== Time
 Programs using times should typically store and pass them as values,
 not pointers. That is, time variables and struct fields should be of
 type time.Time, not *time.Time. A Time value can be used by

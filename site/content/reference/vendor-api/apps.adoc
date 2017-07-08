@@ -11,11 +11,11 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 Apps documentation
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -23,10 +23,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_createapp]]
-== Creates an app with the specified parameters.
+=== Creates an app with the specified parameters.
 ....
 POST /app
 ....
@@ -90,7 +90,7 @@ __required__|Name of the app that is to be created.|string
 
 
 [[_deleteapp]]
-== Deletes an app by ID.
+=== Deletes an app by ID.
 ....
 DELETE /app/{app_id}
 ....
@@ -161,7 +161,7 @@ __required__|Password of the user|string
 
 
 [[_listapps]]
-== Lists all apps and their channels.
+=== Lists all apps and their channels.
 ....
 GET /apps
 ....
@@ -206,10 +206,10 @@ GET /apps
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_app]]
-== App
+=== App
 An app belongs to a team. It contains channels onto which releases can be
 promoted.
 
@@ -227,7 +227,7 @@ __required__|A unique slug for the app|string
 
 
 [[_appandchannels]]
-== AppAndChannels
+=== AppAndChannels
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -240,7 +240,7 @@ __required__|Channels of the app|< <<_appchannel,AppChannel>> > array
 
 
 [[_appchannel]]
-== AppChannel
+=== AppChannel
 An app channel belongs to an app. It contains references to the top (current)
 release in the channel.
 
@@ -270,7 +270,7 @@ __optional__|A reference to the current release sequence|integer (int64)
 
 
 [[_channeladoption]]
-== ChannelAdoption
+=== ChannelAdoption
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
@@ -293,7 +293,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_licensecounts]]
-== LicenseCounts
+=== LicenseCounts
 LicenseCounts is a struct to hold license count information
 
 

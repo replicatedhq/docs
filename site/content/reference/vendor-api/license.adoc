@@ -11,11 +11,11 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 Create, update, delete, revoke licenses and download license keys.
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -23,10 +23,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_createlicensefield]]
-== Create a license field for a given app.
+=== Create a license field for a given app.
 ....
 POST /app/{app_id}/licensefield
 ....
@@ -112,7 +112,7 @@ __optional__|< <<_licensefield,LicenseField>> > array
 
 
 [[_listlicensefields]]
-== List license fields for a given appId.
+=== List license fields for a given appId.
 ....
 GET /app/{app_id}/licensefield
 ....
@@ -171,7 +171,7 @@ __optional__|< <<_licensefield,LicenseField>> > array
 
 
 [[_editlicensefield]]
-== Update a license field for a given appId and licenseFieldName.
+=== Update a license field for a given appId and licenseFieldName.
 ....
 PUT /app/{app_id}/licensefield/{license_field_name}
 ....
@@ -253,7 +253,7 @@ __optional__|< <<_licensefield,LicenseField>> > array
 
 
 [[_deletelicensefield]]
-== Delete a field for a given app and named field.
+=== Delete a field for a given app and named field.
 ....
 DELETE /app/{app_id}/licensefield/{license_field_name}
 ....
@@ -314,7 +314,7 @@ __optional__|< <<_licensefield,LicenseField>> > array
 
 
 [[_listapplicenses]]
-== List all licenses for a given appId.
+=== List all licenses for a given appId.
 ....
 GET /app/{app_id}/licenses
 ....
@@ -371,7 +371,7 @@ __optional__|< <<_license,License>> > array
 
 
 [[_licensessearch]]
-== Search for a given license by appId and licenseField.
+=== Search for a given license by appId and licenseField.
 ....
 POST /app/{app_id}/licenses/search
 ....
@@ -439,7 +439,7 @@ __optional__|List of License IDs|< string > array
 
 
 [[_createlicense]]
-== Create a license.
+=== Create a license.
 ....
 POST /license
 ....
@@ -534,7 +534,7 @@ __optional__|<<_license,License>>
 
 
 [[_getlicense]]
-== Get app license for a given licenseId.
+=== Get app license for a given licenseId.
 ....
 GET /license/{license_id}
 ....
@@ -593,7 +593,7 @@ __required__|<<_license,License>>
 
 
 [[_updatelicense]]
-== Update app license for a given licenseId.
+=== Update app license for a given licenseId.
 ....
 PUT /license/{license_id}
 ....
@@ -697,7 +697,7 @@ __required__|<<_license,License>>
 
 
 [[_archivelicense]]
-== Archive a license.
+=== Archive a license.
 ....
 DELETE /license/{license_id}
 ....
@@ -741,7 +741,7 @@ __required__|License identifier|string
 
 
 [[_postairgappassword]]
-== Update an airgap passsword.
+=== Update an airgap passsword.
 ....
 POST /license/{license_id}/airgap/password
 ....
@@ -801,7 +801,7 @@ __required__|string
 
 
 [[_updatelicensebilling]]
-== Update license billing information for a given licenseId.
+=== Update license billing information for a given licenseId.
 ....
 PUT /license/{license_id}/billing
 ....
@@ -885,7 +885,7 @@ __optional__|<<_license,License>>
 
 
 [[_listlicensebillingevents]]
-== List license billing events for a given license_id.
+=== List license billing events for a given license_id.
 ....
 GET /license/{license_id}/billing-events
 ....
@@ -944,7 +944,7 @@ __optional__|< <<_licensebillingevent,LicenseBillingEvent>> > array
 
 
 [[_createlicensebillingevent]]
-== Create a license billing event.
+=== Create a license billing event.
 ....
 POST /license/{license_id}/billing_event
 ....
@@ -1028,7 +1028,7 @@ __required__|<<_licensebillingevent,LicenseBillingEvent>>
 
 
 [[_updatelicensebillingevent]]
-== Update a license billing event.
+=== Update a license billing event.
 ....
 PUT /license/{license_id}/billing_event/{id}
 ....
@@ -1114,7 +1114,7 @@ __required__|<<_licensebillingevent,LicenseBillingEvent>>
 
 
 [[_updatelicensechannel]]
-== Update a license channel for a given license.
+=== Update a license channel for a given license.
 ....
 PUT /license/{license_id}/channel
 ....
@@ -1191,7 +1191,7 @@ __required__|<<_license,License>>
 
 
 [[_updatelicenseexpiration]]
-== PUT /license/{license_id}/expire
+=== PUT /license/{license_id}/expire
 
 ==== Parameters
 
@@ -1263,7 +1263,7 @@ __optional__|<<_license,License>>
 
 
 [[_createlicensefieldvalue]]
-== Set the value for a license field.
+=== Set the value for a license field.
 ....
 PUT /license/{license_id}/field
 ....
@@ -1326,7 +1326,7 @@ __required__|string
 
 
 [[_getlicensefieldvalues]]
-== Get license field values for a given licenseId.
+=== Get license field values for a given licenseId.
 ....
 GET /license/{license_id}/fields
 ....
@@ -1385,7 +1385,7 @@ __optional__|<<_licensefieldvalues,LicenseFieldValues>>
 
 
 [[_updatelicensefields]]
-== Update license field values for a given licenseId.
+=== Update license field values for a given licenseId.
 ....
 PUT /license/{license_id}/fields
 ....
@@ -1461,7 +1461,7 @@ __required__|<<_license,License>>
 
 
 [[_getlicenseinstance]]
-== Get a license instance.
+=== Get a license instance.
 ....
 GET /license/{license_id}/instance/{instance_id}
 ....
@@ -1527,7 +1527,7 @@ __optional__|<<_licenseinstance,LicenseInstance>>
 
 
 [[_listlicenseinstances]]
-== Lists all tracked license instances for a given licenseId.
+=== Lists all tracked license instances for a given licenseId.
 ....
 GET /license/{license_id}/instances
 ....
@@ -1586,7 +1586,7 @@ __optional__|< <<_licenseinstance,LicenseInstance>> > array
 
 
 [[_getlicenseinstanceuntracked]]
-== Lists all untracked license instances for a given licenseId.
+=== Lists all untracked license instances for a given licenseId.
 ....
 GET /license/{license_id}/instances/untracked
 ....
@@ -1645,7 +1645,7 @@ __optional__|<<_licenseinstanceuntracked,LicenseInstanceUntracked>>
 
 
 [[_revokelicense]]
-== Revoke a license for a given licenseId.
+=== Revoke a license for a given licenseId.
 ....
 PUT /license/{license_id}/revoke
 ....
@@ -1704,7 +1704,7 @@ __required__|<<_license,License>>
 
 
 [[_unarchivelicense]]
-== Unarchive a license.
+=== Unarchive a license.
 ....
 PUT /license/{license_id}/unarchive
 ....
@@ -1753,7 +1753,7 @@ __required__|License identifier|string
 
 
 [[_downloadlicense]]
-== Download app license (base64 deliverable to your end customer) key for a given licenseId.
+=== Download app license (base64 deliverable to your end customer) key for a given licenseId.
 ....
 GET /licensekey/{license_id}
 ....
@@ -1801,7 +1801,7 @@ In: header.|No Content
 
 
 [[_licenses]]
-== Lists all licenses.
+=== Lists all licenses.
 ....
 GET /licenses
 ....
@@ -1848,10 +1848,10 @@ __optional__|< <<_license,License>> > array
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_installedappversion]]
-== InstalledAppVersion
+=== InstalledAppVersion
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1868,7 +1868,7 @@ __optional__|boolean
 
 
 [[_license]]
-== License
+=== License
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1939,7 +1939,7 @@ __optional__||string
 
 
 [[_licensebilling]]
-== LicenseBilling
+=== LicenseBilling
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1956,7 +1956,7 @@ __optional__|string
 
 
 [[_licensebillingevent]]
-== LicenseBillingEvent
+=== LicenseBillingEvent
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -1979,7 +1979,7 @@ __optional__|<<_time,Time>>
 
 
 [[_licensefield]]
-== LicenseField
+=== LicenseField
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2000,7 +2000,7 @@ __optional__|string
 
 
 [[_licensefieldnamevalue]]
-== LicenseFieldNameValue
+=== LicenseFieldNameValue
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2013,7 +2013,7 @@ __optional__|object
 
 
 [[_licensefieldvalue]]
-== LicenseFieldValue
+=== LicenseFieldValue
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2030,12 +2030,12 @@ __optional__|string
 
 
 [[_licensefieldvalues]]
-== LicenseFieldValues
+=== LicenseFieldValues
 __Type__ : < <<_licensefieldvalue,LicenseFieldValue>> > array
 
 
 [[_licenseinstance]]
-== LicenseInstance
+=== LicenseInstance
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2074,7 +2074,7 @@ __optional__|< <<_licenseinstanceversionhistory,LicenseInstanceVersionHistory>> 
 
 
 [[_licenseinstanceuntracked]]
-== LicenseInstanceUntracked
+=== LicenseInstanceUntracked
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2103,7 +2103,7 @@ __optional__|<<_time,Time>>
 
 
 [[_licenseinstanceversionhistory]]
-== LicenseInstanceVersionHistory
+=== LicenseInstanceVersionHistory
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2124,7 +2124,7 @@ __optional__|integer (int64)
 
 
 [[_licenseversions]]
-== LicenseVersions
+=== LicenseVersions
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -2137,7 +2137,7 @@ __optional__|< string, < string > array > map
 
 
 [[_time]]
-== Time
+=== Time
 Programs using times should typically store and pass them as values,
 not pointers. That is, time variables and struct fields should be of
 type time.Time, not *time.Time. A Time value can be used by
@@ -2167,7 +2167,7 @@ __Type__ : object
 
 
 [[_licensefieldvalue]]
-== licenseFieldValue
+=== licenseFieldValue
 
 [options="header", cols=".^3,.^11,.^4"]
 |===

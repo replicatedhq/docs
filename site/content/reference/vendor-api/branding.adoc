@@ -11,11 +11,11 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 Brand the Replicated UI
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -23,10 +23,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_createbranding]]
-== POST /app/{app_id}/branding
+=== POST /app/{app_id}/branding
 
 ==== Description
 Adds CSS to a specific app channel
@@ -96,7 +96,7 @@ __required__|CSS to apply to the channel|string
 
 
 [[_listbranding]]
-== Lists all apps and their channels.
+=== Lists all apps and their channels.
 ....
 GET /app/{app_id}/branding
 ....
@@ -151,7 +151,7 @@ __required__|App identifier|string
 
 
 [[_removebranding]]
-== Removes branding from an app channel.
+=== Removes branding from an app channel.
 ....
 DELETE /app/{app_id}/branding
 ....
@@ -215,10 +215,10 @@ __required__|ID of the channel to remove branding from.|string
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_appchannel]]
-== AppChannel
+=== AppChannel
 An app channel belongs to an app. It contains references to the top (current)
 release in the channel.
 
@@ -248,7 +248,7 @@ __optional__|A reference to the current release sequence|integer (int64)
 
 
 [[_branding]]
-== Branding
+=== Branding
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -265,7 +265,7 @@ __optional__|<<_time,Time>>
 
 
 [[_channeladoption]]
-== ChannelAdoption
+=== ChannelAdoption
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
@@ -288,7 +288,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_licensecounts]]
-== LicenseCounts
+=== LicenseCounts
 LicenseCounts is a struct to hold license count information
 
 
@@ -307,7 +307,7 @@ __optional__|< string, integer (int64) > map
 
 
 [[_time]]
-== Time
+=== Time
 Programs using times should typically store and pass them as values,
 not pointers. That is, time variables and struct fields should be of
 type time.Time, not *time.Time. A Time value can be used by

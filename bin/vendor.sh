@@ -69,12 +69,9 @@ weight = "$WEIGHT"
 categories = [ "Vendor API" ]
 +++
 EOM
-    sed -e 's/^== /= /' -e 's/^=== /== /' .local/tmp_swagger.adoc >> $OUTPUT_FILE
+    cat .local/tmp_swagger.adoc >> $OUTPUT_FILE
     rm -f .local/tmp_swagger.json
     rm -f .local/tmp_adoc.adoc
 done
 
 exit 0
-
-
-

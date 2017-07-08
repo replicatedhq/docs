@@ -11,7 +11,7 @@ categories = [ "Vendor API" ]
 
 
 [[_overview]]
-= Overview
+== Overview
 Authentication is achieved via a token that can be generated via the Vendor website. You can create a new token by
 clicking the *New API Token* button in the *API Tokens* table. You must give this token a nickname before saving.
 
@@ -19,7 +19,7 @@ After you have generated your token, you will need to send this token in the _Au
 requests to the Vendor API.
 
 
-== Version information
+=== Version information
 [%hardbreaks]
 __Version__ : 1.0.0
 
@@ -27,10 +27,10 @@ __Version__ : 1.0.0
 
 
 [[_paths]]
-= Paths
+== Paths
 
 [[_teaminvite]]
-== Signup a new team member.
+=== Signup a new team member.
 ....
 POST /team/invite/{id}/signup
 ....
@@ -115,7 +115,7 @@ __required__|<<_user,User>>
 
 
 [[_login]]
-== POST /user/login
+=== POST /user/login
 
 ==== Description
 On succesful login returns a session
@@ -182,7 +182,7 @@ __required__|boolean
 
 
 [[_loginopt]]
-== POST /user/login/otp
+=== POST /user/login/otp
 
 ==== Description
 Returns a session
@@ -243,7 +243,7 @@ In: header.|<<_sharedloginresponse,SharedLoginResponse>>
 
 
 [[_logout]]
-== Logout from the active session.
+=== Logout from the active session.
 ....
 POST /user/logout
 ....
@@ -276,7 +276,7 @@ POST /user/logout
 
 
 [[_signup]]
-== Signup a new user.
+=== Signup a new user.
 ....
 POST /user/signup
 ....
@@ -357,10 +357,10 @@ __required__|string
 
 
 [[_definitions]]
-= Definitions
+== Definitions
 
 [[_feature]]
-== Feature
+=== Feature
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -373,7 +373,7 @@ __optional__|string
 
 
 [[_sharedloginresponse]]
-== SharedLoginResponse
+=== SharedLoginResponse
 SharedLoginResponse is a shared structure used for both login and signup responses
 
 
@@ -398,7 +398,7 @@ __required__|<<_user,User>>
 
 
 [[_signup]]
-== Signup
+=== Signup
 Signup represents a pending signup. This is an unactivated account
 and there can be multiple signups for the same email. The ID is the
 unique key and used as the activation code in the email
@@ -417,7 +417,7 @@ __optional__|string
 
 
 [[_team]]
-== Team
+=== Team
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -430,7 +430,7 @@ __optional__|string
 
 
 [[_user]]
-== User
+=== User
 
 [options="header", cols=".^3,.^4"]
 |===
