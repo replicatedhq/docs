@@ -3,7 +3,6 @@ date = "2016-07-03T04:02:20Z"
 title = "Integration API"
 description = "This section of the docs explains how to use the Integration API"
 weight = "550"
-type = "section"
 categories = [ "Integration API" ]
 hideSection = true
 
