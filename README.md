@@ -36,5 +36,5 @@ make SOURCE="https://api.staging.replicated.com/vendor" vendordocs
 ```
 1. Run Hugo server
 ```bash
-cd site/ && hugo16 server -w --config ../hugo-config/docs.toml --contentDir ../docs/
+hugo16 server -w --source site/
 ```
