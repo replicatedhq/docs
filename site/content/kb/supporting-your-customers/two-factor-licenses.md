@@ -22,18 +22,18 @@ reinstallation).
 From the [Customers page](https://vendor.replicated.com/customers), select a customer or
 create a new customer:
 
-![Create License](/static/create-customer.png)
+![Create License](/images/create-customer.png)
 
 Check “Require Activation” & include the email address of your customer.
 
-![Require activation](/static/require-activation.png)
+![Require activation](/images/require-activation.png)
 
 During the installation process, immediately after uploading their license file (before any
 of your images are delivered to the customer’s installation) they’ll be prompted to input
 the activation code:
 
-![Activate License](/static/activate-license.jpg)
+![Activate License](/images/activate-license.jpg)
 
 If they check their email they should have an activation code sent from Replicated:
 
-![License Code](/static/license-code.png)
+![License Code](/images/license-code.png)

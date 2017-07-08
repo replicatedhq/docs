@@ -43,19 +43,19 @@ docker run -d --name=replicated-ui \
 1. Follow the prompts to configure certificates, upload license, and run the preflight checks.
 
 ### 4. Run Operator Container
-1. Click on the Cluster tab (:8800/cluster)  
-![Cluster](/static/manual-install-2.x/click-cluster.png)
-1. Click the Add Node button  
-1. Select Docker Run option  
-1. Copy the command from the text area below  
-1. Paste and run the command in the terminal window  
+1. Click on the Cluster tab (:8800/cluster)
+![Cluster](/images/manual-install-2.x/click-cluster.png)
+1. Click the Add Node button
+1. Select Docker Run option
+1. Copy the command from the text area below
+1. Paste and run the command in the terminal window
 
 At this point, the new node should show up on the Cluster page.
 
 ### 4. Start the Application
-1. Click on the Dashboard tab (:8800/dashboard)  
-1. Click the Start Now button  
-![Start Now](/static/manual-install-2.x/start-now.png)
+1. Click on the Dashboard tab (:8800/dashboard)
+1. Click the Start Now button
+![Start Now](/images/manual-install-2.x/start-now.png)
 
 When first launching there may be no "Start Now" button.  This is because Replicated is still pulling application images. If this is the case, then just wait for the pull to finish.
 

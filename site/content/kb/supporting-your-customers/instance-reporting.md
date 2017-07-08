@@ -15,15 +15,15 @@ You can view the number of times a license has been installed by navigating to t
 [Customers page in the vendor portal](http://vendor.replicated.com/customers). By clicking on the "Customer reporting" button under Actions you’ll then be able to view the active and inactive instances of
 that license.
 
-![Select License](/static/select-customer.png)
+![Select License](/images/select-customer.png)
 
 You can click into a specific instances details by clicking the "View Details" icon. (Instances are
 marked as inactive after 24 hours has passed from their last checkin).
 
-![License Instances](/static/customer-reporting.png)
+![License Instances](/images/customer-reporting.png)
 
 On the instance page you’ll find the records for when each update was first applied (specifically when
 it first reported back to Replicated that it was applied). You’ll also find the active versions of
 the Replicated daemons.
 
-![Instance](/static/instance.png)
+![Instance](/images/instance.png)

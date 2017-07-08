@@ -28,7 +28,7 @@ components:
 
 - First we create our [tags](/packaging-an-application/clustering/#tags), these will be used in the Replicated on-prem UI to assign this component to the desired hosts. Each host that gets tagged with a cassandra tag will run this component.
 
-![Cassandra Tags](/static/cassandra-tags.png)
+![Cassandra Tags](/images/cassandra-tags.png)
 
 - We then set `cluster` to `true` to tell Replicated that we will be running in a clustered fashion and set `min` and `max` nodes.
 
@@ -91,7 +91,7 @@ nodes should be seeds.*
 {{repl end}}'
 ```
 
-**When testing don't forget initialize your Cassandra DB with appropriate keyspace**  
+**When testing don't forget initialize your Cassandra DB with appropriate keyspace**
 We also make sure to set up our [keyspace](https://docs.datastax.com/en/cql/3.0/cql/cql_reference/create_keyspace_r.html) in
 Cassandra correctly to achieve the correct redundancy and replication associated with a 3 node setup. I did
 this by going directly into `cqlsh` shell and creating my keyspace like so:
