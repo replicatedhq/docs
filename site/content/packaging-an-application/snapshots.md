@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Snapshots"
 identifier = "snapshots"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/snapshots"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/snapshots"
 +++
 
 For detailed information on restoring a snapshot take a look at this [restore guide](https://www.replicated.com/docs/kb/supporting-your-customers/restoring-from-a-snapshot/).

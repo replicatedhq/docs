@@ -8,8 +8,8 @@ categories = [ "Examples" ]
 [menu.main]
 Name       = "GetELK"
 identifier = "getelk"
-parent     = "/examples"
-url        = "/docs/examples/getelk"
+parent     = "examples"
+url        = "examples/getelk"
 +++
 
 ## GetELK

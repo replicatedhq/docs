@@ -6,10 +6,8 @@ weight = "307"
 categories = [ "Distributing" ]
 
 [menu.main]
-Name       = "Add Nodes"
 identifier = "add-nodes"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/add-nodes"
+parent     = "distributing-an-application"
 +++
 
 The instructions to add additional nodes are different depending the running scheduler.

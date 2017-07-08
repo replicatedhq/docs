@@ -4,6 +4,10 @@ title = "Getting Started"
 description = "A quick overview of how to get started with the Replicated platform."
 weight = "101"
 categories = [ "Getting Started" ]
+
+[next]
+    file = "getting-started/concepts-and-terms.md"
+    title = "Concepts and Terminology"
 +++
 
 Replicated is a platform to deploy containerized SaaS applications behind a firewall (ie private cloud, private

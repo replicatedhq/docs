@@ -8,8 +8,8 @@ categories = [ "Vendor API" ]
 [menu.main]
 Name       = "Vendor API"
 identifier = "vendor-api"
-url        = "/docs/reference/vendor-api"
-parent     = "/reference"
+url        = "reference/vendor-api"
+parent     = "reference"
 +++
 
 The Vendor API is available for integrating Replicated into your business workflows, such as automating your continuous integration pipeline or customer license creation.

@@ -4,6 +4,10 @@ title = "Distributing an Application"
 description = "This section of the docs explains how to install, upgrade and distribute your application."
 weight = "301"
 categories = [ "Distributing" ]
+
+[next]
+    file = "create-licenses.md"
+    title = "Create Customers & Licenses"
 +++
 
 Once the application YAML is created, the next task is to create licenses and install them to test.  This section

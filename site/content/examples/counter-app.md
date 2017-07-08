@@ -8,8 +8,8 @@ categories = [ "Examples" ]
 [menu.main]
 Name       = "Counter App"
 identifier = "counter-app"
-parent     = "/examples"
-url        = "/docs/examples/counter-app"
+parent     = "examples"
+url        = "examples/counter-app"
 +++
 
 ## Counter App

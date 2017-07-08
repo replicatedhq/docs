@@ -8,8 +8,8 @@ categories = [ "Examples" ]
 [menu.main]
 Name       = "Certificate Chain"
 identifier = "cert-chain"
-parent     = "/examples"
-url        = "/docs/examples/certificate-chain"
+parent     = "examples"
+url        = "examples/certificate-chain"
 +++
 
 ## Certificate Chain App

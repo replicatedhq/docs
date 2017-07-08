@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "LDAP Integration"
 identifier = "ldap"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/ldap-integration"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/ldap-integration"
 +++
 
 Replicated can be integrated with LDAP servers to provide real time user authentication & sync. A quick overview of this feature is available. Announcement: [DS Auth & Sync Support](https://blog.replicated.com/2015/12/03/ldap-active-directory-sync-support/)

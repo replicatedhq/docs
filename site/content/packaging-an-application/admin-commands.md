@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Admin Commands"
 identifier = "admin-commands"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/admin-commands"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/admin-commands"
 +++
 
 The `admin_commands` section allows you to define ad-hoc commands that can be executed inside a running container from the shell.

@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Config Screen"
 identifier = "config-screen"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/config-screen"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/config-screen"
 +++
 
 The admin console settings screen configuration is specified as an array configuration

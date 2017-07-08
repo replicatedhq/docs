@@ -2,7 +2,7 @@
 date = "2017-04-11T00:00:00Z"
 title = "Installing Replicated with Docker Swarm"
 description = "Instructions for installing Replicated with a Swarm cluster"
-keywords= "installing, swarm"
+keywords = "installing, swarm"
 aliases = [
     "/distributing-an-application/installing-on-swarm/"
 ]
@@ -24,7 +24,7 @@ curl -sSL -o install.sh  https://get.replicated.com/swarm-init
 sudo bash ./install.sh
 ```
 
-## Quick Install:  
+## Quick Install:
 
 The quick Swarm install will install Docker (as needed) and Replicated. Use this method if you have no need to view/change the installer script and you just want a one-line install.
 

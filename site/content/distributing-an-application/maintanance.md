@@ -6,10 +6,9 @@ weight = "306"
 categories = [ "Distributing" ]
 
 [menu.main]
-Name       = "Maintenance"
 identifier = "maintenance"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/maintanance"
+parent     = "distributing-an-application"
+url        = "distributing-an-application/maintanance"
 +++
 
 ## Command Line Interface

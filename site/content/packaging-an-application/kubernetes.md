@@ -11,8 +11,8 @@ aliases = [
 [menu.main]
 Name       = "Replicated on Kubernetes"
 identifier = "kubernetes"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/kubernetes"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/kubernetes"
 +++
 
 If your application is defined as a set of Kubernetes resources, and your customer can run a Kubernetes cluster, Replicated can provide the same standard functionality but on top of a Kubernetes cluster. To see a full example, check out the [Guestbook example](/examples/kubernetes-guestbook).

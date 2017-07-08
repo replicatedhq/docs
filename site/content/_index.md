@@ -1,6 +1,10 @@
 +++
 date = "2016-07-03T04:02:20Z"
 title = "How to use the Replicated Docs"
+
+[next]
+    url = "getting-started/"
+    title = "Getting Started"
 +++
 
 ## 1. Read sequentially

@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Template Functions"
 identifier = "template-functions"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/template-functions"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/template-functions"
 +++
 
 Template functions are marked by the double curly bracket + *"repl"* escape sequence. They allow for user input to be dynamically inserted into application configuration values. The sequence should be `{{repl`, not `{{ repl`.

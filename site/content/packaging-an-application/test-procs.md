@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Test Procs"
 identifier = "test-procs"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/test-procs"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/test-procs"
 +++
 
 Using the `test_proc` directive in your app definition YAML, you enable your customers to
@@ -138,7 +138,7 @@ config:
 ## SMTP Auth
 `smtp_auth` – Test whether or not the supplied credentials are valid for the given SMTP
 server. Note that this procedure only tests authentication; it does not test whether or
-not mail is actually deliverable.  
+not mail is actually deliverable.
 
 The command expects 5 arguments. These arguments come from values entered by your customer
 into the config items within this group. The arguments, in expected order:

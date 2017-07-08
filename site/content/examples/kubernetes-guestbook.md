@@ -8,8 +8,8 @@ categories = [ "Examples" ]
 [menu.main]
 Name       = "Kubernetes Guestbook"
 identifier = "guestbook"
-parent     = "/examples"
-url        = "/docs/examples/kubernetes-guestbook"
+parent     = "examples"
+url        = "examples/kubernetes-guestbook"
 +++
 
 ## Guestbook

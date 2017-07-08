@@ -6,10 +6,9 @@ weight = "305"
 categories = [ "Distributing" ]
 
 [menu.main]
-Name       = "Upgrading Replicated"
 identifier = "upgrading-replicated"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/upgrading"
+parent     = "distributing-an-application"
+url        = "distributing-an-application/upgrading"
 +++
 
 {{< note title="Replicated 2.0" >}}

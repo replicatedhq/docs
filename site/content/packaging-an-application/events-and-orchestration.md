@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Events and Orchestration"
 identifier = "events-and-orchestration"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/events-and-orchestration"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/events-and-orchestration"
 +++
 
 Events are provided to help with the startup, orchestration and service discovery between your containers. There are
@@ -102,8 +102,8 @@ take upon triggering of the event. The only action which is currently available 
 container to start.
 
 ## Timeouts
-{{< version version="2.3.0" >}} The `timeout` parameter must be an integer and indicates the number of seconds an event has to execute before a timeout is initiated.  
-If the event does not execute before the timeout is reached, then an error will show in the UI and the event sequence will terminate.  
+{{< version version="2.3.0" >}} The `timeout` parameter must be an integer and indicates the number of seconds an event has to execute before a timeout is initiated.
+If the event does not execute before the timeout is reached, then an error will show in the UI and the event sequence will terminate.
 By default the `timeout` option will be set to 10 minutes.  Setting the `timeout` parameter to -1 will disable the timeout feature.
 
 ```yaml

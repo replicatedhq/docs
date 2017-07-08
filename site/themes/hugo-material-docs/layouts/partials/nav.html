@@ -1,17 +1,23 @@
-{{ $currentNode := . }}
+{{ $currentPage := . }}
 {{ range .Site.Menus.main.ByWeight }}
-  {{ $.Scratch.Set "currentMenuEntry" . }}
   <li>
-    {{ partial "nav_link" $currentNode }}
-    {{ if .HasChildren }}
-      {{ if eq .URL $currentNode.Source.Section }}
-      <ul>
-        {{ range .Children }}
-          {{ $.Scratch.Set "currentMenuEntry" . }}
-          {{ partial "nav_child" $currentNode }}
-        {{ end }}
-      </ul>
+    <a title="{{ .Name }}" href="{{ .URL | absURL }}">
+      {{ .Pre }}
+      {{ .Name }}
+    </a>
+    {{ if and .HasChildren ( or ($currentPage.HasMenuCurrent "main" .) (in $currentPage.URL .URL)) }}
+    <ul>
+      {{ range .Children }}
+        <li class="anchor">
+          <a {{ if $currentPage.IsMenuCurrent "main" . }}class="active"{{ end }} title="{{ .Name }}" href="{{ .URL | absURL }}">
+            {{ .Pre }}
+            {{ .Name }}
+          </a>
+        </li>
+        <ul id="scrollspy">
+        </ul>
       {{ end }}
+    </ul>
     {{ end }}
   </li>
 {{ end }}

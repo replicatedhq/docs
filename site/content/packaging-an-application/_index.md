@@ -4,6 +4,10 @@ title = "Packaging an Application"
 description = "An overview of the Replicated YAML."
 weight = "201"
 categories = [ "Packaging" ]
+
+[next]
+    file = "packaging-an-application/yaml-overview.md"
+    title = "YAML Overview"
 +++
 
 The first step to shipping your application in Replicated is to create a YAML file that defines

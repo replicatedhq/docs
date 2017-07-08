@@ -8,8 +8,8 @@ categories = [ "Reference" ]
 [menu.main]
 Name       = "Replicated CLI"
 identifier = "replicated-cli"
-url        = "/docs/reference/replicated-cli"
-parent     = "/reference"
+url        = "reference/replicated-cli"
+parent     = "reference"
 +++
 
 After [installing replicated](/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled

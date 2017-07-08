@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Components And Containers"
 identifier = "components-and-containers"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/components-and-containers"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/components-and-containers"
 +++
 
 The `components` section of the YAML defines how the containers will be created and started. A component is

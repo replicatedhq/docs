@@ -8,8 +8,8 @@ categories = [ "Examples" ]
 [menu.main]
 Name       = "Docker Swarm Voting Application"
 identifier = "votingapp"
-parent     = "/examples"
-url        = "/docs/examples/swarm-votingapp"
+parent     = "examples"
+url        = "examples/swarm-votingapp"
 +++
 
 ## VotingApp

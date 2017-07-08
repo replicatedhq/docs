@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Support Bundle"
 identifier = "support-bundle"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/support-bundle"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/support-bundle"
 +++
 
 A support bundle archive will be available for your customer to download via the Support tab of the On-Prem Console.

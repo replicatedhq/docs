@@ -1,4 +1,4 @@
-{{ if and (not .IsHome) (or .Prev .Next) }}
+{{ if or (or .Prev .Next) (.Params.next) }}
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   {{ if .Prev }}
@@ -22,49 +22,38 @@
 
   <div class="next">
   {{ if .Next }}
-      <a href="{{ .Next.Permalink }}" title="{{ .Next.Title }}">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              {{ .Next.Title }}
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
+    <a href="{{ .Next.Permalink }}" title="{{ .Next.Title }}">
+      <span class="direction">
+        Next
+      </span>
+      <div class="page">
+        <div class="stretch">
+          <div class="title">
+            {{ .Next.Title }}
           </div>
         </div>
-      </a>
+        <div class="button button-next" role="button" aria-label="Next">
+          <i class="icon icon-forward"></i>
+        </div>
+      </div>
+    </a>
+  {{ else if and .Params.next.title (or .Params.next.url .Params.next.file) }}
+    <a href="{{ if .Params.next.file }}{{ ref . .Params.next.file }}{{ else }}{{ .Params.next.url | relURL }}{{ end }}" title="{{ .Params.next.title }}">
+      <span class="direction">
+        Next
+      </span>
+      <div class="page">
+        <div class="stretch">
+          <div class="title">
+            {{ .Params.next.title }}
+          </div>
+        </div>
+        <div class="button button-next" role="button" aria-label="Next">
+          <i class="icon icon-forward"></i>
+        </div>
+      </div>
+    </a>
   {{ end }}
-  </div>
-</nav>
-{{ end }}
-
-{{ if and .IsHome (gt (len .Site.Pages) 2) }}
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  </div>
-
-  {{ $title := "Getting Started"  }}
-  {{ $permalink := "/getting-started/" }}
-  <div class="next">
-      <a href="{{ $permalink }}" title="{{ $title }}">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              {{ $title }}
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
   </div>
 </nav>
 {{ end }}

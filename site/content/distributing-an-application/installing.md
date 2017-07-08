@@ -9,8 +9,8 @@ categories = [ "Distributing" ]
 [menu.main]
 Name       = "Installing Replicated"
 identifier = "installing"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/installing"
+parent     = "distributing-an-application"
+url        = "distributing-an-application/installing"
 +++
 
 {{< note title="Replicated 2.0" >}}

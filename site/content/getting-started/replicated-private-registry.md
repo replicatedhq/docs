@@ -8,8 +8,8 @@ categories = [ "Getting Started" ]
 [menu.main]
 Name       = "Replicated Private Registry"
 identifier = "replicated-private-registry"
-parent     = "/getting-started"
-url        = "/docs/getting-started/replicated-private-registry"
+parent     = "getting-started"
+url        = "getting-started/replicated-private-registry"
 +++
 
 When building your application, you have the option of hosting your private images on the Replicated private registry or [using external private and public registries](/kb/supporting-your-customers/registries/).

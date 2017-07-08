@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Preflight Checks"
 identifier = "preflight-checks"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/preflight-checks"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/preflight-checks"
 +++
 
 A preflight check is a test that is run before installing and running an application.  The test will analyze the system to determine if the environment meets the minimum requirements.

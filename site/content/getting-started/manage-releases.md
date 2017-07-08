@@ -6,11 +6,11 @@ weight = "103"
 categories = [ "Getting Started" ]
 
 [menu.main]
-Name       = "Create & Manage Releases"
 identifier = "manage-releases"
-parent     = "/getting-started"
-url        = "/docs/getting-started/manage-releases"
+parent     = "getting-started"
+url        = "getting-started/manage-releases"
 +++
+
 ## Create Releases
 The [Replicated vendor portal](https://vendor.replicated.com) provides you with a location to create and release versions of your application to various release channels.
 

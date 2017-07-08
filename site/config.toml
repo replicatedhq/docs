@@ -49,37 +49,37 @@ category = "categories"
 [[menu.main]]
   name       = "Getting Started"
   url        = "getting-started"
-  identifier = "/getting-started"
+  identifier = "getting-started"
   weight     = 100
 
 [[menu.main]]
   name       = "Packaging An Application"
   url        = "packaging-an-application"
-  identifier = "/packaging-an-application"
+  identifier = "packaging-an-application"
   weight     = 200
 
 [[menu.main]]
   name       = "Distributing An Application"
   url        = "distributing-an-application"
-  identifier = "/distributing-an-application"
+  identifier = "distributing-an-application"
   weight     = 300
 
 [[menu.main]]
   name       = "Examples"
   url        = "examples"
-  identifier = "/examples"
+  identifier = "examples"
   weight     = 400
 
 [[menu.main]]
   name       = "Reference"
   url        = "reference"
-  identifier = "/reference"
+  identifier = "reference"
   weight     = 500
 
 [[menu.main]]
   name       = "Knowledge Base"
   url        = "kb"
-  identifier = "/kb"
+  identifier = "kb"
   weight     = 600
 
 [blackfriday]

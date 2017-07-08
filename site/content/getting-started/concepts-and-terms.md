@@ -6,10 +6,9 @@ weight = "102"
 categories = [ "Getting Started" ]
 
 [menu.main]
-Name       = "Concepts and Terminology"
 identifier = "concepts-and-terms"
-parent     = "/getting-started"
-url        = "/docs/getting-started/concepts-and-terms"
+parent     = "getting-started"
+url        = "getting-started/concepts-and-terms"
 +++
 
 Before shipping your application, there are a few terms to learn, as they are used throughout this guide.

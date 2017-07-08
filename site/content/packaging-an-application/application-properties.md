@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Application Properties"
 identifier = "application-properties"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/application-properties"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/application-properties"
 +++
 
 The properties section of the YAML allows you to configure properties of the admin console.

@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Custom Preflight Checks"
 identifier = "custom-preflight-checks"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/custom-preflight-checks"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/custom-preflight-checks"
 +++
 
 The host requirements section of the yaml gives Replicated the ability to analyze system

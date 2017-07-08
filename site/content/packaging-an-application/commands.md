@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "Commands"
 identifier = "commands"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/commands"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/commands"
 +++
 
 The `cmds` section of the YAML allows you to leverage the power of external commands within your configuration. The sole

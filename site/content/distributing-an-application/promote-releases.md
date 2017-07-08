@@ -6,10 +6,9 @@ weight = "303"
 categories = [ "Distributing" ]
 
 [menu.main]
-Name       = "Promote Releases"
 identifier = "promote-releases"
-parent     = "/distributing-an-application"
-url        = "/docs/distributing-an-application/promote-releases"
+parent     = "distributing-an-application"
+url        = "distributing-an-application/promote-releases"
 +++
 
 Every Replicated license points to a Release Channel. When a license is installed, it will pull down and install the release that is currently at the top of its channel. It’s recommended to create customer licenses on the Stable channel, and only promote releases to Stable that are ready for all customers to install.

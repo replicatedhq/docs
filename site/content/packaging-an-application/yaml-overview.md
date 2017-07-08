@@ -8,8 +8,8 @@ categories = [ "Packaging" ]
 [menu.main]
 Name       = "YAML Overview"
 identifier = "yaml-overview"
-parent     = "/packaging-an-application"
-url        = "/docs/packaging-an-application/yaml-overview"
+parent     = "packaging-an-application"
+url        = "packaging-an-application/yaml-overview"
 +++
 
 Replicated will deploy an application that is defined in a YAML spec. We currently support deploying an application that uses the Replicated scheduler or deploying a Kubernetes application. Understanding how each of these will be installed and maintained is an important consideration when choosing the scheduler to use to deploy your application.
