@@ -1,8 +1,7 @@
 +++
-layout = "index"
+date = "2016-07-03T04:02:20Z"
+title = "How to use the Replicated Docs"
 +++
-
-# How to use the Replicated Docs
 
 ## 1. Read sequentially
 For those just getting started, it is helpful to skim the first few sections in the order they're presented. The footer of each page includes a link to the "Next" sequential article.

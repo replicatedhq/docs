@@ -6,13 +6,13 @@ canonifyURLs = true
 googleAnalytics = "UA-61084834-1"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
+copyright = "Replicated, Inc."
 
 [taxonomies]
 category = "categories"
 
 [params]
   description = "Documentation and knowledgebase for Replicated."
-  copyright = "Replicated, Inc."
 
   logo = "images/logo.png"
   favicon = ""
