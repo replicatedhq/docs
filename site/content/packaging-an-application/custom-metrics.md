@@ -4,6 +4,7 @@ lastmod = "2016-07-02T00:00:00Z"
 title = "Custom Metrics"
 weight = "217"
 categories = [ "Packaging" ]
+description = "Enable the creation of custom metrics from your application using StatsD."
 
 [menu.main]
 Name       = "Custom Metrics"
