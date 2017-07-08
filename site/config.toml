@@ -73,7 +73,7 @@ category = "categories"
 [[menu.main]]
   name       = "Reference"
   url        = "reference"
-  identifier = "reference"
+  identifier = "/reference"
   weight     = 500
 
 [[menu.main]]

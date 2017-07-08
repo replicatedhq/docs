@@ -8,7 +8,7 @@ categories = ["Reference","Integration API"]
 [menu.main]
 identifier = "integration-api"
 url        = "reference/integration-api"
-parent     = "reference"
+parent     = "/reference"
 
 [next]
     file = "audit-api.md"

@@ -8,7 +8,7 @@ categories = ["Reference","Vendor API"]
 [menu.main]
 identifier = "vendor-api"
 url        = "reference/vendor-api"
-parent     = "reference"
+parent     = "/reference"
 
 [next]
     file = "apps.adoc"

@@ -9,7 +9,7 @@ categories = [ "Reference" ]
 Name       = "YAML"
 identifier = "yaml"
 url        = "reference/yaml"
-parent     = "reference"
+parent     = "/reference"
 +++
 
 For a full reference to the Replicated YAML options, visit [github.com/replicatedhq/libyaml](https://github.com/replicatedhq/libyaml).

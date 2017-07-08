@@ -9,7 +9,7 @@ categories = [ "Reference" ]
 Name       = "Replicated CLI"
 identifier = "replicated-cli"
 url        = "reference/replicated-cli"
-parent     = "reference"
+parent     = "/reference"
 +++
 
 After [installing replicated](/distributing-an-application/installing/#section-easy-installation) onto a remote host a CLI is enabled
