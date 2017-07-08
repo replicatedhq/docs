@@ -4,7 +4,7 @@
 rm -f app_name
 rm -f tmp_swagger.json
 rm -f tmp_adoc.adoc
-rm -f docs/reference/vendor-api.adoc
+rm -f site/content/reference/vendor-api.adoc
 
 page_metadata() {
     if [ "$1" = "apps" ]; then
@@ -50,14 +50,14 @@ page_metadata() {
     fi
 }
 
-mkdir -p docs/reference/vendor-api
+mkdir -p site/content/reference/vendor-api
 
 for name in apps audit auth branding channels license releases ; do
     echo "Downloading ${VENDOR_API}/v1/spec/$name.json"
     curl -o tmp_swagger.json ${VENDOR_API}/v1/spec/$name.json
     java -cp java/swagger2markup-1.0.0.jar -jar java/swagger2markup-cli-1.0.0.jar convert -i tmp_swagger.json -f tmp_swagger
     page_metadata $name
-    OUTPUT_FILE="docs/reference/vendor-api/$name.adoc"
+    OUTPUT_FILE="site/content/reference/vendor-api/$name.adoc"
     cat <<EOM >$OUTPUT_FILE
 +++
 date = "2016-07-03T04:02:20Z"
