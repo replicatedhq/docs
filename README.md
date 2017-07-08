@@ -15,13 +15,13 @@ The docs site will be available at http://localhost:5913/docs/getting-started/
 
 ## Via Hugo on OSX
 
-1. Install v0.16 of Hugo
+1. Install v0.18 of Hugo
 ```bash
 cd /tmp
-wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_osx-64bit.tgz
-tar xzf hugo_0.16_osx-64bit.tgz
-rm -r hugo_0.16_osx-64bit.tgz
-mv hugo /usr/local/bin/hugo16
+wget https://github.com/gohugoio/hugo/releases/download/v0.18.1/hugo_0.18.1_macOS-64bit.zip
+tar xzf hugo_0.18.1_macOS-64bit.zip
+rm -r hugo_0.18.1_macOS-64bit.zip
+mv hugo /usr/local/bin/hugo18
 ```
 1. Install asciidoctor
 ```bash
@@ -36,5 +36,5 @@ make SOURCE="https://api.staging.replicated.com/vendor" vendordocs
 ```
 1. Run Hugo server
 ```bash
-hugo16 server -w --source site/
+hugo18 server -w --source site/
 ```

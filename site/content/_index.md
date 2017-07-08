@@ -1,5 +1,4 @@
 +++
-type = "index"
 layout = "index"
 +++
 
@@ -8,14 +7,14 @@ layout = "index"
 ## 1. Read sequentially
 For those just getting started, it is helpful to skim the first few sections in the order they're presented. The footer of each page includes a link to the "Next" sequential article.
 
-## 2. Browse the hierarchy  
-The Replicated Docs are categorized into six hierarchical categories:  
+## 2. Browse the hierarchy
+The Replicated Docs are categorized into six hierarchical categories:
 
-**Getting Started** - an overview of the core concepts and workflows used when integrating an application with Replicated.   
+**Getting Started** - an overview of the core concepts and workflows used when integrating an application with Replicated.
 
-**Packaging an Application** - details on creating the Replicated YAML that will drive an application's integration with Replicated features.  
+**Packaging an Application** - details on creating the Replicated YAML that will drive an application's integration with Replicated features.
 
-**Distributing an Application** - how to distribute an application to end customers and how to manage/support end customer environments.   
+**Distributing an Application** - how to distribute an application to end customers and how to manage/support end customer environments.
 
 **Examples**  - sample Replicated YAML files that leverage various features and functionality of Replicated.
 
