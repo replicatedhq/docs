@@ -1,5 +1,4 @@
-{{ if .IsPage }}
-{{ if .Prev | or .Next }}
+{{ if and (not .IsHome) (or .Prev .Next) }}
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   {{ if .Prev }}
@@ -42,10 +41,8 @@
   </div>
 </nav>
 {{ end }}
-{{ end }}
 
-{{ if .IsHome }}
-{{ if gt (len .Site.Pages) 2 }}
+{{ if and .IsHome (gt (len .Site.Pages) 2) }}
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   </div>
@@ -70,5 +67,4 @@
       </a>
   </div>
 </nav>
-{{ end }}
 {{ end }}

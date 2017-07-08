@@ -1,0 +1,24 @@
+{{ define "edit-page" }}<div style="visibility: hidden;"></div>{{ end }}
+{{ define "content" }}
+<div style="float: left; width: 50%;">
+    <div style="padding-left: 30px; padding-right: 15px;">
+        <h2>Newest Articles</h2>
+        <ul>
+            {{ range first 5 .Site.Taxonomies.categories.knowledgebase.Pages.ByDate.Reverse }}
+                <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}"> {{ .LinkTitle }} </a> </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+
+<div style="float: left; width: 50%;">
+    <div style="padding-left: 15px; padding-right: 30px;">
+        <h2>Recently Updated</h2>
+        <ul>
+            {{ range first 5 .Site.Taxonomies.categories.knowledgebase.Pages.ByLastmod.Reverse }}
+                <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}"> {{ .LinkTitle }} </a> </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>
+{{ end }}

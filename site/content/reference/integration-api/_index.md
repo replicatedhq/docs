@@ -4,7 +4,6 @@ title = "Integration API"
 description = "This section of the docs explains how to use the Integration API"
 weight = "550"
 categories = [ "Integration API" ]
-hideSection = true
 
 [menu.main]
 Name       = "Integration API"

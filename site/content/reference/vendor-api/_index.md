@@ -4,7 +4,6 @@ title = "Vendor API"
 description = "This section of the docs explains how to use the Vendor API"
 weight = "501"
 categories = [ "Vendor API" ]
-hideSection = true
 
 [menu.main]
 Name       = "Vendor API"

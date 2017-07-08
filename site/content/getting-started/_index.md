@@ -4,7 +4,6 @@ title = "Getting Started"
 description = "A quick overview of how to get started with the Replicated platform."
 weight = "101"
 categories = [ "Getting Started" ]
-hideSection = true
 +++
 
 Replicated is a platform to deploy containerized SaaS applications behind a firewall (ie private cloud, private

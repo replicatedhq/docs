@@ -1,12 +1,9 @@
 {{ $currentNode := . }}
-
 {{ range .Site.Menus.main.ByWeight }}
-
-{{ $.Scratch.Set "currentMenuEntry" . }}
-<li>
+  {{ $.Scratch.Set "currentMenuEntry" . }}
+  <li>
     {{ partial "nav_link" $currentNode }}
     {{ if .HasChildren }}
-      {{ if $currentNode.IsPage }}
       {{ if eq .URL $currentNode.Source.Section }}
       <ul>
         {{ range .Children }}
@@ -15,7 +12,6 @@
         {{ end }}
       </ul>
       {{ end }}
-      {{ end }}
     {{ end }}
-</li>
+  </li>
 {{ end }}

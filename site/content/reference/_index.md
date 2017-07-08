@@ -4,7 +4,6 @@ title = "Reference"
 description = "Reference sections."
 weight = "500"
 categories = [ "Reference" ]
-hideSection = true
 +++
 
 References for YAML, the integration API and CLI.
