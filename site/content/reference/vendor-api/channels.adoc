@@ -17,7 +17,7 @@ List, create, update, delete and archive channels.
 
 == Version information
 [%hardbreaks]
-_Version_ : 1.0.0
+__Version__ : 1.0.0
 
 
 
@@ -34,48 +34,48 @@ POST /app/{app_id}/channel
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Body*|*Body* +
-_required_|JSON input|<<_createchannel_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__required__|JSON input|<<_createchannel_body,Body>>
 |===
 
 [[_createchannel_body]]
-*Body*
+**Body**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*description* +
-_optional_||string
-|*name* +
-_required_||string
+|Name|Schema
+|**description** +
+__optional__|string
+|**name** +
+__required__|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|CreateChannelResponse contains the JSON channels list|<<_createchannel_response_200,Response 200>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|CreateChannelResponse contains the JSON channels list|<<_createchannel_response_200,Response 200>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 [[_createchannel_response_200]]
-*Response 200*
+**Response 200**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*AppChannel* +
-_optional_||< <<_appchannel,AppChannel>> > array
+|Name|Schema
+|**AppChannel** +
+__optional__|< <<_appchannel,AppChannel>> > array
 |===
 
 
@@ -96,10 +96,10 @@ _optional_||< <<_appchannel,AppChannel>> > array
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -112,40 +112,40 @@ POST /app/{app_id}/channel/{channel_id}
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*channel_id* +
-_required_|Channel identifier|string|
-|*Body*|*Body* +
-_required_|JSON input|<<_updatechannel_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**channel_id** +
+__required__|Channel identifier|string
+|**Body**|**Body** +
+__required__|JSON input|<<_updatechannel_body,Body>>
 |===
 
 [[_updatechannel_body]]
-*Body*
+**Body**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*description* +
-_optional_||string
-|*name* +
-_required_||string
+|Name|Schema
+|**description** +
+__optional__|string
+|**name** +
+__required__|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -166,10 +166,10 @@ _required_||string
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -182,26 +182,26 @@ POST /app/{app_id}/channel/{channel_id}/archive
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*channel_id* +
-_required_|Channel identifier|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**channel_id** +
+__required__|Channel identifier|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|On success|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|On success|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -212,10 +212,10 @@ _required_|Channel identifier|string|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -228,44 +228,44 @@ POST /app/{app_id}/channel/{channel_id}/release/{sequence}
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*channel_id* +
-_required_|Channel identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
-|*Body*|*Body* +
-_required_|JSON payload|<<_updatechannelreleases_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**channel_id** +
+__required__|Channel identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|**Body**|**Body** +
+__required__|JSON payload|<<_updatechannelreleases_body,Body>>
 |===
 
 [[_updatechannelreleases_body]]
-*Body*
+**Body**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*release_notes* +
-_required_||string
-|*required* +
-_required_||boolean
-|*version* +
-_required_||string
+|Name|Schema
+|**release_notes** +
+__required__|string
+|**required** +
+__required__|boolean
+|**version** +
+__required__|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -282,10 +282,10 @@ _required_||string
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -298,38 +298,38 @@ GET /app/{app_id}/channel/{channel_id}/releases
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*channel_id* +
-_required_|Channel identifier|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**channel_id** +
+__required__|Channel identifier|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ListChannelReleasesResponse lists the channel releases|<<_listchannelreleases_response_200,Response 200>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ListChannelReleasesResponse lists the channel releases|<<_listchannelreleases_response_200,Response 200>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 [[_listchannelreleases_response_200]]
-*Response 200*
+**Response 200**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*channel* +
-_required_||<<_appchannel,AppChannel>>
-|*releases* +
-_required_||< <<_channelrelease,ChannelRelease>> > array
+|Name|Schema
+|**channel** +
+__required__|<<_appchannel,AppChannel>>
+|**releases** +
+__required__|< <<_channelrelease,ChannelRelease>> > array
 |===
 
 
@@ -346,10 +346,10 @@ _required_||< <<_channelrelease,ChannelRelease>> > array
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -362,34 +362,34 @@ GET /app/{app_id}/channels
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ListChannelsResponse contains the JSON channels list|<<_listchannels_response_200,Response 200>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ListChannelsResponse contains the JSON channels list|<<_listchannels_response_200,Response 200>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 [[_listchannels_response_200]]
-*Response 200*
+**Response 200**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*AppChannels* +
-_optional_||< <<_appchannel,AppChannel>> > array
+|Name|Schema
+|**AppChannels** +
+__optional__|< <<_appchannel,AppChannel>> > array
 |===
 
 
@@ -406,10 +406,10 @@ _optional_||< <<_appchannel,AppChannel>> > array
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -427,24 +427,24 @@ release in the channel.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Adoption* +
-_optional_|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
-|*Description* +
-_required_|Description that will be shown during license installation|string
-|*Id* +
-_required_|The ID of the channel|string
-|*LicenseCounts* +
-_optional_|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
-|*Name* +
-_required_|The name of channel|string
-|*Position* +
-_optional_|The position for which the channel occurs in a list|integer(int64)
-|*ReleaseLabel* +
-_optional_|The label of the current release sequence|string
-|*ReleaseNotes* +
-_optional_|Release notes for the current release sequence|string
-|*ReleaseSequence* +
-_optional_|A reference to the current release sequence|integer(int64)
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
 |===
 
 
@@ -453,50 +453,50 @@ _optional_|A reference to the current release sequence|integer(int64)
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*current_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*current_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_all* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
 |===
 
 
 [[_channelrelease]]
 == ChannelRelease
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*airgap_build_error* +
-_optional_||string
-|*airgap_build_status* +
-_optional_||string
-|*channel_id* +
-_optional_||string
-|*channel_sequence* +
-_optional_||integer(int64)
-|*created* +
-_optional_||<<_time,Time>>
-|*release_notes* +
-_optional_||string
-|*release_sequence* +
-_optional_||integer(int64)
-|*required* +
-_optional_||boolean
-|*updated* +
-_optional_||<<_time,Time>>
-|*version* +
-_optional_||string
+|Name|Schema
+|**airgap_build_error** +
+__optional__|string
+|**airgap_build_status** +
+__optional__|string
+|**channel_id** +
+__optional__|string
+|**channel_sequence** +
+__optional__|integer (int64)
+|**created** +
+__optional__|<<_time,Time>>
+|**release_notes** +
+__optional__|string
+|**release_sequence** +
+__optional__|integer (int64)
+|**required** +
+__optional__|boolean
+|**updated** +
+__optional__|<<_time,Time>>
+|**version** +
+__optional__|string
 |===
 
 
@@ -505,17 +505,17 @@ _optional_||string
 LicenseCounts is a struct to hold license count information
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*active* +
-_optional_||< string, integer(int64) > map
-|*airgap* +
-_optional_||< string, integer(int64) > map
-|*inactive* +
-_optional_||< string, integer(int64) > map
-|*total* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
 |===
 
 
@@ -546,7 +546,7 @@ Location. Therefore, Time values should not be used as map or database keys
 without first guaranteeing that the identical Location has been set for all
 values, which can be achieved through use of the UTC or Local method.
 
-_Type_ : object
+__Type__ : object
 
 
 

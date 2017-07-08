@@ -17,7 +17,7 @@ Apps documentation
 
 == Version information
 [%hardbreaks]
-_Version_ : 1.0.0
+__Version__ : 1.0.0
 
 
 
@@ -34,33 +34,33 @@ POST /app
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Body*|*Body* +
-_optional_|App create parameters.|<<_createapp_body,Body>>|
+|Type|Name|Description|Schema
+|**Body**|**Body** +
+__optional__|App create parameters.|<<_createapp_body,Body>>
 |===
 
 [[_createapp_body]]
-*Body*
+**Body**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*name* +
-_required_|Name of the app that is to be created.|string
+|**name** +
+__required__|Name of the app that is to be created.|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*201*|AppResponse represents an app.|<<_app,App>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
+|**201**|AppResponse represents an app.|<<_app,App>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
 |===
 
 
@@ -82,10 +82,10 @@ _required_|Name of the app that is to be created.|string
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -102,36 +102,36 @@ Requires secondary authentication in request params.
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Body*|*Body* +
-_optional_|User authenticate parameters|<<_deleteapp_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__optional__|User authenticate parameters|<<_deleteapp_body,Body>>
 |===
 
 [[_deleteapp_body]]
-*Body*
+**Body**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*password* +
-_required_|Password of the user|string
+|**password** +
+__required__|Password of the user|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -153,10 +153,10 @@ _required_|Password of the user|string
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -169,12 +169,12 @@ GET /apps
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ListAppsResponse represents a list of apps and the corresponding channels.|< <<_appandchannels,AppAndChannels>> > array
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
+|**200**|ListAppsResponse represents a list of apps and the corresponding channels.|< <<_appandchannels,AppAndChannels>> > array
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
 |===
 
 
@@ -196,10 +196,10 @@ GET /apps
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -217,12 +217,12 @@ promoted.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Id* +
-_required_|The ID of the app|string
-|*Name* +
-_required_|The name of the app|string
-|*Slug* +
-_required_|A unique slug for the app|string
+|**Id** +
+__required__|The ID of the app|string
+|**Name** +
+__required__|The name of the app|string
+|**Slug** +
+__required__|A unique slug for the app|string
 |===
 
 
@@ -232,10 +232,10 @@ _required_|A unique slug for the app|string
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*App* +
-_required_|The app|<<_app,App>>
-|*Channels* +
-_required_|Channels of the app|< <<_appchannel,AppChannel>> > array
+|**App** +
+__required__|The app|<<_app,App>>
+|**Channels** +
+__required__|Channels of the app|< <<_appchannel,AppChannel>> > array
 |===
 
 
@@ -248,24 +248,24 @@ release in the channel.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Adoption* +
-_optional_|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
-|*Description* +
-_required_|Description that will be shown during license installation|string
-|*Id* +
-_required_|The ID of the channel|string
-|*LicenseCounts* +
-_optional_|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
-|*Name* +
-_required_|The name of channel|string
-|*Position* +
-_optional_|The position for which the channel occurs in a list|integer(int64)
-|*ReleaseLabel* +
-_optional_|The label of the current release sequence|string
-|*ReleaseNotes* +
-_optional_|Release notes for the current release sequence|string
-|*ReleaseSequence* +
-_optional_|A reference to the current release sequence|integer(int64)
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
 |===
 
 
@@ -274,21 +274,21 @@ _optional_|A reference to the current release sequence|integer(int64)
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*current_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*current_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_all* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
 |===
 
 
@@ -297,17 +297,17 @@ _optional_||< string, integer(int64) > map
 LicenseCounts is a struct to hold license count information
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*active* +
-_optional_||< string, integer(int64) > map
-|*airgap* +
-_optional_||< string, integer(int64) > map
-|*inactive* +
-_optional_||< string, integer(int64) > map
-|*total* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
 |===
 
 

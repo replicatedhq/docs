@@ -17,7 +17,7 @@ Brand the Replicated UI
 
 == Version information
 [%hardbreaks]
-_Version_ : 1.0.0
+__Version__ : 1.0.0
 
 
 
@@ -34,38 +34,38 @@ Adds CSS to a specific app channel
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Body*|*Body* +
-_optional_|Branding create parameters|<<_createbranding_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__optional__|Branding create parameters|<<_createbranding_body,Body>>
 |===
 
 [[_createbranding_body]]
-*Body*
+**Body**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*channel_id* +
-_required_|ChannelID to create branding for|string
-|*css* +
-_required_|CSS to apply to the channel|string
+|**channel_id** +
+__required__|ChannelID to create branding for|string
+|**css** +
+__required__|CSS to apply to the channel|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*201*|CreateBrandingResponse represents a branding object|<<_branding,Branding>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**201**|CreateBrandingResponse represents a branding object|<<_branding,Branding>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -88,10 +88,10 @@ _required_|CSS to apply to the channel|string
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -104,23 +104,23 @@ GET /app/{app_id}/branding
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ListBrandingResponse represents the return value for a list branding call.|< string, <<_branding,Branding>> > map
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ListBrandingResponse represents the return value for a list branding call.|< string, <<_branding,Branding>> > map
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -143,10 +143,10 @@ _required_|App identifier|string|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -163,26 +163,26 @@ Requires secondary authentication in request params.
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Query*|*channelID* +
-_required_|ID of the channel to remove branding from.|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Query**|**channelID** +
+__required__|ID of the channel to remove branding from.|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -205,10 +205,10 @@ _required_|ID of the channel to remove branding from.|string|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -226,41 +226,41 @@ release in the channel.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Adoption* +
-_optional_|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
-|*Description* +
-_required_|Description that will be shown during license installation|string
-|*Id* +
-_required_|The ID of the channel|string
-|*LicenseCounts* +
-_optional_|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
-|*Name* +
-_required_|The name of channel|string
-|*Position* +
-_optional_|The position for which the channel occurs in a list|integer(int64)
-|*ReleaseLabel* +
-_optional_|The label of the current release sequence|string
-|*ReleaseNotes* +
-_optional_|Release notes for the current release sequence|string
-|*ReleaseSequence* +
-_optional_|A reference to the current release sequence|integer(int64)
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
 |===
 
 
 [[_branding]]
 == Branding
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*created* +
-_optional_||<<_time,Time>>
-|*css* +
-_optional_||string
-|*default* +
-_optional_||boolean
-|*updated* +
-_optional_||<<_time,Time>>
+|Name|Schema
+|**created** +
+__optional__|<<_time,Time>>
+|**css** +
+__optional__|string
+|**default** +
+__optional__|boolean
+|**updated** +
+__optional__|<<_time,Time>>
 |===
 
 
@@ -269,21 +269,21 @@ _optional_||<<_time,Time>>
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*current_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*current_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_all* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
 |===
 
 
@@ -292,17 +292,17 @@ _optional_||< string, integer(int64) > map
 LicenseCounts is a struct to hold license count information
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*active* +
-_optional_||< string, integer(int64) > map
-|*airgap* +
-_optional_||< string, integer(int64) > map
-|*inactive* +
-_optional_||< string, integer(int64) > map
-|*total* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
 |===
 
 
@@ -333,7 +333,7 @@ Location. Therefore, Time values should not be used as map or database keys
 without first guaranteeing that the identical Location has been set for all
 values, which can be achieved through use of the UTC or Local method.
 
-_Type_ : object
+__Type__ : object
 
 
 

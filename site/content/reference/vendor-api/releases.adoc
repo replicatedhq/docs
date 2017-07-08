@@ -17,7 +17,7 @@ Create, list, promote, update and archive releases.
 
 == Version information
 [%hardbreaks]
-_Version_ : 1.0.0
+__Version__ : 1.0.0
 
 
 
@@ -34,40 +34,40 @@ POST /app/{app_id}/release
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Body*|*Body* +
-_optional_|Create release parameters.|<<_createrelease_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__optional__|Create release parameters.|<<_createrelease_body,Body>>
 |===
 
 [[_createrelease_body]]
-*Body*
+**Body**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*name* +
-_required_||string
-|*source* +
-_required_||string
-|*sourcedata* +
-_required_||integer(int64)
+|Name|Schema
+|**name** +
+__required__|string
+|**source** +
+__required__|string
+|**sourcedata** +
+__required__|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*201*|CreateReleaseResponse contains the new release properties|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**201**|CreateReleaseResponse contains the new release properties|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -88,10 +88,10 @@ _required_||integer(int64)
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -108,24 +108,24 @@ Deprecated - please use the list releases with paging route.
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ListAppResponse contains a JSON array of app release data|< <<_appreleaseinfo,AppReleaseInfo>> > array
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ListAppResponse contains a JSON array of app release data|< <<_appreleaseinfo,AppReleaseInfo>> > array
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -142,10 +142,10 @@ _required_|App identifier|string|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -158,28 +158,28 @@ GET /app/{app_id}/releases/paged
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Query*|*count* +
-_required_|Number of elements to return per page, defaults to 30|integer(int64)|
-|*Query*|*start* +
-_required_|Start of the next page, defaults to zero|integer(int64)|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Query**|**count** +
+__required__|Number of elements to return per page, defaults to 30|integer (int64)
+|**Query**|**start** +
+__required__|Start of the next page, defaults to zero|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|AppResponse represents an app.|<<_app,App>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|AppResponse represents an app.|<<_app,App>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -195,10 +195,10 @@ _required_|Start of the next page, defaults to zero|integer(int64)|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -211,26 +211,26 @@ POST /app/{app_id}/{sequence}/archive
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -246,10 +246,10 @@ _required_|Release identifier|integer(int64)|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -262,26 +262,26 @@ GET /app/{app_id}/{sequence}/preflightchecks
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ReadPreflightChecksResponse release preflight checks|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ReadPreflightChecksResponse release preflight checks|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -297,10 +297,10 @@ _required_|Release identifier|integer(int64)|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -313,44 +313,44 @@ POST /app/{app_id}/{sequence}/promote
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
-|*Body*|*Body* +
-_required_|Archive parameters|<<_promotereleaseproperties_body,Body>>|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|**Body**|**Body** +
+__required__|Archive parameters|<<_promotereleaseproperties_body,Body>>
 |===
 
 [[_promotereleaseproperties_body]]
-*Body*
+**Body**
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*channels* +
-_required_||< string > array
-|*label* +
-_required_||string
-|*release_notes* +
-_required_||string
-|*required* +
-_required_||boolean
+|Name|Schema
+|**channels** +
+__required__|< string > array
+|**label** +
+__required__|string
+|**release_notes** +
+__required__|string
+|**required** +
+__required__|boolean
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*204*|On success, no payload returned|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -366,10 +366,10 @@ _required_||boolean
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -382,26 +382,26 @@ GET /app/{app_id}/{sequence}/properties
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ReadReleaseResponse release properties|<<_apprelease,AppRelease>>
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**200**|ReadReleaseResponse release properties|<<_apprelease,AppRelease>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -417,10 +417,10 @@ _required_|Release identifier|integer(int64)|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -433,30 +433,30 @@ GET /app/{app_id}/{sequence}/raw
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|ReadRawReleaseResponse contains the app config contents +
-*Headers* :  +
+|**200**|ReadRawReleaseResponse contains the app config contents +
+**Headers** :  +
 `Editable` (string) : True if the config is editable
 Required: true
 In: header.|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
 |===
 
 
@@ -472,10 +472,10 @@ In: header.|No Content
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -488,29 +488,29 @@ PUT /app/{app_id}/{sequence}/raw
 
 ==== Parameters
 
-[options="header", cols=".^1,.^3,.^10,.^4,.^2"]
+[options="header", cols=".^2,.^3,.^9,.^4"]
 |===
-|Type|Name|Description|Schema|Default
-|*Path*|*app_id* +
-_required_|App identifier|string|
-|*Path*|*sequence* +
-_required_|Release identifier|integer(int64)|
-|*Body*|*Body* +
-_required_|Config|< integer(uint8) > array|
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|**Body**|**Body** +
+__required__|Config|< integer (uint8) > array
 |===
 
 
 ==== Responses
 
-[options="header", cols=".^1,.^15,.^4"]
+[options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|*200*|UpdateRawReleaseResponse contains the app config contents|No Content
-|*400*|Returned on bad input|No Content
-|*401*|Return if the caller is not authorized|No Content
-|*403*|Returned if the caller does not have the needed permission|No Content
-|*404*|Returned on resource not found|No Content
-|*409*|Returned on a conflict|No Content
+|**200**|UpdateRawReleaseResponse contains the app config contents|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|**409**|Returned on a conflict|No Content
 |===
 
 
@@ -526,10 +526,10 @@ _required_|Config|< integer(uint8) > array|
 
 ==== Security
 
-[options="header", cols=".^3,.^4,.^13"]
+[options="header", cols=".^3,.^4"]
 |===
-|Type|Name|Scopes
-|*Unknown*|*<<_api_key,api_key>>*|
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
 |===
 
 
@@ -547,12 +547,12 @@ promoted.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Id* +
-_required_|The ID of the app|string
-|*Name* +
-_required_|The name of the app|string
-|*Slug* +
-_required_|A unique slug for the app|string
+|**Id** +
+__required__|The ID of the app|string
+|**Name** +
+__required__|The name of the app|string
+|**Slug** +
+__required__|A unique slug for the app|string
 |===
 
 
@@ -565,43 +565,43 @@ release in the channel.
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*Adoption* +
-_optional_|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
-|*Description* +
-_required_|Description that will be shown during license installation|string
-|*Id* +
-_required_|The ID of the channel|string
-|*LicenseCounts* +
-_optional_|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
-|*Name* +
-_required_|The name of channel|string
-|*Position* +
-_optional_|The position for which the channel occurs in a list|integer(int64)
-|*ReleaseLabel* +
-_optional_|The label of the current release sequence|string
-|*ReleaseNotes* +
-_optional_|Release notes for the current release sequence|string
-|*ReleaseSequence* +
-_optional_|A reference to the current release sequence|integer(int64)
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
 |===
 
 
 [[_apprelease]]
 == AppRelease
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*Config* +
-_optional_||string
-|*CreatedAt* +
-_optional_||<<_time,Time>>
-|*Editable* +
-_optional_||boolean
-|*EditedAt* +
-_optional_||<<_time,Time>>
-|*Sequence* +
-_optional_||integer(int64)
+|Name|Schema
+|**Config** +
+__optional__|string
+|**CreatedAt** +
+__optional__|<<_time,Time>>
+|**Editable** +
+__optional__|boolean
+|**EditedAt** +
+__optional__|<<_time,Time>>
+|**Sequence** +
+__optional__|integer (int64)
 |===
 
 
@@ -613,22 +613,22 @@ AppReleaseInfo represents an app release
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|*ActiveChannels* +
-_optional_|The active channels|< <<_appchannel,AppChannel>> > array
-|*AppId* +
-_optional_|The application ID|string
-|*CreatedAt* +
-_optional_|The time at which the release was created|<<_time,Time>>
-|*Editable* +
-_optional_|If the release is editable|boolean
-|*EditedAt* +
-_optional_|The last time at which the release was changed|<<_time,Time>>
-|*PreflightChecks* +
-_optional_|Release preflight checks|< <<_preflightcheck,PreflightCheck>> > array
-|*Sequence* +
-_optional_|The app sequence number|integer(int64)
-|*Version* +
-_optional_|The vendor supplied version|string
+|**ActiveChannels** +
+__optional__|The active channels|< <<_appchannel,AppChannel>> > array
+|**AppId** +
+__optional__|The application ID|string
+|**CreatedAt** +
+__optional__|The time at which the release was created|<<_time,Time>>
+|**Editable** +
+__optional__|If the release is editable|boolean
+|**EditedAt** +
+__optional__|The last time at which the release was changed|<<_time,Time>>
+|**PreflightChecks** +
+__optional__|Release preflight checks|< <<_preflightcheck,PreflightCheck>> > array
+|**Sequence** +
+__optional__|The app sequence number|integer (int64)
+|**Version** +
+__optional__|The vendor supplied version|string
 |===
 
 
@@ -637,21 +637,21 @@ _optional_|The vendor supplied version|string
 ChannelAdoption represents the versions that licenses are on in the channel
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*current_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*current_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*other_version_count_all* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_active* +
-_optional_||< string, integer(int64) > map
-|*previous_version_count_all* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
 |===
 
 
@@ -660,38 +660,38 @@ _optional_||< string, integer(int64) > map
 LicenseCounts is a struct to hold license count information
 
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*active* +
-_optional_||< string, integer(int64) > map
-|*airgap* +
-_optional_||< string, integer(int64) > map
-|*inactive* +
-_optional_||< string, integer(int64) > map
-|*total* +
-_optional_||< string, integer(int64) > map
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
 |===
 
 
 [[_preflightcheck]]
 == PreflightCheck
 
-[options="header", cols=".^3,.^11,.^4"]
+[options="header", cols=".^3,.^4"]
 |===
-|Name|Description|Schema
-|*Category* +
-_optional_||string
-|*CheckName* +
-_optional_||string
-|*CheckValue* +
-_optional_||string
-|*IsRequired* +
-_optional_||boolean
-|*Scheduler* +
-_optional_||string
-|*Score* +
-_optional_||string
+|Name|Schema
+|**Category** +
+__optional__|string
+|**CheckName** +
+__optional__|string
+|**CheckValue** +
+__optional__|string
+|**IsRequired** +
+__optional__|boolean
+|**Scheduler** +
+__optional__|string
+|**Score** +
+__optional__|string
 |===
 
 
@@ -722,7 +722,7 @@ Location. Therefore, Time values should not be used as map or database keys
 without first guaranteeing that the identical Location has been set for all
 values, which can be achieved through use of the UTC or Local method.
 
-_Type_ : object
+__Type__ : object
 
 
 
