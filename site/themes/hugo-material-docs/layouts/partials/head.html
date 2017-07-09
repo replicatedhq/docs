@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/temporary.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/palettes.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/swagger.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ with .Site.Params.highlight_css }}{{ . }}{{ else }}stylesheets/highlight/highlight.css{{ end }}">
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
 
     {{/* set default values if no custom ones are defined */}}
@@ -70,17 +69,6 @@
     {{ end }}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
-    <script type="text/javascript">
-    docsearch({
-      apiKey: '<API_KEY>',
-      indexName: 'replicated-docs',
-      inputSelector: '#search-input',
-      algoliaOptions: {
-        hitsPerPage: 5
-      }
-    });
-    </script>
 
   </head>
   <body class="{{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">
