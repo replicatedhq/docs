@@ -11,6 +11,8 @@ echo "HUGO_BASEURL" $HUGO_BASEURL
 
 HUGO=/usr/bin/hugo
 
+$HUGO version
+
 while [ true ]
 do
     if [[ $HUGO_WATCH != 'false' ]]; then

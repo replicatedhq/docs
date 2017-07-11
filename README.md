@@ -1,7 +1,14 @@
 # Replicated Documentation Site
 
 ## Contributing
+
 Contributions are welcome and encouraged!  We have published a [Contributing Guide](CONTRIBUTING.md) to define a writing style to use.
+
+## Dependencies
+
+- Asciidoctor
+- Pygments
+- Hugo v0.19+
 
 ## Running locally
 
@@ -15,13 +22,9 @@ The docs site will be available at http://localhost:5913/docs/getting-started/
 
 ## Via Hugo on OSX
 
-1. Install v0.16 of Hugo
+1. Install Hugo
 ```bash
-cd /tmp
-wget https://github.com/spf13/hugo/releases/download/v0.16/hugo_0.16_osx-64bit.tgz
-tar xzf hugo_0.16_osx-64bit.tgz
-rm -r hugo_0.16_osx-64bit.tgz
-mv hugo /usr/local/bin/hugo16
+brew install hugo
 ```
 1. Install asciidoctor
 ```bash
@@ -36,5 +39,5 @@ make SOURCE="https://api.staging.replicated.com/vendor" vendordocs
 ```
 1. Run Hugo server
 ```bash
-cd site/ && hugo16 server -w --config ../hugo-config/docs.toml --contentDir ../docs/
+hugo server -w --source site/
 ```

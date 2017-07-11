@@ -1,0 +1,12 @@
+{{ define "content" }}
+    {{ .Content }}
+
+    <div style="border-top:1px solid rgba(0, 0, 0, .12);margin-top:25px;">
+    {{ range where .Data.Pages.ByWeight ".Params.categories" "intersect" .Params.categories }}
+        {{ if .Description }}
+            {{ .Render "summary" }}
+        {{ end }}
+    {{ end }}
+    </div>
+    <div style="clear:both"></div>
+{{ end }}

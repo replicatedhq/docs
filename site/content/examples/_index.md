@@ -1,0 +1,13 @@
++++
+date = "2016-07-03T04:02:20Z"
+title = "Replicated Examples"
+description = "A series of sample Replicated YAML files that display how to leverage various features of Replicated."
+weight = "401"
+categories = [ "Examples" ]
+
+[next]
+    file = "counter-app.md"
+    title = "Counter App Example"
++++
+
+A series of sample Replicated YAML files that display how to leverage various features of Replicated.

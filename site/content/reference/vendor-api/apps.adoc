@@ -1,0 +1,316 @@
++++
+date = "2016-07-03T04:02:20Z"
+title = "Manage Apps"
+type = "swagger"
+description = "Create, update and delete apps."
+keywords= "applications, apps"
+weight = "510"
+categories = [ "Vendor API" ]
++++
+= Vendor API V1
+
+
+[[_overview]]
+== Overview
+Apps documentation
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 1.0.0
+
+
+
+
+[[_paths]]
+== Paths
+
+[[_createapp]]
+=== Creates an app with the specified parameters.
+....
+POST /app
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**Body** +
+__optional__|App create parameters.|<<_createapp_body,Body>>
+|===
+
+[[_createapp_body]]
+**Body**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**name** +
+__required__|Name of the app that is to be created.|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|AppResponse represents an app.|<<_app,App>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* apps
+* team
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_deleteapp]]
+=== Deletes an app by ID.
+....
+DELETE /app/{app_id}
+....
+
+
+==== Description
+Requires secondary authentication in request params.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__optional__|User authenticate parameters|<<_deleteapp_body,Body>>
+|===
+
+[[_deleteapp_body]]
+**Body**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**password** +
+__required__|Password of the user|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* apps
+* team
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_listapps]]
+=== Lists all apps and their channels.
+....
+GET /apps
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|ListAppsResponse represents a list of apps and the corresponding channels.|< <<_appandchannels,AppAndChannels>> > array
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* apps
+* team
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+
+
+[[_definitions]]
+== Definitions
+
+[[_app]]
+=== App
+An app belongs to a team. It contains channels onto which releases can be
+promoted.
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Id** +
+__required__|The ID of the app|string
+|**Name** +
+__required__|The name of the app|string
+|**Slug** +
+__required__|A unique slug for the app|string
+|===
+
+
+[[_appandchannels]]
+=== AppAndChannels
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**App** +
+__required__|The app|<<_app,App>>
+|**Channels** +
+__required__|Channels of the app|< <<_appchannel,AppChannel>> > array
+|===
+
+
+[[_appchannel]]
+=== AppChannel
+An app channel belongs to an app. It contains references to the top (current)
+release in the channel.
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
+|===
+
+
+[[_channeladoption]]
+=== ChannelAdoption
+ChannelAdoption represents the versions that licenses are on in the channel
+
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
+|===
+
+
+[[_licensecounts]]
+=== LicenseCounts
+LicenseCounts is a struct to hold license count information
+
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
+|===
+
+
+
+
+

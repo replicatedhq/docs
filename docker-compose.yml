@@ -8,7 +8,7 @@ services:
       - "8080:8080"
     volumes:
       - ./.traefik.toml:/etc/traefik/traefik.toml
-      - ./logs:/logs
+      - ./.local/logs:/logs
 
   replicated-docs:
     image: quay.io/replicated/replicated-docs:unstable
@@ -24,8 +24,6 @@ services:
       - HUGO_BASEURL=http://localhost:5913/docs/
     volumes:
       - ./site:/src
-      - ./docs:/src/content
-      - ./hugo-config/docs.toml:/src/config.toml
       - replicatedctl:/src/content/reference/replicatedctl:ro
 volumes:
   replicatedctl:
