@@ -19,7 +19,7 @@ test:
     # Generate prod site
     - make SOURCE="https://api.replicated.com/vendor" vendordocs
     - docker run --rm -v $HOME/replicated-docs:/host quay.io/replicated/replicated-docs:${REPLICATED_DOCS_TAG:-unstable} cp -r /usr/src/docs/replicatedctl /host/replicatedctl
-    - docker run -v $HOME/docs/site:/src -v $HOME/docs/docs:/src/content -v $HOME/replicated-docs/replicatedctl:/src/content/reference/replicatedctl:ro -v $HOME/docs/hugo-config/docs.toml:/src/config.toml -v $HOME/docs/output:/output -e HUGO_BASEURL=https://www.replicated.com/docs docs:${CIRCLE_SHA1:0:7}
+    - docker run -v $HOME/docs/site:/src -v $HOME/docs/docs:/src/content -v $HOME/replicated-docs/replicatedctl:/src/content/reference/replicatedctl:ro -v $HOME/vendor-cli-docs/vendor-cli:/src/content/reference/vendor-cli:ro -v $HOME/docs/hugo-config/docs.toml:/src/config.toml -v $HOME/docs/output:/output -e HUGO_BASEURL=https://www.replicated.com/docs docs:${CIRCLE_SHA1:0:7}
     - cd $HOME/docs && docker build -t quay.io/replicatedcom/docs:production-${CIRCLE_SHA1:0:7} -f $HOME/docs/Dockerfiles/Dockerfile .
 
     # Cleanup
