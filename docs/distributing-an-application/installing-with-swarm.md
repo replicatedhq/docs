@@ -11,7 +11,7 @@ aliases = [
 We distribute an installation script that can be used to install Replicated into a new or existing Swarm cluster. The cluster does not have to be created at this point, the Replicated install script can install Docker Engine and provision a new Swarm cluster.
 
 {{< note title="Swarm YAML Required" >}}
-The Swarm scheduler requires a new YAML format as discussed here: [Replicated with Docker Swarm](/packaging-an-application/docker-swarm/). If you intend to use both Replicated and Swarm schedulers, it is recommended to create a separate application in the [Vendor Portal](https://vendor.replicated.com) that will be your Swarm version.
+The Swarm scheduler requires a new YAML format as discussed here: [Replicated with Docker Swarm](/packaging-an-application/docker-swarm/). Only one scheduler, Replicated or Swarm, can be used in any given installation and switching between schedulers is not supported.
 {{< /note >}}
 
 ## Basic install (recommended):
