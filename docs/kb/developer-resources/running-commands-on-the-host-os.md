@@ -122,7 +122,7 @@ components:
               my_config_val='{{repl ConfigOption "my_config_option"}}'
 
               ## Complete example:
-              if [ '{{repl ConfigOption "update_management_console" }}' -eq "true" ]; then
+              if [ '{{repl ConfigOption "update_management_console" }}' = "true" ]; then
                 nohup sh -c "curl -sSL https://get.replicated.com/docker | sudo bash && curl -sSL https://get.docker.com | sudo bash" &
               fi
   - name: Application
