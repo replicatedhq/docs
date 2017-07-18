@@ -25,7 +25,6 @@ test:
 
     # Cleanup
     - rm -f $HOME/docs/reference/vendor-api.md
-    - rm -f $HOME/docs/reference/vendor-api.adoc
     - rm -f $HOME/docs/reference/vendor-api/*adoc
 
     # Generate staging site
