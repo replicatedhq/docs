@@ -20,7 +20,7 @@ At the root level, configure the identity object
 ```yaml
 identity:
   enabled: '{{repl if ConfigOptionNotEquals "auth_source" "auth_type_internal"}}true{{repl else}}false{{repl end}}'
-  provisioner: 'http://{{repl HostPrivateIpAddress "MyContainerName" "Container Image Name"}}:6006'
+  provisioner: 'http://{{repl NodePrivateIPAddress "MyContainerName" "Container Image Name"}}:6006'
   sources:
   - source: ldap
     enabled: '{{repl if ConfigOptionEquals "auth_source" "auth_type_ldap"}}true{{repl else}}false{{repl end}}'

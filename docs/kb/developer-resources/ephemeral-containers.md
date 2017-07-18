@@ -72,7 +72,7 @@ Finally, we listen for this container to stop, and fire an event to start the ap
     ephemeral: true
     env_vars:
       - name: DB_URL
-        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl HostPrivateIpAddress \"db\" \"postgres\" }}:5432/pythonapp"
+        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl NodePrivateIPAddress \"db\" \"postgres\" }}:5432/pythonapp"
     cmd: '["python", "manage.py", "db", "upgrade"]'
     publish_events:
     - name: db migration complete
@@ -97,7 +97,7 @@ will start serving the web site.
     version: 1.4.2
     env_vars:
       - name: DB_URL
-        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl HostPrivateIpAddress \"db\" \"postgres\" }}:5432/pythonapp"
+        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl NodePrivateIPAddress \"db\" \"postgres\" }}:5432/pythonapp"
 ```
 
 If this release contains a **required** migration and the migration is not going to be present in future

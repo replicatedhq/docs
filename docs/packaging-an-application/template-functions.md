@@ -328,7 +328,7 @@ Returns the public IP address of the host on which the current container instanc
 ```yml
 env_vars:
 - name: CASSANDRA_ADDRESS_PUBLIC
-  static_val: "{{repl ThisNodePublicIPAddress }}"
+  static_val: '{{repl ThisNodePublicIPAddress }}'
 ```
 Replaces ThisHostPublicIpAddress which is deprecated.
 
@@ -340,7 +340,7 @@ Returns the private IP address of the host on which the current container instan
 ```yml
 env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
-  static_val: "{{repl ThisNodePrivateIPAddress }}"
+  static_val: '{{repl ThisNodePrivateIPAddress }}'
 ```
 Replaces ThisHostPrivateIpAddress which is depreciated.
 
@@ -379,7 +379,7 @@ Returns the current timestamp as an RFC3339 formatted string.
 ```yml
 env_vars:
 - name: START_TIME
-  static_val: "{{repl Now }}"
+  static_val: '{{repl Now }}'
 ```
 
 {{< template_function name="NowFmt" replicated="true" kubernetes="true" swarm="true" >}}
@@ -390,7 +390,7 @@ Returns the current timestamp as a formatted string. See Golang's time formattin
 ```yml
 env_vars:
 - name: START_DATE
-  static_val: "{{repl Now "20060102" }}"
+  static_val: '{{repl Now "20060102" }}'
 ```
 
 {{< template_function name="TrimSpace" replicated="true" kubernetes="true" swarm="true" >}}
