@@ -45,7 +45,7 @@ The properties section includes definitions of some optional (but recommended) a
 
 ```yml
 properties:
-  app_url: http://{{repl ThisHostPrivateIpAddress }}
+  app_url: http://{{repl ThisNodePrivateIPAddress }}
   console_title: My Enterprise Application
 ```  
 
@@ -141,7 +141,7 @@ state:
   ready:
     command: http_status_code
     args:
-    - 'http://{{repl HostPublicIpAddress "My Component" "my-web-container" }}/ping'
+    - 'http://{{repl NodePublicIPAddress "My Component" "my-web-container" }}/ping'
     - '200'
     - '5'
     timeout: 900

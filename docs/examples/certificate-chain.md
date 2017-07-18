@@ -195,10 +195,10 @@ components:
     # We use the 'extra_hosts' directive here to define a hostname which
     # will satisfy the certificate validation process.
     # The IP address of the host with the server container is returned
-    # dynamically by the 'HostPrivateIpAddress' template function.
+    # dynamically by the 'NodePrivateIPAddress' template function.
     extra_hosts:
     - hostname: server.replexample.int
-      address: '{{repl HostPrivateIpAddress "ComponentOne" "repljoe/ca_cert_example_server" }}'
+      address: '{{repl NodePrivateIPAddress "ComponentOne" "repljoe/ca_cert_example_server" }}'
     customer_files:
     - name: newcert_ca
       filename: /opt/ca.pem

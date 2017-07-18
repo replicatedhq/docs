@@ -6,26 +6,26 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-Most customers will set up a subdomain & DNS for their instance of your application. During 
-setup you can allow them to identify their hostname and provide custom SSL certs for their 
-instance (as shown below). The YAML below will allow the user to determine if they’d like 
-to proceed with the SSL certs provided during the initial setup of the management console, 
-provide their own, or use self-signed certs that are generated with the cmd in the `cmds` 
-section. The YAML also writes the active file to the nginx container as a customer file. 
-for these fields (and ‘test’ buttons for testing 
-[hostname resolution](/packaging-an-application/test-procs/#resolve-host) 
-& [cert verification](/packaging-an-application/test-procs/#certificate-verification) 
+Most customers will set up a subdomain & DNS for their instance of your application. During
+setup you can allow them to identify their hostname and provide custom SSL certs for their
+instance (as shown below). The YAML below will allow the user to determine if they’d like
+to proceed with the SSL certs provided during the initial setup of the management console,
+provide their own, or use self-signed certs that are generated with the cmd in the `cmds`
+section. The YAML also writes the active file to the nginx container as a customer file.
+for these fields (and ‘test’ buttons for testing
+[hostname resolution](/packaging-an-application/test-procs/#resolve-host)
+& [cert verification](/packaging-an-application/test-procs/#certificate-verification)
 is also provided below.
 
 ![Config Screen TLS](/static/config-tls.png)
 
 ```yml
-# The meta-data about your application 
+# The meta-data about your application
 replicated_api_version: 1.3.0
 properties:
   app_url: http://{{repl ConfigOption "hostname" }}
   console_title: Flask App
-  
+
 # Setting's screen markup
 config:
 - name: hostname
@@ -73,7 +73,7 @@ config:
       value_at: 1
     type: file
     affix: right
-    
+
 #
 # This section uses a flask image from google and nginx image to create a hello world website.
 #    
@@ -108,7 +108,7 @@ components:
       contents: |        
         upstream web-server {
           # Replace this line with your webserver
-          server {{repl HostPrivateIpAddress "webserver" "google/python-hello"}}:8080 fail_timeout=0;
+          server {{repl NodePrivateIPAddress "webserver" "google/python-hello"}}:8080 fail_timeout=0;
         }
 
         server {
