@@ -28,7 +28,7 @@ state:
   ready:
     command: tcp_port_accept
     args:
-    - '{{repl HostPublicIpAddress "Elasticsearch" "getelk/elasticsearch" }}'
+    - '{{repl NodePublicIPAddress "Elasticsearch" "getelk/elasticsearch" }}'
     - "9200"
 backup:
   enabled: true

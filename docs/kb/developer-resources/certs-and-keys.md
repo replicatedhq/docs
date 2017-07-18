@@ -108,7 +108,7 @@ components:
       contents: |
         upstream web-server {
           # Replace this line with your webserver
-          server {{repl HostPrivateIpAddress "webserver" "google/python-hello"}}:8080 fail_timeout=0;
+          server {{repl NodePrivateIPAddress "webserver" "google/python-hello"}}:8080 fail_timeout=0;
         }
 
         server {
