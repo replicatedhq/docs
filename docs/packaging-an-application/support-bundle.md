@@ -47,7 +47,7 @@ support:
         kubernetes:
           selector:
             run: my-nginx
-    commands:
+  commands:
     - filename: access_last_1000.log
       command: [tail, -n1000, /var/log/nginx/access.log]
       source:
