@@ -6,8 +6,8 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-[Commands](/packaging-an-application/commands/) are an important part of the 
-Replicated ecosystem for bootstrapping a configuration screen to help streamline the 
+[Commands](/packaging-an-application/commands/) are an important part of the
+Replicated ecosystem for bootstrapping a configuration screen to help streamline the
 installation of your application on-premise.
 
 Important concepts to understand when using `cmds`:
@@ -29,7 +29,7 @@ Important concepts to understand when using `cmds`:
 
 ## Step 1: Define my `cmds`.
 
-```yml
+```yaml
 cmds:
 - name: host_ip
   cmd: get_my_public_ip_address
@@ -42,7 +42,7 @@ cmds:
 
 ## Step 2: Call my cmds from config section.
 
-```yml
+```yaml
 config:
 - name: App
   title: App Configuration

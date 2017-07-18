@@ -17,7 +17,7 @@ This is an example of a general-purpose Replicated app definition. You can use t
 
 [View the example-counter project on Github](https://github.com/replicatedcom/example-counter)
 
-```yml
+```yaml
 # My Counter App version 1.0
 ---
 replicated_api_version: 1.0.0

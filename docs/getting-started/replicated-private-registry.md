@@ -60,7 +60,7 @@ When deploying an application to a [Kubernetes](/packaging-an-application/kubern
 
 For example:
 
-```yml
+```yaml
      spec:
        containers:
        - name: frontend
