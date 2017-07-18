@@ -20,7 +20,7 @@ For each container we must supply some basic information. First the source from 
 party private or public registry (ie Docker Hub Registry, Quay.io, or your own public registry) or Replicated's private vendor registry
 (`replicated`). We must then specify the name of the image (`image_name`) and the tag (`version`).
 
-```yml
+```yaml
 components:
 - name: DB
   containers:
@@ -43,7 +43,7 @@ include the image name, not the hostname or namespace. The `when` option allows 
 ## Privileged
 In some advanced scenarios, we may need to run our container in privileged mode or specify a hostname to be set in the container. This is possible in the YAML by adding a couple of optional tags.
 
-```yml
+```yaml
   - source: public
     image_name: redis
     ...
@@ -54,7 +54,7 @@ In some advanced scenarios, we may need to run our container in privileged mode 
 ## Ephemeral
 Sometimes we may want a container that is not meant to continue running for the lifetime of the application. In this case we can mark that container as ephemeral.
 
-```yml
+```yaml
   - source: replicated
     image_name: startup
     ...
@@ -70,7 +70,7 @@ Replicated supports the following constraint parameters:
 
 *note: Replicated requires you to specify entire byte count as shown below*
 
-```yml
+```yaml
   - source: replicated
     image_name: redis
     ...
@@ -82,7 +82,7 @@ Replicated supports the following constraint parameters:
 ## CMD
 Next we can optionally define a container CMD to execute when running our container.
 
-```yml
+```yaml
   - source: public
     image_name: redis
     ...
@@ -94,7 +94,7 @@ The next section contains inline configuration files that we can supply to our c
 container with the specified path (filename) and contents. You may optionally specify an octal permissions mode as a string (file_mode),
 and/or the numeric uid of a user & group (file_owner) to be applied to the resulting file in the container.
 
-```yml
+```yaml
     config_files:
     - filename: /elasticsearch/config/elasticsearch.yml
       file_mode: "0644"
@@ -115,7 +115,7 @@ time the file changes (we cache the remote file to remove this external dependen
 either need to be public or you will need to connect your Github account via the App Settings link of the Replicated Vendor Portal.
 (Supports config files only)
 
-```yml
+```yaml
     config_files:
     - filename: /elasticsearch/config/elasticsearch.yml
       source: github
@@ -131,7 +131,7 @@ either need to be public or you will need to connect your Github account via the
 It can also be helpful to request a customer supplied file. This file can be referenced by the name parameter and will be created within
 the container at the specified path (filename).
 
-```yml
+```yaml
     customer_files:
     - name: logstash_input_lumberjack_cert_file
       filename: /opt/certs/logstash-forwarder.crt
@@ -146,7 +146,7 @@ the container at the specified path (filename).
 ## Environment Variables
 Next we have the option of specifying environment variables. There is also a flag provided to exclude anything secret from the support bundle.
 
-```yml
+```yaml
   env_vars:
     - name: AWS_ACCESS_KEY_ID
       static_val: '{{repl ConfigOption "logstash_input_sqs_aws_access_key" }}'
@@ -163,7 +163,7 @@ Having environment variables in Support Bundles can be invaluable for troublesho
 ## Ports
 We can use the ports property to expose a container's port (private_port) and bind it to the host (public_port). The when property allows us to conditionally expose and bind that port when some prior condition is satisfied. Use the interface property to force the public port to be bound on a specific network interface. The public_port property is optional as of {{< version version="2.8.0" >}} allowing a port to be exposed but not bound.
 
-```yml
+```yaml
     ports:
     - private_port: "80"
       public_port: "80"
@@ -200,7 +200,7 @@ Optional properties:
 - `is_ephemeral` {{< version version="2.3.5" >}} Ephemeral volumes do not prevent containers from being re-allocated across nodes. Ephemeral volumes will also be excluded from snapshots.
 - `is_excluded_from_backup` exclude this volume from backup if Snapshots enabled.
 
-```yml
+```yaml
     volumes:
     - host_path: /dbdata
       container_path: /var/lib/mysql
@@ -213,7 +213,7 @@ Optional properties:
 
 Replicated supports volumes_from to attach several mounts from a colocated container.
 
-```yml
+```yaml
   - source: public
     ...
     name: datastore
@@ -240,7 +240,7 @@ We can configure logs for containers by specifying the max number of logs files 
 the size, k for kilobytes, m for megabytes or g for gigabytes. Log settings at the component level are inherited by the container and will be
 used unless overwritten.
 
-```yml
+```yaml
 components:
   - name: sample-agent
     logs:
@@ -258,7 +258,7 @@ Finally, we have the option to specify additional files as part of the On-Prem S
 as well as output of commands executed within the container.
 *Note: Every individual command will have 30 seconds to execute and then subsequently timeout.*
 
-```yml
+```yaml
     support_files:
     - filename: /var/log/nginx/access.log
     - filename: /var/log/nginx/error.log
@@ -271,7 +271,7 @@ as well as output of commands executed within the container.
 
 Keep in mind that support commands are not templated. If a support command needs to access templated variables, create a config file and execute that file from a support command.
 
-```yml
+```yaml
   config_files:
   - filename: /scratch/ping.sh
     contents: |
@@ -286,14 +286,14 @@ Optionally, containers can be configured to be restarted automatically. Currentl
 If the policy is not specified, the container will never be restarted. This behavior is equivalent to this setting:
 
 ### Never restart
-```yml
+```yaml
   restart:
     policy: never
 ```
 Specifying the following policy will always restart the container regardless of the exit code.
 
 ### Always restart
-```yml
+```yaml
   restart:
     policy: always
 ```
@@ -301,7 +301,7 @@ Specifying the following policy will cause the container to be restarted with it
 container will be restarted indefinitely.
 
 ### Restart on error only
-```yml
+```yaml
   restart:
     policy: on-failure
     max: 1000
@@ -356,32 +356,32 @@ You may also limit the resources used by your containers with the memory, cpusha
 
 ### Memory and Swap Limit
 The amount of memory or swap for your container.  The format is number|unit where unit may be one of b, k, m or g.  By default there is no memory or swap limit and your container can use as much as needed.  You can learn more at [User Memory Constraints documentation](https://docs.docker.com/engine/reference/run/#/user-memory-constraints).
-```yml
+```yaml
   memory_limit: 500m
   memory_swap_limit: 1g
 ```
 
 ### CPU Shares
 Using CPU shares you can change the access to the servers CPU at busy times.  When non CPU-intensive processes are other containers may use extra CPU time.  The default is 1024 and by increasing or decreasing the value on a container you change how the weighted CPU access is granted across all running containers.  You can learn more at [CPU Share Constraints documentation](https://docs.docker.com/engine/reference/run/#/cpu-share-constraint).
-```yml
+```yaml
   cpu_shares: 2048
 ```
 
 ### Network Mode
 Network mode supports bridge, host, container or none.  Learn more about Docker's network modes at [Network Settings](https://docs.docker.com/engine/reference/run/#/network-settings).
-```yml
+```yaml
   network_mode: host
 ```
 
 ### Security Options
 With security options you can use Docker security with existing well know systems such as apparmor.
-```yml
+```yaml
   security_options:
   - apparmor=unconfined
 ```
 
 When specifying your security options you can use template functions and any blank security option is allowed and will be filtered out by Replicated.
-```yml
+```yaml
   security_options:
     - '{{repl if ConfigOptionEquals "enable_unconfined_apparmor_profile" "1"}}apparmor=unconfined{{repl end}}'
 ```
@@ -390,7 +390,7 @@ Learn more about Docker's [security configuration](https://docs.docker.com/engin
 
 ### Privileged Mode and Security Capability
 Security capabilities and access to devices are limited for containers by default, however you can add security capabilities with the privileged and security_cap_add option.
-```yml
+```yaml
     privileged: true
     security_cap_add:
     - SYS_MODULE
@@ -400,19 +400,19 @@ Learn more about [Security Capabilities](https://docs.docker.com/engine/referenc
 
 ### Allocate TTY
 For interactive processes you can allocate a TTYL with allocate_tty.  Learn more by reading about container process [Foreground](https://docs.docker.com/engine/reference/run/#/foreground).
-```yml
+```yaml
   allocate_tty: true
 ```
 
 ### Hostname
 Sets the hostname inside of the container.  See the network host section under [Network settings](https://docs.docker.com/engine/reference/run/#/network-settings).
-```yml
+```yaml
   hostname: anxiety-closet
 ```
 
 ### Extra Hosts
 Add extra hostname mappings with hostname, address and an optional when field.  See [extra_hosts](https://docs.docker.com/compose/compose-file/#extrahosts).
-```yml
+```yaml
   extra_hosts:
   - hostname: mysql
     address: 10.0.1.16
@@ -423,7 +423,7 @@ Add extra hostname mappings with hostname, address and an optional when field.  
 ### Named Containers
 The name argument sets the name of your running container. It is provided as a convenience method during development when you may want to connect to your containers and view logs. References to the container in template functions should continue to the use image name.  Do not use on containers which run concurrently as the second container will fail to start due to a name conflict.
 
-```yml
+```yaml
   name: redis
 ```
 
@@ -435,14 +435,14 @@ entrypoint option.
 Learn more about [overriding entrypoints](https://docs.docker.com/engine/reference/builder/#/entrypoint) and how the
 [cmd and entrypoint options](https://docs.docker.com/engine/reference/builder/#/understand-how-cmd-and-entrypoint-interact) work together.  Entrypoint takes an array of strings.
 
-```yml
+```yaml
     entrypoint: ["redis", "-p", "6380"]
 ```
 
 ### Ulimits
 {{< version version="2.5.0" >}} Since setting ulimit settings in a container requires extra privileges not available in the default container, you can set these using the ulimits property of the container. Learn more about ulimits [here](https://docs.docker.com/engine/reference/commandline/run/#/set-ulimits-in-container---ulimit).
 
-```yml
+```yaml
     ulimits:
     - name: nofile
       soft: 1024
@@ -453,6 +453,6 @@ Learn more about [overriding entrypoints](https://docs.docker.com/engine/referen
 
 {{< version version="2.1.0" >}} Pid mode lets you specify the process namespace for your container. By default each container has its own space and by declaring a `pid_mode` you can see the processes of another container or host. See [PID settings](https://docs.docker.com/engine/reference/run/#pid-settings---pid) to learn more.
 
-```yml
+```yaml
     pid_mode: host
 ```

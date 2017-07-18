@@ -57,7 +57,7 @@ When your application has a Settings page, you can configure required options au
 the `ImportSettingsFrom` field in `/etc/replicated.conf`. This file is in JSON format and uses the
 `config_item` names from the YAML as keys. For example, if your YAML contained the following config section:
 
-```yml
+```yaml
 config:
 - name: general
   title: General Settings

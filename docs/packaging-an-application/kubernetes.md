@@ -40,7 +40,7 @@ There is limited support for preflight checks as of {{< version version="2.9.0" 
 ### Admin Commands
 Admin commands are supported on Kubernetes. Replicated uses Kubernetes selectors to identify the target pod in which to run the admin command. If multiple pods match the selector then replicated will choose a random pod in which to run the command. Specifying a container is optional as well. If no container is specified the first in the container in the pod will be chosen. See below for an example command.
 
-```yml
+```yaml
 admin_commands:
 - alias: redis-sadd
   command: [redis-cli, sadd]
@@ -75,7 +75,7 @@ There are some additional [template functions](/packaging-an-application/templat
 Replicated supports runtime secrets through the use of [template functions](/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](/packaging-an-application/config-screen/) on customizing the Replicated Admin Console settings page. See below for an example of creating a secret in your application.
 
 For example:
-```yml
+```yaml
 # kind: replicated
 ...
 config:

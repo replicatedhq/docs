@@ -10,7 +10,7 @@ If your application leverages the GitHub API, each customer instance of your app
 
 ![Config GitHub](/static/config-github.png)
 
-```yml
+```yaml
 - name: github
   title: GitHub Integration
   description: Provide the location of your GitHub account

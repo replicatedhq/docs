@@ -29,30 +29,30 @@ Kubernetes is a popular cluster and orchestration tool when running Docker conta
 ## Replicated API Version
 At the top of the YAML file, regardless of the scheduler, there must be a Replicated API version. The current API version to use is {{<replicated_api_version_current >}}. Note: The [Changelog](https://release-notes.replicated.com/) tracks the API version.
 
-```yml
+```yaml
 replicated_api_version: {{< replicated_api_version_current >}}
-```  
+```
 
 ## App Basics
 The next section includes some basic information about your application release including the app name.
 
-```yml
+```yaml
 name: My Enterprise Application
-```  
+```
 
 ## Detailed App Properties Description
 The properties section includes definitions of some optional (but recommended) application properties. For a list of available properties see [Application Properties](/packaging-an-application/application-properties). You will notice the `{{repl` escape sequence. This invokes a Replicated [template function](/packaging-an-application/template-functions), which will be discussed in more detail soon.
 
-```yml
+```yaml
 properties:
   app_url: http://{{repl ThisNodePrivateIPAddress }}
   console_title: My Enterprise Application
-```  
+```
 
 ## Support Page
 Replicated supports displaying custom markdown content on the Support page of the admin console. This can be defined in the console_support_markdown key.
 
-```yml
+```yaml
 console_support_markdown: |
   Documentation for My Enterprise Application can be found [here](http://docs.my-enterprise-application.com).
 
@@ -113,7 +113,7 @@ monitors:
 ## Custom Metrics
 Regardless of the scheduler used, Replicated can also display [custom metrics](/packaging-an-application/custom-metrics/) sent from the running instance to the Admin Console by including the stats names in a custom_metrics key.
 
-```yml
+```yaml
 custom_metrics:
 - target: stats.gauges.myapp100.disk.*.*
   retention: "1s:10m,1m:20m,1h:30d"
@@ -123,7 +123,7 @@ custom_metrics:
   retention: "1s:7d"
   aggregation_method: "last"
   xfiles_factor: 0.6
-```  
+```
 
 ## Ready State
 (Note: The Ready State is only compatible with the Replicated scheduler. To learn how Replicated starts a Kubernetes application, see the detail in the [Kubernetes](/packaging-an-application/kubernetes) document).

@@ -16,7 +16,7 @@ The properties section of the YAML allows you to configure properties of the adm
 
 Below is an example of the properties section of an application config YAML.
 
-```yml
+```yaml
 properties:
   app_url: http://{{repl ConfigOption "hostname" }}
   logo_url: http://replicated.com/logo.png

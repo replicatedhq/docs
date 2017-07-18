@@ -27,7 +27,7 @@ Detailed information about `retention`, `aggregation_method`, and `xfiles_factor
 
 ### Example
 
-```yml
+```yaml
 custom_metrics:
 - target: stats.gauges.myapp100.disk.*.*
   retention: "1s:10m,1m:20m,1h:30d"
@@ -76,7 +76,7 @@ Colors can be specified using one of the standard web color formats:
 
 ### Example
 
-```yml
+```yaml
 monitors:
   cpuacct:
   - DB,redis
@@ -121,7 +121,7 @@ Because Graphite uses TCP and StatsD uses UDP, the same port number can be used 
 
 ### Example
 
-```yml
+```yaml
 graphite:
   port: 8899
 statsd:

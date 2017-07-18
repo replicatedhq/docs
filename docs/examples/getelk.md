@@ -16,7 +16,7 @@ url        = "/docs/examples/getelk"
 We've wrapped the ELK stack (Elasticsearch, Logstash and Kibana) in Replicated to be easy to configure, install and update. This is a complex example that uses much of the functionality of the Replicated config YAML.
 
 
-```yml
+```yaml
 replicated_api_version: "2.3.5"
 name: ELK
 console_support_markdown: |

@@ -19,7 +19,7 @@ is also provided below.
 
 ![Config Screen TLS](/static/config-tls.png)
 
-```yml
+```yaml
 # The meta-data about your application
 replicated_api_version: 1.3.0
 properties:
@@ -76,7 +76,7 @@ config:
 
 #
 # This section uses a flask image from google and nginx image to create a hello world website.
-#    
+#
 components:
 - name: webserver
   containers:
@@ -105,7 +105,7 @@ components:
     - filename: /opt/certs/server.cert
       contents: '{{repl if ConfigOptionEquals "mgmt_certs" "0" }}{{repl ConfigOptionData "ssl_cert_file"}}{{repl else}}{{repl ConsoleSetting "tls.cert.data"}}{{repl end}}'
     - filename: /etc/nginx/conf.d/default.conf
-      contents: |        
+      contents: |
         upstream web-server {
           # Replace this line with your webserver
           server {{repl NodePrivateIPAddress "webserver" "google/python-hello"}}:8080 fail_timeout=0;
@@ -134,7 +134,7 @@ components:
         }
 #
 # This cmd is used to generate the cert & key.
-#  
+#
 cmds:
 - name: ssl_cert
   cmd: cert
