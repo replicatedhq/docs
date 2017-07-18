@@ -123,6 +123,8 @@ A `textarea` can specify a `props` that will map into the HTML element directly.
     type: text
 ```
 
+## Properties
+
 ### `default` and `value`
 A default value will be applied to the ConfigOption template function when no value is
 specified. A default value provided via a command (default_cmd) is treated as ephemeral
@@ -146,7 +148,6 @@ in the settings section of the On-Prem Console.
     default: localhost
 ```
 
-## Properties
 ### `required`
 A required field will prevent the application from starting until it has a value.
 ```yaml
