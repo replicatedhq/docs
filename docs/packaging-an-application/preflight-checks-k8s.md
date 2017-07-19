@@ -56,7 +56,6 @@ custom_requirements:
     message: File /etc/vendor-license does not exists.
     condition:
       status_code: 1
-    # else error
   command:
     id: pod
     data:
@@ -89,3 +88,17 @@ command:
     pod_name: vendor-license
     nodeSelector: database
 ```
+
+## Run Globally
+
+Sometimes, it can be valuable to run a preflight check on every node. To do so, set `global: true`:
+
+```yaml
+command:
+  id: pod
+  data:
+    pod_name: check-disk-space
+    global: true
+```
+
+If `global` is set to false, a single instance of the pod is scheduled in the cluster. This can be useful for performing preflight checks on cluster-level information.
