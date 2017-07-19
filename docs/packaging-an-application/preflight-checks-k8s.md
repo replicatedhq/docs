@@ -37,3 +37,55 @@ kubernetes:
     total_cores: 3
     total_memory: 11.25GB
 ```
+
+## Custom Preflight Checks
+
+As of 2.11.0, Replicated supports custom preflight checks on the scheduler. To define a custom preflight check, create a `custom_requirements` section in the Replicated spec:
+
+```yaml
+custom_requirements:
+- id: license-file-exists
+  message: License file exists
+  details: The vendor license file must exist on the host at /etc/vendor-license
+  results:
+  - status: success
+    message: File /etc/vendor-license exists.
+    condition:
+      status_code: 0
+  - status: error
+    message: File /etc/vendor-license does not exists.
+    condition:
+      status_code: 1
+    # else error
+  command:
+    id: pod
+    data:
+      pod_name: vendor-license
+      global: true
+```
+
+In this example, we define a pod name of `vendor-license`, which we must also define as part of the full YAML spec. Preflight Kubernetes pods are defined by prepending `#kind: preflight-kubernetes` to each preflight Kubernetes resource definition, for example:
+
+```yaml
+# kind: preflight-kubernetes
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vendor-license
+spec:
+  - image: ubuntu:trusty
+    command: ["echo"]
+    args: ["Hello World"]
+```
+
+## Node Targeting
+
+Custom preflight checks can be targeted using node labels and node affinities. To target a pod for a custom preflight check, use the `nodeSelector` key in the command data:
+
+```yaml
+command:
+  id: pod
+  data:
+    pod_name: vendor-license
+    nodeSelector: database
+```
