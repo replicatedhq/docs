@@ -59,8 +59,9 @@ custom_requirements:
   command:
     id: pod
     data:
-      pod_name: vendor-license
-      global: true
+      kubernetes:
+        pod_name: vendor-license
+        global: true
 ```
 
 In this example, we define a pod name of `vendor-license`, which we must also define as part of the full YAML spec. Preflight Kubernetes pods are defined by prepending `#kind: preflight-kubernetes` to each preflight Kubernetes resource definition, for example:
@@ -85,8 +86,9 @@ Custom preflight checks can be targeted using node labels and node affinities. T
 command:
   id: pod
   data:
-    pod_name: vendor-license
-    nodeSelector: database
+    kubernetes:
+      pod_name: vendor-license
+      nodeSelector: database
 ```
 
 ## Run Globally
@@ -97,8 +99,9 @@ Sometimes, it can be valuable to run a preflight check on every node. To do so, 
 command:
   id: pod
   data:
-    pod_name: check-disk-space
-    global: true
+    kubernetes:
+      pod_name: check-disk-space
+      global: true
 ```
 
 If `global` is set to false, a single instance of the pod is scheduled in the cluster. This can be useful for performing preflight checks on cluster-level information.
