@@ -324,7 +324,7 @@ hr {
     width: 100%
 }
 .header .stretch {
-    padding: 0 20px
+    padding: 0 40px
 }
 .stretch .title {
     display: table-cell;
@@ -949,7 +949,8 @@ h1 .article .headerlink {
     display: table
 }
 .bar.search {
-    opacity: 0
+    /*opacity: 0;  */
+    display: none;
 }
 .bar.search .query {
     background: transparent;
@@ -971,10 +972,11 @@ h1 .article .headerlink {
     box-shadow: 0 4px 7px rgba(0, 0, 0, .23), 0 8px 25px rgba(0, 0, 0, .05);
     background: #fff;
     color: rgba(0, 0, 0, .87);
-    opacity: 0
+    opacity: 0;
 }
 #toggle-search:checked~.main .results, .toggle-search .results {
-    opacity: 1
+    /*opacity: 1;*/
+    display: block;
 }
 .results .meta {
     background: #FE0000;
@@ -1000,10 +1002,11 @@ h1 .article .headerlink {
     background: rgba(0, 0, 0, .54)
 }
 #toggle-search:checked~.header .bar.default, .toggle-search .header .bar.default {
-    opacity: 0
+    opacity: 0;
 }
 #toggle-search:checked~.header .bar.search, .toggle-search .header .bar.search {
-    opacity: 1
+    /*opacity: 1;*/
+    display: flex;
 }
 .bar.search {
     margin-top: 2px
@@ -1149,7 +1152,7 @@ h1 .article .headerlink {
         padding: 8px
     }
     .header .stretch {
-        padding: 0 16px
+        padding: 0 40px
     }
     .header .stretch .title {
         font-size: 20px;
@@ -1284,7 +1287,7 @@ h1 .article .headerlink {
 }
 @media only screen and (min-width:720px) and (max-width:959px) {
     .header .stretch {
-        padding: 0 24px
+        padding: 0 40px
     }
 }
 @media only screen and (min-width:480px) {
