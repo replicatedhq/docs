@@ -23,13 +23,21 @@ Like the standard Replicated scheduler, when shipping an application using Swarm
 
 Some of the standard Replicated features operate differently or are not supported on Swarm:
 
+### New YAML format
+The Swarm scheduler requires a different YAML format which combines some of the Replicated YAML with your own  Docker Compose V3 YAML. For an example of how this is done see here: [Swarm Voting App](/examples/swarm-votingapp/) which is utilizing the `kind:` tag to designate Replicated and Swarm YAML sections.
+```
+---
+# kind: scheduler-swarm
+version: "3.1"
+```
+
 ### External Private Images
 External private images are not supported currently. Replicated hosts a [private registry](/getting-started/replicated-private-registry) that you can use to ship private images. Replicated also supports public (unauthenticated) images in any registry.
 
 ### Airgapped Installations
-{{< version version="2.8.0" >}} Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified in the new `images` section of your YAML in ordered to be included in the airgap bundle your customer will download. See below for an example.
+Airgapped installations work as expected when running in swarm mode. All images included in your swarm application must be specified in the new `images` section of your YAML in order to be included in the airgap bundle your customer will download. See below for an example.
 
-```yml
+```yaml
 images:
 - name: redis
   tag: 3.2-alpine
@@ -45,9 +53,6 @@ images:
 ### Replicated Auto Updates
 Replicated auto updates work as expected when running in Swarm mode. While the Replicated update is applying, the UI will not be available. Once it finishes, refresh the UI to get the update.
 
-### Integration API
-The Integration API works as expected when running in swarm mode, although the environment variable `REPLICATED_INTEGRATIONAPI` is not automatically injected into the running containers as it is with the Replicated Native scheduler. The [`PremkitAPIAddress`](/packaging-an-application/template-functions#premkitapiaddress) template function has been made available to inject the address into the container's environment.
-
 ### Snapshots
 Standard Replicated snapshots are not supported when running in Swarm mode. This functionality will be included in an upcoming release.
 
@@ -55,9 +60,9 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
 ### Admin Commands
-{{< version version="2.8.0" >}} Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
+Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
 
-```yml
+```yaml
 properties:
   shell_alias: mycli
 admin_commands:
@@ -77,9 +82,9 @@ Replicated will consider the application running when all replicas of the Swarm 
 There are some additional [template functions](/packaging-an-application/template-functions#swarm) available when running in Swarm mode.
 
 ### Secrets
-{{< version version="2.8.0" >}} Replicated supports secrets through the use of [template functions](https://www.replicated.com/docs/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](https://www.replicated.com/docs/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](https://www.replicated.com/docs/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
+Replicated supports secrets through the use of [template functions](/packaging-an-application/template-functions/). It is possible to request a secret from the user using a combination of config settings and the `ConfigOption` [template function](/packaging-an-application/template-functions/#configoption). For more information on configuring the replicated settings screen see the [docs](/packaging-an-application/config-screen/) on customizing the Admin Console settings page. See below for an example of creating a secret in your application.
 
-```yml
+```yaml
 # kind: replicated
 ...
 config:
@@ -96,7 +101,7 @@ swarm:
     value: '{{repl ConfigOption "config_my_secret" }}'
     labels:
       foo: bar
-      baz: 
+      baz:
 
 ---
 # kind: scheduler-swarm

@@ -169,13 +169,13 @@ yum update replicated replicated-ui replicated-agent
 
 If you have additional hosts you will independently need to run the following on each of them.
 
-```curl
+```bash
 curl -sSL https://get.replicated.com/agent | sudo sh
 ```
 
 ## Log Rotation
 By default, the Replicated installer script will set up log rotation for you. This section
-describes how to get it up and running manually just in case.  
+describes how to get it up and running manually just in case.
 
 Replicated components write log files to `/var/log/replicated`. These logs contain useful
 diagnostic information, and can grow somewhat large. We recommend setting up a log rotation
@@ -218,10 +218,10 @@ When provisioning a remote agent machine via SSH, you may receive an error like
 To fix this, you'll need to disable the `requiretty` setting in your sudo configuration.
 On most Linux-based systems, you can simply run `sudo visudo` from a shell, which will open
 an editor for your sudo configuration. Add an exclamation point to any occurrences of
-`requiretty`, e.g. `!requiretty`, then save the file.  
+`requiretty`, e.g. `!requiretty`, then save the file.
 
 After you have made this change, you can try provisioning the machine again from the
-Replicated UI.  
+Replicated UI.
 
 Please note that this may have security implications, so make sure you check the
 documentation for your OS and consider the effects carefully.

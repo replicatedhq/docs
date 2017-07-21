@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/temporary.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/palettes.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/swagger.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ with .Site.Params.highlight_css }}{{ . }}{{ else }}stylesheets/highlight/highlight.css{{ end }}">
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
 
     {{/* set default values if no custom ones are defined */}}
@@ -69,17 +68,7 @@
     <link href="{{ . }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
     {{ end }}
 
-    <script>
-      (function() {
-        var cx = '002531977460614806861:hkcu9eaunp4';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-      })();
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" />
 
   </head>
   <body class="{{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">

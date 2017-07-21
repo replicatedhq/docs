@@ -7,7 +7,7 @@ keywords= "installing"
 
 We provide an easy-to-use one-line installation process (via shell script) which will detect your OS, ask a few questions and install both docker-engine and the required Replicated components.
 
-If you want to always release your application with a specific version of Replicated you can read how to [always install a specific version of Replicated](/kb/supporting-your-customers/install-known-versions/). 
+If you want to always release your application with a specific version of Replicated you can read how to [always install a specific version of Replicated](/kb/supporting-your-customers/install-known-versions/).
 
 ## Basic Install
 
@@ -30,7 +30,7 @@ Every release channel for your application has a custom install link. Using the 
 
 To find the install link, login to your [vendor.replicated.com](https://vendor.replicated.com/) account, select your app and click "build history" for your channel and click "Copy install script url".
 
-## Flags 
+## Flags
 
 The install script takes optional flags to configure Replicated for your environment.
 
@@ -92,7 +92,9 @@ To remove Replicated run the following script.
 service replicated stop
 service replicated-ui stop
 service replicated-operator stop
-docker rm -f replicated replicated-ui replicated-operator
+docker stop replicated-premkit
+docker stop replicated-statsd
+docker rm -f replicated replicated-ui replicated-operator replicated-premkit replicated-statsd
 docker images | grep "quay\.io/replicated" | awk '{print $3}' | xargs sudo docker rmi -f
 apt-get remove -y replicated replicated-ui replicated-operator
 apt-get purge -y replicated replicated-ui replicated-operator
@@ -105,9 +107,10 @@ systemctl stop replicated replicated-ui replicated-operator
 service replicated stop
 service replicated-ui stop
 service replicated-operator stop
-docker rm -f replicated replicated-ui replicated-operator
+docker stop replicated-premkit
+docker stop replicated-statsd
+docker rm -f replicated replicated-ui replicated-operator replicated-premkit replicated-statsd
 docker images | grep "quay\.io/replicated" | awk '{print $3}' | xargs sudo docker rmi -f
 yum remove -y replicated replicated-ui replicated-operator
 rm -rf /var/lib/replicated* /etc/replicated* /etc/init/replicated* /etc/default/replicated* /etc/systemd/system/replicated* /etc/sysconfig/replicated* /etc/systemd/system/multi-user.target.wants/replicated* /run/replicated*
 ```
-

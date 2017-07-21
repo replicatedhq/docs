@@ -25,7 +25,7 @@ name: "Application"
 properties:
   logo_url: http://www.replicated.com/images/logo.png
   console_title: Application
- 
+
 components:
   - name: SSH
     containers:
@@ -49,14 +49,14 @@ components:
           - host_path: /keys
             container_path: /keys
             is_ephemeral: true
-            
+
         cmd: '["/create_ssh_key.sh"]'
         config_files:
           - filename: /create_ssh_key.sh
             file_mode: 0700
             contents: |
               #!/bin/bash
-              
+
               echo "Check if the public key exists in the authorized keys."
               if [ -f /keys/id_rsa.pub ]; then
                 grep -f /keys/id_rsa.pub /.ssh/authorized_keys
@@ -65,19 +65,19 @@ components:
                   exit 0
                 fi
               fi
-              
+
               echo "Generate a new key, if it does not exist"
               if [ ! -f /keys/id_rsa.pub ]; then
                 echo "Install the ssh-keygen command"
                 apt-get update && apt-get install -y keychain && rm -rf /var/lib/apt/lists/*
-              
+
                 echo "Create an ssh key"
                 ssh-keygen -f /keys/id_rsa -t rsa -N ''
               fi
-              
+
               echo "Write the public key to the authorized keys file"
               cat /keys/id_rsa.pub >> /.ssh/authorized_keys
-  
+
   # Connects to host over SSH as root and run a command
   - name: Bootstrap
     containers:   
@@ -105,14 +105,14 @@ components:
 
               ## It would be preferrable to create a custom image with this next line already installed.
               apt-get update && apt-get install -y ssh && rm -rf rm -rf /var/lib/apt/lists/*
-              
+
               # SSH to the host and then execute the "run_on_host.sh" script on the host
-              ssh -i /keys/id_rsa -o StrictHostKeyChecking=no root@{{repl ThisHostPrivateIpAddress}} 'bash -s' < /run_on_host.sh
+              ssh -i /keys/id_rsa -o StrictHostKeyChecking=no root@{{repl ThisNodePrivateIPAddress}} 'bash -s' < /run_on_host.sh
           - filename: /run_on_host.sh
             file_mode: 0700
             contents: |
               #!/bin/bash
-              
+
               ## This script will be executed on the host operating system and can use replicated template functions
 
               ## It's possible to access license properties here
@@ -122,7 +122,7 @@ components:
               my_config_val='{{repl ConfigOption "my_config_option"}}'
 
               ## Complete example:
-              if [ "{{repl ConfigOption \"update_management_console\" }}" -eq "true" ]; then
+              if [ '{{repl ConfigOption "update_management_console" }}' = "true" ]; then
                 nohup sh -c "curl -sSL https://get.replicated.com/docker | sudo bash && curl -sSL https://get.docker.com | sudo bash" &
               fi
   - name: Application

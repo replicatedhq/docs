@@ -278,7 +278,7 @@ hr {
     z-index: 2;
     height: 56px;
     padding: 4px;
-    overflow: hidden
+    overflow: visible
 }
 .ios.standalone .header {
     position: absolute
@@ -918,6 +918,11 @@ h1 .article .headerlink {
     transform: scale(1);
     opacity: 1
 }
+
+.search .field .ds-dropdown-menu {
+    font-size: 14px;
+}
+
 .results {
     -webkit-transition: opacity .3s .1s, width 0s .4s, height 0s .4s;
     transition: opacity .3s .1s, width 0s .4s, height 0s .4s

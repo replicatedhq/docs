@@ -52,9 +52,9 @@ components:
       container_path: /var/log/cassandra
     env_vars:
     - name: CASSANDRA_BROADCAST_ADDRESS
-      static_val: "{{repl ThisHostPrivateIpAddress }}"
+      static_val: '{{repl ThisNodePrivateIPAddress }}'
     - name: CASSANDRA_SEEDS
-      static_val: '{{repl range $index, $host := HostPrivateIpAddressAll "Cassandra" "cassandra" }}{{repl if eq $index 1}},{{repl end}}{{repl if lt $index 2}}{{repl $host}}{{repl end}}{{repl end}}'
+      static_val: '{{repl range $index, $host := NodePrivateIPAddressAll "Cassandra" "cassandra" }}{{repl if eq $index 1}},{{repl end}}{{repl if lt $index 2}}{{repl $host}}{{repl end}}{{repl end}}'
     ports:
     - private_port: "9042"
       public_port: "9042"
@@ -79,12 +79,12 @@ join the cluster. Seed Nodes also act as gossip hot spots and have the most curr
 on them. All nodes in a cluster should have the same list of seed nodes in a cluster but not all
 nodes should be seeds.*
 
-- We set the env_var `CASSANDRA_BROADCAST_ADDRESS` using the [`ThisHostPrivateIPAddress`](/packaging-an-application/template-functions/#thisnodeprivateipaddress) template function to get the unique private IP of the containers host. This tells the local cassandra instance its own ip.
-- Lastly we generate a list of seed nodes using a little Replicated magic to set the env_var `CASSANDRA_SEEDS` using [Go Templates](/packaging-an-application/template-functions/) and [`HostPrivateIpAddressAll`](/packaging-an-application/template-functions/#hostprivateipaddressall). I only want to have 2 cassandra seed nodes but you can implement it however you like by slightly altering the template below:
+- We set the env_var `CASSANDRA_BROADCAST_ADDRESS` using the [`ThisNodePrivateIPAddress`](/packaging-an-application/template-functions/#thisnodeprivateipaddress) template function to get the unique private IP of the containers host. This tells the local cassandra instance its own ip.
+- Lastly we generate a list of seed nodes using a little Replicated magic to set the env_var `CASSANDRA_SEEDS` using [Go Templates](/packaging-an-application/template-functions/) and [`NodePrivateIPAddressAll`](/packaging-an-application/template-functions/#NodePrivateIPAddressAll). I only want to have 2 cassandra seed nodes but you can implement it however you like by slightly altering the template below:
 
 ```go
 //Loop through all Hosts that have a cassandra container on it
-{{repl range $index, $host := HostPrivateIpAddressAll "Cassandra" "cassandra" }}
+{{repl range $index, $host := NodePrivateIPAddressAll "Cassandra" "cassandra" }}
 //Only make the first 2 containers Seed Nodes
 	{{repl if eq $index 1}},{{repl end}}
 	{{repl if lt $index 2}}{{repl $host}}{{repl end}}

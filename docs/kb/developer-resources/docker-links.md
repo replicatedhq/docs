@@ -46,5 +46,5 @@ components:
         image_name: mycompany/api
         extra_hosts:
           - hostname: redis
-            address: '{{repl ThisHostInterfaceAddress "docker0" }}'
-``` 
+            address: '{{repl ThisNodeDockerAddress }}'
+```

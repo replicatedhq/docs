@@ -6,19 +6,19 @@ weight = "999999"
 categories = [ "Knowledgebase", "Developer Resources" ]
 +++
 
-Replicated can integrate with your third party private registry (ie Docker Trusted Registry, Quay.io etc). To connect to these external registries 
+Replicated can integrate with your third party private registry (ie Docker Trusted Registry, Quay.io etc). To connect to these external registries
 you'll need to connect your vendor account to these accounts on the [app settings page](https://vendor.replicated.com/#/settings).
 
-You'll need to provide us with a reference name, endpoint, username, password and email address (we recommend creating a specific account for 
+You'll need to provide us with a reference name, endpoint, username, password and email address (we recommend creating a specific account for
 Replicated with read-only access to use).
 
-Your credentials will never be shared or used by the customer to pull your images, instead your images will be proxied by us for each 
+Your credentials will never be shared or used by the customer to pull your images, instead your images will be proxied by us for each
 installation.
 
-To access these images in your YAML you'll need to use the reference name as the source & then the image name will need to provide the image 
+To access these images in your YAML you'll need to use the reference name as the source & then the image name will need to provide the image
 name location, along with the version tag.
 
-```yml
+```yaml
 components:
 - name: App
   containers:

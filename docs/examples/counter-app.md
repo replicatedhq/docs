@@ -17,7 +17,7 @@ This is an example of a general-purpose Replicated app definition. You can use t
 
 [View the example-counter project on Github](https://github.com/replicatedcom/example-counter)
 
-```yml
+```yaml
 # My Counter App version 1.0
 ---
 replicated_api_version: 1.0.0
@@ -82,7 +82,7 @@ components:
             proxy_set_header X-Real-IP  $remote_addr;
             proxy_set_header X-Forwarded-For $remote_addr;
             proxy_set_header Host $host;
-            proxy_pass http://{{repl HostPrivateIpAddress "App" "freighter/counter" }}:{{repl ContainerExposedPort "App" "freighter/counter" "3000" }};
+            proxy_pass http://{{repl NodePrivateIPAddress "App" "freighter/counter" }}:{{repl ContainerExposedPort "App" "freighter/counter" "3000" }};
           }
         }
     customer_files: []
@@ -110,9 +110,9 @@ components:
     customer_files: []
     env_vars:
     - name: REDIS_HOST
-      static_val: "{{repl HostPrivateIpAddress \"DB\" \"redis\" }}"
+      static_val: '{{repl NodePrivateIPAddress "DB" "redis" }}'
     - name: REDIS_PORT
-      static_val: "{{repl ContainerExposedPort \"DB\" \"redis\" \"6379\" }}"
+      static_val: '{{repl ContainerExposedPort "DB" "redis" "6379" }}'
     ports: []
     volumes: []
     support_files: []

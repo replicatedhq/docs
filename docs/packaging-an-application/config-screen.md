@@ -123,6 +123,8 @@ A `textarea` can specify a `props` that will map into the HTML element directly.
     type: text
 ```
 
+## Properties
+
 ### `default` and `value`
 A default value will be applied to the ConfigOption template function when no value is
 specified. A default value provided via a command (default_cmd) is treated as ephemeral
@@ -146,7 +148,6 @@ in the settings section of the On-Prem Console.
     default: localhost
 ```
 
-## Properties
 ### `required`
 A required field will prevent the application from starting until it has a value.
 ```yaml
@@ -157,6 +158,8 @@ A required field will prevent the application from starting until it has a value
 The when value is used to denote conditional inputs that will only be visible (or required) when the condition evaluates to true. The `when` item can be used on groups, items and select_one or select_many options.
 
 The settings UI will update right away when a field used in a when clause is updated (no need to save) and can be used to used to show optional config sections. The equality check should match exactly without quotes.
+
+The when property can be configured in two different formats. The legacy format is in form `config_item_name=value` or `config_item_name!=value`. As of Replicated {{< version version="2.9.0" >}} [template functions](/packaging-an-application/template-functions) that evaluate to a parsable boolean can be used as a value to the when property.
 
 ```yaml
 - name: database_settings_group
@@ -171,10 +174,12 @@ The settings UI will update right away when a field used in a when clause is upd
       title: Embedded DB
   - name: database_host
     title: Database Hostname
-    description: MySQL hostname
     type: text
-    default: ''
     when: db_type=external
+  - name: database_password
+    title: Database Password
+    type: password
+    when: '{{repl (ConfigOptionEquals "select_one" "external") or (ConfigOptionEquals "select_one" "embedded")}}'
 ```
 
 ### `recommended`

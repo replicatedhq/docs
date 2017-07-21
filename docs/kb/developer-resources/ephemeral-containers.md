@@ -21,7 +21,7 @@ Dockerhub. This snippet will expose Postgre on port 5432 on the host, and define
 instructs Replicated to poll port 5432 on the host until a connection can be established. We are
 going to use this event as a trigger to run the migration.
 
-```yml
+```yaml
 - name: db
   containers:
   - source: public
@@ -63,7 +63,7 @@ as "Stopped" in the dashboard.
 
 Finally, we listen for this container to stop, and fire an event to start the app container.
 
-```yml
+```yaml
 - name: db-migration
   containers:
   - source: replicated
@@ -72,7 +72,7 @@ Finally, we listen for this container to stop, and fire an event to start the ap
     ephemeral: true
     env_vars:
       - name: DB_URL
-        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl HostPrivateIpAddress \"db\" \"postgres\" }}:5432/pythonapp"
+        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl NodePrivateIPAddress \"db\" \"postgres\" }}:5432/pythonapp"
     cmd: '["python", "manage.py", "db", "upgrade"]'
     publish_events:
     - name: db migration complete
@@ -89,7 +89,7 @@ The app component is a standard Django app. We assume that it can start normally
 `CMD` or `ENTRYPOINT` in the Dockerfile. We aren't overriding the `CMD` this time, so the container
 will start serving the web site.
 
-```yml
+```yaml
 - name: python-app
   containers:
   - source: replicated
@@ -97,7 +97,7 @@ will start serving the web site.
     version: 1.4.2
     env_vars:
       - name: DB_URL
-        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl HostPrivateIpAddress \"db\" \"postgres\" }}:5432/pythonapp"
+        static_val: "postgresql://pythonapp:{{repl ConfigOption \"postgres_pw\"}}@{{repl NodePrivateIPAddress \"db\" \"postgres\" }}:5432/pythonapp"
 ```
 
 If this release contains a **required** migration and the migration is not going to be present in future

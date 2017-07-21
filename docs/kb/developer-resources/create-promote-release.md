@@ -29,7 +29,7 @@ First, we will create a [new release](/reference/vendor-api/) with the current Y
 connected to your Channel ID at all; we are simply creating a release in your app that can be promoted later. T
 his can be done with a single POST:
 
-```curl
+```bash
 curl -X POST \
      -H 'Authorization: <API_Token>' \
      -H 'Content-Type: application/json' \
@@ -44,7 +44,7 @@ the unique ID for the release you are creating. It will be required in the next 
 
 Next, we want to [put our new YML into this release](/reference/vendor-api/). This is accomplished with a single PUT:
 
-```curl
+```bash
 curl -X PUT \
      -H 'Authorization: <API_Token>' \
      -H 'Content-Type: application/yaml' \
@@ -61,7 +61,7 @@ Finally, we want to [promote this release](/reference/vendor-api/) to the channe
 available to any installation of a license from that channel. We recommend doing this for the Unstable or dev/test
 channels only at this time. Promoting the release is a single POST:
 
-```curl
+```bash
 curl -X POST \
      -H 'Authorization: <API_Token>' \
      -H 'Content-Type: application/json' \
@@ -72,6 +72,21 @@ curl -X POST \
 ```
 This release will be generated with static release notes and version label, but these fields can be edited manually
 at any time, including when you promote to the beta channel.
+
+## Test Your App YAML Changes
+
+When creating new releases during an automated process we recommend testing your app YAML first. This will allow you to validate, and if there are errors during validation exit your build process prior to creating a new release sequence.
+
+To validate your app YAML we use the same call as updating but with a dry_run flag. This will allow you find any errors without updating your application. On success the response will be HTTP 200 OK. If there is a problem with your app YAML the service will return a HTTP 400 response with a JSON payload indicating the error. A HTTP 403 response indicates that the sequence you're trying to update has already been promoted in which case you would create a new release and retry the dry run.
+
+```bash
+curl -X PUT \
+     -H 'Authorization: <API_Token>' \
+     -H 'Content-Type: application/yaml' \
+     -d <YAML CONTENTS> \
+     https://api.replicated.com/vendor/v1/app/<AppID>/<Seq>/raw?dry_run=1
+```
+
 
 ## Next Steps
 
