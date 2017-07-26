@@ -153,7 +153,7 @@ into the config items within this group. The arguments, in expected order:
 smtp.gmail.com:587 for the test proc to validate correctly. A type of "None" will only
 ensure the socket is evailable.**
 
-See [sample YAML for common SMTP inputs](https://support.replicated.com/hc/en-us/articles/216080448)
+See [sample YAML for common SMTP inputs](/docs/docs/kb/developer-resources/smtp)
 and leveraging the test_proc.
 
 ```yaml
