@@ -27,7 +27,7 @@ following set of commands:
 The item's value will be resolved on the Replicated Management machine. Success or failure
 is reported directly on the configuration screen.
 
-See sample [YAML for Hostname & SSL inputs](https://support.replicated.com/hc/en-us/articles/216653097) and
+See sample [YAML for Hostname & SSL inputs](/docs/kb/developer-resources/certs-and-keys.md) and
 leveraging the `test_procs` for each.
 
 ```yaml
@@ -57,7 +57,7 @@ expected order:
 1. GitHub app OAuth key.
 1. GitHub app OAuth secret.
 
-See sample [YAML for displaying common GitHub inputs](https://support.replicated.com/hc/en-us/articles/216080388) and
+See sample [YAML for displaying common GitHub inputs](/docs/kb/developer-resources/github-integration.md) and
 leveraging the test_proc.
 
 ```yaml
@@ -115,7 +115,7 @@ group. The arguments, in expected order:
 1. x509 certificate
 1. Private key (optional)
 1. Hostname (optional)
-Sample [YAML for Hostname & SSL inputs](https://support.replicated.com/hc/en-us/articles/216653097)
+Sample [YAML for Hostname & SSL inputs](/docs/kb/developer-resources/certs-and-keys.md)
 and leveraging the test_procs for each.
 
 ```yaml
