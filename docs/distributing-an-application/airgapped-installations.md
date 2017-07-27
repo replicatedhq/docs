@@ -59,3 +59,10 @@ page.
 ## Adding Additional Nodes
 
 In order to add additional nodes to your cluster, just navigate to the Cluster page of the Admin Console, click the "Add Node" button, and follow the instructions there. For more detailed instructions see the [add nodes](/distributing-an-application/add-nodes/) page of the docs.
+
+## Imageless Airgap Installations
+Licenses with Airgap installations enabled can additionally be configured to offer imageless bundles to customers.
+When imageless downloads are enabled in the vendor portal, customers will see two links at their download URL -
+one for a normal airgap installation and one for an imageless airgap installation.
+The customer is responsible for installing all required images on their nodes before starting or updating the app
+if they select an imageless bundle. We recommend not enabling the imageless option unless the customer requires it.
