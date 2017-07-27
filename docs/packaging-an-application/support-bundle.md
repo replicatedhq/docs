@@ -12,11 +12,9 @@ parent     = "/packaging-an-application"
 url        = "/docs/packaging-an-application/support-bundle"
 +++
 
-A support bundle archive will be available for your customer to download via the Support tab of the On-Prem Console.
+A support bundle is an archive that is available for the customer to download via the Support tab of the On-Prem Console.
 
-You can customize the content on the page by including markdown in the top-level of your YAML.
-
-Support bundle collection of any specific item, command or file will timeout after 30 seconds. The entire package will download all successful files, commands etc collected before the 30 second mark.
+Contents of the support page can be customized by including markdown in the top-level of the YAML.
 
 ```yaml
 replicated_api_version: "{{< replicated_api_version_current >}}"
@@ -27,8 +25,43 @@ console_support_markdown: |
   Or don't, your loss.
 ```
 
+The support bundle has a default timeout of 120 seconds, after which only files and commands that have completed will be included in the downloaded bundle. A custom timeout in seconds can be specified in the `support` section of the yaml.
+
+```yaml
+support:
+  timeout: 300
+```
+
+## Custom Files and Commands
+
+In addition to the [default support files](/packaging-an-application/support-bundle/#default-support-files) included in the support bundle, addtional files can be added via the `support` section of your yaml. Files from within the application’s containers can be included, as well as output of commands executed in the container. Support files and commands are supported by both the native and kubernetes schedulers. For more complex support commands it is possible to create a [config file](/packaging-an-application/components-and-containers/#config-files) and execute that file from a support command. These files will be available withing the */scheduler* directory of the support bundle.
+
+```yaml
+support:
+  files:
+    - filename: /var/log/nginx/access.log
+      source:
+        replicated:
+          component: Nginx
+          container: my-nginx
+        kubernetes:
+          selector:
+            run: my-nginx
+  commands:
+    - filename: access_last_1000.log
+      command: [tail, -n1000, /var/log/nginx/access.log]
+      source:
+        replicated:
+          component: Nginx
+          container: my-nginx
+        kubernetes:
+          selector:
+            run: my-nginx
+```
+
 ## Default Support Files
-You can identify [custom support bundle files](/packaging-an-application/components-and-containers/#custom-support-bundle-files) in your app configuration yaml, but by default the support bundle will include the following files:
+
+By default the support bundle will include the following files:
 
 | File | Description |
 |------|-------------|

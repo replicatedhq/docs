@@ -30,7 +30,7 @@ admin_commands:
 - alias: redis-cli
   command: [redis-cli]
   run_type: exec
-  selectors:
+  selector:
     app: redis
     tier: backend
     role: master

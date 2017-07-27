@@ -253,34 +253,6 @@ components:
           max_files: 5
 ```
 
-## Custom Support Bundle Files
-Finally, we have the option to specify additional files as part of the On-Prem Support Bundle. We can include both files from within our app's containers,
-as well as output of commands executed within the container.
-*Note: Every individual command will have 30 seconds to execute and then subsequently timeout.*
-
-```yaml
-    support_files:
-    - filename: /var/log/nginx/access.log
-    - filename: /var/log/nginx/error.log
-    support_commands:
-    - filename: access_last_1000.log
-      command: [tail, -n1000, /var/log/nginx/access.log]
-    - filename: error_last_1000.log
-      command: [tail, -n1000, /var/log/nginx/error.log]
-```
-
-Keep in mind that support commands are not templated. If a support command needs to access templated variables, create a config file and execute that file from a support command.
-
-```yaml
-  config_files:
-  - filename: /scratch/ping.sh
-    contents: |
-      ping {{ repl ConfigOption "bindaddress" }}
-  support_commands:
-  - filename: ping.log
-    command: [/scratch/ping.sh]
-```
-
 ## Restart Policies
 Optionally, containers can be configured to be restarted automatically. Currently supported restart policies match those supported natively by Docker.
 If the policy is not specified, the container will never be restarted. This behavior is equivalent to this setting:
@@ -321,12 +293,6 @@ Sometimes it can be helpful to allow a customer to supply a file to your app. A 
 SSL certificate and private key. To add customer supplied files to your container, you must first define the file as a config option, and
 then create a link to it in any container that needs that file. Replicated will prompt for the file to be uploaded and will ensure that the
 file is at the correct location in the container when it is started.
-
-## Support Files
-When your customer visits the support page in their On-Prem installation, Replicated will automatically download a extensive set of files
-from each host and container running your application. If your application creates any files that would be useful for remote troubleshooting,
-list them here. You simply provide a path to the file in the container, and when the support pack is downloaded, Replicated will include
-your support files, if present. More detail here: Support Bundle.
 
 ## Environment Variables
 The 12-factor app encourages the use of environment variables for configuration, and Replicated supports this design pattern. You can specify

@@ -45,7 +45,7 @@ admin_commands:
 - alias: redis-sadd
   command: [redis-cli, sadd]
   run_type: exec
-  selectors:
+  selector:
     app: redis
     tier: backend
     role: master
