@@ -59,9 +59,6 @@ Standard Replicated snapshots are not supported when running in Swarm mode. This
 ### Custom Preflight Checks
 Custom preflight checks are not currently supported when running in Swarm mode. These will be available in a future release.
 
-### Config files
-The `config_files` tag is not supported when running in Swarm mode. Please see the __Secrets__ section below for details on how to integrate user-supplied information into your containers via the Docker Secrets feature.
-
 ### Admin Commands
 Admin commands are fully supported when running in Swarm mode. Your yaml will need to specify a Swarm service in which to run the admin command. If multiple containers are part of the service then replicated will choose a random container in which to run the command. See the example below:
 
@@ -120,3 +117,6 @@ secrets:
   my_secret:
     external: true
 ```
+
+### Notes:
+The `config_files` tag is not supported when running in Swarm mode. Please see the __Secrets__ section for details on how to integrate user-supplied information into your containers via the Docker Secrets feature.
