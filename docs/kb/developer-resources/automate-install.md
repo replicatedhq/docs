@@ -46,7 +46,7 @@ These settings are explained in the following table:
 | TlsBootstrapCert | A file location as a `string` | If TlsBootstrapType is set to server-path, this value should be present and set to the location of a PEM encoded certificate file. |
 | TlsBootstrapKey | A file location as a `string` | If TlsBootstrapType is set to server-path, this value should be present and set to the location of a PEM encoded key file. |
 | LogLevel | `['debug', 'info, 'error']` | If present, this will set the log level of the Replicated daemon. |
-| Channel | `['stable', 'beta']` | The release channel you are using to install Replicated from. This is the Replicated channel, not the app channel. |
+| Channel | `['stable', 'beta', 'unstable']` | The release channel you are using to install Replicated from. This is the Replicated channel, not the app channel. |
 | LicenseFileLocation | A file location as a `string` | This should be set to the location of an installable .rli license file. Note that you should not enable activation on this license. |
 | ImportSettingsFrom | A file location as a `string` | If your application has any required config settings, you can supply custom values here. Replicated will read these and set them as if the user manually configured it. (see below) |
 | BypassPreflightChecks	 | Boolean `true` or `false` | Skips preflight checks |
