@@ -36,8 +36,8 @@ config:
   - name: hostname
     title: Hostname
     type: text
-    run_on_save: true
     test_proc:
+      run_on_save: true
       display_name: Test Hostname Resolution
       command: resolve_host
       arg_fields:
