@@ -117,3 +117,6 @@ secrets:
   my_secret:
     external: true
 ```
+
+### Notes:
+The `config_files` tag is not supported when running in Swarm mode. Please see the __Secrets__ section for details on how to integrate user-supplied information into your containers via the Docker Secrets feature.
