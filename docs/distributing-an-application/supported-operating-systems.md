@@ -13,7 +13,7 @@ kernel minimum of 3.10.
 
 Replicated provides an easy install script to work with the the following list of operating system.
 
-- Debian 7.7+
+- Debian 7.7-8
 - Ubuntu 14.04 / 15.10 / 16.04
 - Fedora 21 / 22
 - Red Hat Enterprise Linux 6.5+
