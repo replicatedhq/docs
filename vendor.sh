@@ -4,7 +4,6 @@
 rm -f app_name
 rm -f tmp_swagger.json
 rm -f tmp_adoc.adoc
-rm -f docs/reference/vendor-api.adoc
 
 page_metadata() {
     if [ "$1" = "apps" ]; then

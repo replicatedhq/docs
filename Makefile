@@ -6,7 +6,6 @@ run:
 	docker-compose up
 
 vendordocs:
-	rm -f docs/reference/vendor-api.adoc
 	git checkout docs/reference/vendor-api/index.md
 	find . -name "*vendor-api*" -ls
 	VENDOR_API="${SOURCE}" ./vendor.sh

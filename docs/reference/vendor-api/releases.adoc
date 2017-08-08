@@ -1,0 +1,637 @@
++++
+date = "2016-07-03T04:02:20Z"
+title = "Manage Releases"
+type = "swagger"
+description = "Create, list, promote, update and archive releases."
+keywords= "license, licenses"
+weight = "516"
+categories = [ "Vendor API" ]
++++
+= Vendor API V1
+
+
+[[_overview]]
+= Overview
+Create, list, promote, update and archive releases.
+
+
+== Version information
+[%hardbreaks]
+__Version__ : 1.0.0
+
+
+
+
+[[_paths]]
+= Paths
+
+[[_createrelease]]
+== Create a new release.
+....
+POST /app/{app_id}/release
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Body**|**Body** +
+__optional__|Create release parameters.|<<_createrelease_body,Body>>
+|===
+
+[[_createrelease_body]]
+**Body**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**name** +
+__required__|string
+|**source** +
+__required__|string
+|**sourcedata** +
+__required__|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**201**|CreateReleaseResponse contains the new release properties|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_listapprelease]]
+== Lists the releases for an app.
+....
+GET /app/{app_id}/releases
+....
+
+
+==== Description
+Deprecated - please use the list releases with paging route.
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|ListAppResponse contains a JSON array of app release data|< <<_appreleaseinfo,AppReleaseInfo>> > array
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+* `Deprecated: true`
+
+
+==== Tags
+
+* releases
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_pagedlistapprelease]]
+== Returns a paged set of releases for an app.
+....
+GET /app/{app_id}/releases/paged
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Query**|**count** +
+__required__|Number of elements to return per page, defaults to 30|integer (int64)
+|**Query**|**start** +
+__required__|Start of the next page, defaults to zero|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|AppResponse represents an app.|<<_app,App>>
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* releases
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_archivereleaseproperties]]
+== Archive a release.
+....
+POST /app/{app_id}/{sequence}/archive
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `text/plain`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_promotereleaseproperties]]
+== Promote a release.
+....
+POST /app/{app_id}/{sequence}/promote
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|**Body**|**Body** +
+__required__|Archive parameters|<<_promotereleaseproperties_body,Body>>
+|===
+
+[[_promotereleaseproperties_body]]
+**Body**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**channels** +
+__required__|< string > array
+|**label** +
+__required__|string
+|**release_notes** +
+__required__|string
+|**required** +
+__required__|boolean
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**204**|On success, no payload returned|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `text/plain`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_readreleaseproperties]]
+== Get the release properties.
+....
+POST /app/{app_id}/{sequence}/properties
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**204**|ReadReleaseResponse release properties|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_readrawrelease]]
+== Get the release config.
+....
+GET /app/{app_id}/{sequence}/raw
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|ReadRawReleaseResponse contains the app config contents +
+**Headers** :  +
+`Editable` (string) : True if the config is editable
+Required: true
+In: header.|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|===
+
+
+==== Produces
+
+* `text/plain`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+[[_updaterawrelease]]
+== Update the release config.
+....
+PUT /app/{app_id}/{sequence}/raw
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**app_id** +
+__required__|App identifier|string
+|**Path**|**sequence** +
+__required__|Release identifier|integer (int64)
+|**Body**|**Body** +
+__required__|Config|< integer (uint8) > array
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|UpdateRawReleaseResponse contains the app config contents|No Content
+|**400**|Returned on bad input|No Content
+|**401**|Return if the caller is not authorized|No Content
+|**403**|Returned if the caller does not have the needed permission|No Content
+|**404**|Returned on resource not found|No Content
+|**409**|Returned on a conflict|No Content
+|===
+
+
+==== Produces
+
+* `text/plain`
+
+
+==== Tags
+
+* release
+
+
+==== Security
+
+[options="header", cols=".^3,.^4"]
+|===
+|Type|Name
+|**Unknown**|**<<_api_key,api_key>>**
+|===
+
+
+
+
+[[_definitions]]
+= Definitions
+
+[[_app]]
+== App
+An app belongs to a team. It contains channels onto which releases can be
+promoted.
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Id** +
+__required__|The ID of the app|string
+|**Name** +
+__required__|The name of the app|string
+|**Slug** +
+__required__|A unique slug for the app|string
+|===
+
+
+[[_appchannel]]
+== AppChannel
+An app channel belongs to an app. It contains references to the top (current)
+release in the channel.
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Adoption** +
+__optional__|Adoption rate of licenses in the channel|<<_channeladoption,ChannelAdoption>>
+|**Description** +
+__required__|Description that will be shown during license installation|string
+|**Id** +
+__required__|The ID of the channel|string
+|**LicenseCounts** +
+__optional__|License counts to show the types of licenses in this channel|<<_licensecounts,LicenseCounts>>
+|**Name** +
+__required__|The name of channel|string
+|**Position** +
+__optional__|The position for which the channel occurs in a list|integer (int64)
+|**ReleaseLabel** +
+__optional__|The label of the current release sequence|string
+|**ReleaseNotes** +
+__optional__|Release notes for the current release sequence|string
+|**ReleaseSequence** +
+__optional__|A reference to the current release sequence|integer (int64)
+|===
+
+
+[[_appreleaseinfo]]
+== AppReleaseInfo
+AppReleaseInfo represents an app release
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**ActiveChannels** +
+__optional__|The active channels|< <<_appchannel,AppChannel>> > array
+|**AppId** +
+__optional__|The application ID|string
+|**CreatedAt** +
+__optional__|The time at which the release was created|<<_time,Time>>
+|**Editable** +
+__optional__|If the release is editable|boolean
+|**EditedAt** +
+__optional__|The last time at which the release was changed|<<_time,Time>>
+|**Sequence** +
+__optional__|The app sequence number|integer (int64)
+|**Version** +
+__optional__|The vendor supplied version|string
+|===
+
+
+[[_channeladoption]]
+== ChannelAdoption
+ChannelAdoption represents the versions that licenses are on in the channel
+
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**current_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**current_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**other_version_count_all** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_active** +
+__optional__|< string, integer (int64) > map
+|**previous_version_count_all** +
+__optional__|< string, integer (int64) > map
+|===
+
+
+[[_licensecounts]]
+== LicenseCounts
+LicenseCounts is a struct to hold license count information
+
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**active** +
+__optional__|< string, integer (int64) > map
+|**airgap** +
+__optional__|< string, integer (int64) > map
+|**inactive** +
+__optional__|< string, integer (int64) > map
+|**total** +
+__optional__|< string, integer (int64) > map
+|===
+
+
+[[_time]]
+== Time
+Programs using times should typically store and pass them as values,
+not pointers. That is, time variables and struct fields should be of
+type time.Time, not *time.Time. A Time value can be used by
+multiple goroutines simultaneously.
+
+Time instants can be compared using the Before, After, and Equal methods.
+The Sub method subtracts two instants, producing a Duration.
+The Add method adds a Time and a Duration, producing a Time.
+
+The zero value of type Time is January 1, year 1, 00:00:00.000000000 UTC.
+As this time is unlikely to come up in practice, the IsZero method gives
+a simple way of detecting a time that has not been initialized explicitly.
+
+Each Time has associated with it a Location, consulted when computing the
+presentation form of the time, such as in the Format, Hour, and Year methods.
+The methods Local, UTC, and In return a Time with a specific location.
+Changing the location in this way changes only the presentation; it does not
+change the instant in time being denoted and therefore does not affect the
+computations described in earlier paragraphs.
+
+Note that the Go == operator compares not just the time instant but also the
+Location. Therefore, Time values should not be used as map or database keys
+without first guaranteeing that the identical Location has been set for all
+values, which can be achieved through use of the UTC or Local method.
+
+__Type__ : object
+
+
+
+
+
