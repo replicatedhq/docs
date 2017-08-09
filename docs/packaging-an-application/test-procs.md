@@ -27,9 +27,6 @@ following set of commands:
 The item's value will be resolved on the Replicated Management machine. Success or failure
 is reported directly on the configuration screen.
 
-See sample [YAML for Hostname & SSL inputs](/docs/kb/developer-resources/certs-and-keys) and
-leveraging the `test_procs` for each.
-
 ```yaml
 config:
   items:
@@ -56,9 +53,6 @@ expected order:
 1. Enterprise service protocol. Either `github_enterprise_protocol_http`, or `github_enterprise_protocol_https`.
 1. GitHub app OAuth key.
 1. GitHub app OAuth secret.
-
-See sample [YAML for displaying common GitHub inputs](/docs/kb/developer-resources/github-integration) and
-leveraging the test_proc.
 
 ```yaml
 config:
@@ -115,8 +109,6 @@ group. The arguments, in expected order:
 1. x509 certificate
 1. Private key (optional)
 1. Hostname (optional)
-Sample [YAML for Hostname & SSL inputs](/docs/kb/developer-resources/certs-and-keys)
-and leveraging the test_procs for each.
 
 ```yaml
 config:
@@ -152,9 +144,6 @@ into the config items within this group. The arguments, in expected order:
 **Note that the address of the SMTP server must contain the correct port number ie
 smtp.gmail.com:587 for the test proc to validate correctly. A type of "None" will only
 ensure the socket is evailable.**
-
-See [sample YAML for common SMTP inputs](/docs/kb/developer-resources/smtp)
-and leveraging the test_proc.
 
 ```yaml
 config:
@@ -231,7 +220,7 @@ complete and valid, for a detailed implementation reference see our LDAP integra
 Note you have to pass all the arg_fields for the test to validate correctly.
 
 These arguments come from values entered by your customer
-into the config items within this group.  For more details see [LDAP Integration](/packaging-an-application/ldap-integration)
+into the config items within this group.  
 
 Required arguments:
 
