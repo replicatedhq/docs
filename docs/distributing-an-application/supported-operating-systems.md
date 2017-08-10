@@ -23,7 +23,7 @@ Replicated provides an easy install script to work with the the following list o
 
 As new operating systems start to support Docker we extend our install script and QA process to include them.  Operating 
 systems that support Docker but are not yet included in the easy install script can still be used 
-using the [manual install instructions](/distributing-an-application/installing-manual).
+using the [manual install instructions](/distributing-an-application/installing-manually).
 
 For detailed requirements and installation guides see the docker installation docs.
 
