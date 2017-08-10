@@ -40,7 +40,7 @@ host_requirements:
   cpu_cores: 2
   cpu_mhz: 2400
   memory: 8GB
-  disk_space: 8GB
+  disk_space: 80GB
   replicated_version: ">=2.3.0 <2.4.1"
 ```
 
