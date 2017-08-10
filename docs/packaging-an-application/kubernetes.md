@@ -18,7 +18,7 @@ url        = "/docs/packaging-an-application/kubernetes"
 If your application is defined as a set of Kubernetes resources, and your customer can run a Kubernetes cluster, Replicated can provide the same standard functionality but on top of a Kubernetes cluster. To see a full example, check out the [Guestbook example](/examples/kubernetes-guestbook).
 
 ## Differences from the Replicated scheduler
-Unlike the standard Replicated scheduler, when shipping a Kubernetes application on Replicated, it's expected that your customer will supply and maintain the cluster. Replicated is an application that runs on top of the cluster, and does not provide cluster management support.
+Unlike the standard Replicated scheduler, when shipping a Kubernetes application on Replicated, it's expected that your customer will supply and maintain the cluster. Replicated is an application that runs on top of the cluster, and does not provide cluster management support. We provide standardized instructions for [installing Replicated on Kubernetes](/distributing-an-application/installing-on-kubernetes/).
 
 Some of the standard Replicated features operate differently or are not supported on Kubernetes:
 
