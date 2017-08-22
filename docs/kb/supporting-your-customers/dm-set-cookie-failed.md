@@ -13,13 +13,13 @@ Failed to remove replicated container, retrying
 Error response from daemon: driver "devicemapper" failed to remove root filesystem for 3d101377c1f7124c941329953db8287c052679b7ec77bd65bb14cc8018e0d212: failed to remove device 285b6331bf7fc15d068a93e30f3cc0a9cb0c42d1755fbdd64b1f26f015e5f530: devicemapper: Can not set cookie: dm_task_set_cookie failed
 ```
 
-This has been identified as a regression in devicemapper and will be fixed in future versions of Docker. In the meantime, there are two ways to fix this issue.
+This has been identified as a regression in devicemapper and Docker 17.06.0CE and will be fixed in future versions of Docker. In the meantime, there are two ways to fix this issue.
 
-# Restart the Docker Daemon
+## Restart the Docker Daemon
 
 Restarting the Docker daemon periodically will free up leaked semaphores, allowing containers to be properly created.
 
-# Increase Semaphore Limits
+## Increase Semaphore Limits
 
 For a more permenant solution, increase the number of semaphores in sysctl settings. There is no specific maximum to the number of semaphores and semaphore sets that should be pre-allocated on systems, but is dependent on CPU and available RAM. To see the current settings, run:
 
@@ -48,3 +48,7 @@ echo 500 128000 100 256 > /proc/sys/kernel/sem
 ```
 
 After setting these values, restart Docker or your system to apply the changes.
+
+# Recommended Settings
+
+In general, the system defaults for semaphore limits are the recommended values. However, when changing them, Replicated recommends increasing to cover the existing semaphore count while not using too much shared memory. `ipcs -a` will show semaphore counts by process, while `top` can be used to correlate shared memory use in those processes.
