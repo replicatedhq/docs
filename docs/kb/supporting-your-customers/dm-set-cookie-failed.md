@@ -35,13 +35,13 @@ In order, these parameters are:
 * SEMOPM - Maximum semaphore operations per semaphore system call
 * SEMMNI - Maximum number of semaphore sets
 
-To double the number of semaphore sets and semaphores in the sysctl settings, run the followin gcommand:
+To double the number of semaphore sets and semaphores in the sysctl settings, run the following command:
 
 ```
 sysctl -w kernel.sem="500 128000 100 256"
 ```
 
-Note that SEMMNS = SEMMSL * SEMMNI. This ensures that the number of semaphore sets and semaphores per sets can be fully utilized. This can also be changed without restart with:
+Note that `SEMMNS = SEMMSL * SEMMNI`. This ensures that the number of semaphore sets and semaphores per sets can be fully utilized. This can also be changed without restart with:
 
 ```
 echo 500 128000 100 256 > /proc/sys/kernel/sem
