@@ -30,7 +30,7 @@ docker run -d --name=replicated \
         -v /etc:/host/etc:ro \
         -e DOCKER_HOST_IP=$DOCKER_HOST_IP \
         -e LOCAL_ADDRESS=$LOCAL_ADDRESS \
-        -e DAEMON_TOKEN=$DAEMON_TOKEN \
+        -e DAEMON_TOKEN=$DAEMON_TOKEN \ # to create $DAEMON_TOKEN execute: cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 
         quay.io/replicated/replicated:latest
 
 docker run -d --name=replicated-ui \
