@@ -16,6 +16,7 @@ We recommend Docker version {{< docker_version_default >}}.  Refer to the Docker
 ```shell
 export DOCKER_HOST_IP=172.17.0.1  # Set this appropriately to docker0 address
 export LOCAL_ADDRESS=10.240.0.2  # Set this to the internal address of the server (usually eth0, but not 127.0.0.1)
+export DAEMON_TOKEN="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" # Create value for $DAEMON_TOKEN
 
 echo 'alias replicated="sudo docker exec -it replicated replicated"' > /etc/replicated.alias
 
@@ -30,6 +31,7 @@ docker run -d --name=replicated \
         -v /etc:/host/etc:ro \
         -e DOCKER_HOST_IP=$DOCKER_HOST_IP \
         -e LOCAL_ADDRESS=$LOCAL_ADDRESS \
+        -e DAEMON_TOKEN=$DAEMON_TOKEN \ 
         quay.io/replicated/replicated:latest
 
 docker run -d --name=replicated-ui \
