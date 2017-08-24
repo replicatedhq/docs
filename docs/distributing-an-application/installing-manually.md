@@ -16,8 +16,7 @@ We recommend Docker version {{< docker_version_default >}}.  Refer to the Docker
 ```shell
 export DOCKER_HOST_IP=172.17.0.1  # Set this appropriately to docker0 address
 export LOCAL_ADDRESS=10.240.0.2  # Set this to the internal address of the server (usually eth0, but not 127.0.0.1)
-
-cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1 # Create value for $DAEMON_TOKEN 
+export DAEMON_TOKEN="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" # Create value for $DAEMON_TOKEN
 
 echo 'alias replicated="sudo docker exec -it replicated replicated"' > /etc/replicated.alias
 
