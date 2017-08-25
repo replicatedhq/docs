@@ -25,10 +25,9 @@
   <article class="article">
     <div class="wrapper">
       <h1>{{ .Title }}</h1>
-      <div style="float: right; position: relative; top: -100px;">
-        {{ if .IsPage }}
-        <a href="https://github.com/replicatedhq/docs/edit/master/docs/{{ .File.Path }}">Edit this page</a>
-        {{ end }}
+      <div class="admonition note">
+        <p class="admonition-title">Visit Our Help Center</p>
+        <p>The newest version of our documentation is available at <a href="https://help.replicated.com">https://help.replicated.com</a></p>
       </div>
 
       {{ .Content }}
