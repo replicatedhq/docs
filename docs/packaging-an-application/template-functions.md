@@ -342,7 +342,7 @@ env_vars:
 - name: CASSANDRA_BROADCAST_ADDRESS_INTERNAL
   static_val: '{{repl ThisNodePrivateIPAddress }}'
 ```
-Replaces ThisHostPrivateIpAddress which is depreciated.
+Replaces ThisHostPrivateIpAddress which is deprecated.
 
 {{< template_function name="ThisNodeDockerAddress" replicated="true" kubernetes="false" swarm="false" >}}
 ```go
