@@ -1,8 +1,8 @@
 It is possible to change the ui-bind-port on a running application by editing the system service files manually.
 
-Depending on your distro, you can use edit the following files:
+Depending on your distro, you can edit the following files:
 
-/etc/systemd/system/replicated-ui.service or etc/init/replicated-ui.conf depending on the os and restart replicated-ui using sudo service replicated-ui restart
+/etc/systemd/system/replicated-ui.service or etc/init/replicated-ui.conf and restart replicated-ui using sudo service replicated-ui restart
 
 
 Additionally, you can run the same install script you used during the initial installation.
