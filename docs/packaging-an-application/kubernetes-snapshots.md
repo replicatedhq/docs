@@ -15,7 +15,7 @@ url        = "/docs/packaging-an-application/kubernetes-snapshots"
 
 ## Application Snapshots on Kubernetes
 
-Kubernetes Snapshots can be used to back up any kubernetes resources
+Kubernetes Snapshots can be used to back up any Kubernetes resources
 that use a [Persistent Volume Claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) (PVC)
 for persistent storage. In addition to storing your application data in a PVC, you'll need to whitelist it
 in your Replicated application yaml's `backup` section. For example, to back up a PVC named 
